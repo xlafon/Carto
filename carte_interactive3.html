@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte OSM avec Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+        #menu {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carte des offres à Bayonne</h1>
+    <div id="map"></div>
+    <div id="menu">
+        <label for="offerType">Choisissez une catégorie d'offres :</label>
+        <select id="offerType" onchange="showOffers(this.value)">
+            <option value="">--Sélectionnez une option--</option>
+            <option value="parking">Parkings</option>
+            <option value="water_point">Points d'eau</option>
+            <option value="bicycle_parking">Parkings à vélo</option>
+            <option value="cycleway">Pistes cyclables</option>
+        </select>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialisation de la carte
+        var map = L.map('map').setView([43.492949, -1.474841], 13);
+
+        // Ajout de la couche OSM
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Fonction pour afficher les offres
+        function showOffers(type) {
+            console.log("Type sélectionné : ", type);
+
+            // Suppression des anciens marqueurs
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            // URL de la requête Overpass API corrigée
+            var overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];{{geocodeArea:Bayonne}}->.searchArea;`;
+
+            if (type === 'parking') {
+                overpassUrl += 'nwr"amenity"="parking";out body;';
+            } else if (type === 'water_point') {
+                overpassUrl += 'nwr"amenity"="drinking_water";out body;';
+            } else if (type === 'bicycle_parking') {
+                overpassUrl += 'nwr"amenity"="bicycle_parking";out body;';
+            } else if (type === 'cycleway') {
+                overpassUrl += 'way"highway"="cycleway";out body;>;out skel qt;';
+            }
+
+            console.log("URL de la requête Overpass : ", overpassUrl);
+
+            // Récupération des données OSM
+            fetch(overpassUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Données récupérées : ", data);
+                    if (type === 'cycleway') {
+                        data.elements.forEach(element => {
+                            if (element.type === 'way') {
+                                var latlngs = element.geometry.map(coord => [coord.lat, coord.lon]);
+                                L.polyline(latlngs, { color: 'blue' }).addTo(map);
+                            }
+                        });
+                    } else {
+                        data.elements.forEach(element => {
+                            L.marker([element.lat, element.lon]).addTo(map)
+                                .bindPopup(type.charAt(0).toUpperCase() + type.slice(1));
+                        });
+                    }
+                })
+                .catch(error => console.error('Erreur lors de la récupération des données OSM:', error));
+        }
+    </script>
+</body>
+</html>
