@@ -2,9 +2,30 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<style>
+  .leaflet-control-custom {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  .leaflet-control-custom button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .leaflet-control-custom button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
 <div id="map" style="width: 100%; height: 600px;"></div>
-<button id="showOffices">Afficher les Offices de Tourisme</button>
-<button id="showTownhalls">Afficher les Mairies</button>
 
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -24,9 +45,7 @@
   L.control.layers(null, overlays).addTo(map);
 
   function addDataToLayer(url, layer) {
-    console.log("Fetching data from URL: " + url);
     $.getJSON(url, function(data) {
-      console.log("Data received: ", data);
       data.elements.forEach(function(element) {
         if (element.type === "node") {
           var marker = L.marker([element.lat, element.lon]);
@@ -41,23 +60,36 @@
           layer.addLayer(polygon);
         }
       });
-    }).fail(function() {
-      console.error("Failed to fetch data from URL: " + url);
     });
   }
 
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
   var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
 
-  $('#showOffices').click(function() {
-    console.log("Show Offices button clicked");
-    addDataToLayer(officesUrl, officesLayer);
-    map.addLayer(officesLayer);
+  var customControl = L.Control.extend({
+    options: {
+      position: 'topright'
+    },
+    onAdd: function (map) {
+      var container = L.DomUtil.create('div', 'leaflet-control-custom');
+
+      var buttonOffices = L.DomUtil.create('button', '', container);
+      buttonOffices.innerHTML = 'Afficher les Offices de Tourisme';
+      L.DomEvent.on(buttonOffices, 'click', function () {
+        addDataToLayer(officesUrl, officesLayer);
+        map.addLayer(officesLayer);
+      });
+
+      var buttonTownhalls = L.DomUtil.create('button', '', container);
+      buttonTownhalls.innerHTML = 'Afficher les Mairies';
+      L.DomEvent.on(buttonTownhalls, 'click', function () {
+        addDataToLayer(townhallsUrl, townhallsLayer);
+        map.addLayer(townhallsLayer);
+      });
+
+      return container;
+    }
   });
 
-  $('#showTownhalls').click(function() {
-    console.log("Show Townhalls button clicked");
-    addDataToLayer(townhallsUrl, townhallsLayer);
-    map.addLayer(townhallsLayer);
-  });
+  map.addControl(new customControl());
 </script>
