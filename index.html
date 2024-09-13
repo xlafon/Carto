@@ -45,6 +45,14 @@
   var officesLayer = L.layerGroup();
   var townhallsLayer = L.layerGroup();
 
+  // Créer une icône personnalisée pour les offices de tourisme
+  var touristOfficeIcon = L.icon({
+    iconUrl: 'tourist_office.png',
+    iconSize: [32, 32], // Taille de l'icône
+    iconAnchor: [16, 32], // Point de l'icône qui correspondra à la position du marqueur
+    popupAnchor: [0, -32] // Point à partir duquel la popup s'ouvrira par rapport à l'icône
+  });
+
   function translateOpeningHours(openingHours) {
     // Fonction de traduction pour les jours et les mois
     return openingHours.replace(/Mo/g, 'Lun')
@@ -74,19 +82,20 @@
         var popupContent = "";
         if (element.tags) {
           if (isOffice) {
-            popupContent += `<strong>${element.tags.name || "No name"}</strong><br>`;
+            popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
             if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
             if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
             if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br>`;
-            if (element.tags.description) popupContent += `Description : ${element.tags.description}<br>`;
+            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+            if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
           } else {
             popupContent += element.tags.name || "No name";
           }
         }
 
         if (element.type === "node") {
-          var marker = L.marker([element.lat, element.lon], { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) });
+          var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+          var marker = L.marker([element.lat, element.lon], markerOptions);
           marker.bindPopup(popupContent);
           layer.addLayer(marker);
         } else if (element.type === "way") {
