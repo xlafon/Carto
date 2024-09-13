@@ -45,6 +45,17 @@
   var officesLayer = L.layerGroup();
   var townhallsLayer = L.layerGroup();
 
+  function translateOpeningHours(openingHours) {
+    // Fonction de traduction simple pour les heures d'ouverture
+    return openingHours.replace(/Mo/g, 'Lun')
+                       .replace(/Tu/g, 'Mar')
+                       .replace(/We/g, 'Mer')
+                       .replace(/Th/g, 'Jeu')
+                       .replace(/Fr/g, 'Ven')
+                       .replace(/Sa/g, 'Sam')
+                       .replace(/Su/g, 'Dim');
+  }
+
   function addDataToLayer(url, layer, color, isOffice = false) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
@@ -55,7 +66,8 @@
             if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
             if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
             if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br>`;
+            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br>`;
+            if (element.tags.description) popupContent += `Description : ${element.tags.description}<br>`;
           } else {
             popupContent += element.tags.name || "No name";
           }
