@@ -24,7 +24,9 @@
   L.control.layers(null, overlays).addTo(map);
 
   function addDataToLayer(url, layer) {
+    console.log("Fetching data from URL: " + url);
     $.getJSON(url, function(data) {
+      console.log("Data received: ", data);
       data.elements.forEach(function(element) {
         if (element.type === "node") {
           var marker = L.marker([element.lat, element.lon]);
@@ -39,6 +41,8 @@
           layer.addLayer(polygon);
         }
       });
+    }).fail(function() {
+      console.error("Failed to fetch data from URL: " + url);
     });
   }
 
@@ -46,11 +50,13 @@
   var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="townhall";out geom;';
 
   $('#showOffices').click(function() {
+    console.log("Show Offices button clicked");
     addDataToLayer(officesUrl, officesLayer);
     map.addLayer(officesLayer);
   });
 
   $('#showTownhalls').click(function() {
+    console.log("Show Townhalls button clicked");
     addDataToLayer(townhallsUrl, townhallsLayer);
     map.addLayer(townhallsLayer);
   });
