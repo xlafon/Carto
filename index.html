@@ -3,6 +3,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
+<button id="showOffices">Afficher les Offices de Tourisme</button>
+<button id="showTownhalls">Afficher les Mairies</button>
+
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
@@ -10,8 +13,8 @@
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var officesLayer = L.layerGroup().addTo(map);
-  var townhallsLayer = L.layerGroup().addTo(map);
+  var officesLayer = L.layerGroup();
+  var townhallsLayer = L.layerGroup();
 
   var overlays = {
     "Offices de Tourisme": officesLayer,
@@ -19,9 +22,7 @@
   };
 
   L.control.layers(null, overlays).addTo(map);
-</script>
 
-<script>
   function addDataToLayer(url, layer) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
@@ -41,9 +42,16 @@
     });
   }
 
-  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
-  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
+  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
+  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="townhall";out geom;';
 
-  addDataToLayer(officesUrl, officesLayer);
-  addDataToLayer(townhallsUrl, townhallsLayer);
+  $('#showOffices').click(function() {
+    addDataToLayer(officesUrl, officesLayer);
+    map.addLayer(officesLayer);
+  });
+
+  $('#showTownhalls').click(function() {
+    addDataToLayer(townhallsUrl, townhallsLayer);
+    map.addLayer(townhallsLayer);
+  });
 </script>
