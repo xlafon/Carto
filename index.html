@@ -45,13 +45,6 @@
   var officesLayer = L.layerGroup();
   var townhallsLayer = L.layerGroup();
 
-  var overlays = {
-    "Offices de Tourisme": officesLayer,
-    "Mairies": townhallsLayer
-  };
-
-  L.control.layers(null, overlays).addTo(map);
-
   function addDataToLayer(url, layer, color) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
@@ -76,7 +69,7 @@
 
   var customControl = L.Control.extend({
     options: {
-      position: 'topleft'
+      position: 'topright'
     },
     onAdd: function (map) {
       var container = L.DomUtil.create('div', 'leaflet-control-custom');
@@ -84,15 +77,23 @@
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
       buttonOffices.innerHTML = 'Afficher les Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-        addDataToLayer(officesUrl, officesLayer, '#007bff');
-        map.addLayer(officesLayer);
+        if (map.hasLayer(officesLayer)) {
+          map.removeLayer(officesLayer);
+        } else {
+          addDataToLayer(officesUrl, officesLayer, '#007bff');
+          map.addLayer(officesLayer);
+        }
       });
 
       var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', container);
       buttonTownhalls.innerHTML = 'Afficher les Mairies';
       L.DomEvent.on(buttonTownhalls, 'click', function () {
-        addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
-        map.addLayer(townhallsLayer);
+        if (map.hasLayer(townhallsLayer)) {
+          map.removeLayer(townhallsLayer);
+        } else {
+          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
+          map.addLayer(townhallsLayer);
+        }
       });
 
       return container;
