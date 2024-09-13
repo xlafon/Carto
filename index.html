@@ -46,14 +46,26 @@
   var townhallsLayer = L.layerGroup();
 
   function translateOpeningHours(openingHours) {
-    // Fonction de traduction simple pour les heures d'ouverture
+    // Fonction de traduction pour les jours et les mois
     return openingHours.replace(/Mo/g, 'Lun')
                        .replace(/Tu/g, 'Mar')
                        .replace(/We/g, 'Mer')
                        .replace(/Th/g, 'Jeu')
                        .replace(/Fr/g, 'Ven')
                        .replace(/Sa/g, 'Sam')
-                       .replace(/Su/g, 'Dim');
+                       .replace(/Su/g, 'Dim')
+                       .replace(/Jan/g, 'Janv')
+                       .replace(/Feb/g, 'Févr')
+                       .replace(/Mar/g, 'Mars')
+                       .replace(/Apr/g, 'Avr')
+                       .replace(/May/g, 'Mai')
+                       .replace(/Jun/g, 'Juin')
+                       .replace(/Jul/g, 'Juil')
+                       .replace(/Aug/g, 'Août')
+                       .replace(/Sep/g, 'Sept')
+                       .replace(/Oct/g, 'Oct')
+                       .replace(/Nov/g, 'Nov')
+                       .replace(/Dec/g, 'Déc');
   }
 
   function addDataToLayer(url, layer, color, isOffice = false) {
