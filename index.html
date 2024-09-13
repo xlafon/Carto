@@ -14,14 +14,22 @@
     width: 100%;
     margin-bottom: 5px;
     padding: 5px;
-    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
   }
-  .leaflet-control-custom button:hover {
+  .leaflet-control-custom .offices-button {
+    background-color: #007bff;
+  }
+  .leaflet-control-custom .offices-button:hover {
     background-color: #0056b3;
+  }
+  .leaflet-control-custom .townhalls-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .townhalls-button:hover {
+    background-color: #1e7e34;
   }
 </style>
 
@@ -44,18 +52,18 @@
 
   L.control.layers(null, overlays).addTo(map);
 
-  function addDataToLayer(url, layer) {
+  function addDataToLayer(url, layer, color) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
         if (element.type === "node") {
-          var marker = L.marker([element.lat, element.lon]);
+          var marker = L.marker([element.lat, element.lon], { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) });
           marker.bindPopup(element.tags.name || "No name");
           layer.addLayer(marker);
         } else if (element.type === "way") {
           var latlngs = element.geometry.map(function(geo) {
             return [geo.lat, geo.lon];
           });
-          var polygon = L.polygon(latlngs);
+          var polygon = L.polygon(latlngs, { color: color });
           polygon.bindPopup(element.tags.name || "No name");
           layer.addLayer(polygon);
         }
@@ -63,8 +71,8 @@
     });
   }
 
-  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
-  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
+  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
+  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="townhall";out geom;';
 
   var customControl = L.Control.extend({
     options: {
@@ -73,17 +81,17 @@
     onAdd: function (map) {
       var container = L.DomUtil.create('div', 'leaflet-control-custom');
 
-      var buttonOffices = L.DomUtil.create('button', '', container);
+      var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
       buttonOffices.innerHTML = 'Afficher les Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-        addDataToLayer(officesUrl, officesLayer);
+        addDataToLayer(officesUrl, officesLayer, '#007bff');
         map.addLayer(officesLayer);
       });
 
-      var buttonTownhalls = L.DomUtil.create('button', '', container);
+      var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', container);
       buttonTownhalls.innerHTML = 'Afficher les Mairies';
       L.DomEvent.on(buttonTownhalls, 'click', function () {
-        addDataToLayer(townhallsUrl, townhallsLayer);
+        addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
         map.addLayer(townhallsLayer);
       });
 
