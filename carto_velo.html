@@ -113,7 +113,18 @@
       popupAnchor: [0, -32]
     });
 
-
+// Fonction de mappage pour les types de parkings à vélo
+        function mapBicycleParkingType(type) {
+            const mapping = {
+                stands: "Arceaux",
+                wall_loops: "Ratelier",
+                rack: "Ratelier",
+                shed: "Abri vélo",
+                lockers: "Abri à vélo individuels verrouillés"
+            };
+            return mapping[type] || type;
+        }
+    
 function translateOpeningHours(openingHours) {
     // Fonction de traduction pour les jours et les mois
     return openingHours.replace(/Mo/g, 'Lun')
