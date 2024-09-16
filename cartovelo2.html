@@ -38,15 +38,15 @@
 
         // Fonction pour charger les fichiers KML
         function loadKMLFiles() {
-            var kmlFiles = ['KMLVELO/Bixta-Eder-KML.kml', 'KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml']; // Liste des fichiers KMLL
-
-            kmlFiles.forEach(function(kmlFile) {
-                omnivore.kml(kmlFile)
-                    .on('ready', function() {
-                        this.setStyle({color: 'red'});
-                        map.fitBounds(this.getBounds());
-                    })
-                    .addTo(map);
+            $.getJSON('kml_files.json', function(files) {
+                files.forEach(function(kmlFile) {
+                    omnivore.kml(kmlFile)
+                        .on('ready', function() {
+                            this.setStyle({color: 'red'});
+                            map.fitBounds(this.getBounds());
+                        })
+                        .addTo(map);
+                });
             });
         }
 
