@@ -1,0 +1,177 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+  .leaflet-control-custom {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  .leaflet-control-custom button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .leaflet-control-custom .offices-button {
+    background-color: #007bff;
+  }
+  .leaflet-control-custom .offices-button:hover {
+    background-color: #0056b3;
+  }
+  .leaflet-control-custom .townhalls-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .townhalls-button:hover {
+    background-color: #1e7e34;
+  }
+  .leaflet-control-custom .bike-button {
+    background-color: #ffc107;
+  }
+  .leaflet-control-custom .bike-button:hover {
+    background-color: #e0a800;
+  }
+</style>
+
+<div id="map" style="width: 100%; height: 600px;"></div>
+
+<script>
+  var map = L.map('map').setView([43.492949, -1.474841], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var officesLayer = L.layerGroup();
+  var townhallsLayer = L.layerGroup();
+  var bikeParkingLayer = L.layerGroup();
+  var waterPointsLayer = L.layerGroup();
+  var bikeRoutesLayer = L.layerGroup();
+
+  var touristOfficeIcon = L.icon({
+    iconUrl: 'icons/tourist_office.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+  });
+
+  function translateOpeningHours(openingHours) {
+    return openingHours.replace(/Mo/g, 'Lun')
+                       .replace(/Tu/g, 'Mar')
+                       .replace(/We/g, 'Mer')
+                       .replace(/Th/g, 'Jeu')
+                       .replace(/Fr/g, 'Ven')
+                       .replace(/Sa/g, 'Sam')
+                       .replace(/Su/g, 'Dim')
+                       .replace(/Jan/g, 'Janv')
+                       .replace(/Feb/g, 'Févr')
+                       .replace(/Mar/g, 'Mars')
+                       .replace(/Apr/g, 'Avr')
+                       .replace(/May/g, 'Mai')
+                       .replace(/Jun/g, 'Juin')
+                       .replace(/Jul/g, 'Juil')
+                       .replace(/Aug/g, 'Août')
+                       .replace(/Sep/g, 'Sept')
+                       .replace(/Oct/g, 'Oct')
+                       .replace(/Nov/g, 'Nov')
+                       .replace(/Dec/g, 'Déc');
+  }
+
+  function addDataToLayer(url, layer, color, isOffice = false) {
+    $.getJSON(url, function(data) {
+      data.elements.forEach(function(element) {
+        var popupContent = "";
+        if (element.tags) {
+          if (isOffice) {
+            popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+            if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+            if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+            if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+            if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          } else {
+            popupContent += element.tags.name || "No name";
+          }
+        }
+
+        if (element.type === "node") {
+          var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+          var marker = L.marker([element.lat, element.lon], markerOptions);
+          marker.bindPopup(popupContent);
+          layer.addLayer(marker);
+        } else if (element.type === "way") {
+          var latlngs = element.geometry.map(function(geo) {
+            return [geo.lat, geo.lon];
+          });
+          var polygon = L.polygon(latlngs, { color: color });
+          polygon.bindPopup(popupContent);
+          layer.addLayer(polygon);
+        }
+      });
+    });
+  }
+
+  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
+  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="townhall";out geom;';
+  var bikeParkingUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="bicycle_parking";out geom;';
+  var waterPointsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="drinking_water";out geom;';
+  var bikeRoutesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"route"="bicycle";out geom;';
+
+  var customControl = L.Control.extend({
+    options: {
+      position: 'topleft'
+    },
+    onAdd: function (map) {
+      var container = L.DomUtil.create('div', 'leaflet-control-custom');
+
+      var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
+      buttonOffices.innerHTML = 'Afficher les Offices de Tourisme';
+      L.DomEvent.on(buttonOffices, 'click', function () {
+        if (map.hasLayer(officesLayer)) {
+          map.removeLayer(officesLayer);
+        } else {
+          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
+          map.addLayer(officesLayer);
+        }
+      });
+
+      var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', container);
+      buttonTownhalls.innerHTML = 'Afficher les Mairies';
+      L.DomEvent.on(buttonTownhalls, 'click', function () {
+        if (map.hasLayer(townhallsLayer)) {
+          map.removeLayer(townhallsLayer);
+        } else {
+          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
+          map.addLayer(townhallsLayer);
+        }
+      });
+
+      var buttonBike = L.DomUtil.create('button', 'bike-button', container);
+      buttonBike.innerHTML = 'Afficher les Points Vélo';
+      L.DomEvent.on(buttonBike, 'click', function () {
+        if (map.hasLayer(bikeParkingLayer) || map.hasLayer(waterPointsLayer) || map.hasLayer(bikeRoutesLayer)) {
+          map.removeLayer(bikeParkingLayer);
+          map.removeLayer(waterPointsLayer);
+          map.removeLayer(bikeRoutesLayer);
+        } else {
+          addDataToLayer(bikeParkingUrl, bikeParkingLayer, '#ffc107');
+          addDataToLayer(waterPointsUrl, waterPointsLayer, '#17a2b8');
+          addDataToLayer(bikeRoutesUrl, bikeRoutesLayer, '#6f42c1');
+          map.addLayer(bikeParkingLayer);
+          map.addLayer(waterPointsLayer);
+          map.addLayer(bikeRoutesLayer);
+        }
+      });
+
+      return container;
+    }
+  });
+
+  map.addControl(new customControl());
+</script>
