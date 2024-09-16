@@ -1,114 +1,60 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carte OSM avec Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet-kml/leaflet-kml.js"></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        #showRoutes {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <button id="showRoutes">Voir les parcours</button>
 
+    <script>
+        // Initialiser la carte centrée sur Bayonne
+        var map = L.map('map').setView([43.492949, -1.474841], 13);
 
-<div id="map" style="width: 100%; height: 600px;"></div>
-<script>
-  var map = L.map('map').setView([43.4833, -1.4833], 13); // Centré sur Bayonne
+        // Ajouter une couche de tuiles OSM
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+        // Fonction pour charger les fichiers KML
+        function loadKMLFiles() {
+            $.ajax({
+                url: 'KMLVELO/', // Répertoire contenant les fichiers KML
+                success: function (data) {
+                    $(data).find("a:contains('.kml')").each(function () {
+                        var kmlFile = $(this).attr("href");
+                        new L.KML(kmlFile, {async: true}).on("loaded", function(e) {
+                            map.addLayer(e.layer);
+                            e.layer.setStyle({color: 'red'});
+                        });
+                    });
+                }
+            });
+        }
 
-  var bikeParkingLayer = L.layerGroup().addTo(map);
-  var bikeRoutesLayer = L.layerGroup().addTo(map);
-
-  // Ajouter les parkings à vélo
-  var bikeParkingUrl = 'data/bike_parking.geojson';
-  $.getJSON(bikeParkingUrl, function(data) {
-    L.geoJSON(data, {
-      pointToLayer: function(feature, latlng) {
-        return L.marker(latlng, {
-          icon: L.icon({
-            iconUrl: 'icons/bicycle_parking.png',
-            iconSize: [25, 25]
-          })
+        // Ajouter un événement de clic au bouton
+        $('#showRoutes').click(function() {
+            loadKMLFiles();
         });
-      }
-    }).addTo(bikeParkingLayer);
-  });
-
-  // Ajouter les parcours vélo
-  var kmlDirectory = 'KMLVELO/';
-  $.ajax({
-    url: kmlDirectory,
-    success: function(data) {
-      $(data).find("a:contains('.kml')").each(function() {
-        var kmlFile = kmlDirectory + $(this).attr("href");
-        omnivore.kml(kmlFile).addTo(bikeRoutesLayer);
-      });
-    }
-  });
-
-  // Masquer les couches par défaut
-  map.removeLayer(bikeParkingLayer);
-  map.removeLayer(bikeRoutesLayer);
-</script>
-
-<div class="leaflet-control leaflet-control-custom">
-  <button class="bike-button" id="toggleBikeParkings">Afficher les parkings à vélo</button>
-  <div class="submenu" id="bikeParkingsSubmenu">
-    <!-- Contenu du sous-menu pour les parkings à vélo -->
-  </div>
-  <button class="bike-button" id="toggleBikeRoutes">Afficher les parcours vélo</button>
-  <div class="submenu" id="bikeRoutesSubmenu">
-    <!-- Contenu du sous-menu pour les parcours vélo -->
-  </div>
-</div>
-<style>
-  .leaflet-control-custom {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  }
-  .leaflet-control-custom button {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
-    padding: 5px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .leaflet-control-custom .bike-button {
-    background-color: #ffc107;
-  }
-  .leaflet-control-custom .bike-button:hover {
-    background-color: #e0a800;
-  }
-  .leaflet-control-custom .submenu {
-    display: none;
-    margin-top: 5px;
-  }
-  .leaflet-control-custom .submenu button {
-    background-color: #17a2b8;
-  }
-  .leaflet-control-custom .submenu button:hover {
-    background-color: #138496;
-  }
-</style>
-<script>
-  var bikeParkingLayer = L.layerGroup();
-  var bikeRoutesLayer = L.layerGroup();
-
-  $('#toggleBikeParkings').on('click', function() {
-    if (map.hasLayer(bikeParkingLayer)) {
-      map.removeLayer(bikeParkingLayer);
-    } else {
-      map.addLayer(bikeParkingLayer);
-    }
-  });
-
-  $('#toggleBikeRoutes').on('click', function() {
-    if (map.hasLayer(bikeRoutesLayer)) {
-      map.removeLayer(bikeRoutesLayer);
-    } else {
-      map.addLayer(bikeRoutesLayer);
-    }
-  });
-</script>
-
+    </script>
+</body>
+</html>
