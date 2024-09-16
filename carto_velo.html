@@ -199,16 +199,23 @@ function translateOpeningHours(openingHours) {
       });
     }
 
-    function addGeoJsonLayer(url, layer, icon) {
+    
+function addGeoJsonLayer(url, layer, icon) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
             return L.marker(latlng, { icon: icon });
           },
           onEachFeature: function (feature, layer) {
-            if (feature.properties && feature.properties.popupContent) {
-              layer.bindPopup(feature.properties.popupContent);
+            var popupContent = "";
+            if (feature.properties) {
+              if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
+              if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity}<br>`;
+              if (feature.properties.phone) popupContent += `Téléphone : ${feature.properties.phone}<br>`;
+              if (feature.properties.email) popupContent += `Email : <a href="mailto:${feature.properties.email}">${feature.properties.email}</a><br>`;
+              if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
             }
+            layer.bindPopup(popupContent);
           }
         }).addTo(layer);
       });
@@ -217,7 +224,6 @@ function translateOpeningHours(openingHours) {
     function addKmlLayer(url, layer) {
       omnivore.kml(url).addTo(layer);
     }
-
     var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
