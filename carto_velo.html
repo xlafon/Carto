@@ -123,6 +123,13 @@
           var polygon = L.polygon(latlngs, { color: color });
           polygon.bindPopup(popupContent);
           layer.addLayer(polygon);
+
+          // Calculer le centroïde du polygone
+        var centroid = polygon.getBounds().getCenter();
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker(centroid, markerOptions);
+        marker.bindPopup(popupContent);
+        layer.addLayer(marker);
         }
       });
     });
