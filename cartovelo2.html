@@ -38,7 +38,7 @@
 
         // Fonction pour charger les fichiers KML
         function loadKMLFiles() {
-            $.getJSON('kml_files.json', function(files) {
+            $.getJSON('KMLVELO/kml_files.json', function(files) {
                 files.forEach(function(kmlFile) {
                     omnivore.kml(kmlFile)
                         .on('ready', function() {
