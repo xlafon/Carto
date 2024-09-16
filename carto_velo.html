@@ -59,8 +59,8 @@
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var officesLayer = L.layerGroup();
-  var townhallsLayer = L.layerGroup();
+  var officesLayer = L.layerGroup().addTo(map);
+  var townhallsLayer = L.layerGroup().addTo(map);
   var bikeParkingLayer = L.layerGroup();
   var waterPointsLayer = L.layerGroup();
   var bikeRoutesLayer = L.layerGroup();
@@ -94,6 +94,40 @@
                        .replace(/Dec/g, 'Déc');
   }
 
+  function addDataToLayer(url, layer, color, isOffice = false) {
+    $.getJSON(url, function(data) {
+      data.elements.forEach(function(element) {
+        var popupContent = "";
+        if (element.tags) {
+          if (isOffice) {
+            popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+            if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+            if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+            if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+            if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          } else {
+            popupContent += element.tags.name || "No name";
+          }
+        }
+
+        if (element.type === "node") {
+          var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+          var marker = L.marker([element.lat, element.lon], markerOptions);
+          marker.bindPopup(popupContent);
+          layer.addLayer(marker);
+        } else if (element.type === "way") {
+          var latlngs = element.geometry.map(function(geo) {
+            return [geo.lat, geo.lon];
+          });
+          var polygon = L.polygon(latlngs, { color: color });
+          polygon.bindPopup(popupContent);
+          layer.addLayer(polygon);
+        }
+      });
+    });
+  }
+
   function addGeoJsonLayer(url, layer) {
     $.getJSON(url, function(data) {
       L.geoJson(data).addTo(layer);
@@ -106,9 +140,9 @@
 
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
   var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
-  var bikeParkingUrl = 'data/bike_parking.GEOJSON';
-  var waterPointsUrl = 'data/water_points.GEOJSON';
-  var bikeRoutesUrl = 'KMLVELO/bike_routes.kml';
+  var bikeParkingUrl = 'data/bike_parking.geojson';
+  var waterPointsUrl = 'data/water_points.geojson';
+  var bikeRoutesUrls = ['KMLVELO/route1.kml', 'KMLVELO/route2.kml', 'KMLVELO/route3.kml'];
 
   var customControl = L.Control.extend({
     options: {
@@ -154,7 +188,7 @@
         }
       });
 
-      var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+            var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
       buttonWaterPoints.innerHTML = 'Points d\'eau';
       L.DomEvent.on(buttonWaterPoints, 'click', function () {
         if (map.hasLayer(waterPointsLayer)) {
@@ -171,7 +205,9 @@
         if (map.hasLayer(bikeRoutesLayer)) {
           map.removeLayer(bikeRoutesLayer);
         } else {
-          addKmlLayer(bikeRoutesUrl, bikeRoutesLayer);
+          bikeRoutesUrls.forEach(function(url) {
+            addKmlLayer(url, bikeRoutesLayer);
+          });
           map.addLayer(bikeRoutesLayer);
         }
       });
