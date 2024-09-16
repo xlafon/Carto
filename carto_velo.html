@@ -165,8 +165,15 @@ function translateOpeningHours(openingHours) {
           if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br><br>`;
           if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
         } else if (isBikeParking) {
-          popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
-          popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
+          popupText = "Parking à vélo";
+          //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
+          //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
+          if (feature.properties.capacity) {
+                                            popupText += `<br>Capacité : ${feature.properties.capacity} places`;
+                                        }
+                                        if (feature.properties.bicycle_parking) {
+                                            popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
+                                        }
         } else if (isAccommodation) {
           popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
           if (element.tags.capacity) popupContent += `Capacité : ${element.tags.capacity}<br>`;
