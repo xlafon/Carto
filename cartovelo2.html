@@ -10,6 +10,9 @@
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
+  var bikeParkingLayer = L.layerGroup().addTo(map);
+  var bikeRoutesLayer = L.layerGroup().addTo(map);
+
   // Ajouter les parkings à vélo
   var bikeParkingUrl = 'data/bike_parking.geojson';
   $.getJSON(bikeParkingUrl, function(data) {
@@ -22,7 +25,7 @@
           })
         });
       }
-    }).addTo(map);
+    }).addTo(bikeParkingLayer);
   });
 
   // Ajouter les parcours vélo
@@ -32,11 +35,16 @@
     success: function(data) {
       $(data).find("a:contains('.kml')").each(function() {
         var kmlFile = kmlDirectory + $(this).attr("href");
-        new L.KML(kmlFile, {async: true}).addTo(map);
+        new L.KML(kmlFile, {async: true}).addTo(bikeRoutesLayer);
       });
     }
   });
+
+  // Masquer les couches par défaut
+  map.removeLayer(bikeParkingLayer);
+  map.removeLayer(bikeRoutesLayer);
 </script>
+
 <div class="leaflet-control leaflet-control-custom">
   <button class="bike-button" id="toggleBikeParkings">Afficher les parkings à vélo</button>
   <div class="submenu" id="bikeParkingsSubmenu">
@@ -82,11 +90,23 @@
   }
 </style>
 <script>
+  var bikeParkingLayer = L.layerGroup();
+  var bikeRoutesLayer = L.layerGroup();
+
   $('#toggleBikeParkings').on('click', function() {
-    $('#bikeParkingsSubmenu').toggle();
+    if (map.hasLayer(bikeParkingLayer)) {
+      map.removeLayer(bikeParkingLayer);
+    } else {
+      map.addLayer(bikeParkingLayer);
+    }
   });
 
   $('#toggleBikeRoutes').on('click', function() {
-    $('#bikeRoutesSubmenu').toggle();
+    if (map.hasLayer(bikeRoutesLayer)) {
+      map.removeLayer(bikeRoutesLayer);
+    } else {
+      map.addLayer(bikeRoutesLayer);
+    }
   });
 </script>
+
