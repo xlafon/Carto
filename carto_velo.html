@@ -169,7 +169,7 @@ function translateOpeningHours(openingHours) {
           //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
           //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
           if (feature.properties.capacity) {
-                                            popupText += `<br>Capacité : ${feature.properties.capacity} places`;
+                                            popupText += `<br>Capacités : ${feature.properties.capacity} places`;
                                         }
                                         if (feature.properties.bicycle_parking) {
                                             popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
