@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="map" style="width: 100%; height: 600px;"></div>
+<script>
+  var map = L.map('map').setView([43.4833, -1.4833], 13); // Centré sur Bayonne
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Ajouter les parkings à vélo
+  var bikeParkingUrl = 'data/bike_parking.geojson';
+  $.getJSON(bikeParkingUrl, function(data) {
+    L.geoJSON(data, {
+      pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+          icon: L.icon({
+            iconUrl: 'icons/bicycle_parking.png',
+            iconSize: [25, 25]
+          })
+        });
+      }
+    }).addTo(map);
+  });
+
+  // Ajouter les parcours vélo
+  var kmlDirectory = 'KMLVELO/';
+  $.ajax({
+    url: kmlDirectory,
+    success: function(data) {
+      $(data).find("a:contains('.kml')").each(function() {
+        var kmlFile = kmlDirectory + $(this).attr("href");
+        new L.KML(kmlFile, {async: true}).addTo(map);
+      });
+    }
+  });
+</script>
+// Menu
+<div id="menu">
+  <ul>
+    <li>Vélo
+      <ul>
+        <li><a href="#" id="showBikeParkings">Afficher les parkings à vélo</a></li>
+        <li><a href="#" id="showBikeRoutes">Afficher les parcours vélo</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<style>
+  #menu { position: absolute; top: 10px; left: 10px; background: white; padding: 10px; }
+</style>
+<script>
+  $('#showBikeParkings').on('click', function() {
+    // Code pour afficher les parkings à vélo
+  });
+
+  $('#showBikeRoutes').on('click', function() {
+    // Code pour afficher les parcours vélo
+  });
+</script>
