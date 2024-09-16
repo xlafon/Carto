@@ -1,49 +1,58 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
-
-<style>
-  .leaflet-control-custom {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  }
-  .leaflet-control-custom button {
-    display: block;
-    width: 100%;
-    margin-bottom: 5px;
-    padding: 5px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .leaflet-control-custom .offices-button {
-    background-color: #007bff;
-  }
-  .leaflet-control-custom .offices-button:hover {
-    background-color: #0056b3;
-  }
- 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carte avec Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+  <style>
+    .leaflet-control-custom {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .leaflet-control-custom .offices-button {
+      background-color: #007bff;
+    }
+    .leaflet-control-custom .offices-button:hover {
+      background-color: #0056b3;
+    }
     .leaflet-control-custom .bike-button {
-    background-color: #ffc107;
-  }
-  .leaflet-control-custom .bike-button:hover {
-    background-color: #e0a800;
-  }
-  .leaflet-control-custom .submenu {
-    display: none;
-    margin-top: 5px;
-  }
-  .leaflet-control-custom .submenu button {
-    background-color: #17a2b8;
-  }
-  .leaflet-control-custom .submenu button:hover {
-    background-color: #138496;
-  }
-</style>
+      background-color: #ffc107;
+    }
+    .leaflet-control-custom .bike-button:hover {
+      background-color: #e0a800;
+    }
+    .leaflet-control-custom .accommodations-button {
+      background-color: #dc3545;
+    }
+    .leaflet-control-custom .accommodations-button:hover {
+      background-color: #c82333;
+    }
+    .leaflet-control-custom .submenu {
+      display: none;
+      margin-top: 5px;
+    }
+    .leaflet-control-custom .submenu button {
+      background-color: #17a2b8;
+    }
+    .leaflet-control-custom .submenu button:hover {
+      background-color: #138496;
+    }
+  </style>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 
@@ -58,7 +67,11 @@
   var bikeParkingLayer = L.layerGroup();
   var waterPointsLayer = L.layerGroup();
   var bikeRoutesLayer = L.layerGroup();
+  var hotelsLayer = L.layerGroup();
+  var campingCarLayer = L.layerGroup();
+  var campingsLayer = L.layerGroup();
 
+  
   var touristOfficeIcon = L.icon({
     iconUrl: 'icons/tourist_office.png',
     iconSize: [32, 32],
@@ -142,6 +155,9 @@
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
   var bikeParkingUrl = 'data/bike_parking.geojson';
   var waterPointsUrl = 'data/water_points.geojson';
+  var hotelsUrl = 'data/HOT.geojson';
+  var campingCarUrl = 'data/ACC.geojson';
+  var campingsUrl = 'data/HPA.geojson';
   var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml']; // Liste des fichiers KML
 
   var customControl = L.Control.extend({
@@ -202,17 +218,68 @@
         }
       });
 
-      L.DomEvent.on(buttonBike, 'click', function () {
-        if (submenu.style.display === 'none' || submenu.style.display === '') {
-          submenu.style.display = 'block';
-        } else {
-          submenu.style.display = 'none';
-        }
-      });
+             L.DomEvent.on(buttonBike, 'click', function () {
+          if (submenu.style.display === 'none' || submenu.style.display === '') {
+            submenu.style.display = 'block';
+          } else {
+            submenu.style.display = 'none';
+          }
+        });
 
-      return container;
-    }
-  });
+        var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
+        buttonAccommodations.innerHTML = 'Afficher les Hébergements';
+        var submenuAccommodations = L.DomUtil.create('div', 'submenu', container);
+
+        var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonHotels.innerHTML = 'Hôtels';
+        L.DomEvent.on(buttonHotels, 'click', function () {
+          if (map.hasLayer(hotelsLayer)) {
+            map.removeLayer(hotelsLayer);
+          } else {
+            addGeoJsonLayer(hotelsUrl, hotelsLayer);
+            map.addLayer(hotelsLayer);
+          }
+        });
+
+        var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampingCar.innerHTML = 'Aires de camping-car';
+        L.DomEvent.on(buttonCampingCar, 'click', function () {
+          if (map.hasLayer(campingCarLayer)) {
+            map.removeLayer(campingCarLayer);
+          } else {
+            addGeoJsonLayer(campingCarUrl, campingCarLayer);
+            map.addLayer(campingCarLayer);
+          }
+        });
+
+        var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampings.innerHTML = 'Campings';
+        L.DomEvent.on(buttonCampings, 'click', function () {
+          if (map.hasLayer(campingsLayer)) {
+            map.removeLayer(campingsLayer);
+          } else {
+            addGeoJsonLayer(campingsUrl, campingsLayer);
+            map.addLayer(campingsLayer);
+          }
+        });
+
+        L.DomEvent.on(buttonAccommodations, 'click', function () {
+          if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
+            submenuAccommodations.style.display = 'block';
+          } else {
+            submenuAccommodations.style.display = 'none';
+          }
+        });
+
+        return container;
+      }
+    });
+
+    map.addControl(new customControl());
+  </script>
+</body>
+</html>
+
 
   map.addControl(new customControl());
 </script>
