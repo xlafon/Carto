@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/leaflet-kml/leaflet-kml.js"></script>
+    <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
     <style>
         #map {
             height: 600px;
@@ -19,7 +19,7 @@
             background: white;
             padding: 10px;
             border: 1px solid #ccc;
-            cursor: pointer; /* Ajout du curseur pour indiquer que c'est cliquable */
+            cursor: pointer;
         }
     </style>
 </head>
@@ -38,19 +38,15 @@
 
         // Fonction pour charger les fichiers KML
         function loadKMLFiles() {
-            var kmlFiles = ['KMLVELO/Bixta-Eder-KML.kml', 'KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml']; // Liste des fichiers KML
+            var kmlFiles = ['KMLVELO/Bixta-Eder-KML.kml', 'KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml']; // Liste des fichiers KMLL
 
             kmlFiles.forEach(function(kmlFile) {
-                fetch(kmlFile)
-                    .then(response => response.text())
-                    .then(kmlText => {
-                        var parser = new DOMParser();
-                        var kml = parser.parseFromString(kmlText, 'text/xml');
-                        var track = new L.KML(kml);
-                        track.setStyle({color: 'red'});
-                        map.addLayer(track);
+                omnivore.kml(kmlFile)
+                    .on('ready', function() {
+                        this.setStyle({color: 'red'});
+                        map.fitBounds(this.getBounds());
                     })
-                    .catch(error => console.error('Erreur lors du chargement du fichier KML:', error));
+                    .addTo(map);
             });
         }
 
