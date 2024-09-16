@@ -19,6 +19,7 @@
             background: white;
             padding: 10px;
             border: 1px solid #ccc;
+            cursor: pointer; /* Ajout du curseur pour indiquer que c'est cliquable */
         }
     </style>
 </head>
@@ -37,17 +38,19 @@
 
         // Fonction pour charger les fichiers KML
         function loadKMLFiles() {
-            $.ajax({
-                url: 'KMLVELO/', // Répertoire contenant les fichiers KML
-                success: function (data) {
-                    $(data).find("a:contains('.kml')").each(function () {
-                        var kmlFile = $(this).attr("href");
-                        new L.KML(kmlFile, {async: true}).on("loaded", function(e) {
-                            map.addLayer(e.layer);
-                            e.layer.setStyle({color: 'red'});
-                        });
-                    });
-                }
+            var kmlFiles = ['KMLVELO/route1.kml', 'KMLVELO/route2.kml']; // Liste des fichiers KML
+
+            kmlFiles.forEach(function(kmlFile) {
+                fetch(kmlFile)
+                    .then(response => response.text())
+                    .then(kmlText => {
+                        var parser = new DOMParser();
+                        var kml = parser.parseFromString(kmlText, 'text/xml');
+                        var track = new L.KML(kml);
+                        track.setStyle({color: 'red'});
+                        map.addLayer(track);
+                    })
+                    .catch(error => console.error('Erreur lors du chargement du fichier KML:', error));
             });
         }
 
