@@ -152,22 +152,31 @@ function translateOpeningHours(openingHours) {
 
 
     
-    function addDataToLayer(url, layer, icon, isOffice = false) {
-      $.getJSON(url, function(data) {
-        data.elements.forEach(function(element) {
-          var popupContent = "";
-          if (element.tags) {
-            if (isOffice) {
-              popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
-              if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-              if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
-              if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-              if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br><br>`;
-              if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
-            } else {
-              popupContent += element.tags.name || "No name";
-            }
-          }
+    function addDataToLayer(url, layer, icon, isOffice = false, isBikeParking = false, isAccommodation = false) {
+  $.getJSON(url, function(data) {
+    data.elements.forEach(function(element) {
+      var popupContent = "";
+      if (element.tags) {
+        if (isOffice) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br><br>`;
+          if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+        } else if (isBikeParking) {
+          popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
+          popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
+        } else if (isAccommodation) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.capacity) popupContent += `Capacité : ${element.tags.capacity}<br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+        } else {
+          popupContent += element.tags.name || "No name";
+        }
+      }
 
           if (element.type === "node") {
             var marker = L.marker([element.lat, element.lon], { icon: icon });
