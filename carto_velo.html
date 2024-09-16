@@ -155,7 +155,7 @@ kmlFiles.forEach(file => {
   var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
   var bikeParkingUrl = 'data/bike_parking.geojson';
   var waterPointsUrl = 'data/water_points.geojson';
-  // var bikeRoutesUrls = ['KMLVELO/route1.kml', 'KMLVELO/route2.kml', 'KMLVELO/route3.kml'];
+  var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml']; // Liste des fichiers KML
 
   var customControl = L.Control.extend({
     options: {
