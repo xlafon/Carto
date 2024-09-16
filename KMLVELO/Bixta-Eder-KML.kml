@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>GPS device</name>
+	<Snippet maxLines="2">Created 06/15/10 14:54:01</Snippet>
+	<LookAt>
+		<longitude>-1.485643</longitude>
+		<latitude>43.299244</latitude>
+		<altitude>0</altitude>
+		<range>3953.484879</range>
+		<tilt>0</tilt>
+		<heading>0</heading>
+	</LookAt>
+	<Style id="track-10_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-10.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-0_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-0.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-13_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-13.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-6">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-6_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-6_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-3_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-3.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="lineStyle">
+		<LineStyle>
+			<color>99ffac59</color>
+			<width>6</width>
+		</LineStyle>
+	</Style>
+	<Style id="track-7_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-7.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-10_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-10.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-0_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-0.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-15">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-15_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-15_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-14_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-14.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="track-14">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-14_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-14_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-4_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-4.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="track-10">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-10_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-10_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-7_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-7.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-9">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-9_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-9_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="track-8">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-8_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-8_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-11_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-11.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-1_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-1.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-14_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-14.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-4_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-4.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-7">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-7_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-7_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="track-2">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-2_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-2_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-8_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-8.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="track-none">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-none_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-none_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-11_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-11.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-4_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-4_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-1_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-1.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-15_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-15.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-5_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-5.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="track-3">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-3_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-3_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-8_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-8.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-0_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-0_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-12_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-12.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-2_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-2.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-15_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-15.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-5_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-5.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-11">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-11_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-11_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="track-12">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-12_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-12_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-9_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-9.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-none_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-none.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-12_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-12.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-2_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-2.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<StyleMap id="track-5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-5_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-5_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="waypoint_n">
+		<IconStyle>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pal4/icon61.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-6_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-6.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="waypoint">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#waypoint_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#waypoint_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="track-13">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-13_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-13_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="track-9_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-9.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-none_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-none.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-13_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-13.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<Style id="track-3_n">
+		<IconStyle>
+			<scale>0.5</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-3.png</href>
+			</Icon>
+		</IconStyle>
+		<LabelStyle>
+			<scale>0</scale>
+		</LabelStyle>
+	</Style>
+	<StyleMap id="track-1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#track-1_n</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#track-1_h</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="waypoint_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pal4/icon61.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Style id="track-6_h">
+		<IconStyle>
+			<scale>1.2</scale>
+			<Icon>
+				<href>http://earth.google.com/images/kml-icons/track-directional/track-6.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+	<Folder>
+		<name>Waypoints</name>
+	</Folder>
+	<Folder>
+		<name>Tracks</name>
+		<Folder>
+			<name>PANORAMIQUE AINHOA</name>
+			<Snippet maxLines="0"></Snippet>
+			<description><![CDATA[<table>
+            <tr><td><b>Distance</b> 8.7 km </td></tr>
+            <tr><td><b>Min Alt</b> 99.385 meters </td></tr>
+            <tr><td><b>Max Alt</b> 443.622 meters </td></tr>
+          </table>]]></description>
+			<Placemark>
+				<name>Path</name>
+				<styleUrl>#lineStyle</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>
+-1.498873,43.305861,124.988655 -1.498967,43.30543,122.475624 -1.499026,43.305147,118.776688 -1.499018,43.305035,117.027313 -1.498789,43.304841,115.851402 -1.498714,43.30463,114.842003 -1.498282,43.304387,116.874268 -1.497998,43.304284,117.898842 -1.498754,43.303852,118.06897 -1.499622,43.303473,119.201874 -1.500228,43.303103,119.120781 -1.500479,43.3027,115.629372 -1.500893,43.302224,105.995262 -1.501017,43.301995,101.463173 -1.500869,43.301629,99.38481100000001 -1.500818,43.301552,101.364326 -1.501024,43.301421,105.384277 -1.501025,43.301432,105.116669 -1.501203,43.301336,106.362785 -1.501251,43.301132,109.8853 -1.500751,43.300554,120.703751 -1.500233,43.299954,131.051178 -1.500037,43.29932,137.486679 -1.499846,43.298764,138.803741 -1.499252,43.298178,140.962555 -1.498948,43.298234,141.075378 -1.498481,43.29815,141.885071 -1.497888,43.298036,143.976242 -1.497158,43.297949,143.999283 -1.496649,43.297934,142.926682 -1.496241,43.298049,142.436615 -1.495743,43.298191,141.947601 -1.495035,43.298205,140.982941 -1.494506,43.298123,142.255875 -1.494068,43.298014,143.973755 -1.493656,43.298074,142.323746 -1.493198,43.29836,137.130707 -1.493184,43.298372,136.971405 -1.493064,43.298421,135.871719 -1.492738,43.298152,130.777924 -1.492678,43.297715,124.077843 -1.492409,43.297151,104.207985 -1.492164,43.29671,102.616531 -1.492174,43.296395,107.176689 -1.492107,43.296083,115.256485 -1.491879,43.295888,123.861076 -1.491853,43.295507,131.362061 -1.491812,43.295115,136.429871 -1.491982,43.294895,136.321182 -1.492166,43.294889,134.876526 -1.492529,43.294561,135.502502 -1.492923,43.294232,135.510742 -1.492482,43.293854,142.068192 -1.492122,43.293541,150.23909 -1.492066,43.293396,153.20694 -1.491805,43.293406,155.261444 -1.491111,43.293161,165.443619 -1.490735,43.29305,172.939316 -1.489717,43.29303,186.33287 -1.489378,43.292795,196.459213 -1.489311,43.292707,199.558594 -1.48908,43.292716,200.964844 -1.488705,43.292392,208.953751 -1.488245,43.29243,213.322662 -1.487546,43.292568,225.051056 -1.487106,43.292651,235.246155 -1.486859,43.292648,240.412308 -1.486406,43.292552,249.270432 -1.485729,43.292554,264.096558 -1.485171,43.292495,280.448547 -1.48457,43.292494,296.39505 -1.484557,43.292528,296.525543 -1.483525,43.29252,320.3062440000001 -1.483058,43.292446,327.83548 -1.482655,43.292393,331.595734 -1.482249,43.292317,333.146759 -1.481991,43.29236,334.261505 -1.48177,43.292514,333.176239 -1.481021,43.292361,338.4617 -1.480396,43.292226,343.0278930000001 -1.47975,43.292001,353.4242550000001 -1.478863,43.291864,365.95694 -1.478477,43.291844,367.695801 -1.478311,43.291659,367.606232 -1.477934,43.291785,365.3164980000001 -1.47764,43.291998,364.189941 -1.477578,43.292213,364.5999150000001 -1.477098,43.29241,361.631683 -1.476671,43.292695,359.598755 -1.476284,43.2929,355.214325 -1.476103,43.293188,352.8226010000001 -1.475925,43.293284,350.5702210000001 -1.475955,43.293272,350.7533570000001 -1.475482,43.29357,342.302856 -1.475044,43.293934,335.21048 -1.474734,43.294125,334.151184 -1.474556,43.294232,330.85202 -1.474294,43.294219,332.965576 -1.473775,43.29453,328.223022 -1.473408,43.29479,324.991699 -1.473049,43.294713,329.242462 -1.473049,43.294724,329.122589 -1.47262,43.294987,330.034576 -1.472458,43.295094,330.878143 -1.47236,43.295468,331.052368 -1.471979,43.295763,331.0462650000001 -1.471458,43.296029,335.5880430000001 -1.470904,43.296273,340.269287 -1.470735,43.296279,340.5099180000001 -1.470528,43.296635,345.9358830000001 -1.470435,43.297088,354.6772460000001 -1.470259,43.297454,363.0492550000001 -1.470168,43.29793,376.0204770000001 -1.470192,43.298536,394.8946230000001 -1.470197,43.299076,409.746613 -1.470193,43.29947,418.5318600000001 -1.470034,43.299858,425.914124 -1.470082,43.29989,427.33551 -1.470225,43.299952,429.521729 -1.470474,43.300461,434.353363 -1.470767,43.300923,434.5805970000001 -1.471056,43.30134,434.540924 -1.47144,43.301551,428.124634 -1.471666,43.301712,432.8514710000001 -1.472342,43.301227,418.3128050000001 -1.472815,43.300929,418.483368 -1.473429,43.301132,443.622498 -1.472813,43.300906,417.305756 -1.473432,43.300716,424.278625 -1.474039,43.300582,427.8685 -1.474559,43.30053,428.7287600000001 -1.474874,43.300867,431.5076290000001 -1.474985,43.301144,428.930756 -1.474831,43.301386,432.500671 -1.47486,43.301823,428.3044430000001 -1.474909,43.302328,423.099243 -1.474864,43.302577,423.649933 -1.474767,43.302974,424.2909550000001 -1.474743,43.303526,428.1652530000001 -1.474773,43.303524,427.8611450000001 -1.475107,43.303445,421.925201 -1.475808,43.303566,418.1394040000001 -1.475997,43.303627,416.9271240000001 -1.476107,43.303904,424.6868900000001 -1.476184,43.304127,431.109985 -1.476677,43.304132,419.664948 -1.477197,43.304316,420.1068730000001 -1.477622,43.304458,419.559784 -1.478064,43.304611,418.5360720000001 -1.478441,43.304721,415.13562 -1.478888,43.304739,408.341583 -1.479198,43.304762,405.175476 -1.479547,43.304693,403.29071 -1.480013,43.304744,404.877319 -1.480337,43.304755,405.3449400000001 -1.480372,43.304821,406.2503050000001 -1.480649,43.304823,405.4113770000001 -1.481084,43.304414,399.792908 -1.481478,43.304085,393.3527530000001 -1.481738,43.303828,387.2910460000001 -1.482206,43.303452,380.299652 -1.482161,43.303476,380.9241030000001 -1.482383,43.303581,380.5233150000001 -1.482538,43.303586,379.293365 -1.482699,43.304154,375.6694340000001 -1.48277,43.304534,371.3530880000001 -1.483567,43.304933,358.490234 -1.4838,43.30497,355.839417 -1.483936,43.304931,353.098297 -1.48388,43.304776,350.611481 -1.483493,43.304283,355.096436 -1.483895,43.304078,346.209991 -1.484434,43.303845,332.955292 -1.484814,43.303775,325.659119 -1.485137,43.303775,322.01535 -1.485481,43.303853,318.57663 -1.485758,43.303854,317.1991580000001 -1.486109,43.303797,312.5499270000001 -1.486318,43.303699,309.675201 -1.486578,43.303679,303.9347530000001 -1.486773,43.303593,300.3654790000001 -1.487002,43.303338,295.477264 -1.487266,43.303137,290.7401120000001 -1.487436,43.303142,288.225769 -1.487722,43.303278,283.5665280000001 -1.487877,43.303531,280.177734 -1.488023,43.303864,274.0574340000001 -1.488267,43.304294,266.547089 -1.488428,43.304636,259.305634 -1.488576,43.304777,254.680618 -1.488902,43.304811,249.045685 -1.489412,43.304613,242.170395 -1.489857,43.304349,235.685623 -1.490178,43.304091,229.385025 -1.490475,43.303934,222.410751 -1.49065,43.303781,218.560318 -1.490761,43.303822,215.483063 -1.490845,43.304168,209.161255 -1.490824,43.304315,208.066116 -1.490737,43.304397,209.448441 -1.490744,43.304498,207.81691 -1.490932,43.304547,202.149506 -1.491379,43.304318,192.757263 -1.491526,43.304211,189.375122 -1.491631,43.303938,186.88588 -1.491737,43.303911,183.885941 -1.491832,43.303953,181.200821 -1.491903,43.304322,179.045517 -1.491957,43.304668,175.793152 -1.492175,43.304942,168.377319 -1.492393,43.305204,162.547287 -1.492204,43.305604,161.773651 -1.492124,43.305787,160.943466 -1.492161,43.306123,158.204254 -1.492734,43.306159,152.801865 -1.493328,43.306295,146.993958 -1.494066,43.306505,142.402496 -1.494927,43.306722,134.529373 -1.495379,43.306807,129.008102 -1.495997,43.30683,122.252495 -1.496627,43.306807,118.501251 -1.496795,43.30679,118.001251 -1.497026,43.306568,118.215263 -1.497751,43.306587,118.706657 -1.498318,43.306544,121.960472 -1.498613,43.306579,122.249374 -1.498715,43.306485,123.024376 -1.498903,43.305849,124.996796 -1.498855,43.305828,124.992455 </coordinates>
+				</LineString>
+			</Placemark>
+		</Folder>
+	</Folder>
+</Document>
+</kml>
