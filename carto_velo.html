@@ -199,19 +199,26 @@ function translateOpeningHours(openingHours) {
             return L.marker(latlng, { icon: icon });
           },
           onEachFeature: function (feature, layer) {
-            var popupContent = "";
-            if (feature.properties) {
-              if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
-              if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity}<br>`;
-              if (feature.properties.phone) popupContent += `Téléphone : ${feature.properties.phone}<br>`;
-              if (feature.properties.email) popupContent += `Email : <a href="mailto:${feature.properties.email}">${feature.properties.email}</a><br>`;
-              if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
+             var popupText = feature.properties.name || type.charAt(0).toUpperCase() + type.slice(1);
+                                    if (type === 'water_point') {
+                                        popupText = "Point d'eau";
+                                    } else if (type === 'bicycle_parking') {
+                                        popupText = "Parking à vélo";
+                                        if (feature.properties.capacity) {
+                                            popupText += `<br>Capacité : ${feature.properties.capacity} places`;
+                                        }
+                                        if (feature.properties.bicycle_parking) {
+                                            popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
+                                        }
+                                    }
+                                    return L.marker(latlng, { icon: icons[type] }).bindPopup(popupText);
+                                }
+                            }).addTo(map);
+                        }
+                    })
+                    .catch(error => console.error('Erreur lors de la récupération des données GeoJSON:', error));
             }
-            layer.bindPopup(popupContent);
-          }
-        }).addTo(layer);
-      });
-    }
+        }
    
 
     
@@ -344,6 +351,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
-  1
+  2
 </body>
 </html>
