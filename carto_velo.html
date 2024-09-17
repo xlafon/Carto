@@ -147,7 +147,28 @@ function translateOpeningHours(openingHours) {
                        .replace(/Nov/g, 'Nov')
                        .replace(/Dec/g, 'Déc');
   }
-
+function translateOpeningHours(opening_hours) {
+    // Fonction de traduction pour les jours et les mois
+    return opening_hours.replace(/Mo/g, 'Lun')
+                       .replace(/Tu/g, 'Mar')
+                       .replace(/We/g, 'Mer')
+                       .replace(/Th/g, 'Jeu')
+                       .replace(/Fr/g, 'Ven')
+                       .replace(/Sa/g, 'Sam')
+                       .replace(/Su/g, 'Dim')
+                       .replace(/Jan/g, 'Janv')
+                       .replace(/Feb/g, 'Févr')
+                       .replace(/Mar/g, 'Mars')
+                       .replace(/Apr/g, 'Avr')
+                       .replace(/May/g, 'Mai')
+                       .replace(/Jun/g, 'Juin')
+                       .replace(/Jul/g, 'Juil')
+                       .replace(/Aug/g, 'Août')
+                       .replace(/Sep/g, 'Sept')
+                       .replace(/Oct/g, 'Oct')
+                       .replace(/Nov/g, 'Nov')
+                       .replace(/Dec/g, 'Déc');
+  }
 
 
 
