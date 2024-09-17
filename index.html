@@ -12,13 +12,19 @@
     flex-direction: column;
     align-items: center;
   }
+  .leaflet-control-custom .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
   .leaflet-control-custom h2 {
     margin: 0;
     padding: 10px;
   }
   .leaflet-control-custom img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: auto;
     margin-bottom: 10px;
   }
   .leaflet-control-custom .button-container {
@@ -148,10 +154,10 @@
     });
   }
 
-  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
-  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="townhall";out geom;';
-  var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"tourism"="hotel";out geom;';
-  var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"amenity"="bicycle_rental";out geom;';
+  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
+  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
+  var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
+  var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
 
   var customControl = L.Control.extend({
     options: {
@@ -160,11 +166,13 @@
     onAdd: function (map) {
       var container = L.DomUtil.create('div', 'leaflet-control-custom');
 
-      var logo = L.DomUtil.create('img', '', container);
-      logo.src = 'icons/LOGO VISIT64.png'; // Remplacez par le chemin de votre logo
+      var header = L.DomUtil.create('div', 'header', container);
 
-      var title = L.DomUtil.create('h2', '', container);
-      title.innerHTML = 'Menu';
+      var title = L.DomUtil.create('h2', '', header);
+      title.innerHTML = 'Carte vélo 64';
+
+      var logo = L.DomUtil.create('img', '', header);
+      logo.src = 'icons/LOGO VISIT64.png';
 
       var buttonContainer = L.DomUtil.create('div', 'button-container', container);
 
@@ -179,7 +187,7 @@
         }
       });
 
-            var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
+      var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
       buttonTownhalls.innerHTML = 'Mairies';
       L.DomEvent.on(buttonTownhalls, 'click', function () {
         if (map.hasLayer(townhallsLayer)) {
@@ -218,4 +226,4 @@
 
   map.addControl(new customControl());
 </script>
-2
+3
