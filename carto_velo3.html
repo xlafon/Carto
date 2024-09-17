@@ -101,20 +101,7 @@
       return mapping[type] || type;
     }
 
-
-
-
-    // Fonction pour ajouter info si GEOJSON fichier
-    function mapBicycleParkingType(type) {
-      var mapping = {
-        'stands': 'arceaux',
-        'wall_loops': 'ratelier',
-        'shed': 'abri vélo'
-      };
-      return mapping[type] || type;
-    }
-
-    function addGeoJsonLayer(url, layer, icon, type) {
+   function addGeoJsonLayer(url, layer, icon, type) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
@@ -128,9 +115,9 @@
                 if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} places<br>`;
                 if (feature.properties.bicycle_parking) popupContent += `Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}<br>`;
               } else if (type === 'hotel') {
-                if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
-                if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} logements<br>`;
-                if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
+                if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
+                if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
+                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
               }
               // Pas d'infobulle pour les points d'eau
             }
@@ -246,6 +233,6 @@
     
     map.addControl(new customControl());
   </script>
-6
+7
 </body>
 </html>
