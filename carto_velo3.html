@@ -118,14 +118,10 @@
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
-              }
-              else if (type === 'camping_car') {
+              } else {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
-                if (feature.properties["Commune"]) popupContent += `Commune : ${feature.properties["Commune"]}<br>`;
-                if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
-                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
+                if (feature.properties.Commune) popupContent += `Commune : ${feature.properties.Commune}<br>`;
               }
-              // Pas d'infobulle pour les points d'eau
             }
             if (popupContent) {
               layer.bindPopup(popupContent);
@@ -239,6 +235,6 @@
     
     map.addControl(new customControl());
   </script>
-10
+11
 </body>
 </html>
