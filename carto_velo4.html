@@ -362,12 +362,29 @@ var bikeParkingIcon = L.icon({
           }
         });
 
-      
+              var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampings.innerHTML = 'Campings';
+        L.DomEvent.on(buttonCampings, 'click', function () {
+          if (map.hasLayer(campingsLayer)) {
+            map.removeLayer(campingsLayer);
+          } else {
+            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon);
+            map.addLayer(campingsLayer);
+          }
+        });
 
-      return container;
-    }
-  });
+        L.DomEvent.on(buttonAccommodations, 'click', function () {
+          if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
+            submenuAccommodations.style.display = 'block';
+          } else {
+            submenuAccommodations.style.display = 'none';
+          }
+        });
 
-  map.addControl(new customControl());
-</script>
-3
+        return container;
+      }
+    });
+
+    map.addControl(new customControl());
+  </script>
+4
