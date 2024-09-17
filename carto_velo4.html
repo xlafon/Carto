@@ -309,7 +309,16 @@ var bikeParkingIcon = L.icon({
           map.addLayer(officesLayer);
         }
       });
-
+var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
+      buttonTownhalls.innerHTML = 'Mairies';
+      L.DomEvent.on(buttonTownhalls, 'click', function () {
+        if (map.hasLayer(townhallsLayer)) {
+          map.removeLayer(townhallsLayer);
+        } else {
+          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
+          map.addLayer(townhallsLayer);
+        }
+      });
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Afficher les Points Vélo';
         var submenu = L.DomUtil.create('div', 'submenu', container);
@@ -408,4 +417,4 @@ var bikeParkingIcon = L.icon({
 
     map.addControl(new customControl());
   </script>
-8
+10
