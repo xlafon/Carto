@@ -147,33 +147,10 @@ function translateOpeningHours(openingHours) {
                        .replace(/Nov/g, 'Nov')
                        .replace(/Dec/g, 'Déc');
   }
-function translateopening_hours(opening_hours) {
-    // Fonction de traduction pour les jours et les mois
-    return opening_hours.replace(/Mo/g, 'Lun')
-                       .replace(/Tu/g, 'Mar')
-                       .replace(/We/g, 'Mer')
-                       .replace(/Th/g, 'Jeu')
-                       .replace(/Fr/g, 'Ven')
-                       .replace(/Sa/g, 'Sam')
-                       .replace(/Su/g, 'Dim')
-                       .replace(/Jan/g, 'Janv')
-                       .replace(/Feb/g, 'Févr')
-                       .replace(/Mar/g, 'Mars')
-                       .replace(/Apr/g, 'Avr')
-                       .replace(/May/g, 'Mai')
-                       .replace(/Jun/g, 'Juin')
-                       .replace(/Jul/g, 'Juil')
-                       .replace(/Aug/g, 'Août')
-                       .replace(/Sep/g, 'Sept')
-                       .replace(/Oct/g, 'Oct')
-                       .replace(/Nov/g, 'Nov')
-                       .replace(/Dec/g, 'Déc');
-  }
 
 
-
-    
-    function addDataToLayer(url, layer, icon, isOffice = false, isBikeParking = false, isAccommodation = false) {
+    // Fonction pour ajouter info si GEOJSON URL
+ function addDataToLayer(url, layer, color, isOffice = false) {
   $.getJSON(url, function(data) {
     data.elements.forEach(function(element) {
       var popupContent = "";
@@ -183,52 +160,39 @@ function translateopening_hours(opening_hours) {
           if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
           if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
           if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-          if (element.tags.opening_hours) popupContent += `Heures d'ouvertures : ${element.tags.opening_hours}<br><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
           if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
-        } else if (isBikeParking) {
-          popupText = "Parking à vélo";
-          //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
-          //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
-          if (feature.properties.capacity) {
-                                            popupText += `<br>Capacités : ${feature.properties.capacity} places`;
-                                        }
-                                        if (feature.properties.bicycle_parking) {
-                                            popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
-                                        }
-        } else if (isAccommodation) {
-          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
-          if (element.tags.capacity) popupContent += `Capacité : ${element.tags.capacity}<br>`;
-          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
         } else {
           popupContent += element.tags.name || "No name";
         }
       }
 
-          if (element.type === "node") {
-            var marker = L.marker([element.lat, element.lon], { icon: icon });
-            marker.bindPopup(popupContent);
-            layer.addLayer(marker);
-          } else if (element.type === "way") {
-            var latlngs = element.geometry.map(function(geo) {
-              return [geo.lat, geo.lon];
-            });
-            var polygon = L.polygon(latlngs, { color: '#3388ff' });
-            polygon.bindPopup(popupContent);
-            layer.addLayer(polygon);
-
-            var centroid = polygon.getBounds().getCenter();
-            var marker = L.marker(centroid, { icon: icon });
-            marker.bindPopup(popupContent);
-            layer.addLayer(marker);
-          }
+      if (element.type === "node") {
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker([element.lat, element.lon], markerOptions);
+        marker.bindPopup(popupContent);
+        layer.addLayer(marker);
+      } else if (element.type === "way") {
+        var latlngs = element.geometry.map(function(geo) {
+          return [geo.lat, geo.lon];
         });
-      });
-    }
+        var polygon = L.polygon(latlngs, { color: color });
+        polygon.bindPopup(popupContent);
+        layer.addLayer(polygon);
 
-    
-function addGeoJsonLayer(url, layer, icon) {
+        // Calculer le centroïde du polygone
+        var centroid = polygon.getBounds().getCenter();
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker(centroid, markerOptions);
+        marker.bindPopup(popupContent);
+        layer.addLayer(marker);
+      }
+    });
+  });
+}
+
+    // Fonction pour ajouter info si GEOJSON fichier
+    function addGeoJsonLayer(url, layer, icon) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
@@ -248,6 +212,10 @@ function addGeoJsonLayer(url, layer, icon) {
         }).addTo(layer);
       });
     }
+   
+
+    
+
 
     function addKmlLayer(url, layer) {
       omnivore.kml(url).addTo(layer);
