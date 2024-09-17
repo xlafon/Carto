@@ -9,21 +9,44 @@
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
   <style>
   .leaflet-control-custom {
-      background-color: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .leaflet-control-custom button {
-      display: block;
-      width: 100%;
-      margin-bottom: 5px;
-      padding: 5px;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .leaflet-control-custom .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom h2 {
+    margin: 0;
+    padding: 10px;
+  }
+  .leaflet-control-custom img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .leaflet-control-custom .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom button {
+    display: block;
+    width: 48%;
+    margin-bottom: 5px;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
     .leaflet-control-custom .offices-button {
       background-color: #007bff;
     }
@@ -69,7 +92,7 @@
       background-color: #0056b3;
     }
   </style>
-</style>
+
 
 <div id="map" style="width: 100%; height: 800px;"></div>
 
@@ -387,4 +410,4 @@ var bikeParkingIcon = L.icon({
 
     map.addControl(new customControl());
   </script>
-4
+5
