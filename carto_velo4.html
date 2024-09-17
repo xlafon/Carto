@@ -384,27 +384,7 @@ var bikeParkingIcon = L.icon({
           }
         });
 
-      var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
-      buttonAccommodations.innerHTML = 'Hébergements';
-      L.DomEvent.on(buttonAccommodations, 'click', function () {
-        if (map.hasLayer(accommodationsLayer)) {
-          map.removeLayer(accommodationsLayer);
-        } else {
-          addDataToLayer(accommodationsUrl, accommodationsLayer, '#ffc107');
-          map.addLayer(accommodationsLayer);
-        }
-      });
-
-      var buttonMobility = L.DomUtil.create('button', 'mobility-button', buttonContainer);
-      buttonMobility.innerHTML = 'Mobilité';
-      L.DomEvent.on(buttonMobility, 'click', function () {
-        if (map.hasLayer(mobilityLayer)) {
-          map.removeLayer(mobilityLayer);
-        } else {
-          addDataToLayer(mobilityUrl, mobilityLayer, '#17a2b8');
-          map.addLayer(mobilityLayer);
-        }
-      });
+      
 
       return container;
     }
@@ -412,4 +392,4 @@ var bikeParkingIcon = L.icon({
 
   map.addControl(new customControl());
 </script>
-1
+2
