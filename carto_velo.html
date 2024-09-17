@@ -199,7 +199,7 @@ function translateOpeningHours(openingHours) {
             return L.marker(latlng, { icon: icon });
           },
           onEachFeature: function (feature, layer) {
-            if (element.tags) {
+            
               if (isBikeParking) {
           popupText = "Parking à vélo";
           //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
@@ -222,7 +222,7 @@ function translateOpeningHours(openingHours) {
             }
             layer.bindPopup(popupContent);
           }}
-          }
+          
         }).addTo(layer);
       });
     }
@@ -359,6 +359,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
-  4
+ 5
 </body>
 </html>
