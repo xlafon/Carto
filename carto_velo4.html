@@ -9,68 +9,39 @@
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
   <style>
   .leaflet-control-custom {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .leaflet-control-custom .header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .leaflet-control-custom h2 {
-    margin: 0;
-    padding: 10px;
-  }
-  .leaflet-control-custom img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-  }
-  .leaflet-control-custom .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .leaflet-control-custom button {
-    display: block;
-    width: 48%;
-    margin-bottom: 5px;
-    padding: 5px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .leaflet-control-custom .offices-button {
-    background-color: #007bff;
-  }
-  .leaflet-control-custom .offices-button:hover {
-    background-color: #0056b3;
-  }
-  .leaflet-control-custom .bike-button {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .leaflet-control-custom .offices-button {
+      background-color: #007bff;
+    }
+    .leaflet-control-custom .offices-button:hover {
+      background-color: #0056b3;
+    }
+    .leaflet-control-custom .bike-button {
       background-color: #ffc107;
     }
     .leaflet-control-custom .bike-button:hover {
       background-color: #e0a800;
     }
-  .leaflet-control-custom .accommodations-button {
-    background-color: #ffc107;
-  }
-  .leaflet-control-custom .accommodations-button:hover {
-    background-color: #e0a800;
-  }
-  .leaflet-control-custom .mobility-button {
-    background-color: #17a2b8;
-  }
-  .leaflet-control-custom .mobility-button:hover {
-    background-color: #117a8b;
-  }
+    .leaflet-control-custom .accommodations-button {
+      background-color: #dc3545;
+    }
+    .leaflet-control-custom .accommodations-button:hover {
+      background-color: #c82333;
+    }
     .leaflet-control-custom .submenu {
       display: none;
       margin-top: 5px;
@@ -109,13 +80,13 @@
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  var officesLayer = L.layerGroup();
-   var bikeParkingLayer = L.layerGroup();
+    var officesLayer = L.layerGroup().addTo(map);
+    var bikeParkingLayer = L.layerGroup();
     var waterPointsLayer = L.layerGroup();
+    var bikeRoutesLayer = L.layerGroup();
     var hotelsLayer = L.layerGroup();
     var campingCarLayer = L.layerGroup();
-  var accommodationsLayer = L.layerGroup();
-  var mobilityLayer = L.layerGroup();
+    var campingsLayer = L.layerGroup();
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -151,6 +122,13 @@ var bikeParkingIcon = L.icon({
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
+      var campingIcon = L.icon({
+      iconUrl: 'icons/camping.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+
   
   function translateOpeningHours(openingHours) {
     // Fonction de traduction pour les jours et les mois
@@ -275,13 +253,13 @@ var bikeParkingIcon = L.icon({
 
   
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
-  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
-  var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
-  var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
-  var bikeParkingUrl = 'data/bike_parking.geojson';
+    var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
     var hotelsUrl = 'data/HOT.geojson';
     var campingCarUrl = 'data/ACC.geojson';
+    var campingsUrl = 'data/HPA.geojson';
+    var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
+
 
   var customControl = L.Control.extend({
     options: {
@@ -392,4 +370,4 @@ var bikeParkingIcon = L.icon({
 
   map.addControl(new customControl());
 </script>
-2
+3
