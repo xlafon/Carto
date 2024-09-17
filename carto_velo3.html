@@ -119,7 +119,7 @@
                 if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
               }
-              else if  {
+              else if (type === 'camping_car') {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
                 if (feature.properties["Commune"]) popupContent += `Commune : ${feature.properties["Commune"]}<br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
@@ -239,6 +239,6 @@
     
     map.addControl(new customControl());
   </script>
-9
+10
 </body>
 </html>
