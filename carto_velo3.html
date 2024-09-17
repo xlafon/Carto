@@ -46,6 +46,21 @@
     .leaflet-control-custom .submenu button:hover {
       background-color: #138496;
     }
+  .en-savoir-plus-button {
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .en-savoir-plus-button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -121,7 +136,7 @@
                 if (feature.properties.bicycle_parking) popupContent += `Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}<br>`;
               } else if (type === 'hotel') {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
-                if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]} chambres<br>`;
+                if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="300px"><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
@@ -129,7 +144,7 @@
                   var identifiant = feature.properties.Identifiant;
                   var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
                   var moreInfoUrl = `https://www.tourisme64.com/hebergements/hotels/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank">En savoir plus</a>`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
                 }
               } else {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
@@ -248,6 +263,6 @@
     
     map.addControl(new customControl());
   </script>
-14
+15
 </body>
 </html>
