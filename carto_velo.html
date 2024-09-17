@@ -213,12 +213,12 @@ function translateOpeningHours(openingHours) {
                                     }
                                     return L.marker(latlng, { icon: icons[type] }).bindPopup(popupText);
                                 }
-                            }).addTo(map);
+                            }).addTo(layer);
                         }
                     })
                     .catch(error => console.error('Erreur lors de la récupération des données GeoJSON:', error));
             }
-        }
+      
    
 
     
