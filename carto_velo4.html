@@ -63,11 +63,15 @@
     background-color: #c82333;
   }
   .leaflet-control-custom .submenu {
-    display: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 5px;
   }
   .leaflet-control-custom .submenu button {
     background-color: #17a2b8;
+    width: 48%; /* Ajustez la largeur pour deux colonnes */
+    margin-bottom: 5px;
   }
   .leaflet-control-custom .submenu button:hover {
     background-color: #138496;
@@ -309,16 +313,7 @@ var bikeParkingIcon = L.icon({
           map.addLayer(officesLayer);
         }
       });
-var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
-      buttonTownhalls.innerHTML = 'Mairies';
-      L.DomEvent.on(buttonTownhalls, 'click', function () {
-        if (map.hasLayer(townhallsLayer)) {
-          map.removeLayer(townhallsLayer);
-        } else {
-          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
-          map.addLayer(townhallsLayer);
-        }
-      });
+
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Afficher les Points Vélo';
         var submenu = L.DomUtil.create('div', 'submenu', container);
@@ -417,4 +412,4 @@ var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonConta
 
     map.addControl(new customControl());
   </script>
-10
+11
