@@ -147,7 +147,7 @@ function translateOpeningHours(openingHours) {
                        .replace(/Nov/g, 'Nov')
                        .replace(/Dec/g, 'Déc');
   }
-function translateOpeningHours(opening_hours) {
+function translateopening_hours(opening_hours) {
     // Fonction de traduction pour les jours et les mois
     return opening_hours.replace(/Mo/g, 'Lun')
                        .replace(/Tu/g, 'Mar')
@@ -183,7 +183,7 @@ function translateOpeningHours(opening_hours) {
           if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
           if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
           if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouvertures : ${element.tags.opening_hours}<br><br>`;
           if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
         } else if (isBikeParking) {
           popupText = "Parking à vélo";
