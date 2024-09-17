@@ -168,11 +168,11 @@
 
       var header = L.DomUtil.create('div', 'header', container);
 
+      var logo = L.DomUtil.create('img', '', header);
+      logo.src = 'icons/LOGO_VISIT64.png';
+      
       var title = L.DomUtil.create('h2', '', header);
       title.innerHTML = 'Carte vélo 64';
-
-      var logo = L.DomUtil.create('img', '', header);
-      logo.src = 'icons/LOGO VISIT64.png';
 
       var buttonContainer = L.DomUtil.create('div', 'button-container', container);
 
@@ -226,4 +226,4 @@
 
   map.addControl(new customControl());
 </script>
-3
+4
