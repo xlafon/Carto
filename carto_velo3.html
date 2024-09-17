@@ -96,26 +96,34 @@
 
 
     // Fonction pour ajouter info si GEOJSON fichier
-    function addGeoJsonLayer(url, layer, icon) {
-      $.getJSON(url, function(data) {
-        L.geoJson(data, {
-          pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, { icon: icon });
-          },
-          onEachFeature: function (feature, layer) {
-            var popupContent = "";
-            if (feature.properties) {
-              if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
-              if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity}<br>`;
-              if (feature.properties.phone) popupContent += `Téléphone : ${feature.properties.phone}<br>`;
-              if (feature.properties.email) popupContent += `Email : <a href="mailto:${feature.properties.email}">${feature.properties.email}</a><br>`;
-              if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
-            }
-            layer.bindPopup(popupContent);
+   function addGeoJsonLayer(url, layer, icon, type) {
+  $.getJSON(url, function(data) {
+    L.geoJson(data, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: icon });
+      },
+      onEachFeature: function (feature, layer) {
+        var popupContent = "";
+        if (feature.properties) {
+          if (type === 'bike_parking') {
+            popupContent += `<strong>Parking à vélo</strong><br>`;
+            if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} places<br>`;
+            if (feature.properties.bicycle_parking) popupContent += `Type : ${feature.properties.bicycle_parking}<br>`;
+          } else if (type === 'hotel') {
+            if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
+            if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} logements<br>`;
+            if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
           }
-        }).addTo(layer);
-      });
-    }
+          // Pas d'infobulle pour les points d'eau
+        }
+        if (popupContent) {
+          layer.bindPopup(popupContent);
+        }
+      }
+    }).addTo(layer);
+  });
+}
+
       
    
 
