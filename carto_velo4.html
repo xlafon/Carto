@@ -50,6 +50,12 @@
   .leaflet-control-custom .offices-button:hover {
     background-color: #0056b3;
   }
+    .leaflet-control-custom .parcours-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .parcours-button:hover {
+    background-color: #1e7e34;
+  }
   .leaflet-control-custom .bike-button {
     background-color: #ffc107;
   }
@@ -312,6 +318,19 @@ var bikeParkingIcon = L.icon({
         }
       });
 
+      var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
+        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
+          if (map.hasLayer(bikeRoutesLayer)) {
+            map.removeLayer(bikeRoutesLayer);
+          } else {
+            kmlFiles.forEach(function(url) {
+              addKmlLayer(url, bikeRoutesLayer);
+            });
+            map.addLayer(bikeRoutesLayer);
+          }
+        });
+
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Services Vélo';
         var submenu = L.DomUtil.create('div', 'submenu', container);
@@ -337,8 +356,7 @@ var bikeParkingIcon = L.icon({
             map.addLayer(waterPointsLayer);
           }
         });
-
-        var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
+var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
           if (map.hasLayer(bikeRoutesLayer)) {
@@ -350,6 +368,7 @@ var bikeParkingIcon = L.icon({
             map.addLayer(bikeRoutesLayer);
           }
         });
+        
 
         L.DomEvent.on(buttonBike, 'click', function () {
           if (submenu.style.display === 'none' || submenu.style.display === '') {
@@ -410,4 +429,4 @@ var bikeParkingIcon = L.icon({
 
     map.addControl(new customControl());
   </script>
-14
+15
