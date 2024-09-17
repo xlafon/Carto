@@ -91,7 +91,18 @@
       popupAnchor: [0, -32]
     });
 
-    
+    // Fonction de mappage pour les types de parkings à vélo
+        function mapBicycleParkingType(type) {
+            const mapping = {
+                stands: "Arceaux",
+                wall_loops: "Ratelier",
+                rack: "Ratelier",
+                shed: "Abri vélo",
+                lockers: "Abri à vélo individuels verrouillés"
+            };
+            return mapping[type] || type;
+        }
+
 
 
 
@@ -234,6 +245,6 @@
 
     map.addControl(new customControl());
   </script>
- 3
+ 4
 </body>
 </html>
