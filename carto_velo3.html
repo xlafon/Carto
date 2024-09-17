@@ -140,14 +140,12 @@
     var campingCarUrl = 'data/ACC.geojson';
   
 
-    var customControl = L.Control.extend({
+      var customControl = L.Control.extend({
       options: {
         position: 'topleft'
       },
       onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-control-custom');
-
-       
 
         var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Afficher les Points Vélo';
@@ -159,18 +157,18 @@
           if (map.hasLayer(bikeParkingLayer)) {
             map.removeLayer(bikeParkingLayer);
           } else {
-            addGeoJsonLayer(bikeParkingUrl, bikeParkingLayer, bikeParkingIcon);
+            addGeoJsonLayer(bikeParkingUrl, bikeParkingLayer, bikeParkingIcon, 'bike_parking');
             map.addLayer(bikeParkingLayer);
           }
         });
 
-                var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
           if (map.hasLayer(waterPointsLayer)) {
             map.removeLayer(waterPointsLayer);
           } else {
-            addGeoJsonLayer(waterPointsUrl, waterPointsLayer, waterPointIcon);
+            addGeoJsonLayer(waterPointsUrl, waterPointsLayer, waterPointIcon, 'water_point');
             map.addLayer(waterPointsLayer);
           }
         });
@@ -206,7 +204,7 @@
           if (map.hasLayer(hotelsLayer)) {
             map.removeLayer(hotelsLayer);
           } else {
-            addGeoJsonLayer(hotelsUrl, hotelsLayer, hotelIcon);
+            addGeoJsonLayer(hotelsUrl, hotelsLayer, hotelIcon, 'hotel');
             map.addLayer(hotelsLayer);
           }
         });
@@ -217,12 +215,10 @@
           if (map.hasLayer(campingCarLayer)) {
             map.removeLayer(campingCarLayer);
           } else {
-            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon);
+            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon, 'camping_car');
             map.addLayer(campingCarLayer);
           }
         });
-
-       
 
         L.DomEvent.on(buttonAccommodations, 'click', function () {
           if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
@@ -238,6 +234,6 @@
 
     map.addControl(new customControl());
   </script>
- 2
+ 3
 </body>
 </html>
