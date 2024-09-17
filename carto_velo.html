@@ -192,7 +192,7 @@ function translateOpeningHours(openingHours) {
 }
 
     // Fonction pour ajouter info si GEOJSON fichier
-    function addGeoJsonLayer(url, layer, icon) {
+    function addGeoJsonLayer(url, layer, icon, isBikeParking = false, isAccommodation = false) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
@@ -200,7 +200,24 @@ function translateOpeningHours(openingHours) {
           },
           onEachFeature: function (feature, layer) {
             var popupContent = "";
-            if (feature.properties) {
+             if (isBikeParking) {
+          popupText = "Parking à vélo";
+          //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
+          //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
+          if (feature.properties.capacity) {
+                                            popupText += `<br>Capacités : ${feature.properties.capacity} places`;
+                                        }
+                                        if (feature.properties.bicycle_parking) {
+                                            popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
+                                        }
+        } else if (isAccommodation) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.capacity) popupContent += `Capacité : ${element.tags.capacity}<br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+        } else {
+               if (feature.properties) {
               if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
               if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity}<br>`;
               if (feature.properties.phone) popupContent += `Téléphone : ${feature.properties.phone}<br>`;
@@ -345,6 +362,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
-  2
+  3
 </body>
 </html>
