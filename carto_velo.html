@@ -192,26 +192,13 @@ function translateOpeningHours(openingHours) {
 }
 
     // Fonction pour ajouter info si GEOJSON fichier
-    function addGeoJsonLayer(url, layer, icon, isBikeParking = false, isAccommodation = false) {
+    function addGeoJsonLayer(url, layer, icon) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
             return L.marker(latlng, { icon: icon });
           },
           onEachFeature: function (feature, layer) {
-            
-              if (isBikeParking) {
-          popupText = "Parking à vélo";
-          //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
-          //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
-          if (feature.properties.capacity) {
-                                            popupText += `<br>Capacités : ${feature.properties.capacity} places`;
-                                        }
-                                        if (feature.properties.bicycle_parking) {
-                                            popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
-                                        }
-
-}else {
             var popupContent = "";
             if (feature.properties) {
               if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
@@ -221,8 +208,7 @@ function translateOpeningHours(openingHours) {
               if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
             }
             layer.bindPopup(popupContent);
-          }}
-          
+          }
         }).addTo(layer);
       });
     }
@@ -359,6 +345,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
- 5
+ 6
 </body>
 </html>
