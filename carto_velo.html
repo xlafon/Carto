@@ -199,9 +199,8 @@ function translateOpeningHours(openingHours) {
             return L.marker(latlng, { icon: icon });
           },
           onEachFeature: function (feature, layer) {
-
-if (element.tags) {
-if (isBikeParking) {
+            if (element.tags) {
+              if (isBikeParking) {
           popupText = "Parking à vélo";
           //popupContent += `Capacité : ${element.tags.capacity || "N/A"} places<br>`;
           //popupContent += `Type : ${element.tags.bicycle_parking || "N/A"}<br>`;
@@ -212,8 +211,7 @@ if (isBikeParking) {
                                             popupText += `<br>Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}`;
                                         }
 
-} else {
-            
+}else {
             var popupContent = "";
             if (feature.properties) {
               if (feature.properties.name) popupContent += `<strong>${feature.properties.name}</strong><br>`;
@@ -223,6 +221,7 @@ if (isBikeParking) {
               if (feature.properties.website) popupContent += `Site web : <a href="${feature.properties.website}" target="_blank">${feature.properties.website}</a><br>`;
             }
             layer.bindPopup(popupContent);
+          }}
           }
         }).addTo(layer);
       });
