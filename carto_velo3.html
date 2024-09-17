@@ -101,6 +101,11 @@
       return mapping[type] || type;
     }
 
+    // Fonction de formatage de la raisonsociale avec des - à la place des espaces pour le bouton en savoir plus
+    function formatRaisonSociale(raisonSociale) {
+      return raisonSociale.replace(/\s+/g, '-');
+    }
+    
    function addGeoJsonLayer(url, layer, icon, type) {
       $.getJSON(url, function(data) {
         L.geoJson(data, {
@@ -118,6 +123,13 @@
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/hotels/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank">En savoir plus</a>`;
+                }
               } else {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
                 if (feature.properties.Commune) popupContent += `Commune : ${feature.properties.Commune}<br>`;
@@ -235,6 +247,6 @@
     
     map.addControl(new customControl());
   </script>
-11
+12
 </body>
 </html>
