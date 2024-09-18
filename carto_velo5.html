@@ -259,9 +259,11 @@ var bikeParkingIcon = L.icon({
                 if (feature.properties.bicycle_parking) popupContent += `Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}<br>`;
               } else if (type === 'hotel') {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
-                if (feature.properties["Capacité Nb logements"]) popupContent += `Capacité : ${feature.properties["Capacité Nb logements"]}<br>`;
+                if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="100px"> `;
+                if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+                if (feature.properties["TEL"]) popupContent += `Tel.{feature.properties["TEL"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
-                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="300px"><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                   var commune = feature.properties.Commune;
                   var identifiant = feature.properties.Identifiant;
@@ -294,7 +296,7 @@ var bikeParkingIcon = L.icon({
     var hotelsUrl = 'data/HOT.geojson';
     var campingCarUrl = 'data/ACC.geojson';
     var campingsUrl = 'data/HPA.geojson';
-    var autreshebUrl = 'data/HPA.geojson';
+    var autreshebUrl = 'data/autresheb.geojson';
     var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
 
 
@@ -412,7 +414,7 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
         });
 
     var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonautresheb.innerHTML = 'Campings';
+        buttonautresheb.innerHTML = 'Autres hébergements';
         L.DomEvent.on(buttonautresheb, 'click', function () {
           if (map.hasLayer(autreshebLayer)) {
             map.removeLayer(autreshebLayer);
@@ -433,16 +435,7 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
           }
         });
 
-              var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonCampings.innerHTML = 'Campings';
-        L.DomEvent.on(buttonCampings, 'click', function () {
-          if (map.hasLayer(campingsLayer)) {
-            map.removeLayer(campingsLayer);
-          } else {
-            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon);
-            map.addLayer(campingsLayer);
-          }
-        });
+             
 
         L.DomEvent.on(buttonAccommodations, 'click', function () {
           if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
@@ -458,4 +451,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
 
     map.addControl(new customControl());
   </script>
-2
+4
