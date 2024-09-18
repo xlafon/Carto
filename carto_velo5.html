@@ -117,6 +117,7 @@
     var hotelsLayer = L.layerGroup();
     var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
+    var autreshebLayer = L.layerGroup();
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -140,7 +141,7 @@ var bikeParkingIcon = L.icon({
     });
 
     var hotelIcon = L.icon({
-      iconUrl: 'icons/hotel.png',
+      iconUrl: 'icons/logo_acc_velo.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
@@ -153,12 +154,17 @@ var bikeParkingIcon = L.icon({
       popupAnchor: [0, -32]
     });
       var campingIcon = L.icon({
-      iconUrl: 'icons/camping.png',
+      iconUrl: 'icons/logo_acc_velo.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
-
+    var autreshebIcon = L.icon({
+      iconUrl: 'icons/logo_acc_velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
   
   function translateOpeningHours(openingHours) {
     // Fonction de traduction pour les jours et les mois
@@ -288,6 +294,7 @@ var bikeParkingIcon = L.icon({
     var hotelsUrl = 'data/HOT.geojson';
     var campingCarUrl = 'data/ACC.geojson';
     var campingsUrl = 'data/HPA.geojson';
+    var autreshebUrl = 'data/HPA.geojson';
     var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
 
 
@@ -393,7 +400,28 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
             map.addLayer(hotelsLayer);
           }
         });
+        var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampings.innerHTML = 'Campings';
+        L.DomEvent.on(buttonCampings, 'click', function () {
+          if (map.hasLayer(campingsLayer)) {
+            map.removeLayer(campingsLayer);
+          } else {
+            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon);
+            map.addLayer(campingsLayer);
+          }
+        });
 
+    var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonautresheb.innerHTML = 'Campings';
+        L.DomEvent.on(buttonautresheb, 'click', function () {
+          if (map.hasLayer(autreshebLayer)) {
+            map.removeLayer(autreshebLayer);
+          } else {
+            addGeoJsonLayer(autreshebUrl, autreshebLayer, autreshebIcon);
+            map.addLayer(autreshebLayer);
+          }
+        });
+      
         var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampingCar.innerHTML = 'Aires de camping-car';
         L.DomEvent.on(buttonCampingCar, 'click', function () {
@@ -430,4 +458,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
 
     map.addControl(new customControl());
   </script>
-1
+2
