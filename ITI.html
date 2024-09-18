@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carte Bayonne</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+    <script>
+        // Initialiser la carte centrée sur Bayonne
+        var map = L.map('map').setView([43.492949, -1.474841], 13);
+
+        // Ajouter la couche OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Fonction pour ajouter les gares
+        function addGares() {
+            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json];node"railway"="station";out;';
+            $.getJSON(overpassUrl, function(data) {
+                data.elements.forEach(function(station) {
+                    L.marker([station.lat, station.lon])
+                        .bindPopup(station.tags.name)
+                        .addTo(map);
+                });
+            });
+        }
+
+        // Fonction pour ajouter les parcours vélo
+        function addParcoursVelo() {
+            $.getJSON('data/ITI VELO.GEOJSON', function(data) {
+                L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                        var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
+                                           feature.properties.DESCRIPTIF + "<br>" +
+                                           "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
+                                           "Distance: " + feature.properties.DISTANCE + " km";
+                        layer.bindPopup(popupContent);
+                        layer.on('click', function() {
+                            if (feature.properties.DOCKML) {
+                                // Charger et afficher le fichier KML
+                                var kmlLayer = new L.KML(feature.properties.DOCKML);
+                                map.addLayer(kmlLayer);
+                            }
+                        });
+                    }
+                }).addTo(map);
+            });
+        }
+
+        // Ajouter les menus dynamiques
+        var menu = $('<div id="menu"><button id="gares">Gares</button><button id="parcours">Parcours Vélo</button></div>');
+        $('body').append(menu);
+
+        $('#gares').on('click', addGares);
+        $('#parcours').on('click', addParcoursVelo);
+    </script>
+  1
+</body>
+</html>
