@@ -260,9 +260,9 @@ var bikeParkingIcon = L.icon({
               } else if (type === 'hotel') {
                 if (feature.properties["Raison sociale"]) popupContent += `<strong>${feature.properties["Raison sociale"]}</strong><br>`;
                 if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
-                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="100px"> `;
+                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
-                if (feature.properties["TEL"]) popupContent += `Tel.{feature.properties["TEL"]}<br>`;
+                if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                   var commune = feature.properties.Commune;
@@ -296,7 +296,7 @@ var bikeParkingIcon = L.icon({
     var hotelsUrl = 'data/HOT.geojson';
     var campingCarUrl = 'data/ACC.geojson';
     var campingsUrl = 'data/HPA.geojson';
-    var autreshebUrl = 'data/autresheb.geojson';
+    var autreshebUrl = 'data/AUTRESHEEB.geojson';
     var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
 
 
@@ -451,4 +451,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
 
     map.addControl(new customControl());
   </script>
-4
+5
