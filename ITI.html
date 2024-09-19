@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
 </head>
 <body>
     <div id="map" style="width: 100%; height: 600px;"></div>
@@ -40,12 +41,20 @@
                                            feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
+                        if (feature.properties.DOCKML) {
+                            var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                            popupContent += "<br><a href='" + kmlUrl + "' target='_blank'>Voir le parcours KML</a>";
+                        }
+                        if (feature.properties.PHOTO) {
+                            var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
+                            popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
+                        }
                         layer.bindPopup(popupContent);
                         layer.on('click', function() {
                             if (feature.properties.DOCKML) {
                                 // Charger et afficher le fichier KML
-                                var kmlLayer = new L.KML(feature.properties.DOCKML);
-                                map.addLayer(kmlLayer);
+                                var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                                omnivore.kml(kmlUrl).addTo(map);
                             }
                         });
                     }
@@ -60,6 +69,6 @@
         $('#gares').on('click', addGares);
         $('#parcours').on('click', addParcoursVelo);
     </script>
-  2 
 </body>
 </html>
+3
