@@ -53,7 +53,7 @@
                         layer.on('click', function() {
                             if (feature.properties.DOCGPX) {
                                 // Charger et afficher le fichier KML
-                                var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                                var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
                                 omnivore.kml(kmlUrl).addTo(map);
                             }
                         });
