@@ -285,16 +285,18 @@ var bikeParkingIcon = L.icon({
                                         color: 'red',
                                         weight: 5,
                                         opacity: 0.7,
-                                        dashArray: '5, 10'
+                                        dashArray: '5,5'
                                     }
+              }).on('loaded', function(e) {
+                map.fitBounds(e.target.getBounds());
               }).addTo(map);
               showInfoBox(popupContent);
-              map.setView(layer.getLatLng(), 8); // Zoomer à 8 au clic sur l'icône
             });
           }
         }).addTo(layer);
       });
     }
+
 
 
 
@@ -609,10 +611,7 @@ map.on('click', function() {
       infoBox.style.display = 'block';
     }
 
-// Ajouter les boutons de zoom
-    L.control.zoom({
-      position: 'topright'
-    }).addTo(map);
+
   
   </script>
-11
+12
