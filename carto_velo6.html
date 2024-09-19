@@ -117,7 +117,7 @@
     
  #info-box {
   font-family: Arial, sans-serif;
-   font-size: 10px;
+   font-size: 12px;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -249,6 +249,10 @@ var bikeParkingIcon = L.icon({
     function formatRaisonSociale(raisonSociale) {
       return raisonSociale.replace(/\s+/g, '-');
     }
+  // Fonction de formatage de la SyndicObjectName avec des - à la place des espaces pour le bouton en savoir plus
+    function formatRaisonSociale(SyndicObjectName) {
+      return SyndicObjectName.replace(/\s+/g, '-');
+    }
 
 //afficher les parcours GPX
   var bikeRoutesLayer = L.layerGroup().addTo(map);
@@ -272,10 +276,10 @@ var bikeParkingIcon = L.icon({
                                            "" + feature.properties.DISTANCE + " km<br><br>";
             
            // popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-          if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+          if (feature.properties.Commune && feature.properties.SyndicObjectID && feature.properties.SyndicObjectName) {
                   var commune = feature.properties.Commune;
                   var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var raisonSociale = formatRaisonSociale(feature.properties.SyndicObjectName);
                   var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
                   popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
                 }
