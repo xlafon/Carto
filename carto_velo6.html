@@ -52,10 +52,10 @@
     background-color: #0056b3;
   }
     .leaflet-control-custom .parcours-button {
-    background-color: #28a745;
+    background-color: #dc3545;
   }
   .leaflet-control-custom .parcours-button:hover {
-    background-color: #1e7e34;
+    background-color: #c82333;
   }
   .leaflet-control-custom .bike-button {
     background-color: #ffc107;
@@ -64,10 +64,10 @@
     background-color: #e0a800;
   }
   .leaflet-control-custom .accommodations-button {
-    background-color: #dc3545;
+    background-color: #28a745;
   }
   .leaflet-control-custom .accommodations-button:hover {
-    background-color: #c82333;
+    background-color: #1e7e34;
   }
   .leaflet-control-custom .submenu {
     display: none;
@@ -98,6 +98,7 @@
     background-color: #0056b3;
   }
  #info-box {
+  font-family: Arial, sans-serif;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -185,6 +186,13 @@ var bikeParkingIcon = L.icon({
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
+
+  var bikeIcon = L.icon({
+      iconUrl: 'icons/velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
   
   function translateOpeningHours(openingHours) {
     // Fonction de traduction pour les jours et les mois
@@ -231,7 +239,7 @@ var bikeParkingIcon = L.icon({
       $.getJSON(url, function(data) {
         L.geoJson(data, {
           pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: #28a745; width: 12px; height: 12px; border-radius: 50%;"></div>` }) });
+            return L.marker(latlng, { icon: bikeIcon });
           },
           onEachFeature: function (feature, layer) {
             var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, '-');
@@ -588,4 +596,4 @@ map.on('click', function() {
     }
   
   </script>
-7
+8
