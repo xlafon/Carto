@@ -51,7 +51,7 @@
                         }
                         layer.bindPopup(popupContent);
                         layer.on('click', function() {
-                            if (feature.properties.DOCKML) {
+                            if (feature.properties.DOCGPX) {
                                 // Charger et afficher le fichier KML
                                 var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
                                 omnivore.kml(kmlUrl).addTo(map);
@@ -71,4 +71,4 @@
     </script>
 </body>
 </html>
-3
+4
