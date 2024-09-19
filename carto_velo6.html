@@ -249,11 +249,9 @@ var bikeParkingIcon = L.icon({
             if (feature.properties.PHOTO) {
               popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br>`;
             }
-            popupContent += "Temps: " + tempsDifficulte + "<br>" +
-                                           "Distance: " + feature.properties.DISTANCE + " km";
-            if (feature.properties.ITITEMPSDIF) {
-              popupContent += `Difficulté : ${feature.properties.ITITEMPSDIF}<br>`;
-            }
+            popupContent += "" + tempsDifficulte + "<br>" +
+                                           "" + feature.properties.DISTANCE + " km<br><br>";
+            
             popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
 
             layer.on('click', function() {
@@ -610,6 +608,11 @@ map.on('click', function() {
       infoBox.innerHTML = content;
       infoBox.style.display = 'block';
     }
+
+// Ajouter les boutons de zoom
+    L.control.zoom({
+      position: 'topright'
+    }).addTo(map);
   
   </script>
-10
+11
