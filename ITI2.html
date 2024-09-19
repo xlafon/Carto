@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carte Bayonne</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
+    <style>
+        #info-box {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+    <div id="info-box">Cliquez sur un parcours pour voir les détails ici.</div>
+    <script>
+        // Initialiser la carte centrée sur Bayonne
+        var map = L.map('map').setView([43.492949, -1.474841], 10);
+
+        // Ajouter la couche OpenStreetMap normal
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var gpxLayers = {};
+        var currentGpxLayer = null;
+        var currentMarker = null;
+
+        // Fonction pour ajouter les gares
+        function addGares() {
+            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"railway"="station";out geom;';
+            $.getJSON(overpassUrl, function(data) {
+                data.elements.forEach(function(station) {
+                    L.marker([station.lat, station.lon])
+                        .bindPopup(station.tags.name)
+                        .addTo(map);
+                });
+            });
+        }
+
+        // Fonction pour ajouter les parcours vélo
+        function addParcoursVelo() {
+            $.getJSON('data/ITIVELO.geojson', function(data) {
+                L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                        var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
+                                           feature.properties.DESCRIPTIF + "<br>" +
+                                           "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
+                                           "Distance: " + feature.properties.DISTANCE + " km";
+                        if (feature.properties.DOCKML) {
+                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                            popupContent += "<br><a href='" + gpxUrl + "' target='_blank'>Voir le parcours GPX</a>";
+                        }
+                        if (feature.properties.PHOTO) {
+                            var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
+                            popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
+                        }
+
+                        // Définir le marker en bleu par défaut
+                        var defaultIcon = L.icon({
+                            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [1, -34],
+                            shadowSize: [41, 41]
+                        });
+                        layer.setIcon(defaultIcon);
+
+                        layer.on('click', function() {
+                            if (feature.properties.DOCKML) {
+                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+
+                                // Effacer le parcours précédent
+                                if (currentGpxLayer) {
+                                    map.removeLayer(currentGpxLayer);
+                                    if (currentMarker) {
+                                        currentMarker.setIcon(defaultIcon);
+                                    }
+                                }
+
+                                // Charger et afficher le fichier GPX
+                                var gpxLayer = new L.GPX(gpxUrl, {
+                                    async: true,
+                                    marker_options: {
+                                        startIconUrl: '',
+                                        endIconUrl: '',
+                                        shadowUrl: '',
+                                        wptIconUrls: {
+                                            '': ''
+                                        }
+                                    },
+                                    polyline_options: {
+                                        color: 'green',
+                                        weight: 5,
+                                        opacity: 0.7,
+                                        dashArray: '5, 10'
+                                    }
+                                }).on('loaded', function(e) {
+                                    map.fitBounds(e.target.getBounds());
+                                }).addTo(map);
+
+                                // Mettre à jour le marker et le tracé GPX
+                                var activeIcon = L.icon({
+                                    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                    iconSize: [25, 41],
+                                    iconAnchor: [12, 41],
+                                    popupAnchor: [1, -34],
+                                    shadowSize: [41, 41]
+                                });
+                                layer.setIcon(activeIcon);
+
+                                currentGpxLayer = gpxLayer;
+                                currentMarker = layer;
+
+                                // Mettre à jour la boîte d'information
+                                $('#info-box').html(popupContent);
+                            }
+                        });
+                    }
+                }).addTo(map);
+            });
+        }
+
+        // Ajouter les menus dynamiques
+        var menu = $('<div id="menu"><button id="gares">Gares</button><button id="parcours">Parcours Vélo</button></div>');
+        $('body').append(menu);
+
+        $('#gares').on('click', addGares);
+        $('#parcours').on('click', addParcoursVelo);
+    </script>
+</body>
+</html>
+1
