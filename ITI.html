@@ -21,7 +21,7 @@
 
         // Fonction pour ajouter les gares
         function addGares() {
-            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json];node"railway"="station";out;';
+            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["railway"="station"](area.searchArea);out geom;';
             $.getJSON(overpassUrl, function(data) {
                 data.elements.forEach(function(station) {
                     L.marker([station.lat, station.lon])
@@ -33,7 +33,7 @@
 
         // Fonction pour ajouter les parcours vélo
         function addParcoursVelo() {
-            $.getJSON('data/ITI VELO.GEOJSON', function(data) {
+            $.getJSON('data/ITIVELO.geojson', function(data) {
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
@@ -60,6 +60,6 @@
         $('#gares').on('click', addGares);
         $('#parcours').on('click', addParcoursVelo);
     </script>
-  1 
+  2 
 </body>
 </html>
