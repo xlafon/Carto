@@ -7,7 +7,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
   <style>
   .leaflet-control-custom {
     background-color: white;
@@ -126,6 +126,52 @@
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
+//afficher les GPX
+  var bikeRoutesLayer = L.layerGroup().addTo(map);
+    var currentGpxLayer = null;
+
+    function addBikeRoutesLayer(url, layer) {
+      $.getJSON(url, function(data) {
+        L.geoJson(data, {
+          pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: #28a745; width: 12px; height: 12px; border-radius: 50%;"></div>` }) });
+          },
+          onEachFeature: function (feature, layer) {
+            var popupContent = `<strong>${feature.properties.name}</strong><br>`;
+            if (feature.properties.PHOTO) {
+              popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br>`;
+            }
+            if (feature.properties.ITITEMPSDIFF) {
+              popupContent += `Difficulté : ${feature.properties.ITITEMPSDIFF}<br>`;
+            }
+            popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+
+            layer.on('click', function() {
+              if (currentGpxLayer) {
+                map.removeLayer(currentGpxLayer);
+              }
+              layer.setIcon(L.divIcon({ className: 'custom-icon', html: `<div style="background-color: #1e7e34; width: 12px; height: 12px; border-radius: 50%;"></div>` }));
+              var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
+              currentGpxLayer = new L.GPX(gpxUrl, {
+                async: true,
+                polyline_options: {
+                  color: '#1e7e34',
+                  weight: 3,
+                  opacity: 0.7,
+                  dashArray: '5,5'
+                }
+              }).addTo(map);
+              showInfoBox(popupContent);
+            });
+          }
+        }).addTo(layer);
+      });
+    }
+
+
+
+
+  
     var officesLayer = L.layerGroup().addTo(map);
     var bikeParkingLayer = L.layerGroup();
     var waterPointsLayer = L.layerGroup();
@@ -365,6 +411,15 @@ var bikeParkingIcon = L.icon({
 map.on('click', function() {
   hideInfoBox();
 });
+
+map.on('click', function() {
+      hideInfoBox();
+      if (currentGpxLayer) {
+        map.removeLayer(currentGpxLayer);
+        currentGpxLayer = null;
+      }
+    });
+
   
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
@@ -393,6 +448,19 @@ map.on('click', function() {
 
       var buttonContainer = L.DomUtil.create('div', 'button-container', container);
 
+      var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
+        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
+          if (map.hasLayer(bikeRoutesLayer)) {
+            map.removeLayer(bikeRoutesLayer);
+          } else {
+            addBikeRoutesLayer('data/ITIVELO.geojson', bikeRoutesLayer);
+            map.addLayer(bikeRoutesLayer);
+          }
+        });
+
+
+      
       var buttonOffices = L.DomUtil.create('button', 'offices-button', buttonContainer);
       buttonOffices.innerHTML = 'Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
@@ -534,4 +602,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
     }
   
   </script>
-4
+5
