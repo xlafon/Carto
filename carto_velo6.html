@@ -237,9 +237,10 @@ var bikeParkingIcon = L.icon({
         if (element.type === "node") {
           var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
           var marker = L.marker([element.lat, element.lon], markerOptions);
-            marker.on('click', function() {
-              showInfoBox(popupContent);
-            });
+            marker.on('click', function(e) {
+  L.DomEvent.stopPropagation(e); // Empêche la propagation de l'événement click à la carte
+  showInfoBox(popupContent);
+});
             layer.addLayer(marker);
         } else if (element.type === "way") {
           var latlngs = element.geometry.map(function(geo) {
@@ -255,9 +256,10 @@ var bikeParkingIcon = L.icon({
           var centroid = polygon.getBounds().getCenter();
           var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
           var marker = L.marker(centroid, markerOptions);
-          marker.on('click', function() {
-              showInfoBox(popupContent);
-            });
+          marker.on('click', function(e) {
+  L.DomEvent.stopPropagation(e); // Empêche la propagation de l'événement click à la carte
+  showInfoBox(popupContent);
+});
             layer.addLayer(marker);
         }
       });
@@ -343,13 +345,22 @@ var bikeParkingIcon = L.icon({
     function addKmlLayer(url, layer) {
       omnivore.kml(url).addTo(layer);
     }
-    
+    // Boite d'info à la place bulle
   function showInfoBox(content) {
-      var infoBox = document.getElementById('info-box');
-      infoBox.innerHTML = content;
-      infoBox.style.display = 'block';
-    }
+  var infoBox = document.getElementById('info-box');
+  infoBox.innerHTML = content;
+  infoBox.style.display = 'block';
+}
+  
+  function hideInfoBox() {
+  var infoBox = document.getElementById('info-box');
+  infoBox.style.display = 'none';
+}
 
+  // Ajoute cet événement pour masquer la boîte d'information lorsque l'utilisateur clique sur la carte
+map.on('click', function() {
+  hideInfoBox();
+});
   
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
@@ -519,4 +530,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
     }
   
   </script>
-1
+2
