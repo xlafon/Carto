@@ -97,8 +97,27 @@
   .en-savoir-plus-button:hover {
     background-color: #0056b3;
   }
+
+.en-savoir-plus-button2 {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .en-savoir-plus-button2:hover {
+    background-color: #c82333;
+  }
+    
  #info-box {
   font-family: Arial, sans-serif;
+   font-size: 10px;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -252,8 +271,15 @@ var bikeParkingIcon = L.icon({
             popupContent += "" + tempsDifficulte + "<br>" +
                                            "" + feature.properties.DISTANCE + " km<br><br>";
             
-            popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-
+           // popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+          if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
+                }
+            
             layer.on('click', function() {
               if (currentGpxLayer) {
                 map.removeLayer(currentGpxLayer);
@@ -614,4 +640,4 @@ map.on('click', function() {
 
   
   </script>
-12
+13
