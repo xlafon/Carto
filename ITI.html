@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
 </head>
 <body>
     <div id="map" style="width: 100%; height: 600px;"></div>
@@ -41,9 +42,9 @@
                                            feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
-                        if (feature.properties.DOCKML) {
-                            var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
-                            popupContent += "<br><a href='" + kmlUrl + "' target='_blank'>Voir le parcours KML</a>";
+                        if (feature.properties.DOCGPX) {
+                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
+                            popupContent += "<br><a href='" + gpxUrl + "' target='_blank'>Voir le parcours GPX</a>";
                         }
                         if (feature.properties.PHOTO) {
                             var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
@@ -52,15 +53,20 @@
                         layer.bindPopup(popupContent);
                         layer.on('click', function() {
                             if (feature.properties.DOCGPX) {
-                                // Charger et afficher le fichier KML
-                                var kmlUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
-                                omnivore.kml(kmlUrl).addTo(map);
+                                // Charger et afficher le fichier GPX
+                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
+                                new L.GPX(gpxUrl, {
+                                    async: true
+                                }).on('loaded', function(e) {
+                                    map.fitBounds(e.target.getBounds());
+                                }).addTo(map);
                             }
                         });
                     }
                 }).addTo(map);
             });
         }
+
 
         // Ajouter les menus dynamiques
         var menu = $('<div id="menu"><button id="gares">Gares</button><button id="parcours">Parcours Vélo</button></div>');
@@ -71,4 +77,4 @@
     </script>
 </body>
 </html>
-4
+5
