@@ -7,21 +7,7 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
-  <style>
-        #info-box {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 300px;
-            padding: 10px;
-            background: white;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-       
-    </style>
+  
   <style>
   .leaflet-control-custom {
     background-color: white;
@@ -111,12 +97,25 @@
   .en-savoir-plus-button:hover {
     background-color: #0056b3;
   }
-</style>
+ #info-box {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: none;
+    }
+  </style>
 
 
 
 <div id="map" style="width: 100%; height: 800px;"></div>
-<div id="info-box">Cliquez sur un parcours pour voir les détails ici.</div>
+<div id="info-box"></div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -133,9 +132,6 @@
     var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
     var autreshebLayer = L.layerGroup();
-    var gpxLayers = {};
-    var currentGpxLayer = null;
-    var currentMarker = null;
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -241,22 +237,28 @@ var bikeParkingIcon = L.icon({
         if (element.type === "node") {
           var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
           var marker = L.marker([element.lat, element.lon], markerOptions);
-          marker.bindPopup(popupContent);
-          layer.addLayer(marker);
+            marker.on('click', function() {
+              showInfoBox(popupContent);
+            });
+            layer.addLayer(marker);
         } else if (element.type === "way") {
           var latlngs = element.geometry.map(function(geo) {
             return [geo.lat, geo.lon];
           });
           var polygon = L.polygon(latlngs, { color: color });
-          polygon.bindPopup(popupContent);
+          polygon.on('click', function() {
+              showInfoBox(popupContent);
+            });
           layer.addLayer(polygon);
 
           // Calculer le centroïde du polygone
           var centroid = polygon.getBounds().getCenter();
           var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
           var marker = L.marker(centroid, markerOptions);
-          marker.bindPopup(popupContent);
-          layer.addLayer(marker);
+          marker.on('click', function() {
+              showInfoBox(popupContent);
+            });
+            layer.addLayer(marker);
         }
       });
     });
@@ -329,10 +331,10 @@ var bikeParkingIcon = L.icon({
               }
             }
             if (popupContent) {
-              layer.bindPopup(popupContent);
+              layer.on('click', function() {
+                showInfoBox(popupContent);
+              });
             }
-            // Mettre à jour la boîte d'information
-                                $('#info-box').html(popupContent);
           }
         }).addTo(layer);
       });
@@ -342,6 +344,11 @@ var bikeParkingIcon = L.icon({
       omnivore.kml(url).addTo(layer);
     }
     
+  function showInfoBox(content) {
+      var infoBox = document.getElementById('info-box');
+      infoBox.innerHTML = content;
+      infoBox.style.display = 'block';
+    }
 
   
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
@@ -504,6 +511,12 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
     });
 
     map.addControl(new customControl());
+
+  function showInfoBox(content) {
+      var infoBox = document.getElementById('info-box');
+      infoBox.innerHTML = content;
+      infoBox.style.display = 'block';
+    }
+  
   </script>
 1
-
