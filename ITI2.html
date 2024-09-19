@@ -55,8 +55,9 @@
             $.getJSON('data/ITIVELO.geojson', function(data) {
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
+                       var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, '-');
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
-                                           feature.properties.DESCRIPTIF + "<br>" +
+                                           //feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
                         if (feature.properties.DOCGPX) {
@@ -144,4 +145,4 @@
     </script>
 </body>
 </html>
-1
+2
