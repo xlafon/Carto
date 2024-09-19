@@ -98,18 +98,19 @@
     background-color: #0056b3;
   }
  #info-box {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 300px;
-      max-height: 200px;
-      overflow-y: auto;
-      background-color: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      display: none;
-    }
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
+}
   </style>
 
 
@@ -346,16 +347,18 @@ var bikeParkingIcon = L.icon({
       omnivore.kml(url).addTo(layer);
     }
     // Boite d'info à la place bulle
+
+  function hideInfoBox() {
+  var infoBox = document.getElementById('info-box');
+  infoBox.style.display = 'none';
+}
+  
   function showInfoBox(content) {
   var infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
   infoBox.style.display = 'block';
 }
   
-  function hideInfoBox() {
-  var infoBox = document.getElementById('info-box');
-  infoBox.style.display = 'none';
-}
 
   // Ajoute cet événement pour masquer la boîte d'information lorsque l'utilisateur clique sur la carte
 map.on('click', function() {
@@ -530,4 +533,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
     }
   
   </script>
-2
+3
