@@ -20,19 +20,43 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             z-index: 1000;
         }
+        #menu {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        #menu button {
+            display: block;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div id="map" style="width: 100%; height: 600px;"></div>
-    <div id="info-box"></div>
+    <div id="info-box">Cliquez sur un parcours pour voir les détails ici.</div>
+    <div id="menu">
+        <button id="gares">Gares</button>
+        <button id="parcours">Parcours Vélo</button>
+        <button id="veloMap">Afficher la carte vélo</button>
+    </div>
     <script>
         // Initialiser la carte centrée sur Bayonne
         var map = L.map('map').setView([43.492949, -1.474841], 10);
 
         // Ajouter la couche OpenStreetMap normal
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        // Ajouter la couche de carte cyclo OSM
+        var cycleLayer = L.tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.opencyclemap.org/">OpenCycleMap</a>'
+        });
 
         var gpxLayers = {};
         var currentGpxLayer = null;
@@ -55,12 +79,10 @@
             $.getJSON('data/ITIVELO.geojson', function(data) {
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
-                       var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
+                        var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, '-');
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
-                            
-                            
-                                           //feature.properties.DESCRIPTIF + "<br>" +
-                                           "<b>" + tempsDifficulte + "</b><br>" +
+                                           feature.properties.DESCRIPTIF + "<br>" +
+                                           "Temps: " + tempsDifficulte + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
                         if (feature.properties.DOCGPX) {
                             var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
@@ -69,7 +91,7 @@
                         if (feature.properties.PHOTO) {
                             var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
                             popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
-                        } 
+                        }
 
                         // Définir le marker en bleu par défaut
                         var defaultIcon = L.icon({
@@ -139,12 +161,18 @@
         }
 
         // Ajouter les menus dynamiques
-        var menu = $('<div id="menu"><button id="gares">Gares</button><button id="parcours">Parcours Vélo</button></div>');
-        $('body').append(menu);
-
         $('#gares').on('click', addGares);
         $('#parcours').on('click', addParcoursVelo);
+        $('#veloMap').on('click', function() {
+            if (map.hasLayer(cycleLayer)) {
+                map.removeLayer(cycleLayer);
+                map.addLayer(osmLayer);
+            } else {
+                map.removeLayer(osmLayer);
+                map.addLayer(cycleLayer);
+            }
+        });
     </script>
 </body>
 </html>
-4
+5
