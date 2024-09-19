@@ -54,8 +54,8 @@
         }).addTo(map);
 
         // Ajouter la couche de carte cyclo OSM
-        var cycleLayer = L.tileLayer('https://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.opencyclemap.org/">OpenCycleMap</a>'
+        var cycleLayer = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.cyclosm.org">CyclOSM</a>'
         });
 
         var gpxLayers = {};
@@ -64,7 +64,7 @@
 
         // Fonction pour ajouter les gares
         function addGares() {
-            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"railway"="station";out geom;';
+            var overpassUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["railway"="station"](area.searchArea);out geom;';
             $.getJSON(overpassUrl, function(data) {
                 data.elements.forEach(function(station) {
                     L.marker([station.lat, station.lon])
@@ -175,4 +175,4 @@
     </script>
 </body>
 </html>
-5
+6
