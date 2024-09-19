@@ -13,12 +13,14 @@
     <div id="map" style="width: 100%; height: 600px;"></div>
     <script>
         // Initialiser la carte centrée sur Bayonne
-        var map = L.map('map').setView([43.492949, -1.474841], 13);
+        var map = L.map('map').setView([43.492949, -1.474841], 10);
 
         // Ajouter la couche OpenStreetMap normal
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        var gpxLayers = {};
 
         // Fonction pour ajouter les gares
         function addGares() {
@@ -38,7 +40,7 @@
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
-                                           feature.properties.DESCRIPTIF + "<br>" +
+                                           //feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
                         if (feature.properties.DOCGPX) {
@@ -50,26 +52,38 @@
                             popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
                         }
                         layer.bindPopup(popupContent);
+
+                        // Charger et afficher le fichier GPX par défaut
+                        if (feature.properties.DOCGPX) {
+                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
+                            var gpxLayer = new L.GPX(gpxUrl, {
+                                async: true,
+                                marker_options: {
+                                    startIconUrl: '',
+                                    endIconUrl: '',
+                                    wptIconUrl: '',
+                                    shadowUrl: ''
+                                },
+                                polyline_options: {
+                                    color: 'blue',
+                                    weight: 5,
+                                    opacity: 0.7,
+                                    dashArray: '5, 10'
+                                }
+                            }).on('loaded', function(e) {
+                                map.fitBounds(e.target.getBounds());
+                            }).addTo(map);
+                            gpxLayers[feature.properties.DOCGPX] = gpxLayer;
+                        }
+
                         layer.on('click', function() {
                             if (feature.properties.DOCGPX) {
-                                // Charger et afficher le fichier GPX
                                 var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
-                                new L.GPX(gpxUrl, {
-                                    async: true,
-                                    marker_options: {
-                                        startIconUrl: '',
-                                        endIconUrl: '',
-                                        shadowUrl: ''
-                                    },
-                                    polyline_options: {
-                                        color: 'green',
-                                        weight: 5,
-                                        opacity: 0.7,
-                                        dashArray: '5, 10'
-                                    }
-                                }).on('loaded', function(e) {
-                                    map.fitBounds(e.target.getBounds());
-                                }).addTo(map);
+                                if (map.hasLayer(gpxLayers[feature.properties.DOCGPX])) {
+                                    map.removeLayer(gpxLayers[feature.properties.DOCGPX]);
+                                } else {
+                                    gpxLayers[feature.properties.DOCGPX].addTo(map);
+                                }
                             }
                         });
                     }
@@ -85,5 +99,5 @@
         $('#parcours').on('click', addParcoursVelo);
     </script>
 </body>
-    6
 </html>
+7
