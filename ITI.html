@@ -40,7 +40,7 @@
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
-                                           //feature.properties.DESCRIPTIF + "<br>" +
+                                           feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
                         if (feature.properties.DOCGPX) {
@@ -53,36 +53,32 @@
                         }
                         layer.bindPopup(popupContent);
 
-                        // Charger et afficher le fichier GPX par défaut
-                        if (feature.properties.DOCGPX) {
-                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
-                            var gpxLayer = new L.GPX(gpxUrl, {
-                                async: true,
-                                marker_options: {
-                                    startIconUrl: '',
-                                    endIconUrl: '',
-                                    wptIconUrl: '',
-                                    shadowUrl: ''
-                                },
-                                polyline_options: {
-                                    color: 'blue',
-                                    weight: 5,
-                                    opacity: 0.7,
-                                    dashArray: '5, 10'
-                                }
-                            }).on('loaded', function(e) {
-                                map.fitBounds(e.target.getBounds());
-                            }).addTo(map);
-                            gpxLayers[feature.properties.DOCGPX] = gpxLayer;
-                        }
-
                         layer.on('click', function() {
                             if (feature.properties.DOCGPX) {
                                 var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
                                 if (map.hasLayer(gpxLayers[feature.properties.DOCGPX])) {
                                     map.removeLayer(gpxLayers[feature.properties.DOCGPX]);
                                 } else {
-                                    gpxLayers[feature.properties.DOCGPX].addTo(map);
+                                    var gpxLayer = new L.GPX(gpxUrl, {
+                                        async: true,
+                                        marker_options: {
+                                            startIconUrl: '',
+                                            endIconUrl: '',
+                                            shadowUrl: '',
+                                            wptIconUrls: {
+                                                '': ''
+                                            }
+                                        },
+                                        polyline_options: {
+                                            color: 'green',
+                                            weight: 5,
+                                            opacity: 0.7,
+                                            dashArray: '5, 10'
+                                        }
+                                    }).on('loaded', function(e) {
+                                        map.fitBounds(e.target.getBounds());
+                                    }).addTo(map);
+                                    gpxLayers[feature.properties.DOCGPX] = gpxLayer;
                                 }
                             }
                         });
@@ -100,4 +96,4 @@
     </script>
 </body>
 </html>
-7
+8
