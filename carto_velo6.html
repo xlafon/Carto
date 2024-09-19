@@ -7,7 +7,21 @@
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
+  <style>
+        #info-box {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+       
+    </style>
   <style>
   .leaflet-control-custom {
     background-color: white;
@@ -102,7 +116,8 @@
 
 
 <div id="map" style="width: 100%; height: 800px;"></div>
-
+<div id="info-box">Cliquez sur un parcours pour voir les détails ici.</div>
+  
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
@@ -118,6 +133,9 @@
     var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
     var autreshebLayer = L.layerGroup();
+    var gpxLayers = {};
+    var currentGpxLayer = null;
+    var currentMarker = null;
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -313,6 +331,8 @@ var bikeParkingIcon = L.icon({
             if (popupContent) {
               layer.bindPopup(popupContent);
             }
+            // Mettre à jour la boîte d'information
+                                $('#info-box').html(popupContent);
           }
         }).addTo(layer);
       });
