@@ -21,6 +21,8 @@
         }).addTo(map);
 
         var gpxLayers = {};
+        var currentGpxLayer = null;
+        var currentMarker = null;
 
         // Fonction pour ajouter les gares
         function addGares() {
@@ -43,8 +45,8 @@
                                            feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
-                        if (feature.properties.DOCGPX) {
-                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
+                        if (feature.properties.DOCKML) {
+                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
                             popupContent += "<br><a href='" + gpxUrl + "' target='_blank'>Voir le parcours GPX</a>";
                         }
                         if (feature.properties.PHOTO) {
@@ -53,33 +55,63 @@
                         }
                         layer.bindPopup(popupContent);
 
+                        // Définir le marker en bleu par défaut
+                        var defaultIcon = L.icon({
+                            iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41],
+                            popupAnchor: [1, -34],
+                            shadowSize: [41, 41]
+                        });
+                        layer.setIcon(defaultIcon);
+
                         layer.on('click', function() {
-                            if (feature.properties.DOCGPX) {
-                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
-                                if (map.hasLayer(gpxLayers[feature.properties.DOCGPX])) {
-                                    map.removeLayer(gpxLayers[feature.properties.DOCGPX]);
-                                } else {
-                                    var gpxLayer = new L.GPX(gpxUrl, {
-                                        async: true,
-                                        marker_options: {
-                                            startIconUrl: '',
-                                            endIconUrl: '',
-                                            shadowUrl: '',
-                                            wptIconUrls: {
-                                                '': ''
-                                            }
-                                        },
-                                        polyline_options: {
-                                            color: 'green',
-                                            weight: 5,
-                                            opacity: 0.7,
-                                            dashArray: '5, 10'
-                                        }
-                                    }).on('loaded', function(e) {
-                                        map.fitBounds(e.target.getBounds());
-                                    }).addTo(map);
-                                    gpxLayers[feature.properties.DOCGPX] = gpxLayer;
+                            if (feature.properties.DOCKML) {
+                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+
+                                // Effacer le parcours précédent
+                                if (currentGpxLayer) {
+                                    map.removeLayer(currentGpxLayer);
+                                    if (currentMarker) {
+                                        currentMarker.setIcon(defaultIcon);
+                                    }
                                 }
+
+                                // Charger et afficher le fichier GPX
+                                var gpxLayer = new L.GPX(gpxUrl, {
+                                    async: true,
+                                    marker_options: {
+                                        startIconUrl: '',
+                                        endIconUrl: '',
+                                        shadowUrl: '',
+                                        wptIconUrls: {
+                                            '': ''
+                                        }
+                                    },
+                                    polyline_options: {
+                                        color: 'green',
+                                        weight: 5,
+                                        opacity: 0.7,
+                                        dashArray: '5, 10'
+                                    }
+                                }).on('loaded', function(e) {
+                                    map.fitBounds(e.target.getBounds());
+                                }).addTo(map);
+
+                                // Mettre à jour le marker et le tracé GPX
+                                var activeIcon = L.icon({
+                                    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                                    iconSize: [25, 41],
+                                    iconAnchor: [12, 41],
+                                    popupAnchor: [1, -34],
+                                    shadowSize: [41, 41]
+                                });
+                                layer.setIcon(activeIcon);
+
+                                currentGpxLayer = gpxLayer;
+                                currentMarker = layer;
                             }
                         });
                     }
@@ -96,4 +128,4 @@
     </script>
 </body>
 </html>
-8
+9
