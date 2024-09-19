@@ -55,19 +55,20 @@
             $.getJSON('data/ITIVELO.geojson', function(data) {
                 L.geoJSON(data, {
                     onEachFeature: function (feature, layer) {
-                       var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, '-');
+                       var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
                         var popupContent = "<b>" + feature.properties.SyndicObjectName + "</b><br>" +
+                            if (feature.properties.PHOTO) {
+                            var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
+                            popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
+                        } 
                                            //feature.properties.DESCRIPTIF + "<br>" +
-                                           "Temps: " + tempsDifficulte + "<br>" +
+                                           "<b>" + tempsDifficulte + "</b><br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
                         if (feature.properties.DOCGPX) {
                             var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
                             popupContent += "<br><a href='" + gpxUrl + "' target='_blank'>Voir le parcours GPX</a>";
                         }
-                        if (feature.properties.PHOTO) {
-                            var photoUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.PHOTO;
-                            popupContent += "<br><img src='" + photoUrl + "' alt='Photo' style='width:100px;height:auto;'>";
-                        }
+                        
 
                         // Définir le marker en bleu par défaut
                         var defaultIcon = L.icon({
@@ -145,4 +146,4 @@
     </script>
 </body>
 </html>
-2
+3
