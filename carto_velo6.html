@@ -234,6 +234,8 @@ var bikeParkingIcon = L.icon({
 //afficher les parcours GPX
   var bikeRoutesLayer = L.layerGroup().addTo(map);
     var currentGpxLayer = null;
+    var currentMarker = null;
+
 
     function addBikeRoutesLayer(url, layer) {
       $.getJSON(url, function(data) {
@@ -247,6 +249,8 @@ var bikeParkingIcon = L.icon({
             if (feature.properties.PHOTO) {
               popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br>`;
             }
+            var popupContent = "Temps: " + tempsDifficulte + "<br>" +
+                                           "Distance: " + feature.properties.DISTANCE + " km";
             if (feature.properties.ITITEMPSDIF) {
               popupContent += `Difficulté : ${feature.properties.ITITEMPSDIF}<br>`;
             }
@@ -256,7 +260,18 @@ var bikeParkingIcon = L.icon({
               if (currentGpxLayer) {
                 map.removeLayer(currentGpxLayer);
               }
-              layer.setIcon(L.divIcon({ className: 'custom-icon', html: `<div style="background-color: #1e7e34; width: 12px; height: 12px; border-radius: 50%;"></div>` }));
+              if (currentMarker) {
+                currentMarker.setIcon(bikeIcon);
+              }
+              layer.setIcon(L.icon({
+                iconUrl: 'icons/velo.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32],
+                className: 'darkened-icon'
+              }));
+              currentMarker = layer;
+              
               var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
               currentGpxLayer = new L.GPX(gpxUrl, {
                 async: true,
@@ -596,4 +611,4 @@ map.on('click', function() {
     }
   
   </script>
-8
+9
