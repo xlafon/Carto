@@ -45,8 +45,8 @@
                                            feature.properties.DESCRIPTIF + "<br>" +
                                            "Temps: " + feature.properties.ITITEMPSDIF + "<br>" +
                                            "Distance: " + feature.properties.DISTANCE + " km";
-                        if (feature.properties.DOCKML) {
-                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                        if (feature.properties.DOCGPX) {
+                            var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
                             popupContent += "<br><a href='" + gpxUrl + "' target='_blank'>Voir le parcours GPX</a>";
                         }
                         if (feature.properties.PHOTO) {
@@ -67,8 +67,8 @@
                         layer.setIcon(defaultIcon);
 
                         layer.on('click', function() {
-                            if (feature.properties.DOCKML) {
-                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCKML;
+                            if (feature.properties.DOCGPX) {
+                                var gpxUrl = "https://cdt64.media.tourinsoft.eu/upload/" + feature.properties.DOCGPX;
 
                                 // Effacer le parcours précédent
                                 if (currentGpxLayer) {
@@ -128,4 +128,4 @@
     </script>
 </body>
 </html>
-9
+10
