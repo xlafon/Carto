@@ -102,8 +102,8 @@
   bottom: 10px;
   right: 10px;
   width: 300px;
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: none; /* Supprime la hauteur maximale */
+  overflow-y: hidden; /* Supprime l'ascenseur vertical */
   background-color: white;
   padding: 10px;
   border-radius: 5px;
@@ -111,6 +111,7 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
+
   </style>
 
 
@@ -533,4 +534,4 @@ var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
     }
   
   </script>
-3
+4
