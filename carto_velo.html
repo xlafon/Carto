@@ -13,6 +13,9 @@
       padding: 10px;
       border-radius: 5px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+  gap: 10px; /* Espace entre les boutons */
     }
     .leaflet-control-custom button {
       display: block;
@@ -358,6 +361,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
- 8
+ 9
 </body>
 </html>
