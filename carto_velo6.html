@@ -596,7 +596,7 @@ map.on('click', function() {
           if (map.hasLayer(campingsLayer)) {
             map.removeLayer(campingsLayer);
           } else {
-            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon);
+            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon, 'camping');
             map.addLayer(campingsLayer);
           }
         });
@@ -618,7 +618,7 @@ map.on('click', function() {
           if (map.hasLayer(campingCarLayer)) {
             map.removeLayer(campingCarLayer);
           } else {
-            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon, 'camping_car');
+            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon, 'camping-car');
             map.addLayer(campingCarLayer);
           }
         });
@@ -648,4 +648,4 @@ map.on('click', function() {
 
   
   </script>
-13
+15
