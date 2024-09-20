@@ -52,6 +52,16 @@
     .leaflet-control-custom .submenu button:hover {
       background-color: #138496;
     }
+    .leaflet-control-custom .bike-submenu {
+      background-color: #ffc107;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    .leaflet-control-custom .accommodations-submenu {
+      background-color: #dc3545;
+      padding: 5px;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -249,7 +259,7 @@ function translateOpeningHours(openingHours) {
 
         var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Afficher les Points Vélo';
-        var submenu = L.DomUtil.create('div', 'submenu', container);
+        var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
 
         var buttonBikeParking = L.DomUtil.create('button', '', submenu);
         buttonBikeParking.innerHTML = 'Parking à vélo';
@@ -296,7 +306,7 @@ function translateOpeningHours(openingHours) {
 
         var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
         buttonAccommodations.innerHTML = 'Afficher les Hébergements';
-        var submenuAccommodations = L.DomUtil.create('div', 'submenu', container);
+        var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
 
         var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
         buttonHotels.innerHTML = 'Hôtels';
@@ -345,6 +355,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
- 6
+ 7
 </body>
 </html>
