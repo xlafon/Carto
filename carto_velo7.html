@@ -159,34 +159,15 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
-#menu-container {
-  width: 180px; /* Ajustez cette valeur en fonction de la largeur de votre menu */
-}
 
-#selection-box {
-  top: 10px; /* Positionnez en haut */
-  left: 200px; /* Positionnez à droite du menu */
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  z-index: 1000; /* Assurez-vous que la boîte est au-dessus des autres éléments */
-}
   </style>
 
 
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
-
-  <div id="menu-container" style="position: absolute; top: 10px; left: 10px;">
-  <!-- Contenu de votre menu -->
-</div>
-<div id="selection-box" style="position: absolute; top: 10px; left: 200px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2); z-index: 1000;"></div>
   
-  
-  
-  <script>
+<script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -405,7 +386,6 @@ var bikeParkingIcon = L.icon({
   showInfoBox(popupContent);
 });
             layer.addLayer(marker);
-          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
         } else if (element.type === "way") {
           var latlngs = element.geometry.map(function(geo) {
             return [geo.lat, geo.lon];
@@ -415,7 +395,6 @@ var bikeParkingIcon = L.icon({
               showInfoBox(popupContent);
             });
           layer.addLayer(polygon);
-          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
 
           // Calculer le centroïde du polygone
           var centroid = polygon.getBounds().getCenter();
@@ -426,7 +405,6 @@ var bikeParkingIcon = L.icon({
   showInfoBox(popupContent);
 });
             layer.addLayer(marker);
-          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
         }
       });
     });
@@ -575,9 +553,7 @@ map.on('click', function() {
       }
     });
 
- 
-
-
+  
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
@@ -732,37 +708,7 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
       infoBox.style.display = 'block';
     }
 
-// Fonction pour ajouter un élément à la boîte de sélection
-function addToSelectionBox(iconUrl, layer) {
-  var selectionBox = document.getElementById('selection-box');
-  var item = document.createElement('div');
-  item.style.display = 'flex';
-  item.style.alignItems = 'center';
-  item.style.marginBottom = '5px';
-
-  var img = document.createElement('img');
-  img.src = iconUrl;
-  img.style.width = '20px';
-  img.style.height = '20px';
-  img.style.marginRight = '5px';
-
-  var removeButton = document.createElement('button');
-  removeButton.innerHTML = '✖';
-  removeButton.style.background = 'none';
-  removeButton.style.border = 'none';
-  removeButton.style.cursor = 'pointer';
-  removeButton.style.color = 'red';
-  removeButton.onclick = function() {
-    map.removeLayer(layer);
-    selectionBox.removeChild(item);
-  };
-
-  item.appendChild(img);
-  item.appendChild(removeButton);
-  selectionBox.appendChild(item);
-}
-
 
   
   </script>
-12
+7
