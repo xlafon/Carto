@@ -604,7 +604,7 @@ map.on('click', function() {
         buttonBike.innerHTML = 'Mobilité et Services';
         var submenu = L.DomUtil.create('div', 'submenu', container);
 
-        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
+        var buttonBikeParking = L.DomUtil.create('button', '', submeno);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
           if (map.hasLayer(bikeParkingLayer)) {
@@ -615,7 +615,7 @@ map.on('click', function() {
           }
         });
 
-        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+        var buttonWaterPoints = L.DomUtil.create('button', '', submeno);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
           if (map.hasLayer(waterPointsLayer)) {
@@ -628,10 +628,10 @@ map.on('click', function() {
 
 
         L.DomEvent.on(buttonBike, 'click', function () {
-          if (submenu.style.display === 'none' || submenu.style.display === '') {
-            submenu.style.display = 'block';
+          if (submeno.style.display === 'none' || submeno.style.display === '') {
+            submeno.style.display = 'block';
           } else {
-            submenu.style.display = 'none';
+            submeno.style.display = 'none';
           }
         });
 
@@ -707,4 +707,4 @@ map.on('click', function() {
 
   
   </script>
-4
+5
