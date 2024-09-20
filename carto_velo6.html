@@ -276,13 +276,14 @@ var bikeParkingIcon = L.icon({
                                            "" + feature.properties.DISTANCE + " km<br><br>";
             
            //popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-          if (feature.properties.Commune && feature.properties.SyndicObjectID && feature.properties.SyndicObjectName) {
-                  var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.SyndicObjectID;
-                  var raisonSociale = feature.properties.SyndicObjectName;
-                  var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-                }
+          
+                // Construction du lien "en savoir plus"
+    var commune = feature.properties.COMMUNE;
+    var syndicObjectID = feature.properties.SyndicObjectID;
+    var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
+    var moreInfoLink = `https://www.tourisme64.com/${commune}/${syndicObjectID}-${syndicObjectName}`;
+
+    popupContent += `<a href="${moreInfoLink}" target="_blank">En savoir plus</a>`;
             
             layer.on('click', function() {
               if (currentGpxLayer) {
@@ -644,4 +645,4 @@ map.on('click', function() {
 
   
   </script>
-4
+5
