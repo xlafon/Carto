@@ -110,6 +110,7 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    float: right;
   }
   .en-savoir-plus-button2:hover {
     background-color: #c82333;
@@ -264,13 +265,13 @@ var bikeParkingIcon = L.icon({
             return L.marker(latlng, { icon: bikeIcon });
           },
           onEachFeature: function (feature, layer) {
-            var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, '-');
-            var popupContent = `<strong>${feature.properties.SyndicObjectName}</strong><br>`;
+            var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
+            var popupContent = `<strong style="font-size: 14px;>${feature.properties.SyndicObjectName}</strong><br><br>`;
             if (feature.properties.PHOTO) {
-              popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br>`;
+              popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
             }
-            popupContent += "" + tempsDifficulte + "<br>" +
-                                           "" + feature.properties.DISTANCE + " km<br><br>";
+            popupContent += "<strong>" + tempsDifficulte + "<br>" +
+                                           "" + feature.properties.DISTANCE + " km<br></strong><br>";
             
            //popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
           
@@ -642,4 +643,4 @@ map.on('click', function() {
 
   
   </script>
-6
+7
