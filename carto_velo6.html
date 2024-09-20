@@ -63,15 +63,6 @@
   .leaflet-control-custom .bike-button:hover {
     background-color: #e0a800;
   }
-    .leaflet-control-custom .bike-submenu {
-    display: none;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 5px;
-  }
-  .leaflet-control-custom .bike-submenu button {
-    background-color: #e0a800;
-     }
   .leaflet-control-custom .accommodations-button {
     background-color: #28a745;
   }
@@ -589,9 +580,9 @@ map.on('click', function() {
 
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Services Vélo';
-        var submenu = L.DomUtil.create('div', 'bike-submenu', container);
+        var submenu = L.DomUtil.create('div', 'submenu', container);
 
-        var buttonBikeParking = L.DomUtil.create('button', '', bike-submenu);
+        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
           if (map.hasLayer(bikeParkingLayer)) {
@@ -602,7 +593,7 @@ map.on('click', function() {
           }
         });
 
-        var buttonWaterPoints = L.DomUtil.create('button', '', bike-submenu);
+        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
           if (map.hasLayer(waterPointsLayer)) {
@@ -694,4 +685,4 @@ map.on('click', function() {
 
   
   </script>
-20
+19
