@@ -52,16 +52,19 @@
     .leaflet-control-custom .submenu button:hover {
       background-color: #138496;
     }
-    .leaflet-control-custom .bike-submenu {
-      background-color: #ffc107;
-      padding: 5px;
-      border-radius: 3px;
-    }
-    .leaflet-control-custom .accommodations-submenu {
-      background-color: #dc3545;
-      padding: 5px;
-      border-radius: 3px;
-    }
+    .leaflet-control-custom .bike-submenu button {
+  background-color: #ffc107; /* Couleur du bouton "Points Vélo" */
+}
+.leaflet-control-custom .bike-submenu button:hover {
+  background-color: #e0a800; /* Couleur du bouton "Points Vélo" au survol */
+}
+
+.leaflet-control-custom .accommodations-submenu button {
+  background-color: #dc3545; /* Couleur du bouton "Hébergements" */
+}
+.leaflet-control-custom .accommodations-submenu button:hover {
+  background-color: #c82333; /* Couleur du bouton "Hébergements" au survol */
+}
   </style>
 </head>
 <body>
@@ -355,6 +358,6 @@ function translateOpeningHours(openingHours) {
 
     map.addControl(new customControl());
   </script>
- 7
+ 8
 </body>
 </html>
