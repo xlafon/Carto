@@ -405,6 +405,7 @@ var bikeParkingIcon = L.icon({
   showInfoBox(popupContent);
 });
             layer.addLayer(marker);
+          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
         } else if (element.type === "way") {
           var latlngs = element.geometry.map(function(geo) {
             return [geo.lat, geo.lon];
@@ -414,6 +415,7 @@ var bikeParkingIcon = L.icon({
               showInfoBox(popupContent);
             });
           layer.addLayer(polygon);
+          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
 
           // Calculer le centroïde du polygone
           var centroid = polygon.getBounds().getCenter();
@@ -424,6 +426,7 @@ var bikeParkingIcon = L.icon({
   showInfoBox(popupContent);
 });
             layer.addLayer(marker);
+          addToSelectionBox(icon.options.iconUrl, marker); // Ajout à la boîte de sélection
         }
       });
     });
@@ -759,9 +762,7 @@ function addToSelectionBox(iconUrl, layer) {
   selectionBox.appendChild(item);
 }
 
-// Exemple d'utilisation lors de l'ajout d'un marqueur
-var marker = L.marker([43.492949, -1.474841], { icon: touristOfficeIcon }).addTo(map);
-addToSelectionBox('icons/tourist_office.png', marker);
+
   
   </script>
-11
+12
