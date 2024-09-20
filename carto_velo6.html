@@ -265,15 +265,18 @@ var bikeParkingIcon = L.icon({
             return L.marker(latlng, { icon: bikeIcon });
           },
           onEachFeature: function (feature, layer) {
+            // enlever les | et remplacer par - pour Iti temps diff
             var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
-            var popupContent = `<strong>${feature.properties.SyndicObjectName}</strong><br><br>`;
+            
+            var popupContent = `<span style="font-size: 14px;"><strong>${feature.properties.SyndicObjectName}</strong></span><br><br>`;
+            
             if (feature.properties.PHOTO) {
               popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
             }
             popupContent += "<strong>" + tempsDifficulte + "<br>" +
                                            "" + feature.properties.DISTANCE + " km<br></strong><br>";
             
-           //popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+           
           
                 // Construction du lien "en savoir plus"
     var commune = feature.properties.COMMUNE;
@@ -643,4 +646,4 @@ map.on('click', function() {
 
   
   </script>
-8
+9
