@@ -275,13 +275,13 @@ var bikeParkingIcon = L.icon({
             popupContent += "" + tempsDifficulte + "<br>" +
                                            "" + feature.properties.DISTANCE + " km<br><br>";
             
-                        // Construction du lien "en savoir plus"
-    var commune = feature.properties.COMMUNE;
-    var syndicObjectID = feature.properties.SyndicObjectID;
-    var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
-    var moreInfoLink = `https://www.tourisme64.com/${commune}/${syndicObjectID}-${syndicObjectName}`;
-
-    popupContent += `<a href="${moreInfoLink}" target="_blank">En savoir plus</a>`;
+           //popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+          if (feature.properties.Commune && feature.properties.SyndicObjectID && feature.properties.SyndicObjectName) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.SyndicObjectID;
+                  var raisonSociale = feature.properties.SyndicObjectName;
+                  var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
                 }
             
             layer.on('click', function() {
@@ -644,4 +644,4 @@ map.on('click', function() {
 
   
   </script>
-8
+4
