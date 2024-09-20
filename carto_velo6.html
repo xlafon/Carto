@@ -276,12 +276,13 @@ var bikeParkingIcon = L.icon({
                                            "" + feature.properties.DISTANCE + " km<br><br>";
             
            //popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-          
-                  var commune = feature.properties.Commune;
+          if (feature.properties.COMMUNE && feature.properties.SyndicObjectID && feature.properties["SyndicObjectName"]) {
+                  var commune = feature.properties.COMMUNE;
                   var identifiant = feature.properties.SyndicObjectID;
-                  var raisonSociale = feature.properties.SyndicObjectName;
+                  var raisonSociale = formatSyndicObjectName(feature.properties["SyndicObjectName"]);
                   var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
                   popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
                 }
             
             layer.on('click', function() {
@@ -644,4 +645,4 @@ map.on('click', function() {
 
   
   </script>
-6
+7
