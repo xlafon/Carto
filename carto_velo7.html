@@ -159,15 +159,25 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
+#menu-container {
+  width: 300px; /* Ajustez cette valeur en fonction de la largeur de votre menu */
+}
 
+#selection-box {
+  top: 10px; /* Positionnez en haut */
+  left: 200px; /* Positionnez à droite du menu */
+  /* Si vous voulez le positionner sous le menu, utilisez top: 200px; et ajustez la valeur */
+}
   </style>
 
 
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
-<div id="selection-box" style="position: absolute; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);"></div>
- 
+<div id="menu-container" style="position: absolute; top: 10px; left: 10px;">
+  <!-- Contenu de votre menu -->
+</div>
+<div id="selection-box" style="position: absolute; top: 10px; left: 200px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);"></div>
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
