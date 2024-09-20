@@ -447,8 +447,9 @@ var bikeParkingIcon = L.icon({
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
-                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
-              // Ajout de la condition pour afficher le type d'hébergement
+                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+              
+                // Ajout de la condition pour afficher le bouton en savoir plus selon le type d'hébergement
 if (feature.properties["Identifiant"]) {
     if (feature.properties["Identifiant"].startsWith("VIL")) {
         if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
@@ -684,4 +685,4 @@ map.on('click', function() {
 
   
   </script>
-18
+19
