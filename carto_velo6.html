@@ -249,10 +249,7 @@ var bikeParkingIcon = L.icon({
     function formatRaisonSociale(raisonSociale) {
       return raisonSociale.replace(/\s+/g, '-');
     }
-  // Fonction de formatage de la SyndicObjectName avec des - à la place des espaces pour le bouton en savoir plus
-    function formatSyndicObjectName(SyndicObjectName) {
-      return SyndicObjectName.replace(/\s+/g, '-');
-    }
+  
 
 //afficher les parcours GPX
   var bikeRoutesLayer = L.layerGroup().addTo(map);
@@ -281,9 +278,9 @@ var bikeParkingIcon = L.icon({
     var commune = feature.properties.COMMUNE;
     var syndicObjectID = feature.properties.SyndicObjectID;
     var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
-    var moreInfoLink = `https://www.tourisme64.com/${commune}/${syndicObjectID}-${syndicObjectName}`;
+    var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
 
-    popupContent += `<a href="${moreInfoLink}" target="_blank">En savoir plus</a>`;
+    popupContent += `<a href="${moreInfoLink}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
             
             layer.on('click', function() {
               if (currentGpxLayer) {
@@ -645,4 +642,4 @@ map.on('click', function() {
 
   
   </script>
-5
+6
