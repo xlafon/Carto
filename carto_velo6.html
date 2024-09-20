@@ -266,7 +266,7 @@ var bikeParkingIcon = L.icon({
           },
           onEachFeature: function (feature, layer) {
             var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
-            var popupContent = `<strong style="font-size: 14px;>${feature.properties.SyndicObjectName}</strong><br><br>`;
+            var popupContent = `<strong>${feature.properties.SyndicObjectName}</strong><br><br>`;
             if (feature.properties.PHOTO) {
               popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
             }
@@ -643,4 +643,4 @@ map.on('click', function() {
 
   
   </script>
-7
+8
