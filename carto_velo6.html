@@ -448,6 +448,16 @@ var bikeParkingIcon = L.icon({
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br>`;
+              // Ajout de la condition pour afficher le type d'hébergement
+if (feature.properties["Identifiant"]) {
+    if (feature.properties["Identifiant"].startsWith("VIL")) {
+        popupContent += `Type d'hébergement : Village vacances<br>`;
+    } else if (feature.properties["Identifiant"].startsWith("RET")) {
+        popupContent += `Type d'hébergement : Résidence de tourisme<br>`;
+    } else if (feature.properties["Identifiant"].startsWith("HLO")) {
+        popupContent += `Type d'hébergement : Location ou chambre<br>`;
+    }
+              }
               }
             }
             if (popupContent) {
@@ -648,4 +658,4 @@ map.on('click', function() {
 
   
   </script>
-16
+17
