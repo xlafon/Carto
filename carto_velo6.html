@@ -412,7 +412,7 @@ var bikeParkingIcon = L.icon({
                   var moreInfoUrl = `https://www.tourisme64.com/hebergements/hotels/${commune}/${identifiant}-${raisonSociale}/`;
                   popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
                 }
-                } else if (type === 'camping') {
+                } else if (name === 'camping') {
                 if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
                 if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
@@ -426,7 +426,7 @@ var bikeParkingIcon = L.icon({
                   var moreInfoUrl = `https://www.tourisme64.com/hebergements/camping/${commune}/${identifiant}-${raisonSociale}/`;
                   popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
                 }
-                }else if (type === 'camping-car') {
+                }else if (name === 'camping-car') {
                 if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
                 //if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
@@ -648,4 +648,4 @@ map.on('click', function() {
 
   
   </script>
-12
+13
