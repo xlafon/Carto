@@ -160,13 +160,17 @@
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
 #menu-container {
-  width: 300px; /* Ajustez cette valeur en fonction de la largeur de votre menu */
+  width: 180px; /* Ajustez cette valeur en fonction de la largeur de votre menu */
 }
 
 #selection-box {
-  top: 400px; /* Positionnez en haut */
+  top: 10px; /* Positionnez en haut */
   left: 200px; /* Positionnez à droite du menu */
-  /* Si vous voulez le positionner sous le menu, utilisez top: 200px; et ajustez la valeur */
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  z-index: 1000; /* Assurez-vous que la boîte est au-dessus des autres éléments */
 }
   </style>
 
@@ -174,11 +178,15 @@
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
-<div id="menu-container" style="position: absolute; top: 10px; left: 10px;">
+
+  <div id="menu-container" style="position: absolute; top: 10px; left: 10px;">
   <!-- Contenu de votre menu -->
 </div>
-<div id="selection-box" style="position: absolute; top: 10px; left: 200px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);"></div>
-<script>
+<div id="selection-box" style="position: absolute; top: 10px; left: 200px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2); z-index: 1000;"></div>
+  
+  
+  
+  <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -756,4 +764,4 @@ var marker = L.marker([43.492949, -1.474841], { icon: touristOfficeIcon }).addTo
 addToSelectionBox('icons/tourist_office.png', marker);
   
   </script>
-10
+11
