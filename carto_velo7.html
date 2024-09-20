@@ -15,6 +15,8 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+     display: flex;
+    flex-direction: column;
   }
   .leaflet-control-custom button {
       display: block;
@@ -70,6 +72,12 @@
   .leaflet-control-custom .accommodations-button:hover {
     background-color: #1e7e34;
   }
+    .leaflet-control-custom .mobilite-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .mobilite-button:hover {
+    background-color: #1e7e34;
+  }
   .leaflet-control-custom .submenu {
     display: none;
     flex-wrap: wrap;
@@ -78,6 +86,15 @@
   }
   .leaflet-control-custom .submenu button {
     background-color: #17a2b8;
+     }
+    .leaflet-control-custom .submenu2 {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .leaflet-control-custom .submenu2 button {
+    background-color: #1e7e34;
      }
   .leaflet-control-custom .submenu button:hover {
     background-color: #138496;
@@ -580,10 +597,10 @@ map.on('click', function() {
         });
 
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
-        buttonBike.innerHTML = 'Services Vélo';
-        var submenu = L.DomUtil.create('div', 'submenu', container);
+        buttonBike.innerHTML = 'Mobilité et Services';
+        var submenu = L.DomUtil.create('div', 'submenu2', container);
 
-        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
+        var buttonBikeParking = L.DomUtil.create('button', '', submenu2);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
           if (map.hasLayer(bikeParkingLayer)) {
@@ -594,7 +611,7 @@ map.on('click', function() {
           }
         });
 
-        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+        var buttonWaterPoints = L.DomUtil.create('button', '', submenu2);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
           if (map.hasLayer(waterPointsLayer)) {
