@@ -250,7 +250,7 @@ var bikeParkingIcon = L.icon({
       return raisonSociale.replace(/\s+/g, '-');
     }
   // Fonction de formatage de la SyndicObjectName avec des - à la place des espaces pour le bouton en savoir plus
-    function formatRaisonSociale(SyndicObjectName) {
+    function formatSyndicObjectName(SyndicObjectName) {
       return SyndicObjectName.replace(/\s+/g, '-');
     }
 
@@ -278,8 +278,8 @@ var bikeParkingIcon = L.icon({
            // popupContent += `<a href="https://www.tourisme64.com" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
           if (feature.properties.Commune && feature.properties.SyndicObjectID && feature.properties.SyndicObjectName) {
                   var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties.SyndicObjectName);
+                  var identifiant = feature.properties.SyndicObjectID;
+                  var raisonSociale = formatSyndicObjectName(feature.properties.SyndicObjectName);
                   var moreInfoUrl = `https://www.tourisme64.com/itineraire/${commune}/${identifiant}-${raisonSociale}/`;
                   popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
                 }
@@ -315,7 +315,7 @@ var bikeParkingIcon = L.icon({
                                         color: 'red',
                                         weight: 5,
                                         opacity: 0.7,
-                                        dashArray: '5,5'
+                                        dashArray: '5, 10'
                                     }
               }).on('loaded', function(e) {
                 map.fitBounds(e.target.getBounds());
@@ -644,4 +644,4 @@ map.on('click', function() {
 
   
   </script>
-13
+1
