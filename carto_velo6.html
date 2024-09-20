@@ -451,11 +451,37 @@ var bikeParkingIcon = L.icon({
               // Ajout de la condition pour afficher le type d'hébergement
 if (feature.properties["Identifiant"]) {
     if (feature.properties["Identifiant"].startsWith("VIL")) {
-        popupContent += `Type d'hébergement : Village vacances<br>`;
+        if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/village-de-vacances/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
     } else if (feature.properties["Identifiant"].startsWith("RET")) {
-        popupContent += `Type d'hébergement : Résidence de tourisme<br>`;
-    } else if (feature.properties["Identifiant"].startsWith("HLO")) {
-        popupContent += `Type d'hébergement : Location ou chambre<br>`;
+        if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/residence-de-tourisme/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+      } else if (feature.properties["Identifiant"].startsWith("HLO")) {
+        if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/chambre-d-hotes/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+    } else if (feature.properties["Identifiant"].startsWith("HCO")) {
+        if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/hebergement-collectif/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
     }
               }
               }
@@ -658,4 +684,4 @@ map.on('click', function() {
 
   
   </script>
-17
+18
