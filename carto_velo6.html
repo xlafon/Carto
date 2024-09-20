@@ -81,6 +81,7 @@
   .leaflet-control-custom .submenu button:hover {
     background-color: #138496;
   }
+    //bouton bleu
   .en-savoir-plus-button {
     display: inline-block;
     padding: 10px 15px;
@@ -93,11 +94,12 @@
     text-align: center;
     text-decoration: none;
     cursor: pointer;
+    float: right;
   }
   .en-savoir-plus-button:hover {
     background-color: #0056b3;
   }
-
+ //bouton rouge
 .en-savoir-plus-button2 {
     display: inline-block;
     padding: 10px 15px;
@@ -345,6 +347,7 @@ var bikeParkingIcon = L.icon({
             if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
             if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
             if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+            popupContent += `(source OSM)`;
           } else {
             popupContent += element.tags.name || "No name";
           }
