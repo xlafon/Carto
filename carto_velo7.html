@@ -166,6 +166,7 @@
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
+<div id="selection-box" style="position: absolute; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);"></div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -553,7 +554,40 @@ map.on('click', function() {
       }
     });
 
-  
+  // Fonction pour ajouter un élément à la boîte de sélection
+function addToSelectionBox(iconUrl, layer) {
+  var selectionBox = document.getElementById('selection-box');
+  var item = document.createElement('div');
+  item.style.display = 'flex';
+  item.style.alignItems = 'center';
+  item.style.marginBottom = '5px';
+
+  var img = document.createElement('img');
+  img.src = iconUrl;
+  img.style.width = '20px';
+  img.style.height = '20px';
+  img.style.marginRight = '5px';
+
+  var removeButton = document.createElement('button');
+  removeButton.innerHTML = '✖';
+  removeButton.style.background = 'none';
+  removeButton.style.border = 'none';
+  removeButton.style.cursor = 'pointer';
+  removeButton.style.color = 'red';
+  removeButton.onclick = function() {
+    map.removeLayer(layer);
+    selectionBox.removeChild(item);
+  };
+
+  item.appendChild(img);
+  item.appendChild(removeButton);
+  selectionBox.appendChild(item);
+}
+
+// Exemple d'utilisation lors de l'ajout d'un marqueur
+var marker = L.marker([43.492949, -1.474841], { icon: touristOfficeIcon }).addTo(map);
+addToSelectionBox('icons/tourist_office.png', marker);
+
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
@@ -711,4 +745,4 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
 
   
   </script>
-7
+9
