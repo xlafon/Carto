@@ -62,7 +62,7 @@
     .en-savoir-plus-button:hover {
       background-color: #0056b3;
     }
-    .selected-icons {
+   .selected-icons {
   position: absolute;
   top: 10px;
   left: 50px; /* Ajustez cette valeur pour éviter de cacher les boutons de zoom */
@@ -80,21 +80,20 @@
   cursor: pointer;
   position: relative;
 }
-.selected-icons img::after {
-  content: '✖';
+.selected-icons img.cross {
   position: absolute;
   top: -5px;
   right: -5px;
+  width: 16px;
+  height: 16px;
   background-color: red;
   color: white;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  line-height: 1; /* Ensure the cross is centered */
+  line-height: 1;
 }
   </style>
 </head>
@@ -292,17 +291,30 @@
     }
 
     function addSelectedIcon(iconUrl, layer) {
-      var selectedIconsContainer = document.getElementById('selected-icons');
-      var img = document.createElement('img');
-      img.src = iconUrl;
-      img.dataset.layer = layer._leaflet_id;
-      img.onclick = function() {
-        map.removeLayer(layer);
-        selectedIconsContainer.removeChild(img);
-      };
-      selectedIconsContainer.appendChild(img);
-    }
-
+  var selectedIconsContainer = document.getElementById('selected-icons');
+  var iconWrapper = document.createElement('div');
+  iconWrapper.style.position = 'relative';
+  
+  var img = document.createElement('img');
+  img.src = iconUrl;
+  img.dataset.layer = layer._leaflet_id;
+  img.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
+  
+  var cross = document.createElement('div');
+  cross.className = 'cross';
+  cross.innerHTML = '✖';
+  cross.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
+  
+  iconWrapper.appendChild(img);
+  iconWrapper.appendChild(cross);
+  selectedIconsContainer.appendChild(iconWrapper);
+}
     function removeSelectedIcon(iconUrl) {
       var selectedIconsContainer = document.getElementById('selected-icons');
       var imgs = selectedIconsContainer.getElementsByTagName('img');
@@ -314,6 +326,6 @@
       }
     }
   </script>
-7
+8
 </body>
 </html>
