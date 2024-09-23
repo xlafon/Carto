@@ -72,6 +72,7 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       display: flex;
       gap: 10px;
+      z-index: 1000; /* Ensure it appears above the map */
     }
     .selected-icons img {
       width: 32px;
@@ -94,8 +95,6 @@
       justify-content: center;
       font-size: 12px;
     }
-
-    
   </style>
 </head>
 <body>
@@ -220,6 +219,7 @@
         L.DomEvent.on(buttonBikeParking, 'click', function () {
          toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png');
         });
+       
 
         var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
@@ -313,6 +313,6 @@
       }
     }
   </script>
-4
+5
 </body>
 </html>
