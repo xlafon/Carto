@@ -63,38 +63,38 @@
       background-color: #0056b3;
     }
     .selected-icons {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background-color: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      display: flex;
-      gap: 10px;
-      z-index: 1000; /* Ensure it appears above the map */
-    }
-    .selected-icons img {
-      width: 32px;
-      height: 32px;
-      cursor: pointer;
-      position: relative;
-    }
-    .selected-icons img::after {
-      content: '✖';
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      width: 16px;
-      height: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-    }
+  position: absolute;
+  top: 10px;
+  left: 50px; /* Ajustez cette valeur pour éviter de cacher les boutons de zoom */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 10px;
+  z-index: 1000; /* Ensure it appears above the map */
+}
+.selected-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+}
+.selected-icons img::after {
+  content: '✖';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
   </style>
 </head>
 <body>
@@ -313,6 +313,6 @@
       }
     }
   </script>
-5
+6
 </body>
 </html>
