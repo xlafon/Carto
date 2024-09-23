@@ -107,7 +107,20 @@
       popupAnchor: [0, -32]
     });
 
-   
+    // Fonction de mappage pour les types de parkings à vélo
+         function mapBicycleParkingType(type) {
+      var mapping = {
+        'stands': 'arceaux',
+        'wall_loops': 'ratelier',
+        'shed': 'abri vélo'
+      };
+      return mapping[type] || type;
+    }
+
+    // Fonction de formatage de la raisonsociale avec des - à la place des espaces pour le bouton en savoir plus
+    function formatRaisonSociale(raisonSociale) {
+      return raisonSociale.replace(/\s+/g, '-');
+    }
     
    function addGeoJsonLayer(url, layer, icon, type) {
       $.getJSON(url, function(data) {
@@ -188,7 +201,20 @@
             map.addLayer(waterPointsLayer);
           }
         });
-    
+
+        var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
+        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
+          if (map.hasLayer(bikeRoutesLayer)) {
+            map.removeLayer(bikeRoutesLayer);
+          } else {
+            kmlFiles.forEach(function(url) {
+              addKmlLayer(url, bikeRoutesLayer);
+            });
+            map.addLayer(bikeRoutesLayer);
+          }
+        });
+
         L.DomEvent.on(buttonBike, 'click', function () {
           if (submenu.style.display === 'none' || submenu.style.display === '') {
             submenu.style.display = 'block';
@@ -234,7 +260,8 @@
         return container;
       }
     });
-   
+
+    
     map.addControl(new customControl());
   </script>
 1
