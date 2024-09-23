@@ -62,10 +62,36 @@
     .en-savoir-plus-button:hover {
       background-color: #0056b3;
     }
+
+.selected-icons img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      position: relative;
+    }
+    .selected-icons img::after {
+      content: '✖';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+
+    
   </style>
 </head>
 <body>
   <div id="map" style="width: 100%; height: 600px;"></div>
+  <div class="selected-icons" id="selected-icons"></div>
   <script>
     var map = L.map('map').setView([43.492949, -1.474841], 13);
 
@@ -183,24 +209,14 @@
         var buttonBikeParking = L.DomUtil.create('button', '', submenu);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
-          if (map.hasLayer(bikeParkingLayer)) {
-            map.removeLayer(bikeParkingLayer);
-          } else {
-            addGeoJsonLayer(bikeParkingUrl, bikeParkingLayer, bikeParkingIcon, 'bike_parking');
-            map.addLayer(bikeParkingLayer);
-          }
+         toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png');
         });
 
         var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
-          if (map.hasLayer(waterPointsLayer)) {
-            map.removeLayer(waterPointsLayer);
-          } else {
-            addGeoJsonLayer(waterPointsUrl, waterPointsLayer, waterPointIcon, 'water_point');
-            map.addLayer(waterPointsLayer);
-          }
-        });
+         toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png');
+        })
 
         var buttonBikeRoutes = L.DomUtil.create('button', '', submenu);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
@@ -230,23 +246,13 @@
         var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
         buttonHotels.innerHTML = 'Hôtels';
         L.DomEvent.on(buttonHotels, 'click', function () {
-          if (map.hasLayer(hotelsLayer)) {
-            map.removeLayer(hotelsLayer);
-          } else {
-            addGeoJsonLayer(hotelsUrl, hotelsLayer, hotelIcon, 'hotel');
-            map.addLayer(hotelsLayer);
-          }
+          toggleLayer(hotelsLayer, hotelsUrl, hotelIcon, 'hotel', 'icons/hotel.png');
         });
 
         var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampingCar.innerHTML = 'Aires de camping-car';
         L.DomEvent.on(buttonCampingCar, 'click', function () {
-          if (map.hasLayer(campingCarLayer)) {
-            map.removeLayer(campingCarLayer);
-          } else {
-            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon, 'camping_car');
-            map.addLayer(campingCarLayer);
-          }
+         toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png');
         });
 
         L.DomEvent.on(buttonAccommodations, 'click', function () {
@@ -263,7 +269,42 @@
 
     
     map.addControl(new customControl());
+
+    function toggleLayer(layer, url, icon, type, iconUrl) {
+      if (map.hasLayer(layer)) {
+        map.removeLayer(layer);
+        removeSelectedIcon(iconUrl);
+      } else {
+        addGeoJsonLayer(url, layer, icon, type);
+        map.addLayer(layer);
+        addSelectedIcon(iconUrl, layer);
+      }
+    }
+
+    function addSelectedIcon(iconUrl, layer) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      var img = document.createElement('img');
+      img.src = iconUrl;
+      img.dataset.layer = layer._leaflet_id;
+      img.onclick = function() {
+        map.removeLayer(layer);
+        selectedIconsContainer.removeChild(img);
+      };
+      selectedIconsContainer.appendChild(img);
+    }
+
+    function removeSelectedIcon(iconUrl) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      var imgs = selectedIconsContainer.getElementsByTagName('img');
+      for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i].src.includes(iconUrl)) {
+          selectedIconsContainer.removeChild(imgs[i]);
+          break;
+        }
+      }
+    }
+    
   </script>
-1
+2
 </body>
 </html>
