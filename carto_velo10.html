@@ -822,10 +822,25 @@ function updateFavoritesBox() {
 
 function addFavoriteToMap(feature) {
   const latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
-  const marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/favorite.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
+  const marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/cart.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
   marker.addTo(map);
   marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
 }
+
+function showInfoBox(content, feature) {
+  const infoBox = document.getElementById('info-box');
+  infoBox.innerHTML = content;
+
+  const addToFavoritesButton = document.createElement('button');
+  addToFavoritesButton.innerText = 'Ajouter aux favoris';
+  addToFavoritesButton.onclick = function() {
+    addToFavorites(feature);
+  };
+
+  infoBox.appendChild(addToFavoritesButton);
+  infoBox.style.display = 'block';
+}
+
   
   </script>
-5
+6
