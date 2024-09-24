@@ -791,16 +791,41 @@ function removeSelectedIcon(iconUrl) {
 
         function showInfoBox(content, layer) {
             var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content + '<button onclick="addToCart(layer)">Ajouter au panier</button>';
+            infoBox.innerHTML = content + '<button onclick="addToCart(' + layer._leaflet_id + ')">Ajouter au panier</button>';
             infoBox.style.display = 'block';
         }
 
-        function addToCart(layer) {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            cartOffers.push(layer);
-            alert('Offre ajoutée au panier !');
+        function addToCart(layerId) {
+            var layer = map._layers[layerId];
+            if (layer) {
+                cartCount++;
+                document.getElementById('cart-count').innerText = cartCount;
+                cartOffers.push(layer);
+                alert('Offre ajoutée au panier !');
+            } else {
+                alert('Erreur : couche non trouvée.');
+            }
         }
+
+        function showCartOffers() {
+            // Retirer toutes les couches de la carte
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Marker || layer instanceof L.LayerGroup) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            // Ajouter uniquement les couches du panier
+            cartOffers.forEach(function(layer) {
+                map.addLayer(layer);
+            });
+        }
+
+        // Exemple d'ajout de marker et d'appel de showInfoBox
+        var marker = L.marker([51.5, -0.09]).addTo(map);
+        marker.on('click', function() {
+            showInfoBox('Contenu de l\'offre', marker);
+        });
   
   </script>
 6
