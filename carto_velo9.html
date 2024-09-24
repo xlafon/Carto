@@ -627,12 +627,12 @@ L.DomEvent.on(buttonOffices, 'click', function () {
 
 
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
-        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+       buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
           if (map.hasLayer(bikeRoutesLayer)) {
             map.removeLayer(bikeRoutesLayer);
           } else {
-            addBikeRoutesLayer('bikeRoutesUrl', bikeRoutesLayer);
+            addBikeRoutesLayer('data/ITIVELO.geojson', bikeRoutesLayer);
             map.addLayer(bikeRoutesLayer);
           }
         });
@@ -770,4 +770,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-8
+9
