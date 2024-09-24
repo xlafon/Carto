@@ -174,47 +174,30 @@
   font-size: 12px;
   line-height: 1;
 } 
-  #info-box {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            width: 300px;
-            height: auto;
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: none;
-        }
-
-    #cart {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: white;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
+ #info-box {
+  font-family: Arial, sans-serif;
+   font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  max-height: none; /* Supprime la hauteur maximale */
+  overflow-y: hidden; /* Supprime l'ascenseur vertical */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
+}
 
   </style>
 
 
 
 <div id="map" style="width: 100%; height: 600px;"></div>
- <div id="info-box"></div>
-    <div id="cart" onclick="showCartOffers()">
-        <img src="icons/cart.png" alt="Panier" style="width: 30px; height: 30px;">
-        <span id="cart-count">0</span>
-    </div>
+<div id="info-box"></div>
+<div class="selected-icons" id="selected-icons"></div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -721,7 +704,12 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
     });
 
     map.addControl(new customControl());
-
+//fonction pour afficher infoBox à la place de Info bulle
+  function showInfoBox(content) {
+      var infoBox = document.getElementById('info-box');
+      infoBox.innerHTML = content;
+      infoBox.style.display = 'block';
+    }
 
   //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
 function toggleLayer(layer, url, icon, type, iconUrl, callback) {
@@ -776,49 +764,7 @@ function removeSelectedIcon(iconUrl) {
         }
     });
 }
-  
-// JavaScript panier
-var cartCount = 0;
-        var cartOffers = [];
 
-        function showInfoBox(content, layer) {
-            console.log('showInfoBox called with content:', content, 'and layer:', layer);
-            var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content + '<button onclick="addToCart(' + layer._leaflet_id + ')">Ajouter au panier</button>';
-            infoBox.style.display = 'block';
-        }
-
-        function addToCart(layerId) {
-            var layer = map._layers[layerId];
-            if (layer) {
-                cartCount++;
-                document.getElementById('cart-count').innerText = cartCount;
-                cartOffers.push(layer);
-                alert('Offre ajoutée au panier !');
-            } else {
-                alert('Erreur : couche non trouvée.');
-            }
-        }
-
-        function showCartOffers() {
-            // Retirer toutes les couches de la carte
-            map.eachLayer(function(layer) {
-                if (layer instanceof L.Marker || layer instanceof L.LayerGroup) {
-                    map.removeLayer(layer);
-                }
-            });
-
-            // Ajouter uniquement les couches du panier
-            cartOffers.forEach(function(layer) {
-                map.addLayer(layer);
-            });
-        }
-
-        // Exemple d'ajout de marker et d'appel de showInfoBox
-        var marker = L.marker([51.5, -0.09]).addTo(map);
-        marker.on('click', function() {
-            showInfoBox('Contenu de l\'offre', marker);
-        });
   
   </script>
-1
+2
