@@ -215,7 +215,7 @@
 <div id="info-box"></div>
 <div class="selected-icons" id="selected-icons"></div>
   
-  <div id="favorites-box" class="favorites-box">
+ <div id="favorites-box" class="favorites-box">
   <h3>Favoris (<span id="favorites-count">0</span>)</h3>
   <ul id="favorites-list"></ul>
 </div>
@@ -601,6 +601,7 @@ if (feature.properties["Identifiant"]) {
   infoBox.appendChild(addToFavoritesButton);
   infoBox.style.display = 'block';
 }
+
   
 
   // Ajoute cet événement pour masquer la boîte d'information lorsque l'utilisateur clique sur la carte
@@ -825,7 +826,6 @@ function addFavoriteToMap(feature) {
   marker.addTo(map);
   marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
 }
-
   
   </script>
-4
+5
