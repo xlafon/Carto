@@ -191,37 +191,37 @@
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
 .favorites-box {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    z-index: 1000;
-  }
-  .favorites-box ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .favorites-box li {
-    margin-bottom: 5px;
-  }
-.favorites-box button {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 5px;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.favorites-box button:hover {
-  background-color: #0056b3;
-}
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .favorites-box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .favorites-box li {
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .favorites-box button {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 5px;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .favorites-box button:hover {
+      background-color: #0056b3;
+    }
 
     
   </style>
@@ -233,10 +233,10 @@
 <div class="selected-icons" id="selected-icons"></div>
   
  <div id="favorites-box" class="favorites-box">
-  <h3>Favoris (<span id="favorites-count">0</span>)</h3>
-  <ul id="favorites-list"></ul>
-  <button id="show-favorites-button">Afficher les favoris</button>
-</div>
+    <h3>Favoris (<span id="favorites-count">0</span>)</h3>
+    <ul id="favorites-list"></ul>
+    <button id="show-favorites-button">Afficher les favoris</button>
+  </div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -607,10 +607,10 @@ if (feature.properties["Identifiant"]) {
 }
   
   function showInfoBox(content, feature) {
-  const infoBox = document.getElementById('info-box');
+  var infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
 
-  const addToFavoritesButton = document.createElement('button');
+  var addToFavoritesButton = document.createElement('button');
   addToFavoritesButton.innerText = 'Ajouter aux favoris';
   addToFavoritesButton.onclick = function() {
     addToFavorites(feature);
@@ -814,71 +814,67 @@ function removeSelectedIcon(iconUrl) {
 }
 
   //ajout aux favoris
-  const favorites = [];
+   var favorites = [];
 
-function addToFavorites(feature) {
-  favorites.push(feature);
-  updateFavoritesBox();
-}
-
-function updateFavoritesBox() {
-  const favoritesCount = document.getElementById('favorites-count');
-  const favoritesList = document.getElementById('favorites-list');
-
-  favoritesCount.innerText = favorites.length;
-  favoritesList.innerHTML = '';
-
-  favorites.forEach((feature, index) => {
-    const listItem = document.createElement('li');
-    listItem.innerText = feature.properties["Raison sociale"] || `Favori ${index + 1}`;
-    listItem.onclick = function() {
-      addFavoriteToMap(feature);
-    };
-    favoritesList.appendChild(listItem);
-  });
-}
-
-function addFavoriteToMap(feature) {
-  const latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
-  const marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/cart.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
-  marker.addTo(map);
-  marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
-}
-
-
-
-  
-function showInfoBox(content, feature) {
-  const infoBox = document.getElementById('info-box');
-  infoBox.innerHTML = content;
-
-  const addToFavoritesButton = document.createElement('button');
-  addToFavoritesButton.innerText = 'Ajouter aux favoris';
-  addToFavoritesButton.onclick = function() {
-    addToFavorites(feature);
-  };
-
-  infoBox.appendChild(addToFavoritesButton);
-  infoBox.style.display = 'block';
-}
-
-  //afficher les favoris sur la carte
-  document.getElementById('show-favorites-button').onclick = function() {
-  showOnlyFavorites();
-};
-
-function showOnlyFavorites() {
-  // Enlever toutes les couches actuelles de la carte
-  map.eachLayer(function(layer) {
-    if (layer instanceof L.Marker || layer instanceof L.Polygon || layer instanceof L.GeoJSON) {
-      map.removeLayer(layer);
+    function addToFavorites(feature) {
+      favorites.push(feature);
+      updateFavoritesBox();
     }
-  });
 
-  // Ajouter uniquement les favoris à la carte
-  favorites.forEach(function(feature) {
-    addFavoriteToMap(feature);
-  });
-}
+    function updateFavoritesBox() {
+      var favoritesCount = document.getElementById('favorites-count');
+      var favoritesList = document.getElementById('favorites-list');
+
+      favoritesCount.innerText = favorites.length;
+      favoritesList.innerHTML = '';
+
+      favorites.forEach((feature, index) => {
+        var listItem = document.createElement('li');
+        listItem.innerText = feature.properties["Raison sociale"] || `Favori ${index + 1}`;
+        listItem.onclick = function() {
+          addFavoriteToMap(feature);
+        };
+        favoritesList.appendChild(listItem);
+      });
+    }
+
+    function addFavoriteToMap(feature) {
+      var latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
+      var marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/favorite.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
+      marker.addTo(map);
+      marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
+    }
+
+    function showInfoBox(content, feature) {
+      var infoBox = document.getElementById('info-box');
+      infoBox.innerHTML = content;
+
+      var addToFavoritesButton = document.createElement('button');
+      addToFavoritesButton.innerText = 'Ajouter aux favoris';
+      addToFavoritesButton.onclick = function() {
+        addToFavorites(feature);
+      };
+
+      infoBox.appendChild(addToFavoritesButton);
+      infoBox.style.display = 'block';
+    }
+
+    document.getElementById('show-favorites-button').onclick = function() {
+      showOnlyFavorites();
+    };
+
+    function showOnlyFavorites() {
+      // Enlever toutes les couches actuelles de la carte
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker || layer instanceof L.Polygon || layer instanceof L.GeoJSON) {
+          map.removeLayer(layer);
+        }
+      });
+
+      // Ajouter uniquement les favoris à la carte
+      favorites.forEach(function(feature) {
+        addFavoriteToMap(feature);
+      });
+    }
   </script>
-3
+4
