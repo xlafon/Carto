@@ -822,21 +822,23 @@ function removeSelectedIcon(iconUrl) {
     }
 
     function updateFavoritesBox() {
-      var favoritesCount = document.getElementById('favorites-count');
-      var favoritesList = document.getElementById('favorites-list');
+  var favoritesCount = document.getElementById('favorites-count');
+  var favoritesList = document.getElementById('favorites-list');
 
-      favoritesCount.innerText = favorites.length;
-      favoritesList.innerHTML = '';
+  favoritesCount.innerText = favorites.length;
+  favoritesList.innerHTML = '';
 
-      favorites.forEach((feature, index) => {
-        var listItem = document.createElement('li');
-        listItem.innerText = feature.properties["Raison sociale"] || `Favori ${index + 1}`;
-        listItem.onclick = function() {
-          addFavoriteToMap(feature);
-        };
-        favoritesList.appendChild(listItem);
-      });
-    }
+  favorites.forEach((feature, index) => {
+    var listItem = document.createElement('li');
+    var lat = feature.geometry.coordinates;
+    var lng = feature.geometry.coordinates;
+    listItem.innerText = `${feature.properties["Raison sociale"]} (Lat: ${lat}, Lng: ${lng})`;
+    listItem.onclick = function() {
+      addFavoriteToMap(feature);
+    };
+    favoritesList.appendChild(listItem);
+  });
+}
 
     function addFavoriteToMap(feature) {
       var latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
@@ -844,6 +846,8 @@ function removeSelectedIcon(iconUrl) {
       marker.addTo(map);
       marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
     }
+
+  
 
     function showInfoBox(content, feature) {
       var infoBox = document.getElementById('info-box');
@@ -877,4 +881,4 @@ function removeSelectedIcon(iconUrl) {
       });
     }
   </script>
-4
+5
