@@ -617,7 +617,9 @@ map.on('click', function() {
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
 L.DomEvent.on(buttonOffices, 'click', function () {
-    toggleLayer(officesLayer, officesUrl, null, null, 'icons/tourist_office.png', addDataToLayer);
+    toggleLayer(officesLayer, officesUrl, null, null, 'icons/tourist_office.png', function(url, layer) {
+        addDataToLayer(url, layer, '#007bff', true);
+    });
 });
         
 
@@ -765,4 +767,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-3
+4
