@@ -726,9 +726,9 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
     map.addControl(new customControl());
 //fonction pour afficher infoBox à la place de Info bulle
   
-      function showInfoBox(content) {
+      function showInfoBox(content, layer) {
             var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content + '<button onclick="addToCart()">Ajouter au panier</button>';
+            infoBox.innerHTML = content + '<button onclick="addToCart(layer)">Ajouter au panier</button>';
             infoBox.style.display = 'block';
         }
 
@@ -792,16 +792,11 @@ function removeSelectedIcon(iconUrl) {
 
        
 
-        function addToCart(layerId) {
-            var layer = map._layers[layerId];
-            if (layer) {
-                cartCount++;
-                document.getElementById('cart-count').innerText = cartCount;
-                cartOffers.push(layer);
-                alert('Offre ajoutée au panier !');
-            } else {
-                alert('Erreur : couche non trouvée.');
-            }
+        function addToCart(layer) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            cartOffers.push(layer);
+            alert('Offre ajoutée au panier !');
         }
 
         function showCartOffers() {
@@ -817,12 +812,6 @@ function removeSelectedIcon(iconUrl) {
                 map.addLayer(layer);
             });
         }
-
-        // Exemple d'ajout de marker et d'appel de showInfoBox
-        var marker = L.marker([51.5, -0.09]).addTo(map);
-        marker.on('click', function() {
-            showInfoBox('Contenu de l\'offre', marker);
-        });
   
   </script>
-8
+9
