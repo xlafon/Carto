@@ -213,7 +213,7 @@
   var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
   var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
 
-    var customControl = L.Control.extend({
+   var customControl = L.Control.extend({
     options: {
       position: 'topleft'
     },
@@ -280,4 +280,4 @@
 
   map.addControl(new customControl());
 </script>
-4
+5
