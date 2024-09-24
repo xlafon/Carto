@@ -207,6 +207,23 @@
   .favorites-box li {
     margin-bottom: 5px;
   }
+.favorites-box button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.favorites-box button:hover {
+  background-color: #0056b3;
+}
+
+    
   </style>
 
 
@@ -218,6 +235,7 @@
  <div id="favorites-box" class="favorites-box">
   <h3>Favoris (<span id="favorites-count">0</span>)</h3>
   <ul id="favorites-list"></ul>
+  <button id="show-favorites-button">Afficher les favoris</button>
 </div>
   
 <script>
@@ -827,6 +845,9 @@ function addFavoriteToMap(feature) {
   marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
 }
 
+
+
+  
 function showInfoBox(content, feature) {
   const infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
@@ -841,6 +862,23 @@ function showInfoBox(content, feature) {
   infoBox.style.display = 'block';
 }
 
-  
+  //afficher les favoris sur la carte
+  document.getElementById('show-favorites-button').onclick = function() {
+  showOnlyFavorites();
+};
+
+function showOnlyFavorites() {
+  // Enlever toutes les couches actuelles de la carte
+  map.eachLayer(function(layer) {
+    if (layer instanceof L.Marker || layer instanceof L.Polygon || layer instanceof L.GeoJSON) {
+      map.removeLayer(layer);
+    }
+  });
+
+  // Ajouter uniquement les favoris à la carte
+  favorites.forEach(function(feature) {
+    addFavoriteToMap(feature);
+  });
+}
   </script>
-6
+2
