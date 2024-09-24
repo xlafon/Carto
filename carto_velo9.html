@@ -617,8 +617,14 @@ map.on('click', function() {
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-        toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'isOffice', 'icons/tourist_office.png');
-        });
+        if (map.hasLayer(officesLayer)) {
+          map.removeLayer(officesLayer);
+        } else {
+          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
+          map.addLayer(officesLayer);
+        }
+      });
+        
 
 
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
@@ -752,4 +758,4 @@ function toggleLayer(layer, url, icon, type, iconUrl) {
     }
   
   </script>
-3
+4
