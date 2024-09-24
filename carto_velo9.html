@@ -724,13 +724,7 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
     });
 
     map.addControl(new customControl());
-//fonction pour afficher infoBox à la place de Info bulle
-  
-      function showInfoBox(content, layer) {
-            var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content + '<button onclick="addToCart(layer)">Ajouter au panier</button>';
-            infoBox.style.display = 'block';
-        }
+
 
   //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
 function toggleLayer(layer, url, icon, type, iconUrl, callback) {
@@ -787,16 +781,25 @@ function removeSelectedIcon(iconUrl) {
 }
   
 // JavaScript panier
-  var cartCount = 0;
+var cartCount = 0;
         var cartOffers = [];
 
-       
+        function showInfoBox(content, layer) {
+            var infoBox = document.getElementById('info-box');
+            infoBox.innerHTML = content + '<button onclick="addToCart(' + layer._leaflet_id + ')">Ajouter au panier</button>';
+            infoBox.style.display = 'block';
+        }
 
-        function addToCart(layer) {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            cartOffers.push(layer);
-            alert('Offre ajoutée au panier !');
+        function addToCart(layerId) {
+            var layer = map._layers[layerId];
+            if (layer) {
+                cartCount++;
+                document.getElementById('cart-count').innerText = cartCount;
+                cartOffers.push(layer);
+                alert('Offre ajoutée au panier !');
+            } else {
+                alert('Erreur : couche non trouvée.');
+            }
         }
 
         function showCartOffers() {
@@ -812,6 +815,12 @@ function removeSelectedIcon(iconUrl) {
                 map.addLayer(layer);
             });
         }
+
+        // Exemple d'ajout de marker et d'appel de showInfoBox
+        var marker = L.marker([51.5, -0.09]).addTo(map);
+        marker.on('click', function() {
+            showInfoBox('Contenu de l\'offre', marker);
+        });
   
   </script>
-9
+10
