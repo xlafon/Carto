@@ -620,7 +620,7 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
         if (map.hasLayer(officesLayer)) {
           map.removeLayer(officesLayer);
         } else {
-          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
+          toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'isOffice', 'icons/tourist_office.png');
           map.addLayer(officesLayer);
           toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'isOffice', 'icons/tourist_office.png');
         }
@@ -759,4 +759,4 @@ function toggleLayer(layer, url, icon, type, iconUrl) {
     }
   
   </script>
-5
+6
