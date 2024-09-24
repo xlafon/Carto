@@ -78,7 +78,9 @@
   }).addTo(map);
 
   var officesLayer = L.layerGroup();
- 
+  var townhallsLayer = L.layerGroup();
+  var accommodationsLayer = L.layerGroup();
+  var mobilityLayer = L.layerGroup();
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -89,6 +91,7 @@
   });
 
   
+
   function addDataToLayer(url, layer, color, isOffice = false) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
@@ -131,7 +134,10 @@
   }
 
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
- 
+  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
+  var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
+  var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
+
   var customControl = L.Control.extend({
     options: {
       position: 'topleft'
@@ -160,7 +166,39 @@
         }
       });
 
-      
+      var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
+      buttonTownhalls.innerHTML = 'Mairies';
+      L.DomEvent.on(buttonTownhalls, 'click', function () {
+        if (map.hasLayer(townhallsLayer)) {
+          map.removeLayer(townhallsLayer);
+        } else {
+          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
+          map.addLayer(townhallsLayer);
+        }
+      });
+
+      var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
+      buttonAccommodations.innerHTML = 'Hébergements';
+      L.DomEvent.on(buttonAccommodations, 'click', function () {
+        if (map.hasLayer(accommodationsLayer)) {
+          map.removeLayer(accommodationsLayer);
+        } else {
+          addDataToLayer(accommodationsUrl, accommodationsLayer, '#ffc107');
+          map.addLayer(accommodationsLayer);
+        }
+      });
+
+      var buttonMobility = L.DomUtil.create('button', 'mobility-button', buttonContainer);
+      buttonMobility.innerHTML = 'Mobilité';
+      L.DomEvent.on(buttonMobility, 'click', function () {
+        if (map.hasLayer(mobilityLayer)) {
+          map.removeLayer(mobilityLayer);
+        } else {
+          addDataToLayer(mobilityUrl, mobilityLayer, '#17a2b8');
+          map.addLayer(mobilityLayer);
+        }
+      });
+
       return container;
     }
   });
