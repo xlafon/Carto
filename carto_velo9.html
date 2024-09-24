@@ -627,13 +627,11 @@ L.DomEvent.on(buttonOffices, 'click', function () {
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-          if (map.hasLayer(bikeRoutesLayer)) {
-            map.removeLayer(bikeRoutesLayer);
-          } else {
-            addBikeRoutesLayer('data/ITIVELO.geojson', bikeRoutesLayer);
-            map.addLayer(bikeRoutesLayer);
-          }
-        });
+           toggleLayer(bikeRoutesLayer, bikeRoutesUrl, null, null, 'icons/velo.png', function(url, layer) {
+        addDataToLayer(url, layer, '#007bff', true);
+    });
+});
+          
 
 
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
