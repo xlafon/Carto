@@ -392,7 +392,7 @@ var bikeParkingIcon = L.icon({
 
 
   
-  function addDataToLayer(url, layer, color, isOffice = false) {
+  function addDataToLayer(url, layer, color, someFlag) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
         var popupContent = "";
@@ -616,14 +616,9 @@ map.on('click', function() {
           
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
-      L.DomEvent.on(buttonOffices, 'click', function () {
-          if (map.hasLayer(officesLayer)) {
-          map.removeLayer(officesLayer);
-        } else {
-          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
-          map.addLayer(officesLayer);
-        }
-      });
+L.DomEvent.on(buttonOffices, 'click', function () {
+    toggleLayer(officesLayer, officesUrl, null, null, 'icons/tourist_office.png', addDataToLayer);
+});
         
 
 
@@ -715,12 +710,12 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
     }
 
   //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
-function toggleLayer(layer, url, icon, type, iconUrl) {
+function toggleLayer(layer, url, icon, type, iconUrl, callback) {
     if (map.hasLayer(layer)) {
         map.removeLayer(layer);
         removeSelectedIcon(iconUrl);
     } else {
-        addGeoJsonLayer(url, layer, icon, type);
+        callback(url, layer, icon, type);
         map.addLayer(layer);
         addSelectedIcon(iconUrl, layer);
     }
