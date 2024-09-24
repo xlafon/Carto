@@ -617,8 +617,13 @@ map.on('click', function() {
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-       toggleLayer2(officesLayer, touristOfficeIcon, 'icons/tourist_office.png');
-        });
+          if (map.hasLayer(officesLayer)) {
+          map.removeLayer(officesLayer);
+        } else {
+          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
+          map.addLayer(officesLayer);
+        }
+      });
         
 
 
@@ -711,62 +716,56 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
 
   //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
 function toggleLayer(layer, url, icon, type, iconUrl) {
-      if (map.hasLayer(layer)) {
+    if (map.hasLayer(layer)) {
         map.removeLayer(layer);
         removeSelectedIcon(iconUrl);
-      } else {
+    } else {
         addGeoJsonLayer(url, layer, icon, type);
         map.addLayer(layer);
         addSelectedIcon(iconUrl, layer);
-      }
     }
-
-	function toggleLayer2(layer, url, icon, iconUrl) {
-      if (map.hasLayer(layer)) {
-        map.removeLayer(layer);
-        removeSelectedIcon(iconUrl);
-      } else {
-        addDataToLayer(url, layer, '#007bff', true);
-        map.addLayer(layer);
-        addSelectedIcon(iconUrl, layer);
-      }
-    }
-
-    function addSelectedIcon(iconUrl, layer) {
-  var selectedIconsContainer = document.getElementById('selected-icons');
-  var iconWrapper = document.createElement('div');
-  iconWrapper.style.position = 'relative';
-  
-  var img = document.createElement('img');
-  img.src = iconUrl;
-  img.dataset.layer = layer._leaflet_id;
-  img.onclick = function() {
-    map.removeLayer(layer);
-    selectedIconsContainer.removeChild(iconWrapper);
-  };
-  
-  var cross = document.createElement('div');
-  cross.className = 'cross';
-  cross.innerHTML = '✖';
-  cross.onclick = function() {
-    map.removeLayer(layer);
-    selectedIconsContainer.removeChild(iconWrapper);
-  };
-  
-  iconWrapper.appendChild(img);
-  iconWrapper.appendChild(cross);
-  selectedIconsContainer.appendChild(iconWrapper);
 }
-    function removeSelectedIcon(iconUrl) {
-      var selectedIconsContainer = document.getElementById('selected-icons');
-      var imgs = selectedIconsContainer.getElementsByTagName('img');
-      for (var i = 0; i < imgs.length; i++) {
-        if (imgs[i].src.includes(iconUrl)) {
-          selectedIconsContainer.removeChild(imgs[i]);
-          break;
+
+function addSelectedIcon(iconUrl, layer) {
+    var selectedIconsContainer = document.getElementById('selected-icons');
+    if (!selectedIconsContainer) return;
+
+    var iconWrapper = document.createElement('div');
+    iconWrapper.style.position = 'relative';
+
+    var img = document.createElement('img');
+    img.src = iconUrl;
+    img.dataset.layer = layer._leaflet_id;
+    img.onclick = function() {
+        map.removeLayer(layer);
+        selectedIconsContainer.removeChild(iconWrapper);
+    };
+
+    var cross = document.createElement('div');
+    cross.className = 'cross';
+    cross.innerHTML = '✖';
+    cross.onclick = function() {
+        map.removeLayer(layer);
+        selectedIconsContainer.removeChild(iconWrapper);
+    };
+
+    iconWrapper.appendChild(img);
+    iconWrapper.appendChild(cross);
+    selectedIconsContainer.appendChild(iconWrapper);
+}
+
+function removeSelectedIcon(iconUrl) {
+    var selectedIconsContainer = document.getElementById('selected-icons');
+    if (!selectedIconsContainer) return;
+
+    var imgs = selectedIconsContainer.getElementsByTagName('img');
+    Array.from(imgs).forEach(function(img) {
+        if (img.src.includes(iconUrl)) {
+            selectedIconsContainer.removeChild(img.parentElement);
         }
-      }
-    }
+    });
+}
+
   
   </script>
-6
+7
