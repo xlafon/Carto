@@ -649,7 +649,7 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
         var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
-           toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png');
+           toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
         })
 
         L.DomEvent.on(buttonBike, 'click', function () {
@@ -667,26 +667,26 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
         var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
         buttonHotels.innerHTML = 'Hôtels';
         L.DomEvent.on(buttonHotels, 'click', function () {
-          toggleLayer(hotelsLayer, hotelsUrl, hotelIcon, 'hotel', 'icons/hotel.png');
+          toggleLayer(hotelsLayer, hotelsUrl, hotelIcon, 'hotel', 'icons/hotel.png', addGeoJsonLayer);
         });
          
         var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampings.innerHTML = 'Campings';
         L.DomEvent.on(buttonCampings, 'click', function () {
-          toggleLayer(campingsLayer, campingsUrl, campingIcon, 'camping', 'icons/camping.png');
+          toggleLayer(campingsLayer, campingsUrl, campingIcon, 'camping', 'icons/camping.png', addGeoJsonLayer);
         });
 
     var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
         buttonautresheb.innerHTML = 'Autres hébergements';
         L.DomEvent.on(buttonautresheb, 'click', function () {
-          toggleLayer(autreshebLayer, autreshebUrl, autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png');
+          toggleLayer(autreshebLayer, autreshebUrl, autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png', addGeoJsonLayer);
         });
          
       
         var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampingCar.innerHTML = 'Aires de camping-car';
         L.DomEvent.on(buttonCampingCar, 'click', function () {
-          toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png');
+          toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png', addGeoJsonLayer);
         });
 
              
@@ -767,4 +767,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-4
+5
