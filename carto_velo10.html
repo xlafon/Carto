@@ -190,7 +190,23 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
-
+.favorites-box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .favorites-box ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .favorites-box li {
+    margin-bottom: 5px;
+  }
   </style>
 
 
@@ -198,6 +214,11 @@
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
 <div class="selected-icons" id="selected-icons"></div>
+  
+  <div id="favorites-box" class="favorites-box">
+  <h3>Favoris (<span id="favorites-count">0</span>)</h3>
+  <ul id="favorites-list"></ul>
+</div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -567,9 +588,17 @@ if (feature.properties["Identifiant"]) {
   infoBox.style.display = 'none';
 }
   
-  function showInfoBox(content) {
-  var infoBox = document.getElementById('info-box');
+  function showInfoBox(content, feature) {
+  const infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
+
+  const addToFavoritesButton = document.createElement('button');
+  addToFavoritesButton.innerText = 'Ajouter aux favoris';
+  addToFavoritesButton.onclick = function() {
+    addToFavorites(feature);
+  };
+
+  infoBox.appendChild(addToFavoritesButton);
   infoBox.style.display = 'block';
 }
   
@@ -765,6 +794,38 @@ function removeSelectedIcon(iconUrl) {
     });
 }
 
+  //ajout aux favoris
+  const favorites = [];
+
+function addToFavorites(feature) {
+  favorites.push(feature);
+  updateFavoritesBox();
+}
+
+function updateFavoritesBox() {
+  const favoritesCount = document.getElementById('favorites-count');
+  const favoritesList = document.getElementById('favorites-list');
+
+  favoritesCount.innerText = favorites.length;
+  favoritesList.innerHTML = '';
+
+  favorites.forEach((feature, index) => {
+    const listItem = document.createElement('li');
+    listItem.innerText = feature.properties["Raison sociale"] || `Favori ${index + 1}`;
+    listItem.onclick = function() {
+      addFavoriteToMap(feature);
+    };
+    favoritesList.appendChild(listItem);
+  });
+}
+
+function addFavoriteToMap(feature) {
+  const latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
+  const marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/favorite.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
+  marker.addTo(map);
+  marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
+}
+
   
   </script>
-2
+3
