@@ -392,7 +392,7 @@ var bikeParkingIcon = L.icon({
 
 
   
-  function addDataToLayer(url, layer, color, someFlag) {
+  function addDataToLayer(url, layer, color, isOffice = false) {
     $.getJSON(url, function(data) {
       data.elements.forEach(function(element) {
         var popupContent = "";
@@ -763,4 +763,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-8
+1
