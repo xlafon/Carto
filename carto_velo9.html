@@ -617,15 +617,8 @@ map.on('click', function() {
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-       if (map.hasLayer(officesLayer)) {
-          map.removeLayer(officesLayer);
-	removeSelectedIcon(icons/tourist_office.png);
-        } else {
-          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
-          map.addLayer(officesLayer);
-	addSelectedIcon(icons/tourist_office.png, officesLayer);
-        }
-      });
+       toggleLayer2(officesLayer, touristOfficeIcon, 'icons/tourist_office.png');
+        });
         
 
 
@@ -723,6 +716,17 @@ function toggleLayer(layer, url, icon, type, iconUrl) {
         removeSelectedIcon(iconUrl);
       } else {
         addGeoJsonLayer(url, layer, icon, type);
+        map.addLayer(layer);
+        addSelectedIcon(iconUrl, layer);
+      }
+    }
+
+	function toggleLayer2(layer, url, icon, iconUrl) {
+      if (map.hasLayer(layer)) {
+        map.removeLayer(layer);
+        removeSelectedIcon(iconUrl);
+      } else {
+        addDataToLayer(url, layer, '#007bff', true);
         map.addLayer(layer);
         addSelectedIcon(iconUrl, layer);
       }
