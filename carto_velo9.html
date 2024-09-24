@@ -218,6 +218,11 @@
     var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
     var autreshebLayer = L.layerGroup();
+ 
+  //afficher les parcours GPX
+  var bikeRoutesLayer = L.layerGroup().addTo(map);
+    var currentGpxLayer = null;
+    var currentMarker = null;
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -311,10 +316,7 @@ var bikeParkingIcon = L.icon({
     }
   
 
-//afficher les parcours GPX
-  var bikeRoutesLayer = L.layerGroup().addTo(map);
-    var currentGpxLayer = null;
-    var currentMarker = null;
+
 
 
     function addBikeRoutesLayer(url, layer) {
@@ -627,10 +629,13 @@ L.DomEvent.on(buttonOffices, 'click', function () {
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-           toggleLayer(bikeRoutesLayer, bikeRoutesUrl, null, null, 'icons/velo.png', function(url, layer) {
-        addDataToLayer(url, layer, '#007bff', true);
-    });
-});
+          if (map.hasLayer(bikeRoutesLayer)) {
+            map.removeLayer(bikeRoutesLayer);
+          } else {
+            addBikeRoutesLayer('bikeRoutesUrl', bikeRoutesLayer);
+            map.addLayer(bikeRoutesLayer);
+          }
+        });
           
 
 
@@ -765,4 +770,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-7
+8
