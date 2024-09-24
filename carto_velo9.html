@@ -629,7 +629,7 @@ L.DomEvent.on(buttonOffices, 'click', function () {
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
 buttonBikeRoutes.innerHTML = 'Parcours vélo';
 L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-    toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', null, null, 'icons/bike_route.png', function(url, layer) {
+    toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', null, null, 'icons/velo.png', function(url, layer) {
         addBikeRoutesLayer(url, layer);
     });
 });
@@ -767,4 +767,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-1
+2
