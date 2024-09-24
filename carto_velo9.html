@@ -639,10 +639,10 @@ L.DomEvent.on(buttonOffices, 'click', function () {
         var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
 
         var buttonBikeParking = L.DomUtil.create('button', '', submenu);
-        buttonBikeParking.innerHTML = 'Parking à vélo';
-        L.DomEvent.on(buttonBikeParking, 'click', function () {
-           toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png');
-        });
+buttonBikeParking.innerHTML = 'Parking à vélo';
+L.DomEvent.on(buttonBikeParking, 'click', function () {
+    toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
+});
 
         var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
@@ -715,7 +715,9 @@ function toggleLayer(layer, url, icon, type, iconUrl, callback) {
         map.removeLayer(layer);
         removeSelectedIcon(iconUrl);
     } else {
-        callback(url, layer, icon, type);
+        if (callback) {
+            callback(url, layer, icon, type);
+        }
         map.addLayer(layer);
         addSelectedIcon(iconUrl, layer);
     }
@@ -763,4 +765,4 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-2
+3
