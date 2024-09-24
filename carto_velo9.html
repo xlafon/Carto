@@ -620,9 +620,8 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
         if (map.hasLayer(officesLayer)) {
           map.removeLayer(officesLayer);
         } else {
-          toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'isOffice', 'icons/tourist_office.png');
+          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
           map.addLayer(officesLayer);
-          toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'isOffice', 'icons/tourist_office.png');
         }
       });
         
@@ -631,7 +630,12 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-          toggleLayer(bikeRoutesLayer, 'BikeRoutesUrl', bikeIcon, 'BikeRoutes', 'icons/velo.png');
+          if (map.hasLayer(bikeRoutesLayer)) {
+            map.removeLayer(bikeRoutesLayer);
+          } else {
+            addBikeRoutesLayer('data/ITIVELO.geojson', bikeRoutesLayer);
+            map.addLayer(bikeRoutesLayer);
+          }
         });
 
 
