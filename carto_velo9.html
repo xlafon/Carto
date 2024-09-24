@@ -617,24 +617,16 @@ map.on('click', function() {
       var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
 buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
       L.DomEvent.on(buttonOffices, 'click', function () {
-        if (map.hasLayer(officesLayer)) {
-          map.removeLayer(officesLayer);
-        } else {
-          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
-          map.addLayer(officesLayer);
-        }
-      });
+        toggleLayer(officesLayer, officesUrl, touristOfficeIcon, 'offices', 'icons/tourist_office.png');
+        });
+
 
        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-          if (map.hasLayer(bikeRoutesLayer)) {
-            map.removeLayer(bikeRoutesLayer);
-          } else {
-            addBikeRoutesLayer('data/ITIVELO.geojson', bikeRoutesLayer);
-            map.addLayer(bikeRoutesLayer);
-          }
+          toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', bikeIcon, 'parcours', 'icons/velo.png');
         });
+
 
       var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Mobilité et Services';
@@ -667,44 +659,26 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
         var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
         buttonHotels.innerHTML = 'Hôtels';
         L.DomEvent.on(buttonHotels, 'click', function () {
-          if (map.hasLayer(hotelsLayer)) {
-            map.removeLayer(hotelsLayer);
-          } else {
-            addGeoJsonLayer(hotelsUrl, hotelsLayer, hotelIcon, 'hotel');
-            map.addLayer(hotelsLayer);
-          }
+          toggleLayer(hotelsLayer, hotelsUrl, hotelIcon, 'hotel', 'icons/hotel.png');
         });
+         
         var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampings.innerHTML = 'Campings';
         L.DomEvent.on(buttonCampings, 'click', function () {
-          if (map.hasLayer(campingsLayer)) {
-            map.removeLayer(campingsLayer);
-          } else {
-            addGeoJsonLayer(campingsUrl, campingsLayer, campingIcon, 'camping');
-            map.addLayer(campingsLayer);
-          }
+          toggleLayer(campingsLayer, campingsUrl, campingIcon, 'camping', 'icons/camping.png');
         });
 
     var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
         buttonautresheb.innerHTML = 'Autres hébergements';
         L.DomEvent.on(buttonautresheb, 'click', function () {
-          if (map.hasLayer(autreshebLayer)) {
-            map.removeLayer(autreshebLayer);
-          } else {
-            addGeoJsonLayer(autreshebUrl, autreshebLayer, autreshebIcon);
-            map.addLayer(autreshebLayer);
-          }
+          toggleLayer(autreshebLayer, autreshebUrl, autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png');
         });
+         
       
         var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
         buttonCampingCar.innerHTML = 'Aires de camping-car';
         L.DomEvent.on(buttonCampingCar, 'click', function () {
-          if (map.hasLayer(campingCarLayer)) {
-            map.removeLayer(campingCarLayer);
-          } else {
-            addGeoJsonLayer(campingCarUrl, campingCarLayer, campingCarIcon, 'camping-car');
-            map.addLayer(campingCarLayer);
-          }
+          toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png');
         });
 
              
@@ -778,4 +752,4 @@ function toggleLayer(layer, url, icon, type, iconUrl) {
     }
   
   </script>
-1
+2
