@@ -840,12 +840,12 @@ function removeSelectedIcon(iconUrl) {
   });
 }
 
-    function addFavoriteToMap(feature) {
-      var latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
-      var marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/favorite.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
-      marker.addTo(map);
-      marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
-    }
+    function addFavoriteToMap(feature, mapInstance) {
+  var latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
+  var marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/cart.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
+  marker.addTo(mapInstance);
+  marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
+}
 
   
 
@@ -887,7 +887,7 @@ function removeSelectedIcon(iconUrl) {
 
 function showFavoritesInPopup() {
   // Créer une div pour la popup
-  const popupDiv = document.createElement('div');
+  var popupDiv = document.createElement('div');
   popupDiv.id = 'favorites-popup';
   popupDiv.style.width = '600px';
   popupDiv.style.height = '400px';
@@ -896,7 +896,7 @@ function showFavoritesInPopup() {
   document.body.appendChild(popupDiv);
 
   // Créer une nouvelle carte dans la popup
-  const popupMap = L.map('favorites-popup').setView([43.492949, -1.474841], 13);
+  var popupMap = L.map('favorites-popup').setView([43.492949, -1.474841], 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -904,19 +904,17 @@ function showFavoritesInPopup() {
 
   // Ajouter uniquement les favoris à la nouvelle carte
   favorites.forEach(function(feature) {
-    const latlng = [feature.geometry.coordinates, feature.geometry.coordinates];
-    const marker = L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/favorite.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] }) });
-    marker.addTo(popupMap);
-    marker.bindPopup(`<strong>${feature.properties["Raison sociale"]}</strong><br>${feature.properties["Adresse"]}`);
+    addFavoriteToMap(feature, popupMap);
   });
 
   // Utiliser Leaflet pour ouvrir la popup
-  const popup = L.popup()
+  var popup = L.popup()
     .setLatLng([43.492949, -1.474841])
     .setContent(popupDiv)
     .openOn(map);
 }
 
+
   
   </script>
-6
+7
