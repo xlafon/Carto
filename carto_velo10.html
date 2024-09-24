@@ -178,6 +178,7 @@
     var favorite = { lat: lat, lon: lon, name: name };
     favorites.push(favorite);
     updateFavoritesList();
+    updateFavoritesLayer();
   }
 
   function updateFavoritesList() {
@@ -190,16 +191,18 @@
     });
   }
 
-  document.getElementById('view-favorites').addEventListener('click', function() {
+  function updateFavoritesLayer() {
     favoritesLayer.clearLayers();
     favorites.forEach(function(favorite) {
       var marker = L.marker([favorite.lat, favorite.lon]);
       marker.bindPopup(favorite.name);
       favoritesLayer.addLayer(marker);
     });
+  }
+
+  document.getElementById('view-favorites').addEventListener('click', function() {
     map.fitBounds(favoritesLayer.getBounds());
   });
-
   
 
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
@@ -207,7 +210,7 @@
   var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
   var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
 
-  var customControl = L.Control.extend({
+   var customControl = L.Control.extend({
     options: {
       position: 'topleft'
     },
@@ -274,4 +277,4 @@
 
   map.addControl(new customControl());
 </script>
-2
+3
