@@ -725,11 +725,12 @@ L.DomEvent.on(buttonBikeParking, 'click', function () {
 
     map.addControl(new customControl());
 //fonction pour afficher infoBox à la place de Info bulle
-  function showInfoBox(content) {
-      var infoBox = document.getElementById('info-box');
-      infoBox.innerHTML = content;
-      infoBox.style.display = 'block';
-    }
+  
+      function showInfoBox(content) {
+            var infoBox = document.getElementById('info-box');
+            infoBox.innerHTML = content + '<button onclick="addToCart()">Ajouter au panier</button>';
+            infoBox.style.display = 'block';
+        }
 
   //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
 function toggleLayer(layer, url, icon, type, iconUrl, callback) {
@@ -789,11 +790,7 @@ function removeSelectedIcon(iconUrl) {
   var cartCount = 0;
         var cartOffers = [];
 
-        function showInfoBox(content, layer) {
-            var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content + '<button onclick="addToCart(' + layer._leaflet_id + ')">Ajouter au panier</button>';
-            infoBox.style.display = 'block';
-        }
+       
 
         function addToCart(layerId) {
             var layer = map._layers[layerId];
@@ -828,4 +825,4 @@ function removeSelectedIcon(iconUrl) {
         });
   
   </script>
-7
+8
