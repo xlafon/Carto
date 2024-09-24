@@ -141,7 +141,39 @@
   .en-savoir-plus-button2:hover {
     background-color: #c82333;
   }
-    
+   .selected-icons {
+  position: absolute;
+  top: 10px;
+  left: 100px; /* Ajustez cette valeur pour éviter de cacher les boutons de zoom */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 10px;
+  z-index: 1000; /* Ensure it appears above the map */
+}
+.selected-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+}
+.selected-icons .cross {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+} 
  #info-box {
   font-family: Arial, sans-serif;
    font-size: 12px;
@@ -165,6 +197,7 @@
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
+<div class="selected-icons" id="selected-icons"></div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -610,25 +643,14 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
         var buttonBikeParking = L.DomUtil.create('button', '', submenu);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
-          if (map.hasLayer(bikeParkingLayer)) {
-            map.removeLayer(bikeParkingLayer);
-          } else {
-            addGeoJsonLayer(bikeParkingUrl, bikeParkingLayer, bikeParkingIcon, 'bike_parking');
-            map.addLayer(bikeParkingLayer);
-          }
+           toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png');
         });
 
         var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
         buttonWaterPoints.innerHTML = 'Points d\'eau';
         L.DomEvent.on(buttonWaterPoints, 'click', function () {
-          if (map.hasLayer(waterPointsLayer)) {
-            map.removeLayer(waterPointsLayer);
-          } else {
-            addGeoJsonLayer(waterPointsUrl, waterPointsLayer, waterPointIcon, 'water_point');
-            map.addLayer(waterPointsLayer);
-          }
-        });
-
+           toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png');
+        })
 
         L.DomEvent.on(buttonBike, 'click', function () {
           if (submenu.style.display === 'none' || submenu.style.display === '') {
@@ -700,14 +722,60 @@ buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de To
     });
 
     map.addControl(new customControl());
-
+//fonction pour afficher infoBox à la place de Info bulle
   function showInfoBox(content) {
       var infoBox = document.getElementById('info-box');
       infoBox.innerHTML = content;
       infoBox.style.display = 'block';
     }
 
+  //Fonction pour ajouter les icones selectionnées avec croix pour les supprimer
+function toggleLayer(layer, url, icon, type, iconUrl) {
+      if (map.hasLayer(layer)) {
+        map.removeLayer(layer);
+        removeSelectedIcon(iconUrl);
+      } else {
+        addGeoJsonLayer(url, layer, icon, type);
+        map.addLayer(layer);
+        addSelectedIcon(iconUrl, layer);
+      }
+    }
 
+    function addSelectedIcon(iconUrl, layer) {
+  var selectedIconsContainer = document.getElementById('selected-icons');
+  var iconWrapper = document.createElement('div');
+  iconWrapper.style.position = 'relative';
+  
+  var img = document.createElement('img');
+  img.src = iconUrl;
+  img.dataset.layer = layer._leaflet_id;
+  img.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
+  
+  var cross = document.createElement('div');
+  cross.className = 'cross';
+  cross.innerHTML = '✖';
+  cross.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
+  
+  iconWrapper.appendChild(img);
+  iconWrapper.appendChild(cross);
+  selectedIconsContainer.appendChild(iconWrapper);
+}
+    function removeSelectedIcon(iconUrl) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      var imgs = selectedIconsContainer.getElementsByTagName('img');
+      for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i].src.includes(iconUrl)) {
+          selectedIconsContainer.removeChild(imgs[i]);
+          break;
+        }
+      }
+    }
   
   </script>
-
+1
