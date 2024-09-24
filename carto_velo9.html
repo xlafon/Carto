@@ -191,6 +191,17 @@
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
 
+    #cart {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
   </style>
 
 
@@ -770,19 +781,19 @@ function removeSelectedIcon(iconUrl) {
 }
   
 // JavaScript panier
-var cartCount = 0;
+ var cartCount = 0;
 
-function showInfoBox(content) {
-    var infoBox = document.getElementById('info-box');
-    infoBox.innerHTML = content + '<button onclick="addToCart()">Ajouter au panier</button>';
-    infoBox.style.display = 'block';
-}
+        function showInfoBox(content) {
+            var infoBox = document.getElementById('info-box');
+            infoBox.innerHTML = content + '<button onclick="addToCart()">Ajouter au panier</button>';
+            infoBox.style.display = 'block';
+        }
 
-function addToCart() {
-    cartCount++;
-    document.getElementById('cart-count').innerText = cartCount;
-    alert('Offre ajoutée au panier !');
-}
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert('Offre ajoutée au panier !');
+        }
   
   </script>
-3
+4
