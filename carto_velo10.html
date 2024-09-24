@@ -66,9 +66,48 @@
   .leaflet-control-custom .mobility-button:hover {
     background-color: #117a8b;
   }
+  .favorites-box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .favorites-box h3 {
+    margin: 0;
+    padding: 10px;
+  }
+  .favorites-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .favorites-box li {
+    margin-bottom: 5px;
+  }
+  .favorites-box button {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #007bff;
+  }
+  .favorites-box button:hover {
+    background-color: #0056b3;
+  }
 </style>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
+<div class="favorites-box">
+  <h3>Favoris</h3>
+  <ul id="favorites-list"></ul>
+  <button id="view-favorites">Voir les favoris</button>
+</div>
 
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -81,6 +120,8 @@
   var townhallsLayer = L.layerGroup();
   var accommodationsLayer = L.layerGroup();
   var mobilityLayer = L.layerGroup();
+  var favoritesLayer = L.layerGroup().addTo(map);
+  var favorites = [];
 
   // Créer une icône personnalisée pour les offices de tourisme
   var touristOfficeIcon = L.icon({
@@ -89,8 +130,6 @@
     iconAnchor: [16, 32], // Point de l'icône qui correspondra à la position du marqueur
     popupAnchor: [0, -32] // Point à partir duquel la popup s'ouvrira par rapport à l'icône
   });
-
-  
 
   function addDataToLayer(url, layer, color, isOffice = false) {
     $.getJSON(url, function(data) {
@@ -108,6 +147,8 @@
             popupContent += element.tags.name || "No name";
           }
         }
+
+        popupContent += `<br><button onclick="addToFavorites(${element.lat}, ${element.lon}, '${element.tags.name || "No name"}')">Ajouter aux favoris</button>`;
 
         if (element.type === "node") {
           var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
@@ -132,6 +173,34 @@
       });
     });
   }
+
+  function addToFavorites(lat, lon, name) {
+    var favorite = { lat: lat, lon: lon, name: name };
+    favorites.push(favorite);
+    updateFavoritesList();
+  }
+
+  function updateFavoritesList() {
+    var list = document.getElementById('favorites-list');
+    list.innerHTML = '';
+    favorites.forEach(function(favorite, index) {
+      var listItem = document.createElement('li');
+      listItem.textContent = favorite.name;
+      list.appendChild(listItem);
+    });
+  }
+
+  document.getElementById('view-favorites').addEventListener('click', function() {
+    favoritesLayer.clearLayers();
+    favorites.forEach(function(favorite) {
+      var marker = L.marker([favorite.lat, favorite.lon]);
+      marker.bindPopup(favorite.name);
+      favoritesLayer.addLayer(marker);
+    });
+    map.fitBounds(favoritesLayer.getBounds());
+  });
+
+  
 
   var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
   var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
@@ -177,7 +246,27 @@
         }
       });
 
-     
+      var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
+      buttonAccommodations.innerHTML = 'Hébergements';
+      L.DomEvent.on(buttonAccommodations, 'click', function () {
+        if (map.hasLayer(accommodationsLayer)) {
+          map.removeLayer(accommodationsLayer);
+        } else {
+          addDataToLayer(accommodationsUrl, accommodationsLayer, '#ffc107');
+          map.addLayer(accommodationsLayer);
+        }
+      });
+
+      var buttonMobility = L.DomUtil.create('button', 'mobility-button', buttonContainer);
+      buttonMobility.innerHTML = 'Mobilité';
+      L.DomEvent.on(buttonMobility, 'click', function () {
+        if (map.hasLayer(mobilityLayer)) {
+          map.removeLayer(mobilityLayer);
+        } else {
+          addDataToLayer(mobilityUrl, mobilityLayer, '#17a2b8');
+          map.addLayer(mobilityLayer);
+        }
+      });
 
       return container;
     }
@@ -185,4 +274,4 @@
 
   map.addControl(new customControl());
 </script>
-1
+2
