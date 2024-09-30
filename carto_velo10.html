@@ -80,7 +80,7 @@ function createPopupContent(feature) {
     return '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
            feature.properties.Commune + '<br>' +
            '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-           '<button class="icon-button ' + (isFav ? 'remove-favorite' : 'add-to-favorites') + '">' +
+           '<button class="icon-button toggle-favorite">' +
            '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
 }
 
@@ -109,23 +109,17 @@ $.getJSON('data/HOT.geojson', function(data) {
         onEachFeature: function(feature, layer) {
             layer.bindPopup(createPopupContent(feature));
             layer.on('popupopen', function() {
-                $('.add-to-favorites').on('click', function() {
-                    if (!isFavorite(feature)) {
-                        favorites.push(feature);
-                        updateFavoritesCount();
-                        updateAllPopups();
-                    }
-                });
-
-                $('.remove-favorite').on('click', function() {
+                $('.toggle-favorite').on('click', function() {
                     if (isFavorite(feature)) {
                         var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
                         if (index !== -1) {
                             favorites.splice(index, 1);
-                            updateFavoritesCount();
-                            updateAllPopups();
                         }
+                    } else {
+                        favorites.push(feature);
                     }
+                    updateFavoritesCount();
+                    updateAllPopups();
                 });
             });
         }
@@ -141,23 +135,17 @@ $.getJSON('data/HPA.geojson', function(data) {
         onEachFeature: function(feature, layer) {
             layer.bindPopup(createPopupContent(feature));
             layer.on('popupopen', function() {
-                $('.add-to-favorites').on('click', function() {
-                    if (!isFavorite(feature)) {
-                        favorites.push(feature);
-                        updateFavoritesCount();
-                        updateAllPopups();
-                    }
-                });
-
-                $('.remove-favorite').on('click', function() {
+                $('.toggle-favorite').on('click', function() {
                     if (isFavorite(feature)) {
                         var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
                         if (index !== -1) {
                             favorites.splice(index, 1);
-                            updateFavoritesCount();
-                            updateAllPopups();
                         }
+                    } else {
+                        favorites.push(feature);
                     }
+                    updateFavoritesCount();
+                    updateAllPopups();
                 });
             });
         }
@@ -228,9 +216,6 @@ function refreshFavorites() {
         map.addLayer(favoritesLayer);
     }
 }
-
-
-
 
 
 
