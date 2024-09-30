@@ -190,7 +190,41 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
-
+    //FAV
+#favorites {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    #favorites img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    #viewFavorites, #exitFavorites {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #exitFavorites {
+      background-color: red;
+    }
+    .icon-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-button img {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 
 
@@ -198,6 +232,12 @@
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
 <div class="selected-icons" id="selected-icons"></div>
+//FAV
+<div id="favorites" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+      <img src="icons/favorite.png" alt="Favoris">
+      <span id="favoritesCount">0</span>
+      <button id="viewFavorites">Voir les favoris</button>
+  </div>
   
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -218,7 +258,15 @@
     var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
     var autreshebLayer = L.layerGroup();
- 
+//FAV
+    var favoritesLayer = L.layerGroup().addTo(map);
+    var favorites = [];
+    var viewingFavorites = false;
+ // Fonction pour vérifier si une offre est dans les favoris
+function isFavorite(feature) {
+    return favorites.some(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+}
+  
   //afficher les parcours GPX
   var bikeRoutesLayer = L.layerGroup().addTo(map);
     var currentGpxLayer = null;
