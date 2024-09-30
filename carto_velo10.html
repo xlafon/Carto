@@ -134,58 +134,62 @@
     });
 
     $('#viewFavorites').on('click', function() {
-        if (!viewingFavorites) {
+    if (!viewingFavorites) {
+        map.eachLayer(function(layer) {
+            if (layer !== osmLayer && layer !== favoritesLayer) {
+                map.removeLayer(layer);
+            }
+        });
+        refreshFavorites();
+        $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
             map.eachLayer(function(layer) {
                 if (layer !== osmLayer && layer !== favoritesLayer) {
                     map.removeLayer(layer);
                 }
             });
-            refreshFavorites();
-            $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
-                map.eachLayer(function(layer) {
-                    if (layer !== osmLayer) {
-                        map.removeLayer(layer);
-                    }
-                });
-                viewingFavorites = false;
-                $(this).remove();
-            });
-            viewingFavorites = true;
-        } else {
-            refreshFavorites();
-        }
-    });
+            viewingFavorites = false;
+            $(this).remove();
+        });
+        viewingFavorites = true;
+    } else {
+        refreshFavorites();
+    }
+});
 
-    // Utiliser la délégation d'événements pour les boutons de suppression
+function refreshFavorites() {
+    favoritesLayer.clearLayers();
+    favorites.forEach(function(feature, index) {
+        var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+        var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
+        var marker = L.marker(latlng, { 
+            icon: L.icon({ 
+                iconUrl: iconUrl, 
+                iconSize: [32, 32], 
+                iconAnchor: [12, 41] 
+            }) 
+        });
+        var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                           feature.properties.Commune + '<br>' +
+                           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                           '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
+        marker.bindPopup(popupContent);
+        favoritesLayer.addLayer(marker);
+    });
+    if (!map.hasLayer(favoritesLayer)) {
+        map.addLayer(favoritesLayer);
+    }
+}
+
+
+ // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
         var index = $(this).data('index');
         favorites.splice(index, 1);
         updateFavoritesCount();
         refreshFavorites(); // Refresh the favorites view
     });
-
-    // Fonction pour rafraîchir les favoris
-    function refreshFavorites() {
-        favoritesLayer.clearLayers();
-        favorites.forEach(function(feature, index) {
-            var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-            var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
-            var marker = L.marker(latlng, { 
-                icon: L.icon({ 
-                    iconUrl: iconUrl, 
-                    iconSize: [32, 32], 
-                    iconAnchor: [12, 41] 
-                }) 
-            });
-            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-                               feature.properties.Commune + '<br>' +
-                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-                               '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
-            marker.bindPopup(popupContent);
-            favoritesLayer.addLayer(marker);
-        });
-    }
+    
   </script>
 </body>
 </html>
-6
+7
