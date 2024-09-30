@@ -143,7 +143,7 @@
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
                                feature.properties.Commune + '<br>' +
                                '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>' +
-                               '<button class="remove-favorite" data-index="' + index + '"><img src="icons/trash.png" alt="Supprimer" width="20" height="20"></button>';
+                               '<button class="remove-favorite" data-index="' + index + '"><img src="icons/trash.png" alt="Supprimer"></button>';
             marker.bindPopup(popupContent);
             favoritesLayer.addLayer(marker);
         });
@@ -156,14 +156,15 @@
             });
             $(this).remove();
         });
+    });
 
-        $('.remove-favorite').on('click', function() {
-            var index = $(this).data('index');
-            favorites.splice(index, 1);
-            updateFavoritesCount();
-            $('#viewFavorites').click(); // Refresh the favorites view
-        });
+    // Utiliser la délégation d'événements pour les boutons de suppression
+    $(document).on('click', '.remove-favorite', function() {
+        var index = $(this).data('index');
+        favorites.splice(index, 1);
+        updateFavoritesCount();
+        $('#viewFavorites').click(); // Refresh the favorites view
     });
   </script>
 </body>
-1
+2
