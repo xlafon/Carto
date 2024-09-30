@@ -29,6 +29,12 @@
     #exitFavorites {
       background-color: red;
     }
+    .remove-favorite {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -124,7 +130,7 @@
             }
         });
         favoritesLayer.clearLayers();
-        favorites.forEach(function(feature) {
+        favorites.forEach(function(feature, index) {
             var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
             var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
             var marker = L.marker(latlng, { 
@@ -136,7 +142,8 @@
             });
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
                                feature.properties.Commune + '<br>' +
-                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>';
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>' +
+                               '<button class="remove-favorite" data-index="' + index + '"><img src="icons/trash.png" alt="Supprimer"></button>';
             marker.bindPopup(popupContent);
             favoritesLayer.addLayer(marker);
         });
@@ -149,7 +156,14 @@
             });
             $(this).remove();
         });
+
+        $('.remove-favorite').on('click', function() {
+            var index = $(this).data('index');
+            favorites.splice(index, 1);
+            updateFavoritesCount();
+            $('#viewFavorites').click(); // Refresh the favorites view
+        });
     });
   </script>
 </body>
-1
+2
