@@ -33,7 +33,8 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-
+      width: 20px;
+      height: 20px;
     }
     .icon-button img {
       width: 100%;
@@ -169,6 +170,33 @@
         updateFavoritesCount();
         $('#viewFavorites').click(); // Refresh the favorites view
     });
+
+    // Assurez-vous que les favoris sont mis à jour correctement
+    function refreshFavorites() {
+        favoritesLayer.clearLayers();
+        favorites.forEach(function(feature, index) {
+            var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+            var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
+            var marker = L.marker(latlng, { 
+                icon: L.icon({ 
+                    iconUrl: iconUrl, 
+                    iconSize: [32, 32], 
+                    iconAnchor: [12, 41] 
+                }) 
+            });
+            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                               feature.properties.Commune + '<br>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                               '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
+            marker.bindPopup(popupContent);
+            favoritesLayer.addLayer(marker);
+        });
+    }
+
+    // Rafraîchir les favoris lorsque le bouton "Voir les favoris" est cliqué
+    $('#viewFavorites').on('click', function() {
+        refreshFavorites();
+    });
   </script>
 </body>
-2
+1
