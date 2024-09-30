@@ -213,6 +213,15 @@ function refreshFavorites() {
                            '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
                            '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
         marker.bindPopup(popupContent);
+        marker.on('popupopen', function() {
+            $('.remove-favorite').on('click', function() {
+                var index = $(this).data('index');
+                favorites.splice(index, 1);
+                updateFavoritesCount();
+                refreshFavorites();
+                updateAllPopups(); // Mettre à jour les popups après la suppression
+            });
+        });
         favoritesLayer.addLayer(marker);
     });
     if (!map.hasLayer(favoritesLayer)) {
@@ -220,10 +229,16 @@ function refreshFavorites() {
     }
 }
 
-
+ // Utiliser la délégation d'événements pour les boutons de suppression
+    $(document).on('click', '.remove-favorite', function() {
+        var index = $(this).data('index');
+        favorites.splice(index, 1);
+        updateFavoritesCount();
+        refreshFavorites(); // Refresh the favorites view
+    });
 
     
   </script>
 </body>
 </html>
-7
+8
