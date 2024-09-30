@@ -33,7 +33,7 @@ var favorites = [];
 $.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
-            return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/hotel.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
         },
         onEachFeature: function(feature, layer) {
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
@@ -56,7 +56,7 @@ $.getJSON('data/HOT.geojson', function(data) {
 $.getJSON('data/HPA.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
-            return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
         },
         onEachFeature: function(feature, layer) {
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
@@ -114,6 +114,6 @@ $('#viewFavorites').on('click', function() {
     });
 });
  </script>
- 2
+ 3
 </body>
 </html>
