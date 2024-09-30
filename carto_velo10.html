@@ -30,7 +30,7 @@ var favoritesLayer = L.layerGroup().addTo(map);
 var favorites = [];
 
 // Charger les données GEOJSON
-$.getJSON('/data/HOT.geojson', function(data) {
+$.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
             return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/hotel.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
@@ -53,7 +53,7 @@ $.getJSON('/data/HOT.geojson', function(data) {
     }).addTo(hotelsLayer);
 });
 
-$.getJSON('/data/HPA.geojson', function(data) {
+$.getJSON('data/HPA.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
             return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
@@ -114,6 +114,6 @@ $('#viewFavorites').on('click', function() {
     });
 });
  </script>
- 1
+ 2
 </body>
 </html>
