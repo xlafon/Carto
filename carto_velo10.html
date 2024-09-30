@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -33,8 +35,6 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-      width: 20px;
-      height: 20px;
     }
     .icon-button img {
       width: 100%;
@@ -67,7 +67,6 @@
     var favoritesLayer = L.layerGroup().addTo(map);
     var favorites = [];
     var viewingFavorites = false;
-
 
     // Charger les données GEOJSON
     $.getJSON('data/HOT.geojson', function(data) {
@@ -121,41 +120,41 @@
     }
 
     $('#showHotels').on('click', function() {
-    if (!viewingFavorites) {
-        map.addLayer(hotelsLayer);
-        map.removeLayer(campingsLayer);
-    }
-});
+        if (!viewingFavorites) {
+            map.addLayer(hotelsLayer);
+            map.removeLayer(campingsLayer);
+        }
+    });
 
-$('#showCampings').on('click', function() {
-    if (!viewingFavorites) {
-        map.addLayer(campingsLayer);
-        map.removeLayer(hotelsLayer);
-    }
-});
+    $('#showCampings').on('click', function() {
+        if (!viewingFavorites) {
+            map.addLayer(campingsLayer);
+            map.removeLayer(hotelsLayer);
+        }
+    });
 
     $('#viewFavorites').on('click', function() {
-    if (!viewingFavorites) {
-        map.eachLayer(function(layer) {
-            if (layer !== osmLayer && layer !== favoritesLayer) {
-                map.removeLayer(layer);
-            }
-        });
-        refreshFavorites();
-        $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
+        if (!viewingFavorites) {
             map.eachLayer(function(layer) {
-                if (layer !== osmLayer) {
+                if (layer !== osmLayer && layer !== favoritesLayer) {
                     map.removeLayer(layer);
                 }
             });
-            map.addLayer(hotelsLayer);
-            map.addLayer(campingsLayer);
-            $(this).remove();
-            viewingFavorites = false;
-        });
-        viewingFavorites = true;
-    }
-});
+            refreshFavorites();
+            $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
+                map.eachLayer(function(layer) {
+                    if (layer !== osmLayer) {
+                        map.removeLayer(layer);
+                    }
+                });
+                map.addLayer(hotelsLayer);
+                map.addLayer(campingsLayer);
+                $(this).remove();
+                viewingFavorites = false;
+            });
+            viewingFavorites = true;
+        }
+    });
 
     // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
@@ -188,4 +187,5 @@ $('#showCampings').on('click', function() {
     }
   </script>
 </body>
-4
+</html>
+5
