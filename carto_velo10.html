@@ -109,7 +109,7 @@ $.getJSON('data/HOT.geojson', function(data) {
         onEachFeature: function(feature, layer) {
             layer.bindPopup(createPopupContent(feature));
             layer.on('popupopen', function() {
-                $('.toggle-favorite').on('click', function() {
+                $('.toggle-favorite').off('click').on('click', function() {
                     if (isFavorite(feature)) {
                         var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
                         if (index !== -1) {
@@ -136,7 +136,7 @@ $.getJSON('data/HPA.geojson', function(data) {
         onEachFeature: function(feature, layer) {
             layer.bindPopup(createPopupContent(feature));
             layer.on('popupopen', function() {
-                $('.toggle-favorite').on('click', function() {
+                $('.toggle-favorite').off('click').on('click', function() {
                     if (isFavorite(feature)) {
                         var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
                         if (index !== -1) {
@@ -214,7 +214,7 @@ function refreshFavorites() {
                            '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
         marker.bindPopup(popupContent);
         marker.on('popupopen', function() {
-            $('.remove-favorite').on('click', function() {
+            $('.remove-favorite').off('click').on('click', function() {
                 var index = $(this).data('index');
                 favorites.splice(index, 1);
                 updateFavoritesCount();
@@ -230,6 +230,7 @@ function refreshFavorites() {
 }
 
 
+
  // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
         var index = $(this).data('index');
@@ -242,4 +243,4 @@ function refreshFavorites() {
   </script>
 </body>
 </html>
-9
+10
