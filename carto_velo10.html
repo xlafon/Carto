@@ -20,12 +20,12 @@
 var map = L.map('map').setView([43.4929, -1.4748], 12); // Centré sur Bayonne
 
 // Ajouter une couche de tuiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var hotelsLayer = L.layerGroup().addTo(map);
-var campingsLayer = L.layerGroup().addTo(map);
+var hotelsLayer = L.layerGroup();
+var campingsLayer = L.layerGroup();
 var favoritesLayer = L.layerGroup().addTo(map);
 var favorites = [];
 
@@ -33,7 +33,7 @@ var favorites = [];
 $.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
-            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
         },
         onEachFeature: function(feature, layer) {
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
@@ -56,7 +56,7 @@ $.getJSON('data/HOT.geojson', function(data) {
 $.getJSON('data/HPA.geojson', function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature, latlng) {
-            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
         },
         onEachFeature: function(feature, layer) {
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
@@ -92,7 +92,7 @@ $('#showCampings').on('click', function() {
 
 $('#viewFavorites').on('click', function() {
     map.eachLayer(function(layer) {
-        if (layer !== favoritesLayer) {
+        if (layer !== osmLayer && layer !== favoritesLayer) {
             map.removeLayer(layer);
         }
     });
@@ -114,6 +114,6 @@ $('#viewFavorites').on('click', function() {
     });
 });
  </script>
- 3
+4
 </body>
 </html>
