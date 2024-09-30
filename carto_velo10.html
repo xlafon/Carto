@@ -99,7 +99,7 @@ $('#viewFavorites').on('click', function() {
     favoritesLayer.clearLayers();
     favorites.forEach(function(feature) {
         var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-        var marker = L.marker(latlng, { icon: L.icon({ iconUrl: feature.properties["Type"] === "hotel" ? '/icons/hotel.png' : '/icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+        var marker = L.marker(latlng, { icon: L.icon({ iconUrl: feature.properties["Type"] === "hotel" ? 'icons/hotel.png' : 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
         var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
                            feature.properties.Commune + '<br>' +
                            '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>';
@@ -107,13 +107,15 @@ $('#viewFavorites').on('click', function() {
         favoritesLayer.addLayer(marker);
     });
     $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
-        map.addLayer(hotelsLayer);
-        map.addLayer(campingsLayer);
-        map.removeLayer(favoritesLayer);
+        map.eachLayer(function(layer) {
+            if (layer !== osmLayer) {
+                map.removeLayer(layer);
+            }
+        });
         $(this).remove();
     });
 });
  </script>
-4
+5
 </body>
 </html>
