@@ -143,7 +143,7 @@
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
                                feature.properties.Commune + '<br>' +
                                '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>' +
-                               '<button class="remove-favorite" data-index="' + index + '"><img src="icons/trash.png?width=20px" alt="Supprimer"></button>';
+                               '<button class="remove-favorite" data-index="' + index + '"><img src="icons/trash.png" alt="Supprimer" width="20" height="20"></button>';
             marker.bindPopup(popupContent);
             favoritesLayer.addLayer(marker);
         });
@@ -166,4 +166,4 @@
     });
   </script>
 </body>
-2
+1
