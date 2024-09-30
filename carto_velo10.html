@@ -1,283 +1,119 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<style>
-  .leaflet-control-custom {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .leaflet-control-custom .header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .leaflet-control-custom h2 {
-    margin: 0;
-    padding: 10px;
-  }
-  .leaflet-control-custom img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px;
-  }
-  .leaflet-control-custom .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .leaflet-control-custom button {
-    display: block;
-    width: 48%;
-    margin-bottom: 5px;
-    padding: 5px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  .leaflet-control-custom .offices-button {
-    background-color: #007bff;
-  }
-  .leaflet-control-custom .offices-button:hover {
-    background-color: #0056b3;
-  }
-  .leaflet-control-custom .townhalls-button {
-    background-color: #28a745;
-  }
-  .leaflet-control-custom .townhalls-button:hover {
-    background-color: #1e7e34;
-  }
-  .leaflet-control-custom .accommodations-button {
-    background-color: #ffc107;
-  }
-  .leaflet-control-custom .accommodations-button:hover {
-    background-color: #e0a800;
-  }
-  .leaflet-control-custom .mobility-button {
-    background-color: #17a2b8;
-  }
-  .leaflet-control-custom .mobility-button:hover {
-    background-color: #117a8b;
-  }
-  .favorites-box {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    z-index: 1000;
-  }
-  .favorites-box h3 {
-    margin: 0;
-    padding: 10px;
-  }
-  .favorites-box ul {
-    list-style: none;
-    padding: 0;
-  }
-  .favorites-box li {
-    margin-bottom: 5px;
-  }
-  .favorites-box button {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    background-color: #007bff;
-  }
-  .favorites-box button:hover {
-    background-color: #0056b3;
-  }
-</style>
-
+</head>
+<body>
 <div id="map" style="width: 100%; height: 600px;"></div>
-<div class="favorites-box">
-  <h3>Favoris</h3>
-  <ul id="favorites-list"></ul>
-  <button id="view-favorites">Voir les favoris</button>
+<div id="menu" style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
+    <button id="showHotels">Afficher Hôtels</button>
+    <button id="showCampings">Afficher Campings</button>
 </div>
-
+<div id="favorites" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+    <span id="favoritesCount">Favoris: 0</span>
+    <button id="viewFavorites">Voir Favoris</button>
+</div>
 <script>
-  var map = L.map('map').setView([43.492949, -1.474841], 13);
+// Initialiser la carte
+var map = L.map('map').setView([43.4929, -1.4748], 12); // Centré sur Bayonne
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+// Ajouter une couche de tuiles
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+}).addTo(map);
 
-  var officesLayer = L.layerGroup();
-  var townhallsLayer = L.layerGroup();
-  var accommodationsLayer = L.layerGroup();
-  var mobilityLayer = L.layerGroup();
-  var favoritesLayer = L.layerGroup().addTo(map);
-  var favorites = [];
+var hotelsLayer = L.layerGroup().addTo(map);
+var campingsLayer = L.layerGroup().addTo(map);
+var favoritesLayer = L.layerGroup().addTo(map);
+var favorites = [];
 
-  // Créer une icône personnalisée pour les offices de tourisme
-  var touristOfficeIcon = L.icon({
-    iconUrl: 'icons/tourist_office.png',
-    iconSize: [32, 32], // Taille de l'icône
-    iconAnchor: [16, 32], // Point de l'icône qui correspondra à la position du marqueur
-    popupAnchor: [0, -32] // Point à partir duquel la popup s'ouvrira par rapport à l'icône
-  });
-
-  function addDataToLayer(url, layer, color, isOffice = false) {
-    $.getJSON(url, function(data) {
-      data.elements.forEach(function(element) {
-        var popupContent = "";
-        if (element.tags) {
-          if (isOffice) {
-            popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
-            if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-            if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
-            if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-            if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
-            if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
-          } else {
-            popupContent += element.tags.name || "No name";
-          }
+// Charger les données GEOJSON
+$.getJSON('/data/HOT.geojson', function(data) {
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/hotel.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                               feature.properties.Commune + '<br>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                               '<button class="add-to-favorites">Ajouter aux favoris</button>';
+            layer.bindPopup(popupContent);
+            layer.on('popupopen', function() {
+                $('.add-to-favorites').on('click', function() {
+                    if (!favorites.includes(feature)) {
+                        favorites.push(feature);
+                        updateFavoritesCount();
+                    }
+                });
+            });
         }
+    }).addTo(hotelsLayer);
+});
 
-        popupContent += `<br><button onclick="addToFavorites(${element.lat}, ${element.lon}, '${element.tags.name || "No name"}')">Ajouter aux favoris</button>`;
-
-        if (element.type === "node") {
-          var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-          var marker = L.marker([element.lat, element.lon], markerOptions);
-          marker.bindPopup(popupContent);
-          layer.addLayer(marker);
-        } else if (element.type === "way") {
-          var latlngs = element.geometry.map(function(geo) {
-            return [geo.lat, geo.lon];
-          });
-          var polygon = L.polygon(latlngs, { color: color });
-          polygon.bindPopup(popupContent);
-          layer.addLayer(polygon);
-
-          // Calculer le centroïde du polygone
-          var centroid = polygon.getBounds().getCenter();
-          var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-          var marker = L.marker(centroid, markerOptions);
-          marker.bindPopup(popupContent);
-          layer.addLayer(marker);
+$.getJSON('/data/HPA.geojson', function(data) {
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: '/icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                               feature.properties.Commune + '<br>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                               '<button class="add-to-favorites">Ajouter aux favoris</button>';
+            layer.bindPopup(popupContent);
+            layer.on('popupopen', function() {
+                $('.add-to-favorites').on('click', function() {
+                    if (!favorites.includes(feature)) {
+                        favorites.push(feature);
+                        updateFavoritesCount();
+                    }
+                });
+            });
         }
-      });
+    }).addTo(campingsLayer);
+});
+
+function updateFavoritesCount() {
+    $('#favoritesCount').text('Favoris: ' + favorites.length);
+}
+
+$('#showHotels').on('click', function() {
+    map.addLayer(hotelsLayer);
+    map.removeLayer(campingsLayer);
+});
+
+$('#showCampings').on('click', function() {
+    map.addLayer(campingsLayer);
+    map.removeLayer(hotelsLayer);
+});
+
+$('#viewFavorites').on('click', function() {
+    map.eachLayer(function(layer) {
+        if (layer !== favoritesLayer) {
+            map.removeLayer(layer);
+        }
     });
-  }
-
-  function addToFavorites(lat, lon, name) {
-    var favorite = { lat: lat, lon: lon, name: name };
-    favorites.push(favorite);
-    updateFavoritesList();
-    updateFavoritesLayer();
-  }
-
-  function updateFavoritesList() {
-    var list = document.getElementById('favorites-list');
-    list.innerHTML = '';
-    favorites.forEach(function(favorite, index) {
-      var listItem = document.createElement('li');
-      listItem.textContent = favorite.name;
-      list.appendChild(listItem);
-    });
-  }
-
-  function updateFavoritesLayer() {
     favoritesLayer.clearLayers();
-    favorites.forEach(function(favorite) {
-      var marker = L.marker([favorite.lat, favorite.lon]);
-      marker.bindPopup(favorite.name);
-      favoritesLayer.addLayer(marker);
+    favorites.forEach(function(feature) {
+        var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+        var marker = L.marker(latlng, { icon: L.icon({ iconUrl: feature.properties["Type"] === "hotel" ? '/icons/hotel.png' : '/icons/camping.png', iconSize: [25, 41], iconAnchor: [12, 41] }) });
+        var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                           feature.properties.Commune + '<br>' +
+                           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>';
+        marker.bindPopup(popupContent);
+        favoritesLayer.addLayer(marker);
     });
-  }
-
-  document.getElementById('view-favorites').addEventListener('click', function() {
-    if (favorites.length > 0) {
-      map.fitBounds(favoritesLayer.getBounds());
-    } else {
-      alert("Aucun favori à afficher.");
-    }
-  });
-
-  var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
-  var townhallsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="townhall"](area.searchArea);out geom;';
-  var accommodationsUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["tourism"="hotel"](area.searchArea);out geom;';
-  var mobilityUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["amenity"="bicycle_rental"](area.searchArea);out geom;';
-
-   var customControl = L.Control.extend({
-    options: {
-      position: 'topleft'
-    },
-    onAdd: function (map) {
-      var container = L.DomUtil.create('div', 'leaflet-control-custom');
-
-      var header = L.DomUtil.create('div', 'header', container);
-
-      var logo = L.DomUtil.create('img', '', header);
-      logo.src = 'icons/LOGO_VISIT64.png';
-      
-      var title = L.DomUtil.create('h2', '', header);
-      title.innerHTML = 'Carte vélo 64';
-
-      var buttonContainer = L.DomUtil.create('div', 'button-container', container);
-
-      var buttonOffices = L.DomUtil.create('button', 'offices-button', buttonContainer);
-      buttonOffices.innerHTML = 'Offices de Tourisme';
-      L.DomEvent.on(buttonOffices, 'click', function () {
-        if (map.hasLayer(officesLayer)) {
-          map.removeLayer(officesLayer);
-        } else {
-          addDataToLayer(officesUrl, officesLayer, '#007bff', true);
-          map.addLayer(officesLayer);
-        }
-      });
-
-      var buttonTownhalls = L.DomUtil.create('button', 'townhalls-button', buttonContainer);
-      buttonTownhalls.innerHTML = 'Mairies';
-      L.DomEvent.on(buttonTownhalls, 'click', function () {
-        if (map.hasLayer(townhallsLayer)) {
-          map.removeLayer(townhallsLayer);
-        } else {
-          addDataToLayer(townhallsUrl, townhallsLayer, '#28a745');
-          map.addLayer(townhallsLayer);
-        }
-      });
-
-      var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
-      buttonAccommodations.innerHTML = 'Hébergements';
-      L.DomEvent.on(buttonAccommodations, 'click', function () {
-        if (map.hasLayer(accommodationsLayer)) {
-          map.removeLayer(accommodationsLayer);
-        } else {
-          addDataToLayer(accommodationsUrl, accommodationsLayer, '#ffc107');
-          map.addLayer(accommodationsLayer);
-        }
-      });
-
-      var buttonMobility = L.DomUtil.create('button', 'mobility-button', buttonContainer);
-      buttonMobility.innerHTML = 'Mobilité';
-      L.DomEvent.on(buttonMobility, 'click', function () {
-        if (map.hasLayer(mobilityLayer)) {
-          map.removeLayer(mobilityLayer);
-        } else {
-          addDataToLayer(mobilityUrl, mobilityLayer, '#17a2b8');
-          map.addLayer(mobilityLayer);
-        }
-      });
-
-      return container;
-    }
-  });
-
-  map.addControl(new customControl());
-</script>
-5
+    $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
+        map.addLayer(hotelsLayer);
+        map.addLayer(campingsLayer);
+        map.removeLayer(favoritesLayer);
+        $(this).remove();
+    });
+});
+ </script>
+ 1
+</body>
+</html>
