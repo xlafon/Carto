@@ -84,22 +84,6 @@ function createPopupContent(feature) {
            '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
 }
 
-// Fonction pour mettre à jour les popups de tous les marqueurs
-function updateAllPopups() {
-    hotelsLayer.eachLayer(function(layer) {
-        if (layer.getPopup()) {
-            var feature = layer.feature;
-            layer.setPopupContent(createPopupContent(feature));
-        }
-    });
-    campingsLayer.eachLayer(function(layer) {
-        if (layer.getPopup()) {
-            var feature = layer.feature;
-            layer.setPopupContent(createPopupContent(feature));
-        }
-    });
-}
-
 // Charger les données GEOJSON pour les hôtels
 $.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
@@ -119,7 +103,8 @@ $.getJSON('data/HOT.geojson', function(data) {
                         favorites.push(feature);
                     }
                     updateFavoritesCount();
-                    updateAllPopups();
+                    layer.setPopupContent(createPopupContent(feature));
+                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
                 });
             });
         }
@@ -145,7 +130,8 @@ $.getJSON('data/HPA.geojson', function(data) {
                         favorites.push(feature);
                     }
                     updateFavoritesCount();
-                    updateAllPopups();
+                    layer.setPopupContent(createPopupContent(feature));
+                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
                 });
             });
         }
@@ -218,7 +204,6 @@ function refreshFavorites() {
 }
 
 
-
  // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
         var index = $(this).data('index');
@@ -230,4 +215,4 @@ function refreshFavorites() {
   </script>
 </body>
 </html>
-4
+5
