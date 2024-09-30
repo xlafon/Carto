@@ -221,15 +221,9 @@ function refreshFavorites() {
 }
 
 
- // Utiliser la délégation d'événements pour les boutons de suppression
-    $(document).on('click', '.remove-favorite', function() {
-        var index = $(this).data('index');
-        favorites.splice(index, 1);
-        updateFavoritesCount();
-        refreshFavorites(); // Refresh the favorites view
-    });
+
     
   </script>
 </body>
 </html>
-6
+7
