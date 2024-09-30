@@ -98,31 +98,22 @@ $('#viewFavorites').on('click', function() {
     });
     favoritesLayer.clearLayers();
     favorites.forEach(function(feature) {
-        var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-var marker = L.marker(latlng, { 
-    icon: L.icon({ 
-        iconUrl: feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/hotel.png', 
-        iconSize: [32, 32], 
-        iconAnchor: [12, 41] 
-    }) 
-});
-      var marker = L.marker(latlng, { 
-    icon: L.icon({ 
-        iconUrl: feature.properties["Identifiant"].startsWith("HPA") ? 'icons/camping.png' : 'icons/camping.png', 
-        iconSize: [32, 32], 
-        iconAnchor: [12, 41] 
-    }) 
-});
-
-
-
-      
-        var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-                           feature.properties.Commune + '<br>' +
-                           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>';
-        marker.bindPopup(popupContent);
-        favoritesLayer.addLayer(marker);
+    var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+    var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
+    var marker = L.marker(latlng, { 
+        icon: L.icon({ 
+            iconUrl: iconUrl, 
+            iconSize: [32, 32], 
+            iconAnchor: [12, 41] 
+        }) 
     });
+    var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                       feature.properties.Commune + '<br>' +
+                       '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>';
+    marker.bindPopup(popupContent);
+    favoritesLayer.addLayer(marker);
+});
+
     $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
         map.eachLayer(function(layer) {
             if (layer !== osmLayer) {
@@ -133,6 +124,6 @@ var marker = L.marker(latlng, {
     });
 });
  </script>
-6
+7
 </body>
 </html>
