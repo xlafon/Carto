@@ -66,6 +66,8 @@
     var campingsLayer = L.layerGroup();
     var favoritesLayer = L.layerGroup().addTo(map);
     var favorites = [];
+    var viewingFavorites = false;
+
 
     // Charger les données GEOJSON
     $.getJSON('data/HOT.geojson', function(data) {
@@ -119,16 +121,21 @@
     }
 
     $('#showHotels').on('click', function() {
+    if (!viewingFavorites) {
         map.addLayer(hotelsLayer);
         map.removeLayer(campingsLayer);
-    });
+    }
+});
 
-    $('#showCampings').on('click', function() {
+$('#showCampings').on('click', function() {
+    if (!viewingFavorites) {
         map.addLayer(campingsLayer);
         map.removeLayer(hotelsLayer);
-    });
+    }
+});
 
     $('#viewFavorites').on('click', function() {
+    if (!viewingFavorites) {
         map.eachLayer(function(layer) {
             if (layer !== osmLayer && layer !== favoritesLayer) {
                 map.removeLayer(layer);
@@ -144,8 +151,11 @@
             map.addLayer(hotelsLayer);
             map.addLayer(campingsLayer);
             $(this).remove();
+            viewingFavorites = false;
         });
-    });
+        viewingFavorites = true;
+    }
+});
 
     // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
@@ -178,4 +188,4 @@
     }
   </script>
 </body>
-3
+4
