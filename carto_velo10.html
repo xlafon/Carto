@@ -83,6 +83,22 @@ function createPopupContent(feature) {
            '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
 }
 
+// Fonction pour mettre à jour les popups de tous les marqueurs
+function updateAllPopups() {
+    hotelsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
+    campingsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
+}
+
 // Charger les données GEOJSON pour les hôtels
 $.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
@@ -96,7 +112,7 @@ $.getJSON('data/HOT.geojson', function(data) {
                     if (!isFavorite(feature)) {
                         favorites.push(feature);
                         updateFavoritesCount();
-                        layer.setPopupContent(createPopupContent(feature));
+                        updateAllPopups();
                     }
                 });
 
@@ -106,7 +122,7 @@ $.getJSON('data/HOT.geojson', function(data) {
                         if (index !== -1) {
                             favorites.splice(index, 1);
                             updateFavoritesCount();
-                            layer.setPopupContent(createPopupContent(feature));
+                            updateAllPopups();
                         }
                     }
                 });
@@ -128,7 +144,7 @@ $.getJSON('data/HPA.geojson', function(data) {
                     if (!isFavorite(feature)) {
                         favorites.push(feature);
                         updateFavoritesCount();
-                        layer.setPopupContent(createPopupContent(feature));
+                        updateAllPopups();
                     }
                 });
 
@@ -138,7 +154,7 @@ $.getJSON('data/HPA.geojson', function(data) {
                         if (index !== -1) {
                             favorites.splice(index, 1);
                             updateFavoritesCount();
-                            layer.setPopupContent(createPopupContent(feature));
+                            updateAllPopups();
                         }
                     }
                 });
@@ -228,4 +244,4 @@ function refreshFavorites() {
   </script>
 </body>
 </html>
-2
+3
