@@ -68,52 +68,74 @@
     var favorites = [];
     var viewingFavorites = false;
 
-    // Charger les données GEOJSON
-    $.getJSON('data/HOT.geojson', function(data) {
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
-            },
-            onEachFeature: function(feature, layer) {
-                var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-                                   feature.properties.Commune + '<br>' +
-                                   '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-                                   '<button class="icon-button add-to-favorites"><img src="icons/addfav.png" alt="Ajouter aux favoris"></button>';
-                layer.bindPopup(popupContent);
-                layer.on('popupopen', function() {
-                    $('.add-to-favorites').on('click', function() {
-                        if (!favorites.includes(feature)) {
-                            favorites.push(feature);
-                            updateFavoritesCount();
-                        }
-                    });
-                });
-            }
-        }).addTo(hotelsLayer);
-    });
+    // Fonction pour vérifier si une offre est dans les favoris
+function isFavorite(feature) {
+    return favorites.some(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+}
 
-    $.getJSON('data/HPA.geojson', function(data) {
-        L.geoJSON(data, {
-            pointToLayer: function(feature, latlng) {
-                return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
-            },
-            onEachFeature: function(feature, layer) {
-                var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-                                   feature.properties.Commune + '<br>' +
-                                   '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-                                   '<button class="icon-button add-to-favorites"><img src="icons/addfav.png" alt="Ajouter aux favoris"></button>';
-                layer.bindPopup(popupContent);
-                layer.on('popupopen', function() {
-                    $('.add-to-favorites').on('click', function() {
-                        if (!favorites.includes(feature)) {
-                            favorites.push(feature);
-                            updateFavoritesCount();
-                        }
-                    });
+// Charger les données GEOJSON pour les hôtels
+$.getJSON('data/HOT.geojson', function(data) {
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                               feature.properties.Commune + '<br>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                               '<button class="icon-button ' + (isFavorite(feature) ? 'remove-favorite' : 'add-to-favorites') + '">' +
+                               '<img src="icons/' + (isFavorite(feature) ? 'removefav' : 'addfav') + '.png" alt="' + (isFavorite(feature) ? 'Supprimer' : 'Ajouter') + '"></button>';
+            layer.bindPopup(popupContent);
+            layer.on('popupopen', function() {
+                $('.add-to-favorites').on('click', function() {
+                    if (!favorites.includes(feature)) {
+                        favorites.push(feature);
+                        updateFavoritesCount();
+                    }
                 });
-            }
-        }).addTo(campingsLayer);
-    });
+                $('.remove-favorite').on('click', function() {
+                    var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+                    if (index !== -1) {
+                        favorites.splice(index, 1);
+                        updateFavoritesCount();
+                    }
+                });
+            });
+        }
+    }).addTo(hotelsLayer);
+});
+
+// Charger les données GEOJSON pour les campings
+$.getJSON('data/HPA.geojson', function(data) {
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                               feature.properties.Commune + '<br>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                               '<button class="icon-button ' + (isFavorite(feature) ? 'remove-favorite' : 'add-to-favorites') + '">' +
+                               '<img src="icons/' + (isFavorite(feature) ? 'removefav' : 'addfav') + '.png" alt="' + (isFavorite(feature) ? 'Supprimer' : 'Ajouter') + '"></button>';
+            layer.bindPopup(popupContent);
+            layer.on('popupopen', function() {
+                $('.add-to-favorites').on('click', function() {
+                    if (!favorites.includes(feature)) {
+                        favorites.push(feature);
+                        updateFavoritesCount();
+                    }
+                });
+                $('.remove-favorite').on('click', function() {
+                    var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+                    if (index !== -1) {
+                        favorites.splice(index, 1);
+                        updateFavoritesCount();
+                    }
+                });
+            });
+        }
+    }).addTo(campingsLayer);
+});
 
     function updateFavoritesCount() {
         $('#favoritesCount').text(favorites.length);
@@ -192,4 +214,4 @@ function refreshFavorites() {
   </script>
 </body>
 </html>
-7
+8
