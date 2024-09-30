@@ -135,6 +135,16 @@
             }
         });
         refreshFavorites();
+        $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
+            map.eachLayer(function(layer) {
+                if (layer !== osmLayer) {
+                    map.removeLayer(layer);
+                }
+            });
+            map.addLayer(hotelsLayer);
+            map.addLayer(campingsLayer);
+            $(this).remove();
+        });
     });
 
     // Utiliser la délégation d'événements pour les boutons de suppression
@@ -166,18 +176,6 @@
             favoritesLayer.addLayer(marker);
         });
     }
-
-    // Réafficher les couches d'hôtels et de campings lorsque vous quittez la vue des favoris
-    $(document).on('click', '#exitFavorites', function() {
-        map.eachLayer(function(layer) {
-            if (layer !== osmLayer) {
-                map.removeLayer(layer);
-            }
-        });
-        map.addLayer(hotelsLayer);
-        map.addLayer(campingsLayer);
-        $(this).remove();
-    });
   </script>
 </body>
-2
+3
