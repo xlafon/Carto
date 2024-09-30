@@ -33,8 +33,7 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
-      width: 20px;
-      height: 20px;
+
     }
     .icon-button img {
       width: 100%;
@@ -147,7 +146,7 @@
             });
             var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
                                feature.properties.Commune + '<br>' +
-                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a>' +
+                               '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
                                '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
             marker.bindPopup(popupContent);
             favoritesLayer.addLayer(marker);
@@ -172,4 +171,4 @@
     });
   </script>
 </body>
-1
+2
