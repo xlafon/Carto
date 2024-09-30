@@ -215,25 +215,33 @@ function refreshFavorites() {
         marker.bindPopup(popupContent);
         favoritesLayer.addLayer(marker);
     });
+   function refreshFavorites() {
+    favoritesLayer.clearLayers();
+    favorites.forEach(function(feature, index) {
+        // ... (code existant pour créer les marqueurs)
+
+        // Mettre à jour l'état des icônes de tous les marqueurs
+        hotelsLayer.eachLayer(function(layer) {
+            var feature = layer.feature;
+            if (layer.getPopup()) {
+                layer.setPopupContent(createPopupContent(feature));
+            }
+        });
+        campingsLayer.eachLayer(function(layer) {
+            var feature = layer.feature;
+            if (layer.getPopup()) {
+                layer.setPopupContent(createPopupContent(feature));
+            }
+        });
+    });
+
     if (!map.hasLayer(favoritesLayer)) {
         map.addLayer(favoritesLayer);
     }
 }
 
-    // Mettre à jour l'état des icônes de tous les marqueurs
-    hotelsLayer.eachLayer(function(layer) {
-        var feature = layer.feature;
-        if (layer.getPopup()) {
-            layer.setPopupContent(createPopupContent(feature));
-        }
-    });
-    campingsLayer.eachLayer(function(layer) {
-        var feature = layer.feature;
-        if (layer.getPopup()) {
-            layer.setPopupContent(createPopupContent(feature));
-        }
-    });
-}
+
+   
 
  // Utiliser la délégation d'événements pour les boutons de suppression
     $(document).on('click', '.remove-favorite', function() {
