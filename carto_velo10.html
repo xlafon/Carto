@@ -1,470 +1,244 @@
 <!DOCTYPE html>
 
-
-
 <html lang="fr">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <style>
-
-    #favorites {
-
-      background-color: white;
-
-      padding: 10px;
-
-      border-radius: 5px;
-
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-      display: flex;
-
-      align-items: center;
-
-    }
-
-    #favorites img {
-
-      width: 24px;
-
-      height: 24px;
-
-      margin-right: 10px;
-
-    }
-
-    #viewFavorites, #exitFavorites {
-
-      background-color: blue;
-
-      color: white;
-
-      border: none;
-
-      padding: 5px 10px;
-
-      border-radius: 3px;
-
-      cursor: pointer;
-
-      margin-left: 10px;
-
-    }
-
-    #exitFavorites {
-
-      background-color: red;
-
-    }
-
-    .icon-button {
-
-      background-color: transparent;
-
-      border: none;
-
-      cursor: pointer;
-
-    }
-
-    .icon-button img {
-
-      width: 100%;
-
-      height: 100%;
-
-    }
-
-  </style>
-
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #favorites {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    #favorites img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    #viewFavorites, #exitFavorites {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #exitFavorites {
+      background-color: red;
+    }
+    .icon-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-button img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
-
 <body>
+  <div id="map" style="width: 100%; height: 600px;"></div>
+  <div id="menu" style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
+      <button id="showHotels">Afficher Hôtels</button>
+      <button id="showCampings">Afficher Campings</button>
+  </div>
+  <div id="favorites" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+      <img src="icons/favorite.png" alt="Favoris">
+      <span id="favoritesCount">0</span>
+      <button id="viewFavorites">Voir les favoris</button>
+  </div>
+  <script>
+    // Initialiser la carte
+    var map = L.map('map').setView([43.4929, -1.4748], 12); // Centré sur Bayonne
 
-  <div id="map" style="width: 100%; height: 600px;"></div>
+    // Ajouter une couche de tuiles
+    var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-  <div id="menu" style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
-
-      <button id="showHotels">Afficher Hôtels</button>
-
-      <button id="showCampings">Afficher Campings</button>
-
-  </div>
-
-  <div id="favorites" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
-
-      <img src="icons/favorite.png" alt="Favoris">
-
-      <span id="favoritesCount">0</span>
-
-      <button id="viewFavorites">Voir les favoris</button>
-
-  </div>
-
-  <script>
-
-    // Initialiser la carte
-
-    var map = L.map('map').setView([43.4929, -1.4748], 12); // Centré sur Bayonne
-
-
-
-    // Ajouter une couche de tuiles
-
-    var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-
-    }).addTo(map);
-
-
-
-    var hotelsLayer = L.layerGroup();
-
-    var campingsLayer = L.layerGroup();
-
-    var favoritesLayer = L.layerGroup().addTo(map);
-
-    var favorites = [];
-
-    var viewingFavorites = false;
-
-
+    var hotelsLayer = L.layerGroup();
+    var campingsLayer = L.layerGroup();
+    var favoritesLayer = L.layerGroup().addTo(map);
+    var favorites = [];
+    var viewingFavorites = false;
 
 // Fonction pour vérifier si une offre est dans les favoris
-
 function isFavorite(feature) {
-
-    return favorites.some(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
-
+    return favorites.some(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
 }
-
-
 
 // Fonction pour créer le contenu de la popup
-
 function createPopupContent(feature) {
-
-    var isFav = isFavorite(feature);
-
-    return '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-
-           feature.properties.Commune + '<br>' +
-
-           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-
-           '<button class="icon-button toggle-favorite">' +
-
-           '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
-
+    var isFav = isFavorite(feature);
+    return '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+           feature.properties.Commune + '<br>' +
+           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+           '<button class="icon-button toggle-favorite">' +
+           '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
 }
-
-
 
 // Fonction pour mettre à jour les popups de tous les marqueurs
-
 function updateAllPopups() {
-
-    hotelsLayer.eachLayer(function(layer) {
-
-        if (layer.getPopup()) {
-
-            var feature = layer.feature;
-
-            layer.setPopupContent(createPopupContent(feature));
-
-        }
-
-    });
-
-    campingsLayer.eachLayer(function(layer) {
-
-        if (layer.getPopup()) {
-
-            var feature = layer.feature;
-
-            layer.setPopupContent(createPopupContent(feature));
-
-        }
-
-    });
-
+    hotelsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
+    campingsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
 }
-
-
 
 // Charger les données GEOJSON pour les hôtels
-
 $.getJSON('data/HOT.geojson', function(data) {
-
-    L.geoJSON(data, {
-
-        pointToLayer: function(feature, latlng) {
-
-            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
-
-        },
-
-        onEachFeature: function(feature, layer) {
-
-            layer.bindPopup(createPopupContent(feature));
-
-            layer.on('popupopen', function() {
-
-                $('.toggle-favorite').on('click', function() {
-
-                    if (isFavorite(feature)) {
-
-                        var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
-
-                        if (index !== -1) {
-
-                            favorites.splice(index, 1);
-
-                        }
-
-                    } else {
-
-                        favorites.push(feature);
-
-                    }
-
-                    updateFavoritesCount();
-
-                    layer.setPopupContent(createPopupContent(feature));
-
-                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
-
-                });
-
-            });
-
-        }
-
-    }).addTo(hotelsLayer);
-
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/hotel.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(createPopupContent(feature));
+            layer.on('popupopen', function() {
+                $('.toggle-favorite').on('click', function() {
+                    if (isFavorite(feature)) {
+                        var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+                        if (index !== -1) {
+                            favorites.splice(index, 1);
+                        }
+                    } else {
+                        favorites.push(feature);
+                    }
+                    updateFavoritesCount();
+                    layer.setPopupContent(createPopupContent(feature));
+                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
+                });
+            });
+        }
+    }).addTo(hotelsLayer);
 });
-
-
 
 // Charger les données GEOJSON pour les campings
-
 $.getJSON('data/HPA.geojson', function(data) {
-
-    L.geoJSON(data, {
-
-        pointToLayer: function(feature, latlng) {
-
-            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
-
-        },
-
-        onEachFeature: function(feature, layer) {
-
-            layer.bindPopup(createPopupContent(feature));
-
-            layer.on('popupopen', function() {
-
-                $('.toggle-favorite').on('click', function() {
-
-                    if (isFavorite(feature)) {
-
-                        var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
-
-                        if (index !== -1) {
-
-                            favorites.splice(index, 1);
-
-                        }
-
-                    } else {
-
-                        favorites.push(feature);
-
-                    }
-
-                    updateFavoritesCount();
-
-                    layer.setPopupContent(createPopupContent(feature));
-
-                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
-
-                });
-
-            });
-
-        }
-
-    }).addTo(campingsLayer);
-
+    L.geoJSON(data, {
+        pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: L.icon({ iconUrl: 'icons/camping.png', iconSize: [32, 32], iconAnchor: [12, 41] }) });
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(createPopupContent(feature));
+            layer.on('popupopen', function() {
+                $('.toggle-favorite').on('click', function() {
+                    if (isFavorite(feature)) {
+                        var index = favorites.findIndex(fav => fav.properties["Identifiant"] === feature.properties["Identifiant"]);
+                        if (index !== -1) {
+                            favorites.splice(index, 1);
+                        }
+                    } else {
+                        favorites.push(feature);
+                    }
+                    updateFavoritesCount();
+                    layer.setPopupContent(createPopupContent(feature));
+                    layer.openPopup(); // Réouvrir la popup pour mettre à jour l'icône
+                });
+            });
+        }
+    }).addTo(campingsLayer);
 });
-
-
 
 function updateFavoritesCount() {
-
-    $('#favoritesCount').text(favorites.length);
-
+    $('#favoritesCount').text(favorites.length);
 }
-
-
 
 $('#showHotels').on('click', function() {
-
-    if (!viewingFavorites) {
-
-        map.addLayer(hotelsLayer);
-
-        map.removeLayer(campingsLayer);
-
-    }
-
+    if (!viewingFavorites) {
+        map.addLayer(hotelsLayer);
+        map.removeLayer(campingsLayer);
+    }
 });
-
-
 
 $('#showCampings').on('click', function() {
-
-    if (!viewingFavorites) {
-
-        map.addLayer(campingsLayer);
-
-        map.removeLayer(hotelsLayer);
-
-    }
-
+    if (!viewingFavorites) {
+        map.addLayer(campingsLayer);
+        map.removeLayer(hotelsLayer);
+    }
 });
-
-
 
 $('#viewFavorites').on('click', function() {
-
-    if (!viewingFavorites) {
-
-        map.eachLayer(function(layer) {
-
-            if (layer !== osmLayer && layer !== favoritesLayer) {
-
-                map.removeLayer(layer);
-
-            }
-
-        });
-
-        refreshFavorites();
-
-        $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
-
-            map.eachLayer(function(layer) {
-
-                if (layer !== osmLayer && layer !== favoritesLayer) {
-
-                    map.removeLayer(layer);
-
-                }
-
-            });
-
-            viewingFavorites = false;
-
-            updateAllPopups(); // Mettre à jour les popups après avoir quitté les favoris
-
-            $(this).remove();
-
-        });
-
-        viewingFavorites = true;
-
-    } else {
-
-        refreshFavorites();
-
-    }
-
+    if (!viewingFavorites) {
+        map.eachLayer(function(layer) {
+            if (layer !== osmLayer && layer !== favoritesLayer) {
+                map.removeLayer(layer);
+            }
+        });
+        refreshFavorites();
+        $('<button id="exitFavorites" style="position: absolute; top: 50px; right: 10px; z-index: 1000;">Quitter les favoris</button>').appendTo('body').on('click', function() {
+            map.eachLayer(function(layer) {
+                if (layer !== osmLayer && layer !== favoritesLayer) {
+                    map.removeLayer(layer);
+                }
+            });
+            viewingFavorites = false;
+            updateAllPopups(); // Mettre à jour les popups après avoir quitté les favoris
+            $(this).remove();
+        });
+        viewingFavorites = true;
+    } else {
+        refreshFavorites();
+    }
 });
 
-
-
 function refreshFavorites() {
-
-    favoritesLayer.clearLayers();
-
-    favorites.forEach(function(feature, index) {
-
-        var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
-
-        var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
-
-        var marker = L.marker(latlng, { 
-
-            icon: L.icon({ 
-
-                iconUrl: iconUrl, 
-
-                iconSize: [32, 32], 
-
-                iconAnchor: [12, 41] 
-
-            }) 
-
-        });
-
-        var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
-
-                           feature.properties.Commune + '<br>' +
-
-                           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
-
-                           '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
-
-        marker.bindPopup(popupContent);
-
-        favoritesLayer.addLayer(marker);
-
-    });
-
-    if (!map.hasLayer(favoritesLayer)) {
-
-        map.addLayer(favoritesLayer);
-
-    }
-
+    favoritesLayer.clearLayers();
+    favorites.forEach(function(feature, index) {
+        var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
+        var iconUrl = feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png';
+        var marker = L.marker(latlng, { 
+            icon: L.icon({ 
+                iconUrl: iconUrl, 
+                iconSize: [32, 32], 
+                iconAnchor: [12, 41] 
+            }) 
+        });
+        var popupContent = '<b>' + feature.properties["Raison sociale"] + '</b><br>' +
+                           feature.properties.Commune + '<br>' +
+                           '<a href="' + feature.properties.URL + '" target="_blank">' + feature.properties.URL + '</a><br>' +
+                           '<button class="icon-button remove-favorite" data-index="' + index + '"><img src="icons/removefav.png" alt="Supprimer"></button>';
+        marker.bindPopup(popupContent);
+        marker.on('popupopen', function() {
+            $('.remove-favorite').on('click', function() {
+                var index = $(this).data('index');
+                favorites.splice(index, 1);
+                updateFavoritesCount();
+                refreshFavorites();
+                updateAllPopups(); // Mettre à jour les popups après la suppression
+            });
+        });
+        favoritesLayer.addLayer(marker);
+    });
+    if (!map.hasLayer(favoritesLayer)) {
+        map.addLayer(favoritesLayer);
+    }
 }
 
+ // Utiliser la délégation d'événements pour les boutons de suppression
+    $(document).on('click', '.remove-favorite', function() {
+        var index = $(this).data('index');
+        favorites.splice(index, 1);
+        updateFavoritesCount();
+        refreshFavorites(); // Refresh the favorites view
+    });
 
-
-
-
- // Utiliser la délégation d'événements pour les boutons de suppression
-
-    $(document).on('click', '.remove-favorite', function() {
-
-        var index = $(this).data('index');
-
-        favorites.splice(index, 1);
-
-        updateFavoritesCount();
-
-        refreshFavorites(); // Refresh the favorites view
-
-    });
-
-
-
-    
-
-  </script>
-
+    
+  </script>
 </body>
-
 </html>
 1
