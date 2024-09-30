@@ -101,7 +101,7 @@ $('#viewFavorites').on('click', function() {
         var latlng = L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]);
 var marker = L.marker(latlng, { 
     icon: L.icon({ 
-        iconUrl: feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/camping.png', 
+        iconUrl: feature.properties["Identifiant"].startsWith("HOT") ? 'icons/hotel.png' : 'icons/hotel.png', 
         iconSize: [32, 32], 
         iconAnchor: [12, 41] 
     }) 
@@ -133,6 +133,6 @@ var marker = L.marker(latlng, {
     });
 });
  </script>
-5
+6
 </body>
 </html>
