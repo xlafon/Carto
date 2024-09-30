@@ -84,6 +84,22 @@ function createPopupContent(feature) {
            '<img src="icons/' + (isFav ? 'removefav' : 'addfav') + '.png" alt="' + (isFav ? 'Supprimer' : 'Ajouter') + '"></button>';
 }
 
+// Fonction pour mettre à jour les popups de tous les marqueurs
+function updateAllPopups() {
+    hotelsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
+    campingsLayer.eachLayer(function(layer) {
+        if (layer.getPopup()) {
+            var feature = layer.feature;
+            layer.setPopupContent(createPopupContent(feature));
+        }
+    });
+}
+
 // Charger les données GEOJSON pour les hôtels
 $.getJSON('data/HOT.geojson', function(data) {
     L.geoJSON(data, {
@@ -171,6 +187,7 @@ $('#viewFavorites').on('click', function() {
                 }
             });
             viewingFavorites = false;
+            updateAllPopups(); // Mettre à jour les popups après avoir quitté les favoris
             $(this).remove();
         });
         viewingFavorites = true;
@@ -215,4 +232,4 @@ function refreshFavorites() {
   </script>
 </body>
 </html>
-5
+6
