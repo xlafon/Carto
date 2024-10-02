@@ -223,6 +223,23 @@
       height: 32px;
       cursor: pointer;
     }
+    .quit-favorites-button {
+  display: block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quit-favorites-button:hover {
+  background-color: #c82333;
+}
+
   </style>
 </head>
 <body>
@@ -752,8 +769,9 @@
     map.addControl(new customControl());
 
     document.getElementById('view-favorites').addEventListener('click', function() {
-      alert('Vous avez ' + favorites.length + ' offres dans vos favoris.');
-    });
+  showFavorites();
+});
+
 
        function translateOpeningHours(openingHours) {
       return openingHours.replace(/Mo/g, 'Lun')
@@ -792,4 +810,4 @@
   </script>
 </body>
 </html>
-3
+4
