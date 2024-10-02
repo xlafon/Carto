@@ -3,229 +3,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte vélo 64</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <style>
-        #map { height: 600px; }
-        .leaflet-control-custom { background: white; padding: 10px; }
-        .button-container { display: flex; flex-direction: column; }
-        .submenu { display: none; }
-        #info-box { background: white; padding: 10px; position: absolute; z-index: 9999; display: none; }
-        #selected-icons { position: absolute; top: 10px; right: 10px; }
-        #favorites-counter { font-weight: bold; }
-    </style>
+    <title>Carte Vélo 64</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
+  <style>
+  .leaflet-control-custom {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+     display: flex;
+    flex-direction: column;
+    
+  }
+  .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  .leaflet-control-custom .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom h2 {
+    margin: 0;
+    padding: 10px;
+  }
+  .leaflet-control-custom img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .leaflet-control-custom .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom .offices-button {
+    background-color: #007bff;
+  color: white; /* Assurez-vous que le texte reste visible */
+  padding-left: 10px; /* Ajustez cette valeur si nécessaire */
+}
+  .leaflet-control-custom .offices-button:hover {
+    background-color: #0056b3;
+  }
+    .leaflet-control-custom .parcours-button {
+    background-color: #dc3545;
+  }
+  .leaflet-control-custom .parcours-button:hover {
+    background-color: #c82333;
+  }
+  .leaflet-control-custom .bike-button {
+    background-color: #ffc107;
+  }
+  .leaflet-control-custom .bike-button:hover {
+    background-color: #e0a800;
+  }
+  .leaflet-control-custom .accommodations-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .accommodations-button:hover {
+    background-color: #1e7e34;
+  }
+    .leaflet-control-custom .mobilite-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .mobilite-button:hover {
+    background-color: #28a745;
+  }
+
+    .leaflet-control-custom .submenu {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .leaflet-control-custom .submenu button {
+    background-color: #1e7e34;
+     }
+  .leaflet-control-custom .submenu button:hover {
+    background-color: #28a745;
+  }
+       .leaflet-control-custom .bike-submenu button {
+  background-color: #ffc107; /* Couleur du bouton "Points Vélo" */
+}
+.leaflet-control-custom .bike-submenu button:hover {
+  background-color: #e0a800; /* Couleur du bouton "Points Vélo" au survol */
+}
+
+.leaflet-control-custom .accommodations-submenu button {
+  background-color: #28a745; /* Couleur du bouton "Hébergements" */
+}
+.leaflet-control-custom .accommodations-submenu button:hover {
+  background-color: #1e7e34; /* Couleur du bouton "Hébergements" au survol */
+}
+      .en-savoir-plus-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+  }
+  .en-savoir-plus-button:hover {
+    background-color: #0056b3;
+  }
+
+.en-savoir-plus-button2 {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+  }
+  .en-savoir-plus-button2:hover {
+    background-color: #c82333;
+  }
+   .selected-icons {
+  position: absolute;
+  top: 10px;
+  left: 100px; /* Ajustez cette valeur pour éviter de cacher les boutons de zoom */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 10px;
+  z-index: 1000; /* Ensure it appears above the map */
+}
+.selected-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+}
+.selected-icons .cross {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+} 
+ #info-box {
+  font-family: Arial, sans-serif;
+   font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  max-height: none; /* Supprime la hauteur maximale */
+  overflow-y: hidden; /* Supprime l'ascenseur vertical */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
+}
+    #favorites {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    #favorites img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    #viewFavorites, #exitFavorites {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #exitFavorites {
+      background-color: red;
+    }
+    .icon-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-button img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
+    <div id="map" style="height: 100vh;"></div>
+    <div id="info-box" style="display: none;"></div>
+    <div id="selected-icons"></div>
 
-<div id="map"></div>
-<div id="info-box"></div>
-<div id="selected-icons"></div>
-<div>Favoris: <span id="favorites-counter">0</span></div>
+    <script>
+        // Initialisation de la carte
+        var map = L.map('map').setView([43.4711, -1.5587], 12); // Coordonnées de départ
 
-<script>
-var map = L.map('map').setView([43.4683, -1.5566], 13);
+        // Ajouter une couche de tuiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-// Ajouter un fond de carte
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
-}).addTo(map);
+        // Variables pour gérer les couches
+        var currentGpxLayer = null; // Pour stocker la couche GPX actuelle
+        var officesLayer, bikeRoutesLayer, bikeParkingLayer, waterPointsLayer, hotelsLayer, campingsLayer, autreshebLayer, campingCarLayer;
 
-// URLs des données
-var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
-var bikeParkingUrl = 'data/bike_parking.geojson';
-var waterPointsUrl = 'data/water_points.geojson';
-var hotelsUrl = 'data/HOT.geojson';
-var campingCarUrl = 'data/ACC.geojson';
-var campingsUrl = 'data/HPA.geojson';
-var autreshebUrl = 'data/AUTRESHEEB.geojson';
-var BikeRoutesUrl = 'data/ITIVELO.geojson';
+        // URLs des données
+        var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
+        var bikeParkingUrl = 'data/bike_parking.geojson';
+        var waterPointsUrl = 'data/water_points.geojson';
+        var hotelsUrl = 'data/HOT.geojson';
+        var campingCarUrl = 'data/ACC.geojson';
+        var campingsUrl = 'data/HPA.geojson';
+        var autreshebUrl = 'data/AUTRESHEEB.geojson';
+        var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
-var favorites = new Set(); // Utiliser un Set pour stocker les favoris
-var favoriteLayer = L.layerGroup().addTo(map); // Calque pour les favoris
+        // Fonction pour masquer la boîte d'information
+        function hideInfoBox() {
+            var infoBox = document.getElementById('info-box');
+            infoBox.style.display = 'none';
+        }
 
-function updateFavoritesCounter() {
-    var counter = document.getElementById('favorites-counter');
-    if (counter) {
-        counter.innerText = favorites.size; // Mettre à jour le compteur
-    }
-}
+        // Fonction pour afficher la boîte d'information
+        function showInfoBox(content) {
+            var infoBox = document.getElementById('info-box');
+            infoBox.innerHTML = content;
+            infoBox.style.display = 'block';
+        }
 
-function toggleFavorite(elementId, marker) {
-    if (favorites.has(elementId)) {
-        favorites.delete(elementId); // Retirer des favoris
-        favoriteLayer.removeLayer(marker); // Retirer le marqueur des favoris
-        return 'Ajouter aux favoris';
-    } else {
-        favorites.add(elementId); // Ajouter aux favoris
-        favoriteLayer.addLayer(marker); // Ajouter le marqueur aux favoris
-        return 'Retirer des favoris';
-    }
-}
-
-var customControl = L.Control.extend({
-    options: {
-        position: 'topleft'
-    },
-    onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-control-custom');
-
-        var header = L.DomUtil.create('div', 'header', container);
-        var title = L.DomUtil.create('h2', '', header);
-        title.innerHTML = 'Carte vélo 64';
-
-        var buttonContainer = L.DomUtil.create('div', 'button-container', container);
-
-        var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
-        buttonOffices.innerHTML = 'Offices de Tourisme';
-        L.DomEvent.on(buttonOffices, 'click', function () {
-            addDataToLayer(officesUrl, true, '#007bff');
+        // Événement de clic sur la carte
+        map.on('click', function() {
+            hideInfoBox(); // Masquer la boîte d'information
+            if (currentGpxLayer) {
+                map.removeLayer(currentGpxLayer); // Retirer la couche GPX si elle existe
+                currentGpxLayer = null;
+            }
         });
 
-        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
-        buttonBikeRoutes.innerHTML = 'Parcours vélo';
-        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-            addDataToLayer(BikeRoutesUrl, false, '#00FF00');
+        // Création d'un contrôle personnalisé pour gérer les couches
+        var customControl = L.Control.extend({
+            options: {
+                position: 'topleft'
+            },
+            onAdd: function(map) {
+                var container = L.DomUtil.create('div', 'leaflet-control-custom');
+
+                // Titre et logo
+                var header = L.DomUtil.create('div', 'header', container);
+                var logo = L.DomUtil.create('img', '', header);
+                logo.src = 'icons/LOGO_VISIT64.png'; // Assurez-vous que le chemin est correct
+                var title = L.DomUtil.create('h2', '', header);
+                title.innerHTML = 'Carte vélo 64';
+
+                // Conteneur pour les boutons
+                var buttonContainer = L.DomUtil.create('div', 'button-container', container);
+
+                // Bouton pour les bureaux de tourisme
+                var buttonOffices = L.DomUtil.create('button', 'offices-button', buttonContainer);
+                buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
+                L.DomEvent.on(buttonOffices, 'click', function() {
+                    toggleLayer(officesLayer, officesUrl, null, null, 'icons/tourist_office.png', function(url, layer) {
+                        addDataToLayer(url, layer, '#007bff', true);
+                    });
+                });
+
+                // Bouton pour les parcours vélo
+                var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
+                buttonBikeRoutes.innerHTML = 'Parcours vélo';
+                L.DomEvent.on(buttonBikeRoutes, 'click', function() {
+                    toggleLayer(bikeRoutesLayer, BikeRoutesUrl, null, null, 'icons/velo.png', function(url, layer) {
+                        addBikeRoutesLayer(url, layer);
+                    });
+                });
+
+                // Bouton pour la mobilité et services
+                var buttonBike = L.DomUtil.create('button', 'bike-button', buttonContainer);
+                buttonBike.innerHTML = 'Mobilité et Services';
+                var submenu = L.DomUtil.create('div', 'submenu bike-submenu', buttonContainer);
+
+                // Sous-menu pour le parking à vélo
+                var buttonBikeParking = L.DomUtil.create('button', '', submenu);
+                buttonBikeParking.innerHTML = 'Parking à vélo';
+                L.DomEvent.on(buttonBikeParking, 'click', function() {
+                    toggleLayer(bikeParkingLayer, bikeParkingUrl, null, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
+                });
+
+                // Sous-menu pour les points d'eau
+                var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+                buttonWaterPoints.innerHTML = 'Points d\'eau';
+                L.DomEvent.on(buttonWaterPoints, 'click', function() {
+                    toggleLayer(waterPointsLayer, waterPointsUrl, null, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
+                });
+
+                // Afficher ou masquer le sous-menu
+                L.DomEvent.on(buttonBike, 'click', function() {
+                    submenu.style.display = submenu.style.display === 'none' || submenu.style.display === '' ? 'block' : 'none';
+                });
+
+                // Bouton pour les hébergements
+                var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
+                buttonAccommodations.innerHTML = 'Hébergements Accueil vélo';
+                var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', buttonContainer);
+
+                // Sous-menu pour les hôtels
+                var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
+                buttonHotels.innerHTML = 'Hôtels';
+                L.DomEvent.on(buttonHotels, 'click', function() {
+                    toggleLayer(hotelsLayer, hotelsUrl, null, 'hotel', 'icons/hotel.png', addGeoJsonLayer);
+                });
+
+                // Sous-menu pour les campings
+                var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+                buttonCampings.innerHTML = 'Campings';
+                L.DomEvent.on(buttonCampings, 'click', function() {
+                    toggleLayer(campingsLayer, campingsUrl, null, 'camping', 'icons/camping.png', addGeoJsonLayer);
+                });
+
+                // Sous-menu pour les autres hébergements
+                var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
+                buttonautresheb.innerHTML = 'Autres hébergements';
+                L.DomEvent.on(buttonautresheb, 'click', function() {
+                    toggleLayer(autreshebLayer, autreshebUrl, null, 'autresheb', 'icons/logo_acc_velo.png', addGeoJsonLayer);
+                });
+
+                // Sous-menu pour les aires de camping-car
+                var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
+                buttonCampingCar.innerHTML = 'Aires de camping-car';
+                L.DomEvent.on(buttonCampingCar, 'click', function() {
+                    toggleLayer(campingCarLayer, campingCarUrl, null, 'camping_car', 'icons/camping-car.png', addGeoJsonLayer);
+                });
+
+                // Afficher ou masquer le sous-menu des hébergements
+                L.DomEvent.on(buttonAccommodations, 'click', function() {
+                    submenuAccommodations.style.display = submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '' ? 'block' : 'none';
+                });
+
+                return container; // Retourner le conteneur personnalisé
+            }
         });
 
-        var buttonBike = L.DomUtil.create('button', 'bike-button', container);
-        buttonBike.innerHTML = 'Mobilité et Services';
-        var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
+        map.addControl(new customControl()); // Ajouter le contrôle personnalisé à la carte
 
-        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
-        buttonBikeParking.innerHTML = 'Parking à vélo';
-        L.DomEvent.on(buttonBikeParking, 'click', function () {
-            addDataToLayer(bikeParkingUrl, false, '#FF0000');
-        });
-
-        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
-        buttonWaterPoints.innerHTML = 'Points d\'eau';
-        L.DomEvent.on(buttonWaterPoints, 'click', function () {
-            addDataToLayer(waterPointsUrl, false, '#0000FF');
-        });
-
-        L.DomEvent.on(buttonBike, 'click', function () {
-            submenu.style.display = submenu.style.display === 'none' || submenu.style.display === '' ? 'block' : 'none';
-        });
-
-        var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
-        buttonAccommodations.innerHTML = 'Hébergements Accueil vélo';
-        var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
-
-        var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonHotels.innerHTML = 'Hôtels';
-        L.DomEvent.on(buttonHotels, 'click', function () {
-            addDataToLayer(hotelsUrl, false, '#FFFF00');
-        });
-
-        var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonCampings.innerHTML = 'Campings';
-        L.DomEvent.on(buttonCampings, 'click', function () {
-            addDataToLayer(campingsUrl, false, '#FFA500');
-        });
-
-        var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonCampingCar.innerHTML = 'Aires de camping-car';
-        L.DomEvent.on(buttonCampingCar, 'click', function () {
-            addDataToLayer(campingCarUrl, false, '#FF00FF');
-        });
-
-        L.DomEvent.on(buttonAccommodations, 'click', function () {
-            submenuAccommodations.style.display = submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '' ? 'block' : 'none';
-        });
-
-        return container;
-    }
-});
-
-map.addControl(new customControl());
-
-// fonction pour afficher infoBox
-function showInfoBox(content) {
-    var infoBox = document.getElementById('info-box');
-    infoBox.innerHTML = content;
-    infoBox.style.display = 'block';
-}
-
-// fonction pour ajouter les données à la carte
-function addDataToLayer(url, isOffice, color) {
-    $.getJSON(url, function(data) {
-        var layerGroup = L.layerGroup().addTo(map);
-        data.elements.forEach(function(element) {
-            var popupContent = "";
-            if (element.tags) {
-                if (isOffice) {
-                    popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
-                    if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-                    if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
-                    if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-                    if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${element.tags.opening_hours}<br><br>`;
-                    if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
-                } else {
-                    popupContent += `<strong>${element.tags.name || "No name"}</strong><br>`;
+        // Fonction pour ajouter une icône sélectionnée avec une croix pour la supprimer
+        function toggleLayer(layer, url, icon, type, iconUrl, callback) {
+            if (map.hasLayer(layer)) {
+                map.removeLayer(layer); // Retirer la couche
+                removeSelectedIcon(iconUrl); // Retirer l'icône sélectionnée
+            } else {
+                if (callback) {
+                    callback(url, layer, icon, type);
                 }
+                map.addLayer(layer); // Ajouter la couche
+                addSelectedIcon(iconUrl, layer); // Ajouter l'icône sélectionnée
             }
+        }
 
-            // Bouton pour ajouter/enlever des favoris
-            const favoriteButtonText = favorites.has(element.id) ? 'Retirer des favoris' : 'Ajouter aux favoris';
-            popupContent += `<button id="favorite-btn-${element.id}" class="favorite-button">${favoriteButtonText}</button>`;
+        // Fonction pour ajouter une icône sélectionnée
+        function addSelectedIcon(iconUrl, layer) {
+            var selectedIconsContainer = document.getElementById('selected-icons');
+            if (!selectedIconsContainer) return;
 
-            if (element.type === "node") {
-                var markerOptions = isOffice ? { icon: L.icon({ iconUrl: 'icons/tourist_office.png' }) } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-                var marker = L.marker([element.lat, element.lon], markerOptions);
+            var iconWrapper = document.createElement('div');
+            iconWrapper.style.position = 'relative';
 
-                marker.on('click', function(e) {
-                    L.DomEvent.stopPropagation(e); // Empêche la propagation de l'événement click à la carte
-                    showInfoBox(popupContent);
+            var img = document.createElement('img');
+            img.src = iconUrl;
+            img.dataset.layer = layer._leaflet_id;
+            img.onclick = function() {
+                map.removeLayer(layer);
+                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône lors du clic
+            };
 
-                    // Gestion du clic sur le bouton de favoris
-                    const favoriteButton = document.getElementById(`favorite-btn-${element.id}`);
-                    if (favoriteButton) {
-                        favoriteButton.onclick = function() {
-                            const newText = toggleFavorite(element.id, marker);
-                            favoriteButton.innerText = newText;
-                            updateFavoritesCounter(); // Mettre à jour le compteur de favoris
-                        };
-                    }
-                });
-                layerGroup.addLayer(marker);
-            } else if (element.type === "way") {
-                var latlngs = element.geometry.map(function(geo) {
-                    return [geo.lat, geo.lon];
-                });
-                var polygon = L.polygon(latlngs, { color: color });
-                polygon.on('click', function() {
-                    showInfoBox(popupContent);
-                });
-                layerGroup.addLayer(polygon);
+            var cross = document.createElement('div');
+            cross.className = 'cross';
+            cross.innerHTML = '✖';
+            cross.onclick = function() {
+                map.removeLayer(layer);
+                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône lors du clic
+            };
 
-                // Calculer le centroïde du polygone
-                var centroid = polygon.getBounds().getCenter();
-                var markerOptions = isOffice ? { icon: L.icon({ iconUrl: 'icons/tourist_office.png' }) } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-                var marker = L.marker(centroid, markerOptions);
-                marker.on('click', function(e) {
-                    L.DomEvent.stopPropagation(e); // Empêche la propagation de l'événement click à la carte
-                    showInfoBox(popupContent);
-                });
-                layerGroup.addLayer(marker);
-            }
-        });
-    });
-}
+            iconWrapper.appendChild(img);
+            iconWrapper.appendChild(cross);
+            selectedIconsContainer.appendChild(iconWrapper); // Ajouter l'icône au conteneur
+        }
 
-// Appels aux fonctions pour charger les différentes couches
-addDataToLayer(officesUrl, true, '#007bff');
-addDataToLayer(bikeParkingUrl, false, '#FF0000');
-addDataToLayer(waterPointsUrl, false, '#0000FF');
-addDataToLayer(hotelsUrl, false, '#FFFF00');
-addDataToLayer(campingCarUrl, false, '#FF00FF');
-addDataToLayer(campingsUrl, false, '#FFA500');
-addDataToLayer(autreshebUrl, false, '#800080');
-addDataToLayer(BikeRoutesUrl, false, '#00FF00');
+        // Fonction pour retirer une icône sélectionnée
+        function removeSelectedIcon(iconUrl) {
+            var selectedIconsContainer = document.getElementById('selected-icons');
+            if (!selectedIconsContainer) return;
 
-</script>
+            var imgs = selectedIconsContainer.getElementsByTagName('img');
+            Array.from(imgs).forEach(function(img) {
+                if (img.src.includes(iconUrl)) {
+                    selectedIconsContainer.removeChild(img.parentElement); // Retirer l'icône du conteneur
+                }
+            });
+        }
+
+        // Fonction pour ajouter des données à une couche
+        function addDataToLayer(url, layer, color, isGeoJson) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: function() {
+                            return { color: color || '#3388ff' };
+                        },
+                        onEachFeature: function(feature, layer) {
+                            layer.on('click', function() {
+                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                showInfoBox(content); // Afficher des informations sur la couche
+                            });
+                        }
+                    }).addTo(layer); // Ajouter les données à la couche
+                })
+                .catch(err => console.error('Erreur lors du chargement des données:', err));
+        }
+
+        // Fonction pour ajouter une couche GeoJSON
+        function addGeoJsonLayer(url, layer) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data).addTo(layer); // Ajouter les données GeoJSON à la couche
+                })
+                .catch(err => console.error('Erreur lors du chargement des données GeoJSON:', err));
+        }
+
+        // Fonction pour ajouter des parcours de vélo
+        function addBikeRoutesLayer(url, layer) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    L.geoJSON(data, {
+                        style: { color: '#ff0000', weight: 3 }
+                    }).addTo(layer); // Ajouter les parcours de vélo à la couche
+                })
+                .catch(err => console.error('Erreur lors du chargement des parcours de vélo:', err));
+        }
+
+        // Écouter l'événement de la carte pour masquer la boîte d'information
+        map.on('click', hideInfoBox); // Masquer la boîte d'information lors d'un clic sur la carte
+    </script>
 </body>
 </html>
-2
