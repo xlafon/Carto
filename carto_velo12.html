@@ -636,9 +636,9 @@ function showFavorites() {
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
     console.log("Adding favorite:", item); // Log pour déboguer
-    if (Array.isArray(item.lat) && Array.isArray(item.lon)) {
-      var lat = item.lat; // Utilisez la deuxième valeur du tableau
-      var lon = item.lon; // Utilisez la deuxième valeur du tableau
+    if (item.lat && item.lon && item.icon && item.popupContent) {
+      var lat = Array.isArray(item.lat) ? item.lat : item.lat;
+      var lon = Array.isArray(item.lon) ? item.lon : item.lon;
       var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
       marker.bindPopup(item.popupContent);
     } else {
@@ -668,6 +668,7 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
 
@@ -881,4 +882,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+6
