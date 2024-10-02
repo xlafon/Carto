@@ -224,6 +224,7 @@
       width: 100%;
       height: 100%;
     }
+    
   </style>
 
 
@@ -614,10 +615,46 @@ if (feature.properties["Identifiant"]) {
   infoBox.style.display = 'none';
 }
   
-  function showInfoBox(content) {
-  var infoBox = document.getElementById('info-box');
-  infoBox.innerHTML = content;
-  infoBox.style.display = 'block';
+  function showInfoBox(content, itemId) {
+    var infoBox = document.getElementById('info-box');
+    infoBox.innerHTML = content;
+
+    // Créer le bouton pour ajouter aux favoris
+    var favButton = document.createElement('button');
+    favButton.id = 'fav-button-' + itemId; // ID unique basé sur l'ID de l'élément
+    favButton.innerHTML = isFavorite(itemId) ? 
+        '<img src="icons/remove_fav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">' : 
+        '<img src="icons/add_fav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
+    
+    // Ajouter un gestionnaire d'événements pour le bouton
+    favButton.onclick = function() {
+        toggleFavorite(itemId, favButton);
+    };
+    
+    infoBox.appendChild(favButton);
+    infoBox.style.display = 'block';
+}
+  // Fonction pour vérifier si un élément est déjà dans les favoris
+function isFavorite(itemId) {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    return favorites.includes(itemId);
+}
+
+// Fonction pour ajouter ou retirer des favoris
+function toggleFavorite(itemId, favButton) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    if (isFavorite(itemId)) {
+        // Retirer de favoris
+        favorites = favorites.filter(id => id !== itemId);
+        favButton.innerHTML = '<img src="icons/add_fav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
+    } else {
+        // Ajouter aux favoris
+        favorites.push(itemId);
+        favButton.innerHTML = '<img src="icons/remove_fav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">';
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
 }
   
 
@@ -814,5 +851,5 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-1
+2
 
