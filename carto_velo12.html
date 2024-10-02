@@ -321,16 +321,17 @@
     var favorites = [];
 
     function addToFavorites(item) {
-      if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
-        favorites.push({
-          lat: item.lat,
-          lon: item.lon,
-          icon: item.icon,
-          popupContent: item.popupContent
-        });
-        updateFavoritesCount();
-      }
-    }
+  if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
+    favorites.push({
+      lat: item.lat,
+      lon: item.lon,
+      icon: item.icon,
+      popupContent: item.popupContent
+    });
+    updateFavoritesCount();
+  }
+}
+
 
     function removeFromFavorites(item) {
       var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
@@ -349,30 +350,31 @@
     }
 
     function showInfoBox(content, item) {
-      var infoBox = document.getElementById('info-box');
-      infoBox.innerHTML = content;
+  var infoBox = document.getElementById('info-box');
+  infoBox.innerHTML = content;
 
-      var favoriteButton = document.createElement('img');
-      favoriteButton.className = 'favorite-button';
-      if (isFavorite(item)) {
-        favoriteButton.src = 'icons/removefav.png';
-        favoriteButton.alt = 'Retirer des favoris';
-        favoriteButton.onclick = function() {
-          removeFromFavorites(item);
-          showInfoBox(content, item); // Mettre à jour le bouton
-        };
-      } else {
-        favoriteButton.src = 'icons/addfav.png';
-        favoriteButton.alt = 'Ajouter aux favoris';
-        favoriteButton.onclick = function() {
-          addToFavorites(item);
-          showInfoBox(content, item); // Mettre à jour le bouton
-        };
-      }
+  var favoriteButton = document.createElement('img');
+  favoriteButton.className = 'favorite-button';
+  if (isFavorite(item)) {
+    favoriteButton.src = 'icons/removefav.png';
+    favoriteButton.alt = 'Retirer des favoris';
+    favoriteButton.onclick = function() {
+      removeFromFavorites(item);
+      showInfoBox(content, item); // Mettre à jour le bouton
+    };
+  } else {
+    favoriteButton.src = 'icons/addfav.png';
+    favoriteButton.alt = 'Ajouter aux favoris';
+    favoriteButton.onclick = function() {
+      addToFavorites(item);
+      showInfoBox(content, item); // Mettre à jour le bouton
+    };
+  }
 
-      infoBox.appendChild(favoriteButton);
-      infoBox.style.display = 'block';
-    }
+  infoBox.appendChild(favoriteButton);
+  infoBox.style.display = 'block';
+}
+
 
     function hideInfoBox() {
       var infoBox = document.getElementById('info-box');
@@ -388,53 +390,54 @@
     });
 
     function addDataToLayer(url, layer, color, isOffice = false) {
-      $.getJSON(url, function(data) {
-        data.elements.forEach(function(element) {
-          var popupContent = "";
-          if (element.tags) {
-            if (isOffice) {
-              popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
-              if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-              if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
-              if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
-              if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
-              if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
-              popupContent += `(source OSM)`;
-            } else {
-              popupContent += element.tags.name || "No name";
-            }
-          }
+  $.getJSON(url, function(data) {
+    data.elements.forEach(function(element) {
+      var popupContent = "";
+      if (element.tags) {
+        if (isOffice) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+          if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          popupContent += `(source OSM)`;
+        } else {
+          popupContent += element.tags.name || "No name";
+        }
+      }
 
-          if (element.type === "node") {
-            var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-            var marker = L.marker([element.lat, element.lon], markerOptions);
-            marker.on('click', function(e) {
-              L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
-            });
-            layer.addLayer(marker);
-          } else if (element.type === "way") {
-            var latlngs = element.geometry.map(function(geo) {
-              return [geo.lat, geo.lon];
-            });
-                        var polygon = L.polygon(latlngs, { color: color });
-            polygon.on('click', function() {
-              showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
-            });
-            layer.addLayer(polygon);
-
-            var centroid = polygon.getBounds().getCenter();
-            var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-            var marker = L.marker(centroid, markerOptions);
-            marker.on('click', function(e) {
-              L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
-            });
-            layer.addLayer(marker);
-          }
+      if (element.type === "node") {
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker([element.lat, element.lon], markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
         });
-      });
-    }
+        layer.addLayer(marker);
+      } else if (element.type === "way") {
+        var latlngs = element.geometry.map(function(geo) {
+          return [geo.lat, geo.lon];
+        });
+        var polygon = L.polygon(latlngs, { color: color });
+        polygon.on('click', function() {
+          showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
+        });
+        layer.addLayer(polygon);
+
+        var centroid = polygon.getBounds().getCenter();
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker(centroid, markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
+        });
+        layer.addLayer(marker);
+      }
+    });
+  });
+}
+
 
     function addGeoJsonLayer(url, layer, icon, type) {
       $.getJSON(url, function(data) {
@@ -663,29 +666,30 @@
     }
 
     function showFavorites() {
-      // Effacer toutes les couches de la carte
-      map.eachLayer(function(layer) {
-        if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
-        map.removeLayer(layer);
-      });
+  // Effacer toutes les couches de la carte
+  map.eachLayer(function(layer) {
+    if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+    map.removeLayer(layer);
+  });
 
-      // Ajouter les favoris à la carte
-      favorites.forEach(function(item) {
-        var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
-        marker.bindPopup(item.popupContent);
-      });
+  // Ajouter les favoris à la carte
+  favorites.forEach(function(item) {
+    var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+    marker.bindPopup(item.popupContent);
+  });
 
-      // Ajouter le bouton "Quitter les favoris"
-      var quitFavoritesButton = document.createElement('button');
-      quitFavoritesButton.className = 'quit-favorites-button';
-      quitFavoritesButton.innerText = 'Quitter les favoris';
-      quitFavoritesButton.onclick = function() {
-        location.reload(); // Recharger la page pour réinitialiser la carte
-      };
-      document.getElementById('favorites-box').appendChild(quitFavoritesButton);
-    }
+  // Ajouter le bouton "Quitter les favoris"
+  var quitFavoritesButton = document.createElement('button');
+  quitFavoritesButton.className = 'quit-favorites-button';
+  quitFavoritesButton.innerText = 'Quitter les favoris';
+  quitFavoritesButton.onclick = function() {
+    location.reload(); // Recharger la page pour réinitialiser la carte
+  };
+  document.getElementById('favorites-box').appendChild(quitFavoritesButton);
+}
 
-    var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
+
+     var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
     var hotelsUrl = 'data/HOT.geojson';
@@ -835,4 +839,4 @@
   </script>
 </body>
 </html>
-6
+7
