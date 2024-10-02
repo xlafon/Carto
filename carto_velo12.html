@@ -186,7 +186,7 @@
       display: none;
       z-index: 1000;
     }
-    .favorites-box {
+        .favorites-box {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -224,28 +224,26 @@
       cursor: pointer;
     }
     .quit-favorites-button {
-  display: block;
-  margin-top: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  background-color: #dc3545;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.quit-favorites-button:hover {
-  background-color: #c82333;
-}
-
+      display: block;
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .quit-favorites-button:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 <body>
   <div id="map" style="width: 100%; height: 600px;"></div>
   <div id="info-box"></div>
-    <div class="selected-icons" id="selected-icons"></div>
+  <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
     <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
     <span id="favorites-count">0</span>
@@ -323,14 +321,19 @@
     var favorites = [];
 
     function addToFavorites(item) {
-      if (!favorites.includes(item)) {
-        favorites.push(item);
+      if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
+        favorites.push({
+          lat: item.lat,
+          lon: item.lon,
+          icon: item.icon,
+          popupContent: item.popupContent
+        });
         updateFavoritesCount();
       }
     }
 
     function removeFromFavorites(item) {
-      var index = favorites.indexOf(item);
+      var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
       if (index > -1) {
         favorites.splice(index, 1);
         updateFavoritesCount();
@@ -342,7 +345,7 @@
     }
 
     function isFavorite(item) {
-      return favorites.includes(item);
+      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
     }
 
     function showInfoBox(content, item) {
@@ -407,16 +410,16 @@
             var marker = L.marker([element.lat, element.lon], markerOptions);
             marker.on('click', function(e) {
               L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, element.tags);
+              showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
             });
             layer.addLayer(marker);
           } else if (element.type === "way") {
             var latlngs = element.geometry.map(function(geo) {
               return [geo.lat, geo.lon];
             });
-            var polygon = L.polygon(latlngs, { color: color });
+                        var polygon = L.polygon(latlngs, { color: color });
             polygon.on('click', function() {
-              showInfoBox(popupContent, element.tags);
+              showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
             });
             layer.addLayer(polygon);
 
@@ -425,7 +428,7 @@
             var marker = L.marker(centroid, markerOptions);
             marker.on('click', function(e) {
               L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, element.tags);
+              showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
             });
             layer.addLayer(marker);
           }
@@ -453,7 +456,7 @@
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
-                                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                   var commune = feature.properties.Commune;
                   var identifiant = feature.properties.Identifiant;
@@ -522,7 +525,7 @@
                   } else if (feature.properties["Identifiant"].startsWith("HCO")) {
                     if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                       var commune = feature.properties.Commune;
-                      var identifiant = feature.properties.Identifiant;
+                                            var identifiant = feature.properties.Identifiant;
                       var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
                       var moreInfoUrl = `https://www.tourisme64.com/hebergements/hebergement-collectif/${commune}/${identifiant}-${raisonSociale}/`;
                       popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
@@ -533,7 +536,7 @@
             }
             if (popupContent) {
               layer.on('click', function() {
-                showInfoBox(popupContent, feature.properties);
+                showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent });
               });
             }
           }
@@ -575,7 +578,7 @@
                 className: 'darkened-icon'
               }));
               currentMarker = layer;
-                            var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
+              var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
               currentGpxLayer = new L.GPX(gpxUrl, {
                 async: true,
                 marker_options: {
@@ -595,7 +598,7 @@
               }).on('loaded', function(e) {
                 map.fitBounds(e.target.getBounds());
               }).addTo(map);
-              showInfoBox(popupContent, feature.properties);
+              showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent });
             });
           }
         }).addTo(layer);
@@ -659,6 +662,29 @@
       });
     }
 
+    function showFavorites() {
+      // Effacer toutes les couches de la carte
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+        map.removeLayer(layer);
+      });
+
+      // Ajouter les favoris à la carte
+      favorites.forEach(function(item) {
+        var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+        marker.bindPopup(item.popupContent);
+      });
+
+      // Ajouter le bouton "Quitter les favoris"
+      var quitFavoritesButton = document.createElement('button');
+      quitFavoritesButton.className = 'quit-favorites-button';
+      quitFavoritesButton.innerText = 'Quitter les favoris';
+      quitFavoritesButton.onclick = function() {
+        location.reload(); // Recharger la page pour réinitialiser la carte
+      };
+      document.getElementById('favorites-box').appendChild(quitFavoritesButton);
+    }
+
     var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
@@ -702,7 +728,7 @@
           });
         });
 
-        var buttonBike = L.DomUtil.create('button', 'bike-button', container);
+                var buttonBike = L.DomUtil.create('button', 'bike-button', container);
         buttonBike.innerHTML = 'Mobilité et Services';
         var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
 
@@ -769,11 +795,10 @@
     map.addControl(new customControl());
 
     document.getElementById('view-favorites').addEventListener('click', function() {
-  showFavorites();
-});
+      showFavorites();
+    });
 
-
-       function translateOpeningHours(openingHours) {
+    function translateOpeningHours(openingHours) {
       return openingHours.replace(/Mo/g, 'Lun')
                          .replace(/Tu/g, 'Mar')
                          .replace(/We/g, 'Mer')
@@ -810,4 +835,4 @@
   </script>
 </body>
 </html>
-4
+5
