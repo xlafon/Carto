@@ -623,8 +623,8 @@ if (feature.properties["Identifiant"]) {
     var favButton = document.createElement('button');
     favButton.id = 'fav-button-' + itemId; // ID unique basé sur l'ID de l'élément
     favButton.innerHTML = isFavorite(itemId) ? 
-        '<img src="icons/remove_fav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">' : 
-        '<img src="icons/add_fav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
+        '<img src="icons/removefav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">' : 
+        '<img src="icons/addfav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
     
     // Ajouter un gestionnaire d'événements pour le bouton
     favButton.onclick = function() {
@@ -851,5 +851,5 @@ function removeSelectedIcon(iconUrl) {
 
   
   </script>
-2
+1
 
