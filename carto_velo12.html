@@ -538,7 +538,7 @@
           }
         }
         if (popupContent) {
-                    layer.on('click', function() {
+          layer.on('click', function() {
             showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent });
           });
         }
@@ -546,6 +546,7 @@
     }).addTo(layer);
   });
 }
+
 
 function addBikeRoutesLayer(url, layer) {
   $.getJSON(url, function(data) {
@@ -608,6 +609,7 @@ function addBikeRoutesLayer(url, layer) {
   });
 }
 
+
 function showFavorites() {
   // Effacer toutes les couches de la carte
   map.eachLayer(function(layer) {
@@ -643,6 +645,7 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
     function addKmlLayer(url, layer) {
@@ -855,4 +858,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-9
+1
