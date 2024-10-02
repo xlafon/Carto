@@ -1,102 +1,236 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carte Vélo 64</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        /* Styles généraux pour la carte */
+  <meta charset="UTF-8">
+  <title>Carte avec Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
+  <style>
+  .leaflet-control-custom {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+     display: flex;
+    flex-direction: column;
+    
+  }
+  .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  .leaflet-control-custom .header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom h2 {
+    margin: 0;
+    padding: 10px;
+  }
+  .leaflet-control-custom img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  .leaflet-control-custom .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .leaflet-control-custom .offices-button {
+    background-color: #007bff;
+  color: white; /* Assurez-vous que le texte reste visible */
+  padding-left: 10px; /* Ajustez cette valeur si nécessaire */
+}
+  .leaflet-control-custom .offices-button:hover {
+    background-color: #0056b3;
+  }
+    .leaflet-control-custom .parcours-button {
+    background-color: #dc3545;
+  }
+  .leaflet-control-custom .parcours-button:hover {
+    background-color: #c82333;
+  }
+  .leaflet-control-custom .bike-button {
+    background-color: #ffc107;
+  }
+  .leaflet-control-custom .bike-button:hover {
+    background-color: #e0a800;
+  }
+  .leaflet-control-custom .accommodations-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .accommodations-button:hover {
+    background-color: #1e7e34;
+  }
+    .leaflet-control-custom .mobilite-button {
+    background-color: #28a745;
+  }
+  .leaflet-control-custom .mobilite-button:hover {
+    background-color: #28a745;
+  }
+
+    .leaflet-control-custom .submenu {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .leaflet-control-custom .submenu button {
+    background-color: #1e7e34;
+     }
+  .leaflet-control-custom .submenu button:hover {
+    background-color: #28a745;
+  }
+       .leaflet-control-custom .bike-submenu button {
+  background-color: #ffc107; /* Couleur du bouton "Points Vélo" */
+}
+.leaflet-control-custom .bike-submenu button:hover {
+  background-color: #e0a800; /* Couleur du bouton "Points Vélo" au survol */
+}
+
+.leaflet-control-custom .accommodations-submenu button {
+  background-color: #28a745; /* Couleur du bouton "Hébergements" */
+}
+.leaflet-control-custom .accommodations-submenu button:hover {
+  background-color: #1e7e34; /* Couleur du bouton "Hébergements" au survol */
+}
+      .en-savoir-plus-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+  }
+  .en-savoir-plus-button:hover {
+    background-color: #0056b3;
+  }
+
+.en-savoir-plus-button2 {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+  }
+  .en-savoir-plus-button2:hover {
+    background-color: #c82333;
+  }
+   .selected-icons {
+  position: absolute;
+  top: 10px;
+  left: 100px; /* Ajustez cette valeur pour éviter de cacher les boutons de zoom */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 10px;
+  z-index: 1000; /* Ensure it appears above the map */
+}
+.selected-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: relative;
+}
+.selected-icons .cross {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+} 
+ #info-box {
+  font-family: Arial, sans-serif;
+   font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  max-height: none; /* Supprime la hauteur maximale */
+  overflow-y: hidden; /* Supprime l'ascenseur vertical */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
+}
+    #favorites {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    #favorites img {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+    #viewFavorites, #exitFavorites {
+      background-color: blue;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    #exitFavorites {
+      background-color: red;
+    }
+    .icon-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .icon-button img {
+      width: 100%;
+      height: 100%;
+    }
+        /* Styles pour la carte */
         #map {
             height: 100vh; /* Hauteur de la carte */
         }
-
-        /* Style pour le conteneur d'informations */
-        #info-box {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none; /* Par défaut, cacher la boîte d'informations */
-        }
-
-        /* Styles pour les boutons de contrôle */
-        .leaflet-control-custom {
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .button-container button {
-            display: block;
-            margin: 5px 0;
-            padding: 8px;
-            cursor: pointer;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-        }
-
-        .offices-button {
-            background-color: #007bff; /* Couleur pour les bureaux de tourisme */
-        }
-
-        .parcours-button {
-            background-color: #28a745; /* Couleur pour les parcours vélo */
-        }
-
-        .bike-button {
-            background-color: #17a2b8; /* Couleur pour la mobilité et services */
-        }
-
-        .accommodations-button {
-            background-color: #ffc107; /* Couleur pour les hébergements */
-        }
-
-        .button-container button:hover {
-            opacity: 0.9; /* Légère transparence au survol */
-        }
-
-        /* Style pour les sous-menus */
-        .submenu {
-            display: none;
-            margin-top: 5px;
-        }
-
-        /* Style pour les icônes sélectionnées */
-        #selected-icons {
-            position: absolute;
-            top: 10px; /* Position en haut pour la boîte d'icônes */
-            right: 10px; /* Alignement à droite */
-            z-index: 1000;
-            display: flex;
-            flex-wrap: wrap; /* Permet le passage à la ligne */
-        }
-
-        #selected-icons img {
-            width: 30px; /* Taille des icônes */
-            height: 30px; /* Taille des icônes */
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-
-        .cross {
-            position: absolute;
-            top: 0;
-            right: 0;
-            cursor: pointer;
-            color: red;
-        }
+        /* Autres styles... */
     </style>
 </head>
-
 <body>
     <div id="map"></div>
     <div id="info-box"></div>
@@ -379,5 +513,4 @@
     </script>
 </body>
 </html>
-
-2
+4
