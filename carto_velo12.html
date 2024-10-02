@@ -219,24 +219,16 @@
     .favorite-button {
       display: block;
       margin-top: 10px;
-      padding: 5px 10px;
-      font-size: 14px;
-      font-weight: bold;
-      color: white;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
-    }
-    .favorite-button:hover {
-      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
   <div id="map" style="width: 100%; height: 600px;"></div>
   <div id="info-box"></div>
-  <div class="selected-icons" id="selected-icons"></div>
+    <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
     <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
     <span id="favorites-count">0</span>
@@ -259,7 +251,7 @@
     var campingsLayer = L.layerGroup();
     var autreshebLayer = L.layerGroup();
     var currentGpxLayer = null;
-        var currentMarker = null;
+    var currentMarker = null;
 
     // Créer une icône personnalisée pour les offices de tourisme
     var touristOfficeIcon = L.icon({
@@ -340,16 +332,18 @@
       var infoBox = document.getElementById('info-box');
       infoBox.innerHTML = content;
 
-      var favoriteButton = document.createElement('button');
+      var favoriteButton = document.createElement('img');
       favoriteButton.className = 'favorite-button';
       if (isFavorite(item)) {
-        favoriteButton.innerText = 'Retirer des favoris';
+        favoriteButton.src = 'icons/removefav.png';
+        favoriteButton.alt = 'Retirer des favoris';
         favoriteButton.onclick = function() {
           removeFromFavorites(item);
           showInfoBox(content, item); // Mettre à jour le bouton
         };
       } else {
-        favoriteButton.innerText = 'Ajouter aux favoris';
+        favoriteButton.src = 'icons/addfav.png';
+        favoriteButton.alt = 'Ajouter aux favoris';
         favoriteButton.onclick = function() {
           addToFavorites(item);
           showInfoBox(content, item); // Mettre à jour le bouton
@@ -442,7 +436,7 @@
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
-                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+                                if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                   var commune = feature.properties.Commune;
                   var identifiant = feature.properties.Identifiant;
@@ -455,7 +449,7 @@
                 if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
                 if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
                 if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]} emplacements<br>`;
-                                    if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+                if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
                   var commune = feature.properties.Commune;
@@ -564,7 +558,7 @@
                 className: 'darkened-icon'
               }));
               currentMarker = layer;
-              var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
+                            var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
               currentGpxLayer = new L.GPX(gpxUrl, {
                 async: true,
                 marker_options: {
@@ -612,7 +606,7 @@
       var selectedIconsContainer = document.getElementById('selected-icons');
       if (!selectedIconsContainer) return;
 
-            var iconWrapper = document.createElement('div');
+      var iconWrapper = document.createElement('div');
       iconWrapper.style.position = 'relative';
 
       var img = document.createElement('img');
@@ -648,7 +642,7 @@
       });
     }
 
-     var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
+    var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr"information"="office";out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
     var hotelsUrl = 'data/HOT.geojson';
@@ -761,7 +755,7 @@
       alert('Vous avez ' + favorites.length + ' offres dans vos favoris.');
     });
 
-    function translateOpeningHours(openingHours) {
+       function translateOpeningHours(openingHours) {
       return openingHours.replace(/Mo/g, 'Lun')
                          .replace(/Tu/g, 'Mar')
                          .replace(/We/g, 'Mer')
@@ -798,4 +792,4 @@
   </script>
 </body>
 </html>
-2
+3
