@@ -321,14 +321,18 @@
     var favorites = [];
 
     function addToFavorites(item) {
-  if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
-    favorites.push({
-      lat: item.lat,
-      lon: item.lon,
-      icon: item.icon,
-      popupContent: item.popupContent
-    });
-    updateFavoritesCount();
+  if (item.lat && item.lon && item.icon && item.popupContent) {
+    if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
+      favorites.push({
+        lat: item.lat,
+        lon: item.lon,
+        icon: item.icon,
+        popupContent: item.popupContent
+      });
+      updateFavoritesCount();
+    }
+  } else {
+    console.error("Invalid item data:", item);
   }
 }
 
@@ -539,7 +543,12 @@
         }
         if (popupContent) {
           layer.on('click', function() {
-            showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent });
+            var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent };
+            if (item.lat && item.lon && item.icon && item.popupContent) {
+              showInfoBox(popupContent, item);
+            } else {
+              console.error("Invalid item data:", item);
+            }
           });
         }
       }
@@ -602,12 +611,18 @@ function addBikeRoutesLayer(url, layer) {
           }).on('loaded', function(e) {
             map.fitBounds(e.target.getBounds());
           }).addTo(map);
-          showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent });
+          var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent };
+          if (item.lat && item.lon && item.icon && item.popupContent) {
+            showInfoBox(popupContent, item);
+          } else {
+            console.error("Invalid item data:", item);
+          }
         });
       }
     }).addTo(layer);
   });
 }
+
 
 
 function showFavorites() {
@@ -619,8 +634,12 @@ function showFavorites() {
 
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
-    var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
-    marker.bindPopup(item.popupContent);
+    if (item.lat && item.lon && item.icon && item.popupContent) {
+      var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+      marker.bindPopup(item.popupContent);
+    } else {
+      console.error("Invalid favorite data:", item);
+    }
   });
 
   // Ajouter le bouton "Quitter les favoris"
@@ -645,6 +664,7 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
 
@@ -858,4 +878,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
