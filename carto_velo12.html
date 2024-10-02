@@ -662,11 +662,11 @@ function toggleFavorite(itemId, favButton) {
     if (isFavorite(itemId)) {
         // Retirer de favoris
         favorites = favorites.filter(id => id !== itemId);
-        favButton.innerHTML = '<img src="icons/add_fav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
+        favButton.innerHTML = '<img src="icons/addfav.png" alt="Ajouter aux favoris" style="width: 20px; height: 20px;">';
     } else {
         // Ajouter aux favoris
         favorites.push(itemId);
-        favButton.innerHTML = '<img src="icons/remove_fav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">';
+        favButton.innerHTML = '<img src="icons/removefav.png" alt="Retirer des favoris" style="width: 20px; height: 20px;">';
     }
 
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -698,13 +698,23 @@ map.on('click', function() {
     var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
   var favorites = new Set(); // Utiliser un Set pour stocker les favoris
+var favoriteLayer = L.layerGroup().addTo(map); // Calque pour les favoris
 
-function toggleFavorite(elementId) {
+function updateFavoritesCounter() {
+    var counter = document.getElementById('favorites-counter');
+    if (counter) {
+        counter.innerText = favorites.size; // Mettre à jour le compteur
+    }
+}
+
+function toggleFavorite(elementId, marker) {
     if (favorites.has(elementId)) {
         favorites.delete(elementId); // Retirer des favoris
+        favoriteLayer.removeLayer(marker); // Retirer le marqueur des favoris
         return 'Ajouter aux favoris';
     } else {
         favorites.add(elementId); // Ajouter aux favoris
+        favoriteLayer.addLayer(marker); // Ajouter le marqueur aux favoris
         return 'Retirer des favoris';
     }
 }
@@ -735,8 +745,8 @@ var customControl = L.Control.extend({
         var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-            toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', null, null, 'icons/velo.png', function(url, layer) {
-                addBikeRoutesLayer(url, layer);
+            toggleLayer(bikeRoutesLayer, BikeRoutesUrl, null, null, 'icons/velo.png', function(url, layer) {
+                addDataToLayer(url, layer, '#00FF00', false);
             });
         });
 
@@ -894,8 +904,9 @@ function addDataToLayer(url, layer, color, isOffice = false) {
                     const favoriteButton = document.getElementById(`favorite-btn-${element.id}`);
                     if (favoriteButton) {
                         favoriteButton.onclick = function() {
-                            const newText = toggleFavorite(element.id);
+                            const newText = toggleFavorite(element.id, marker);
                             favoriteButton.innerText = newText;
+                            updateFavoritesCounter(); // Mettre à jour le compteur de favoris
                         };
                     }
                 });
@@ -945,10 +956,9 @@ addDataToLayer(campingCarUrl, campingCarLayer, '#FF00FF');
 addDataToLayer(campingsUrl, campingsLayer, '#FFA500');
 addDataToLayer(autreshebUrl, autreshebLayer, '#800080');
 
-  
-  
-
+// Ici, tu peux ajouter la logique pour charger les fichiers KML si nécessaire
+// addKMLFilesToMap(kmlFiles);
   
   </script>
-3
+4
 
