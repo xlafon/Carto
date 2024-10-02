@@ -639,6 +639,7 @@ function showFavorites() {
     if (item.lat && item.lon && item.icon && item.popupContent) {
       var lat = Array.isArray(item.lat) ? item.lat : item.lat;
       var lon = Array.isArray(item.lon) ? item.lon : item.lon;
+      console.log("Coordinates:", lat, lon); // Log pour vérifier les coordonnées
       if (lat && lon) {
         var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
         marker.bindPopup(item.popupContent);
@@ -672,6 +673,7 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
 
@@ -887,4 +889,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-7
+8
