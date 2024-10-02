@@ -96,6 +96,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="map"></div>
     <div id="info-box"></div>
@@ -103,18 +104,18 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Initialisation de la carte
-        var map = L.map('map').setView([43.4711, -1.5587], 12); // Coordonnées de départ
+        // Initialiser la carte centrée sur les coordonnées données
+        var map = L.map('map').setView([43.4711, -1.5587], 12);
 
-        // Ajouter une couche de tuiles
+        // Ajouter une couche de tuiles OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Variables pour gérer les couches
-        var currentGpxLayer = null; // Pour stocker la couche GPX actuelle
-        var officesLayer = L.layerGroup(); // Initialiser les couches comme des groupes
+        // Initialisation des couches pour différents types de données
+        var currentGpxLayer = null;
+        var officesLayer = L.layerGroup();
         var bikeRoutesLayer = L.layerGroup();
         var bikeParkingLayer = L.layerGroup();
         var waterPointsLayer = L.layerGroup();
@@ -123,7 +124,7 @@
         var autreshebLayer = L.layerGroup();
         var campingCarLayer = L.layerGroup();
 
-        // URLs des données
+        // URLs pour charger les données GeoJSON
         var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
         var bikeParkingUrl = 'data/bike_parking.geojson';
         var waterPointsUrl = 'data/water_points.geojson';
@@ -133,37 +134,37 @@
         var autreshebUrl = 'data/AUTRESHEEB.geojson';
         var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
-        // Fonction pour masquer la boîte d'information
+        // Masquer la boîte d'information
         function hideInfoBox() {
             var infoBox = document.getElementById('info-box');
-            infoBox.style.display = 'none';
+            infoBox.style.display = 'none'; // Cacher la boîte d'information
         }
 
-        // Fonction pour afficher la boîte d'information
+        // Afficher la boîte d'information avec le contenu donné
         function showInfoBox(content) {
             var infoBox = document.getElementById('info-box');
-            infoBox.innerHTML = content;
-            infoBox.style.display = 'block';
+            infoBox.innerHTML = content; // Mettre à jour le contenu
+            infoBox.style.display = 'block'; // Afficher la boîte d'information
         }
 
         // Événement de clic sur la carte
         map.on('click', function() {
-            hideInfoBox(); // Masquer la boîte d'information
+            hideInfoBox(); // Masquer la boîte d'information au clic sur la carte
             if (currentGpxLayer) {
                 map.removeLayer(currentGpxLayer); // Retirer la couche GPX si elle existe
-                currentGpxLayer = null;
+                currentGpxLayer = null; // Réinitialiser la couche GPX actuelle
             }
         });
 
-        // Création d'un contrôle personnalisé pour gérer les couches
+        // Contrôle personnalisé pour gérer les couches de la carte
         var customControl = L.Control.extend({
             options: {
-                position: 'topleft'
+                position: 'topleft' // Position du contrôle sur la carte
             },
             onAdd: function(map) {
                 var container = L.DomUtil.create('div', 'leaflet-control-custom');
 
-                // Titre et logo
+                // Ajouter le titre et le logo
                 var header = L.DomUtil.create('div', 'header', container);
                 var logo = L.DomUtil.create('img', '', header);
                 logo.src = 'icons/LOGO_VISIT64.png'; // Assurez-vous que le chemin est correct
@@ -256,21 +257,21 @@
         // Ajouter le contrôle personnalisé à la carte
         map.addControl(new customControl());
 
-        // Fonction pour ajouter une couche à la carte
+        // Fonction pour afficher ou masquer les couches
         function toggleLayer(layer, url, color, isGeoJson, iconUrl, callback) {
             if (map.hasLayer(layer)) {
-                map.removeLayer(layer); // Retirer la couche
+                map.removeLayer(layer); // Retirer la couche si elle est déjà visible
                 removeSelectedIcon(iconUrl); // Retirer l'icône sélectionnée
             } else {
-                layer.clearLayers(); // Nettoyer la couche avant d'ajouter
+                layer.clearLayers(); // Nettoyer la couche avant d'ajouter de nouvelles données
                 if (isGeoJson) {
                     addGeoJsonLayer(url, layer); // Ajouter une couche GeoJSON
                 } else {
-                    addDataToLayer(url, layer, color); // Ajouter des données
+                    addDataToLayer(url, layer, color); // Ajouter des données avec un style
                 }
                 callback(url, layer, iconUrl); // Appeler le callback pour ajouter l'icône sélectionnée
-                map.addLayer(layer); // Ajouter la couche
-                addSelectedIcon(iconUrl, layer); // Ajouter l'icône sélectionnée
+                map.addLayer(layer); // Ajouter la couche à la carte
+                addSelectedIcon(iconUrl, layer); // Ajouter l'icône sélectionnée au conteneur
             }
         }
 
@@ -279,28 +280,30 @@
             var selectedIconsContainer = document.getElementById('selected-icons');
             if (!selectedIconsContainer) return;
 
-            var iconWrapper = document.createElement('div');
-            iconWrapper.style.position = 'relative';
+            var iconWrapper = document.createElement('div'); // Créer un conteneur pour l'icône
+            iconWrapper.style.position = 'relative'; // Positionner l'icône
 
-            var img = document.createElement('img');
-            img.src = iconUrl;
-            img.dataset.layer = layer._leaflet_id;
+            var img = document.createElement('img'); // Créer une image pour l'icône
+            img.src = iconUrl; // Définir la source de l'image
+            img.dataset.layer = layer._leaflet_id; // Stocker l'identifiant de la couche
+
+            // Fonction de clic pour supprimer l'icône de la sélection
             img.onclick = function() {
-                map.removeLayer(layer);
-                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône lors du clic
+                map.removeLayer(layer); // Retirer la couche de la carte
+                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône du conteneur
             };
 
-            var cross = document.createElement('div');
-            cross.className = 'cross';
-            cross.innerHTML = '✖';
+            var cross = document.createElement('div'); // Créer un symbole de suppression
+            cross.className = 'cross'; // Ajouter une classe pour le style
+            cross.innerHTML = '✖'; // Définir le symbole
             cross.onclick = function() {
-                map.removeLayer(layer);
-                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône lors du clic
+                map.removeLayer(layer); // Retirer la couche de la carte
+                selectedIconsContainer.removeChild(iconWrapper); // Supprimer l'icône du conteneur
             };
 
-            iconWrapper.appendChild(img);
-            iconWrapper.appendChild(cross);
-            selectedIconsContainer.appendChild(iconWrapper); // Ajouter l'icône au conteneur
+            iconWrapper.appendChild(img); // Ajouter l'image au conteneur
+            iconWrapper.appendChild(cross); // Ajouter le symbole de suppression
+            selectedIconsContainer.appendChild(iconWrapper); // Ajouter le conteneur au conteneur d'icônes sélectionnées
         }
 
         // Fonction pour retirer une icône sélectionnée
@@ -308,7 +311,7 @@
             var selectedIconsContainer = document.getElementById('selected-icons');
             if (!selectedIconsContainer) return;
 
-            var imgs = selectedIconsContainer.getElementsByTagName('img');
+            var imgs = selectedIconsContainer.getElementsByTagName('img'); // Récupérer toutes les images
             Array.from(imgs).forEach(function(img) {
                 if (img.src.includes(iconUrl)) {
                     selectedIconsContainer.removeChild(img.parentElement); // Retirer l'icône du conteneur
@@ -318,57 +321,57 @@
 
         // Fonction pour ajouter des données à une couche
         function addDataToLayer(url, layer, color) {
-            fetch(url)
-                .then(response => response.json())
+            fetch(url) // Charger les données depuis l'URL
+                .then(response => response.json()) // Convertir la réponse en JSON
                 .then(data => {
                     L.geoJSON(data, {
                         style: function() {
-                            return { color: color || '#3388ff' };
+                            return { color: color || '#3388ff' }; // Définir la couleur des géométries
                         },
                         onEachFeature: function(feature, layer) {
                             layer.on('click', function() {
-                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                var content = '<h4>' + feature.properties.id + '</h4>'; // Utiliser l'identifiant pour le contenu
                                 showInfoBox(content); // Afficher des informations sur la couche
                             });
                         }
                     }).addTo(layer); // Ajouter les données à la couche
                 })
-                .catch(err => console.error('Erreur lors du chargement des données:', err));
+                .catch(err => console.error('Erreur lors du chargement des données:', err)); // Gérer les erreurs
         }
 
         // Fonction pour ajouter une couche GeoJSON
         function addGeoJsonLayer(url, layer) {
-            fetch(url)
-                .then(response => response.json())
+            fetch(url) // Charger les données depuis l'URL
+                .then(response => response.json()) // Convertir la réponse en JSON
                 .then(data => {
                     L.geoJSON(data, {
                         onEachFeature: function(feature, layer) {
                             layer.on('click', function() {
-                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                var content = '<h4>' + feature.properties.id + '</h4>'; // Utiliser l'identifiant pour le contenu
                                 showInfoBox(content); // Afficher des informations sur la couche
                             });
                         }
                     }).addTo(layer); // Ajouter les données GeoJSON à la couche
                 })
-                .catch(err => console.error('Erreur lors du chargement des données GeoJSON:', err));
+                .catch(err => console.error('Erreur lors du chargement des données GeoJSON:', err)); // Gérer les erreurs
         }
 
         // Fonction pour ajouter des parcours de vélo
         function addBikeRoutesLayer(url, layer) {
-            fetch(url)
-                .then(response => response.json())
+            fetch(url) // Charger les données depuis l'URL
+                .then(response => response.json()) // Convertir la réponse en JSON
                 .then(data => {
                     L.geoJSON(data, {
-                        style: { color: '#ff0000', weight: 3 },
+                        style: { color: '#ff0000', weight: 3 }, // Définir le style des parcours de vélo
                         onEachFeature: function(feature, layer) {
                             layer.on('click', function() {
-                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                var content = '<h4>' + feature.properties.id + '</h4>'; // Utiliser l'identifiant pour le contenu
                                 showInfoBox(content); // Afficher des informations sur le parcours
                             });
                         }
                     }).addTo(layer); // Ajouter les parcours de vélo à la couche
                 })
-                .catch(err => console.error('Erreur lors du chargement des parcours de vélo:', err));
+                .catch(err => console.error('Erreur lors du chargement des parcours de vélo:', err)); // Gérer les erreurs
         }
 
         // Écouter l'événement de la carte pour masquer la boîte d'information
@@ -376,4 +379,5 @@
     </script>
 </body>
 </html>
-1
+
+2
