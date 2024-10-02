@@ -190,16 +190,40 @@
   display: none;
   z-index: 1000; /* Assure-toi que la boîte est au-dessus de la carte */
 }
-#favoris-container {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: white;
-            padding: 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            display: none; /* caché par défaut */
-            z-index: 1000; /* pour être au-dessus de la carte */
-        }
+.favorites-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.favorite-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.view-favorites-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-favorites-button:hover {
+  background-color: #0056b3;
+}
+
   </style>
 
 
@@ -207,7 +231,13 @@
 <div id="map" style="width: 100%; height: 600px;"></div>
 <div id="info-box"></div>
 <div class="selected-icons" id="selected-icons"></div>
- <div id="favoris-container"></div> 
+  <div id="favorites-box" class="favorites-box">
+  <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
+  <span id="favorites-count">0</span>
+  <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+</div>
+
+  
 <script>
   var map = L.map('map').setView([43.492949, -1.474841], 13);
 
@@ -215,75 +245,25 @@
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
+//gestion des favoris
+var favoritesCount = 0;
 
-// Variables pour stocker les favoris
-        var favoris = [];
+function updateFavoritesCount() {
+  document.getElementById('favorites-count').innerText = favoritesCount;
+}
 
-        // Fonction pour ajouter une offre aux favoris
-        function ajouterAuxFavoris(offer) {
-            if (!favoris.includes(offer)) {
-                favoris.push(offer);
-                mettreAJourBoiteFavoris();
-                alert("Offre ajoutée aux favoris !");
-            } else {
-                alert("Cette offre est déjà dans vos favoris.");
-            }
-        }
+function addToFavorites() {
+  favoritesCount++;
+  updateFavoritesCount();
+}
 
-        // Mettre à jour la boîte de favoris
-        function mettreAJourBoiteFavoris() {
-            var favorisContainer = document.getElementById('favoris-container');
-            var nombreFavoris = favoris.length;
-            favorisContainer.innerHTML = `
-                <img src="icons/favorite.png" alt="Favoris" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
-                <span>${nombreFavoris} offre(s) ajoutée(s) aux favoris</span>
-                <button id="voir-favoris">Voir les favoris</button>
-                <button id="quitter-favoris">Quitter les favoris</button>
-            `;
+document.getElementById('view-favorites').addEventListener('click', function() {
+  alert('Vous avez ' + favoritesCount + ' offres dans vos favoris.');
+});
 
-            // Ajouter les événements aux boutons
-            document.getElementById('voir-favoris').onclick = afficherFavoris;
-            document.getElementById('quitter-favoris').onclick = quitterFavoris;
+// Exemple d'ajout d'un favori (vous pouvez appeler cette fonction lorsque l'utilisateur ajoute un favori)
+addToFavorites();
 
-            // Afficher ou masquer la boîte des favoris
-            favorisContainer.style.display = nombreFavoris > 0 ? 'block' : 'none';
-        }
-
-        // Afficher uniquement les favoris sur la carte
-        function afficherFavoris() {
-            // Effacer les couches existantes
-            map.eachLayer(function(layer) {
-                if (layer instanceof L.Marker) {
-                    map.removeLayer(layer);
-                }
-            });
-
-            // Ajouter les favoris sur la carte
-            favoris.forEach(offer => {
-                // Supposons que chaque offre a un champ latlng pour la position
-                var latlng = offer.latlng; // Assurez-vous que chaque offre a cette propriété
-                var marker = L.marker(latlng).addTo(map);
-                marker.bindPopup(offer.popupContent); // contenu de l'infobox
-            });
-
-            mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
-        }
-
-        // Quitter le mode favoris et réinitialiser la carte
-        function quitterFavoris() {
-            // Réinitialiser la carte en réajoutant toutes les couches
-            // Exemple : ajouter à nouveau tous les marqueurs ou autres éléments que vous avez
-            // Vous devrez créer une fonction pour cela
-            mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
-        }
-
-        // Exemple de fonction pour créer un marqueur et ajouter le bouton "Ajouter aux favoris"
-        function creerMarqueur(latlng, popupContent) {
-            var marker = L.marker(latlng).addTo(map);
-            marker.bindPopup(`${popupContent}
-                <button onclick="ajouterAuxFavoris({ latlng: [${latlng[0]}, ${latlng[1]}], popupContent: '${popupContent}' })">Ajouter aux favoris</button>
-            `);
-        }
 
   
     var officesLayer = L.layerGroup().addTo(map);
@@ -391,6 +371,7 @@ var bikeParkingIcon = L.icon({
       return raisonSociale.replace(/\s+/g, '-');
     }
   
+
 
 
 
@@ -840,8 +821,6 @@ function removeSelectedIcon(iconUrl) {
     });
 }
 
-
-
   
   </script>
-5
+1
