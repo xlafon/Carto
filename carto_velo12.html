@@ -315,89 +315,6 @@ var bikeParkingIcon = L.icon({
       return raisonSociale.replace(/\s+/g, '-');
     }
   
-// Variables pour stocker les favoris
-var favoris = [];
-
-// Fonction pour ajouter une offre aux favoris
-function ajouterAuxFavoris(offer) {
-    if (!favoris.includes(offer)) {
-        favoris.push(offer);
-        mettreAJourBoiteFavoris();
-    }
-}
-
-// Fonction pour supprimer une offre des favoris
-function supprimerDesFavoris(offer) {
-    favoris = favoris.filter(favori => favorito !== offer);
-    mettreAJourBoiteFavoris();
-}
-
-// Mettre à jour la boîte de favoris
-function mettreAJourBoiteFavoris() {
-    var favorisContainer = document.getElementById('favoris-container');
-    var nombreFavoris = favoris.length;
-    favorisContainer.innerHTML = `
-        <img src="icons/favorite.png" alt="Favoris" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
-        <span>${nombreFavoris} offres ajoutées aux favoris</span>
-        <button id="voir-favoris">Voir les favoris</button>
-        <button id="quitter-favoris">Quitter les favoris</button>
-    `;
-
-    // Ajouter l'événement au bouton "Voir les favoris"
-    document.getElementById('voir-favoris').onclick = function() {
-        afficherFavoris();
-    };
-
-    // Ajouter l'événement au bouton "Quitter les favoris"
-    document.getElementById('quitter-favoris').onclick = function() {
-        quitterFavoris();
-    };
-
-    // Afficher ou masquer la boîte des favoris
-    favorisContainer.style.display = nombreFavoris > 0 ? 'block' : 'none';
-}
-
-// Afficher uniquement les favoris sur la carte
-function afficherFavoris() {
-    // Effacer les couches existantes
-    map.eachLayer(function(layer) {
-        if (layer instanceof L.Marker) {
-            map.removeLayer(layer);
-        }
-    });
-
-    // Ajouter les favoris sur la carte
-    favoris.forEach(offer => {
-        // Supposons que chaque offre a un champ latlng pour la position
-        var latlng = offer.latlng; // à ajuster selon votre structure de données
-        var marker = L.marker(latlng).addTo(map);
-        marker.bindPopup(offer.popupContent); // contenu de l'infobox
-    });
-
-    mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
-}
-
-// Quitter le mode favoris et réinitialiser la carte
-function quitterFavoris() {
-    // Réinitialiser la carte en réajoutant toutes les couches
-    // Vous devrez réécrire la logique d'ajout de couches
-    // Exemple: réajouter toutes les couches de la carte ici
-    mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
-}
-
-// Exemple d'ajout d'un bouton "Ajouter aux favoris" dans l'infobox
-popupContent += `<button onclick="ajouterAuxFavoris({latlng: [${latlng.lat}, ${latlng.lng}], popupContent: '${popupContent}'})">Ajouter aux favoris</button>`;
-
-// Créer un conteneur pour les favoris
-var favorisContainer = document.createElement('div');
-favorisContainer.id = 'favoris-container';
-favorisContainer.style.position = 'absolute';
-favorisContainer.style.top = '10px';
-favorisContainer.style.right = '10px';
-favorisContainer.style.backgroundColor = 'white';
-favorisContainer.style.padding = '10px';
-favorisContainer.style.boxShadow = '0 0 5px rgba(0,0,0,0.5)';
-document.body.appendChild(favorisContainer);
 
 
 
@@ -846,8 +763,91 @@ function removeSelectedIcon(iconUrl) {
         }
     });
 }
+// Variables pour stocker les favoris
+var favoris = [];
+
+// Fonction pour ajouter une offre aux favoris
+function ajouterAuxFavoris(offer) {
+    if (!favoris.includes(offer)) {
+        favoris.push(offer);
+        mettreAJourBoiteFavoris();
+    }
+}
+
+// Fonction pour supprimer une offre des favoris
+function supprimerDesFavoris(offer) {
+    favoris = favoris.filter(favori => favorito !== offer);
+    mettreAJourBoiteFavoris();
+}
+
+// Mettre à jour la boîte de favoris
+function mettreAJourBoiteFavoris() {
+    var favorisContainer = document.getElementById('favoris-container');
+    var nombreFavoris = favoris.length;
+    favorisContainer.innerHTML = `
+        <img src="icons/favorite.png" alt="Favoris" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">
+        <span>${nombreFavoris} offres ajoutées aux favoris</span>
+        <button id="voir-favoris">Voir les favoris</button>
+        <button id="quitter-favoris">Quitter les favoris</button>
+    `;
+
+    // Ajouter l'événement au bouton "Voir les favoris"
+    document.getElementById('voir-favoris').onclick = function() {
+        afficherFavoris();
+    };
+
+    // Ajouter l'événement au bouton "Quitter les favoris"
+    document.getElementById('quitter-favoris').onclick = function() {
+        quitterFavoris();
+    };
+
+    // Afficher ou masquer la boîte des favoris
+    favorisContainer.style.display = nombreFavoris > 0 ? 'block' : 'none';
+}
+
+// Afficher uniquement les favoris sur la carte
+function afficherFavoris() {
+    // Effacer les couches existantes
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+        }
+    });
+
+    // Ajouter les favoris sur la carte
+    favoris.forEach(offer => {
+        // Supposons que chaque offre a un champ latlng pour la position
+        var latlng = offer.latlng; // à ajuster selon votre structure de données
+        var marker = L.marker(latlng).addTo(map);
+        marker.bindPopup(offer.popupContent); // contenu de l'infobox
+    });
+
+    mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
+}
+
+// Quitter le mode favoris et réinitialiser la carte
+function quitterFavoris() {
+    // Réinitialiser la carte en réajoutant toutes les couches
+    // Vous devrez réécrire la logique d'ajout de couches
+    // Exemple: réajouter toutes les couches de la carte ici
+    mettreAJourBoiteFavoris(); // Mettre à jour la boîte de favoris
+}
+
+// Exemple d'ajout d'un bouton "Ajouter aux favoris" dans l'infobox
+popupContent += `<button onclick="ajouterAuxFavoris({latlng: [${latlng.lat}, ${latlng.lng}], popupContent: '${popupContent}'})">Ajouter aux favoris</button>`;
+
+// Créer un conteneur pour les favoris
+var favorisContainer = document.createElement('div');
+favorisContainer.id = 'favoris-container';
+favorisContainer.style.position = 'absolute';
+favorisContainer.style.top = '10px';
+favorisContainer.style.right = '10px';
+favorisContainer.style.backgroundColor = 'white';
+favorisContainer.style.padding = '10px';
+favorisContainer.style.boxShadow = '0 0 5px rgba(0,0,0,0.5)';
+document.body.appendChild(favorisContainer);
 
 
   
   </script>
-3
+4
