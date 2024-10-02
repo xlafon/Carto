@@ -322,6 +322,7 @@
 
     function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
+    console.log("Adding to favorites:", item); // Log pour déboguer
     if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
       favorites.push({
         lat: item.lat,
@@ -634,6 +635,7 @@ function showFavorites() {
 
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
+    console.log("Adding favorite:", item); // Log pour déboguer
     if (item.lat && item.lon && item.icon && item.popupContent) {
       var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
       marker.bindPopup(item.popupContent);
@@ -664,7 +666,6 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
-
 
 
     function addKmlLayer(url, layer) {
@@ -877,4 +878,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
