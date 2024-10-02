@@ -10,6 +10,7 @@
         #map {
             height: 100vh; /* Hauteur de la carte */
         }
+
         /* Style pour le conteneur d'informations */
         #info-box {
             position: absolute;
@@ -20,7 +21,9 @@
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            display: none; /* Par défaut, cacher la boîte d'informations */
         }
+
         /* Styles pour les boutons de contrôle */
         .leaflet-control-custom {
             background: white;
@@ -28,6 +31,7 @@
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
+
         .button-container button {
             display: block;
             margin: 5px 0;
@@ -35,30 +39,54 @@
             cursor: pointer;
             width: 100%;
             border: none;
-            background-color: #007bff;
-            color: white;
             border-radius: 5px;
+            color: white;
+            font-weight: bold;
         }
+
+        .offices-button {
+            background-color: #007bff; /* Couleur pour les bureaux de tourisme */
+        }
+
+        .parcours-button {
+            background-color: #28a745; /* Couleur pour les parcours vélo */
+        }
+
+        .bike-button {
+            background-color: #17a2b8; /* Couleur pour la mobilité et services */
+        }
+
+        .accommodations-button {
+            background-color: #ffc107; /* Couleur pour les hébergements */
+        }
+
         .button-container button:hover {
-            background-color: #0056b3;
+            opacity: 0.9; /* Légère transparence au survol */
         }
+
         /* Style pour les sous-menus */
         .submenu {
             display: none;
             margin-top: 5px;
         }
+
         /* Style pour les icônes sélectionnées */
         #selected-icons {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
+            top: 10px; /* Position en haut pour la boîte d'icônes */
+            right: 10px; /* Alignement à droite */
             z-index: 1000;
+            display: flex;
+            flex-wrap: wrap; /* Permet le passage à la ligne */
         }
+
         #selected-icons img {
             width: 30px; /* Taille des icônes */
             height: 30px; /* Taille des icônes */
             margin-right: 5px;
+            margin-bottom: 5px;
         }
+
         .cross {
             position: absolute;
             top: 0;
@@ -70,7 +98,7 @@
 </head>
 <body>
     <div id="map"></div>
-    <div id="info-box" style="display: none;"></div>
+    <div id="info-box"></div>
     <div id="selected-icons"></div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -156,7 +184,7 @@
                 var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
                 buttonBikeRoutes.innerHTML = 'Parcours vélo';
                 L.DomEvent.on(buttonBikeRoutes, 'click', function() {
-                    toggleLayer(bikeRoutesLayer, BikeRoutesUrl, null, null, 'icons/velo.png', addBikeRoutesLayer);
+                    toggleLayer(bikeRoutesLayer, BikeRoutesUrl, '#ff0000', false, 'icons/velo.png', addBikeRoutesLayer);
                 });
 
                 // Bouton pour la mobilité et services
@@ -168,14 +196,14 @@
                 var buttonBikeParking = L.DomUtil.create('button', '', submenu);
                 buttonBikeParking.innerHTML = 'Parking à vélo';
                 L.DomEvent.on(buttonBikeParking, 'click', function() {
-                    toggleLayer(bikeParkingLayer, bikeParkingUrl, null, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
+                    toggleLayer(bikeParkingLayer, bikeParkingUrl, '#28a745', true, 'icons/bicycle_parking.png', addGeoJsonLayer);
                 });
 
                 // Sous-menu pour les points d'eau
                 var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
                 buttonWaterPoints.innerHTML = 'Points d\'eau';
                 L.DomEvent.on(buttonWaterPoints, 'click', function() {
-                    toggleLayer(waterPointsLayer, waterPointsUrl, null, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
+                    toggleLayer(waterPointsLayer, waterPointsUrl, '#17a2b8', true, 'icons/water_point.png', addGeoJsonLayer);
                 });
 
                 // Afficher ou masquer le sous-menu
@@ -185,35 +213,35 @@
 
                 // Bouton pour les hébergements
                 var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', buttonContainer);
-                buttonAccommodations.innerHTML = 'Hébergements Accueil vélo';
+                buttonAccommodations.innerHTML = 'Hébergements';
                 var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', buttonContainer);
 
                 // Sous-menu pour les hôtels
                 var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
                 buttonHotels.innerHTML = 'Hôtels';
                 L.DomEvent.on(buttonHotels, 'click', function() {
-                    toggleLayer(hotelsLayer, hotelsUrl, null, 'hotel', 'icons/hotel.png', addGeoJsonLayer);
+                    toggleLayer(hotelsLayer, hotelsUrl, '#ffc107', true, 'icons/hotel.png', addGeoJsonLayer);
                 });
 
                 // Sous-menu pour les campings
                 var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
                 buttonCampings.innerHTML = 'Campings';
                 L.DomEvent.on(buttonCampings, 'click', function() {
-                    toggleLayer(campingsLayer, campingsUrl, null, 'camping', 'icons/camping.png', addGeoJsonLayer);
+                    toggleLayer(campingsLayer, campingsUrl, '#ffc107', true, 'icons/camping.png', addGeoJsonLayer);
                 });
 
                 // Sous-menu pour les aires de camping-car
                 var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
                 buttonCampingCar.innerHTML = 'Aires de Camping-Car';
                 L.DomEvent.on(buttonCampingCar, 'click', function() {
-                    toggleLayer(campingCarLayer, campingCarUrl, null, 'camping_car', 'icons/camping_car.png', addGeoJsonLayer);
+                    toggleLayer(campingCarLayer, campingCarUrl, '#ffc107', true, 'icons/camping_car.png', addGeoJsonLayer);
                 });
 
                 // Sous-menu pour les autres hébergements
                 var buttonAutresHeb = L.DomUtil.create('button', '', submenuAccommodations);
                 buttonAutresHeb.innerHTML = 'Autres Hébergements';
                 L.DomEvent.on(buttonAutresHeb, 'click', function() {
-                    toggleLayer(autreshebLayer, autreshebUrl, null, 'autres_hebergement', 'icons/autres_hebergement.png', addGeoJsonLayer);
+                    toggleLayer(autreshebLayer, autreshebUrl, '#ffc107', true, 'icons/autres_hebergement.png', addGeoJsonLayer);
                 });
 
                 // Afficher ou masquer le sous-menu des hébergements
@@ -313,7 +341,14 @@
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    L.geoJSON(data).addTo(layer); // Ajouter les données GeoJSON à la couche
+                    L.geoJSON(data, {
+                        onEachFeature: function(feature, layer) {
+                            layer.on('click', function() {
+                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                showInfoBox(content); // Afficher des informations sur la couche
+                            });
+                        }
+                    }).addTo(layer); // Ajouter les données GeoJSON à la couche
                 })
                 .catch(err => console.error('Erreur lors du chargement des données GeoJSON:', err));
         }
@@ -324,7 +359,13 @@
                 .then(response => response.json())
                 .then(data => {
                     L.geoJSON(data, {
-                        style: { color: '#ff0000', weight: 3 }
+                        style: { color: '#ff0000', weight: 3 },
+                        onEachFeature: function(feature, layer) {
+                            layer.on('click', function() {
+                                var content = '<h4>' + feature.properties.name + '</h4>';
+                                showInfoBox(content); // Afficher des informations sur le parcours
+                            });
+                        }
                     }).addTo(layer); // Ajouter les parcours de vélo à la couche
                 })
                 .catch(err => console.error('Erreur lors du chargement des parcours de vélo:', err));
@@ -335,4 +376,4 @@
     </script>
 </body>
 </html>
-1
+2
