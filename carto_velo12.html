@@ -256,7 +256,7 @@
 
     var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        }).addTo(map);
 
     var officesLayer = L.layerGroup().addTo(map);
     var bikeParkingLayer = L.layerGroup();
@@ -284,9 +284,9 @@
 
     // Fonction pour ajouter aux favoris
     function addToFavorites(item) {
-      if (item.lat && item.lon && item.icon && item.popupContent) {
-        if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
-          favorites.push({ lat: item.lat, lon: item.lon, icon: item.icon, popupContent: item.popupContent });
+      if (item.lat && item.lon && item.icon && item.popupContent && item.id) {
+        if (!favorites.some(fav => fav.id === item.id)) {
+          favorites.push({ lat: item.lat, lon: item.lon, icon: item.icon, popupContent: item.popupContent, id: item.id });
           updateFavoritesCount();
         }
       } else {
@@ -296,7 +296,7 @@
 
     // Fonction pour retirer des favoris
     function removeFromFavorites(item) {
-      var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
+      var index = favorites.findIndex(fav => fav.id === item.id);
       if (index > -1) {
         favorites.splice(index, 1);
         updateFavoritesCount();
@@ -310,7 +310,7 @@
 
     // Fonction pour vérifier si un élément est dans les favoris
     function isFavorite(item) {
-      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
+      return favorites.some(fav => fav.id === item.id);
     }
 
     // Fonction pour afficher la boîte d'information
@@ -378,7 +378,7 @@
             var marker = L.marker([element.lat, element.lon], markerOptions);
             marker.on('click', function(e) {
               L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
+              showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent, id: element.id });
             });
             layer.addLayer(marker);
           } else if (element.type === "way") {
@@ -387,7 +387,7 @@
             });
             var polygon = L.polygon(latlngs, { color: color });
             polygon.on('click', function() {
-              showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
+              showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent, id: element.id });
             });
             layer.addLayer(polygon);
 
@@ -396,7 +396,7 @@
             var marker = L.marker(centroid, markerOptions);
             marker.on('click', function(e) {
               L.DomEvent.stopPropagation(e);
-              showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
+              showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent, id: element.id });
             });
             layer.addLayer(marker);
           }
@@ -422,8 +422,8 @@
               } else if (type === 'hotel') {
                 if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
                 if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
-                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
-                                if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+                                if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+                if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
                 if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
                 if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
                 if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
@@ -505,8 +505,8 @@
             }
             if (popupContent) {
               layer.on('click', function() {
-                var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent };
-                if (item.lat && item.lon && item.icon && item.popupContent) {
+                var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent, id: feature.properties["Identifiant"] };
+                if (item.lat && item.lon && item.icon && item.popupContent && item.id) {
                   showInfoBox(popupContent, item);
                 } else {
                   console.error("Invalid item data:", item);
@@ -536,10 +536,10 @@
             var commune = feature.properties.COMMUNE;
             var syndicObjectID = feature.properties.SyndicObjectID;
             var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
-            var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
+                        var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
             popupContent += `<a href="${moreInfoLink}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
             layer.on('click', function() {
-                          if (currentGpxLayer) {
+              if (currentGpxLayer) {
                 map.removeLayer(currentGpxLayer);
               }
               if (currentMarker) {
@@ -573,8 +573,8 @@
               }).on('loaded', function(e) {
                 map.fitBounds(e.target.getBounds());
               }).addTo(map);
-              var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent };
-              if (item.lat && item.lon && item.icon && item.popupContent) {
+              var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent, id: feature.properties.SyndicObjectID };
+              if (item.lat && item.lon && item.icon && item.popupContent && item.id) {
                 showInfoBox(popupContent, item);
               } else {
                 console.error("Invalid item data:", item);
@@ -753,7 +753,7 @@
           toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
         });
 
-        L.DomEvent.on(buttonBike, 'click', function () {
+               L.DomEvent.on(buttonBike, 'click', function () {
           if (submenu.style.display === 'none' || submenu.style.display === '') {
             submenu.style.display = 'block';
           } else {
@@ -763,7 +763,7 @@
 
         var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
         buttonAccommodations.innerHTML = 'Hébergements Accueil vélo';
-                var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
+        var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
 
         var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
         buttonHotels.innerHTML = 'Hôtels';
@@ -844,4 +844,4 @@
   </script>
 </body>
 </html>
-2
+3
