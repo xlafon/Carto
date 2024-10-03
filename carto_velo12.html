@@ -439,8 +439,23 @@ function showFavorites() {
     document.getElementById('view-favorites').addEventListener('click', function() {
       showFavorites();
     });
+function translateOpeningHours(openingHours) {
+      return openingHours.replace(/Mo/g, 'Lun')
+                                 .replace(/Dec/g, 'Déc');
+    }
 
+    function mapBicycleParkingType(type) {
+      var mapping = {
+                'shed': 'abri vélo'
+      };
+      return mapping[type] || type;
+    }
+
+    function formatRaisonSociale(raisonSociale) {
+      return raisonSociale.replace(/\s+/g, '-');
+    }
     
   </script>
 </body>
 </html>
+1
