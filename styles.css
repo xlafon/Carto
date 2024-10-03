@@ -1,0 +1,229 @@
+ .leaflet-control-custom {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+    .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .leaflet-control-custom .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .leaflet-control-custom h2 {
+      margin: 0;
+      padding: 10px;
+    }
+    .leaflet-control-custom img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .leaflet-control-custom .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .leaflet-control-custom .offices-button {
+      background-color: #007bff;
+      color: white;
+      padding-left: 10px;
+    }
+    .leaflet-control-custom .offices-button:hover {
+      background-color: #0056b3;
+    }
+    .leaflet-control-custom .parcours-button {
+      background-color: #dc3545;
+    }
+    .leaflet-control-custom .parcours-button:hover {
+      background-color: #c82333;
+    }
+    .leaflet-control-custom .bike-button {
+      background-color: #ffc107;
+    }
+    .leaflet-control-custom .bike-button:hover {
+      background-color: #e0a800;
+    }
+    .leaflet-control-custom .accommodations-button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .accommodations-button:hover {
+      background-color: #1e7e34;
+    }
+    .leaflet-control-custom .mobilite-button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .mobilite-button:hover {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .submenu {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+    .leaflet-control-custom .submenu button {
+      background-color: #1e7e34;
+    }
+    .leaflet-control-custom .submenu button:hover {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .bike-submenu button {
+      background-color: #ffc107;
+    }
+    .leaflet-control-custom .bike-submenu button:hover {
+      background-color: #e0a800;
+    }
+    .leaflet-control-custom .accommodations-submenu button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .accommodations-submenu button:hover {
+      background-color: #1e7e34;
+    }
+    .en-savoir-plus-button {
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      float: right;
+    }
+    .en-savoir-plus-button:hover {
+      background-color: #0056b3;
+    }
+    .en-savoir-plus-button2 {
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      float: right;
+    }
+    .en-savoir-plus-button2:hover {
+      background-color: #c82333;
+    }
+    .selected-icons {
+      position: absolute;
+      top: 10px;
+      left: 100px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .selected-icons img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      position: relative;
+    }
+    .selected-icons .cross {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 16px;
+      height: 16px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      line-height: 1;
+    }
+    #info-box {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      max-height: none;
+      overflow-y: hidden;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+        .favorites-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
+    .favorite-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+    .view-favorites-button {
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .view-favorites-button:hover {
+      background-color: #0056b3;
+    }
+    .favorite-button {
+      display: block;
+      margin-top: 10px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+    .quit-favorites-button {
+      display: block;
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .quit-favorites-button:hover {
+      background-color: #c82333;
+    }
