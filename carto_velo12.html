@@ -167,25 +167,8 @@
           showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
         });
         layer.addLayer(marker);
-      } else if (element.type === "way") {
-        var latlngs = element.geometry.map(function(geo) {
-          return [geo.lat, geo.lon];
-        });
-        var polygon = L.polygon(latlngs, { color: color });
-        polygon.on('click', function() {
-          showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
-        });
-        layer.addLayer(polygon);
-
-        var centroid = polygon.getBounds().getCenter();
-        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
-        var marker = L.marker(centroid, markerOptions);
-        marker.on('click', function(e) {
-          L.DomEvent.stopPropagation(e);
-          showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
-        });
-        layer.addLayer(marker);
-      }
+      } 
+       
     });
   });
 }
@@ -458,4 +441,4 @@ function translateOpeningHours(openingHours) {
   </script>
 </body>
 </html>
-1
+2
