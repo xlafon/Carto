@@ -29,16 +29,12 @@
 
     var officesLayer = L.layerGroup().addTo(map);
     var bikeParkingLayer = L.layerGroup();
-    var waterPointsLayer = L.layerGroup();
     var bikeRoutesLayer = L.layerGroup();
     var hotelsLayer = L.layerGroup();
-    var campingCarLayer = L.layerGroup();
     var campingsLayer = L.layerGroup();
-    var autreshebLayer = L.layerGroup();
     var currentGpxLayer = null;
     var currentMarker = null;
 
-    // Créer une icône personnalisée pour les offices de tourisme
     var touristOfficeIcon = L.icon({
       iconUrl: 'icons/tourist_office.png',
       iconSize: [32, 32],
@@ -51,37 +47,19 @@
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
-    var waterPointIcon = L.icon({
-      iconUrl: 'icons/water_point.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    });
-    var hotelIcon = L.icon({
+        var hotelIcon = L.icon({
       iconUrl: 'icons/logo_acc_velo.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
-    var campingCarIcon = L.icon({
-      iconUrl: 'icons/camping-car.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    });
-    var campingIcon = L.icon({
+       var campingIcon = L.icon({
       iconUrl: 'icons/logo_acc_velo.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
     });
-    var autreshebIcon = L.icon({
-      iconUrl: 'icons/logo_acc_velo.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-      popupAnchor: [0, -32]
-    });
-    var bikeIcon = L.icon({
+      var bikeIcon = L.icon({
       iconUrl: 'icons/velo.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
@@ -255,60 +233,6 @@
               var moreInfoUrl = `https://www.tourisme64.com/hebergements/camping/${commune}/${identifiant}-${raisonSociale}/`;
               popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
             }
-          } else if (type === 'camping-car') {
-            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
-            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
-            if (feature.properties["Equipement"]) popupContent += `${feature.properties["Equipement"]}<br>`;
-            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
-              var commune = feature.properties.Commune;
-              var identifiant = feature.properties.Identifiant;
-              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
-              var moreInfoUrl = `https://www.tourisme64.com/hebergements/aire-de-camping-car/${commune}/${identifiant}-${raisonSociale}/`;
-              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-            }
-          } else {
-            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
-            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
-            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
-            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
-            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
-            if (feature.properties["Identifiant"]) {
-              if (feature.properties["Identifiant"].startsWith("VIL")) {
-                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
-                  var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
-                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/village-de-vacances/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-                }
-              } else if (feature.properties["Identifiant"].startsWith("RET")) {
-                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
-                  var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
-                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/residence-de-tourisme/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-                }
-              } else if (feature.properties["Identifiant"].startsWith("HLO")) {
-                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
-                  var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
-                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/chambre-d-hotes/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-                }
-              } else if (feature.properties["Identifiant"].startsWith("HCO")) {
-                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
-                  var commune = feature.properties.Commune;
-                  var identifiant = feature.properties.Identifiant;
-                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
-                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/hebergement-collectif/${commune}/${identifiant}-${raisonSociale}/`;
-                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
-                }
-              }
-            }
           }
         }
         if (popupContent) {
@@ -325,75 +249,6 @@
     }).addTo(layer);
   });
 }
-
-
-function addBikeRoutesLayer(url, layer) {
-  $.getJSON(url, function(data) {
-    L.geoJson(data, {
-      pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, { icon: bikeIcon });
-      },
-      onEachFeature: function (feature, layer) {
-        var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
-        var popupContent = `<span style="font-size: 14px;"><strong>${feature.properties.SyndicObjectName}</strong></span><br><br>`;
-        if (feature.properties.PHOTO) {
-          popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
-        }
-        popupContent += "<strong>" + tempsDifficulte + "<br>" +
-                        "" + feature.properties.DISTANCE + " km<br></strong><br>";
-        var commune = feature.properties.COMMUNE;
-        var syndicObjectID = feature.properties.SyndicObjectID;
-        var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
-        var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
-        popupContent += `<a href="${moreInfoLink}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
-        layer.on('click', function() {
-          if (currentGpxLayer) {
-            map.removeLayer(currentGpxLayer);
-          }
-          if (currentMarker) {
-            currentMarker.setIcon(bikeIcon);
-          }
-          layer.setIcon(L.icon({
-            iconUrl: 'icons/velo.png',
-            iconSize: [48, 48],
-            iconAnchor: [16, 32],
-            popupAnchor: [0, -32],
-            className: 'darkened-icon'
-          }));
-          currentMarker = layer;
-          var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
-          currentGpxLayer = new L.GPX(gpxUrl, {
-            async: true,
-            marker_options: {
-              startIconUrl: '',
-              endIconUrl: '',
-              shadowUrl: '',
-              wptIconUrls: {
-                '': ''
-              }
-            },
-            polyline_options: {
-              color: 'red',
-              weight: 5,
-              opacity: 0.7,
-              dashArray: '5, 10'
-            }
-          }).on('loaded', function(e) {
-            map.fitBounds(e.target.getBounds());
-          }).addTo(map);
-          var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent };
-          if (item.lat && item.lon && item.icon && item.popupContent) {
-            showInfoBox(popupContent, item);
-          } else {
-            console.error("Invalid item data:", item);
-          }
-        });
-      }
-    }).addTo(layer);
-  });
-}
-
-
 
 function showFavorites() {
   // Effacer toutes les couches de la carte
@@ -424,20 +279,12 @@ function showFavorites() {
     });
     map.addLayer(officesLayer);
     map.addLayer(bikeParkingLayer);
-    map.addLayer(waterPointsLayer);
-    map.addLayer(bikeRoutesLayer);
-    map.addLayer(hotelsLayer);
-    map.addLayer(campingCarLayer);
-    map.addLayer(campingsLayer);
-    map.addLayer(autreshebLayer);
-    document.getElementById('favorites-box').removeChild(quitFavoritesButton);
+       map.addLayer(hotelsLayer);
+       map.addLayer(campingsLayer);
+       document.getElementById('favorites-box').removeChild(quitFavoritesButton);
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
-
-
-
-
     function addKmlLayer(url, layer) {
       omnivore.kml(url).addTo(layer);
     }
@@ -500,13 +347,10 @@ function showFavorites() {
 
      var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
-    var waterPointsUrl = 'data/water_points.geojson';
-    var hotelsUrl = 'data/HOT.geojson';
+      var hotelsUrl = 'data/HOT.geojson';
     var campingCarUrl = 'data/ACC.geojson';
     var campingsUrl = 'data/HPA.geojson';
-    var autreshebUrl = 'data/AUTRESHEEB.geojson';
-    var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
-    var BikeRoutesUrl = 'data/ITIVELO.geojson';
+        var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
     var customControl = L.Control.extend({
       options: {
@@ -551,11 +395,7 @@ function showFavorites() {
           toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
         });
 
-        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
-        buttonWaterPoints.innerHTML = 'Points d\'eau';
-        L.DomEvent.on(buttonWaterPoints, 'click', function () {
-          toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
-        });
+       
 
         L.DomEvent.on(buttonBike, 'click', function () {
           if (submenu.style.display === 'none' || submenu.style.display === '') {
@@ -581,18 +421,7 @@ function showFavorites() {
           toggleLayer(campingsLayer, campingsUrl, campingIcon, 'camping', 'icons/camping.png', addGeoJsonLayer);
         });
 
-        var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonautresheb.innerHTML = 'Autres hébergements';
-        L.DomEvent.on(buttonautresheb, 'click', function () {
-          toggleLayer(autreshebLayer, autreshebUrl, autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png', addGeoJsonLayer);
-        });
-
-        var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
-        buttonCampingCar.innerHTML = 'Aires de camping-car';
-        L.DomEvent.on(buttonCampingCar, 'click', function () {
-          toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png', addGeoJsonLayer);
-        });
-
+       
         L.DomEvent.on(buttonAccommodations, 'click', function () {
           if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
             submenuAccommodations.style.display = 'block';
@@ -611,40 +440,7 @@ function showFavorites() {
       showFavorites();
     });
 
-    function translateOpeningHours(openingHours) {
-      return openingHours.replace(/Mo/g, 'Lun')
-                         .replace(/Tu/g, 'Mar')
-                         .replace(/We/g, 'Mer')
-                         .replace(/Th/g, 'Jeu')
-                         .replace(/Fr/g, 'Ven')
-                         .replace(/Sa/g, 'Sam')
-                         .replace(/Su/g, 'Dim')
-                         .replace(/Jan/g, 'Janv')
-                         .replace(/Feb/g, 'Févr')
-                         .replace(/Mar/g, 'Mars')
-                         .replace(/Apr/g, 'Avr')
-                         .replace(/May/g, 'Mai')
-                         .replace(/Jun/g, 'Juin')
-                         .replace(/Jul/g, 'Juil')
-                         .replace(/Aug/g, 'Août')
-                         .replace(/Sep/g, 'Sept')
-                         .replace(/Oct/g, 'Oct')
-                         .replace(/Nov/g, 'Nov')
-                         .replace(/Dec/g, 'Déc');
-    }
-
-    function mapBicycleParkingType(type) {
-      var mapping = {
-        'stands': 'arceaux',
-        'wall_loops': 'ratelier',
-        'shed': 'abri vélo'
-      };
-      return mapping[type] || type;
-    }
-
-    function formatRaisonSociale(raisonSociale) {
-      return raisonSociale.replace(/\s+/g, '-');
-    }
+    
   </script>
 </body>
 </html>
