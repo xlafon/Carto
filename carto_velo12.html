@@ -18,6 +18,7 @@
   <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
   <span id="favorites-count">0</span>
   <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+    <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
 </div>
   
   <script>
@@ -164,6 +165,29 @@ function flashFavoritesBox() {
     function isFavorite(item) {
       return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
     }
+
+    // Fonction pour vider tous les favoris
+function clearAllFavorites() {
+  // Vider la liste des favoris
+  favorites = [];
+
+  // Mettre à jour le compteur et l'icône de favoris
+  updateFavoritesCount();
+
+  // Vider les couches des favoris de la carte
+  map.eachLayer(function(layer) {
+    if (!(layer instanceof L.TileLayer)) {
+      map.removeLayer(layer);
+    }
+  });
+}
+
+// Ajouter l'événement de clic pour l'icône de corbeille
+document.getElementById('trash-icon').addEventListener('click', function() {
+  if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
+    clearAllFavorites();  // Supprimer tous les favoris
+  }
+});
 
     function showInfoBox(content, item) {
   var infoBox = document.getElementById('info-box');
@@ -721,4 +745,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
