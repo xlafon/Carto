@@ -189,7 +189,10 @@ document.getElementById('trash-icon').addEventListener('click', function() {
   }
 });
 
-
+function isFavorite(item) {
+      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
+    }
+    
     function showInfoBox(content, item) {
   var infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
@@ -746,4 +749,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+6
