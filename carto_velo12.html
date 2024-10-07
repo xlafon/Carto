@@ -435,33 +435,28 @@ function showFavorites() {
     }
   });
 
-  // Ajouter le bouton "Quitter les favoris"
-  var quitFavoritesButton = document.createElement('button');
-  quitFavoritesButton.className = 'quit-favorites-button';
-  quitFavoritesButton.innerText = 'Quitter les favoris';
-  quitFavoritesButton.onclick = function() {
+ // Ajouter le bouton "Quitter les favoris"
+var quitFavoritesButton = document.createElement('button');
+quitFavoritesButton.className = 'quit-favorites-button';
+quitFavoritesButton.innerText = 'Quitter les favoris';
+quitFavoritesButton.onclick = function() {
   // Supprimer toutes les couches, y compris celles qui sont déjà affichées
   map.eachLayer(function(layer) {
     if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
     map.removeLayer(layer);
   });
 
-  // Réaffiche les couches d'origine après avoir tout retiré
-  map.addLayer(officesLayer);
-  map.addLayer(bikeParkingLayer);
-  map.addLayer(waterPointsLayer);
-  map.addLayer(bikeRoutesLayer);
-  map.addLayer(hotelsLayer);
-  map.addLayer(campingCarLayer);
-  map.addLayer(campingsLayer);
-  map.addLayer(autreshebLayer);
+  // Optionnel : si vous souhaitez laisser la carte complètement vide, ne réaffichez pas les couches ici
 
   // Retirer le bouton "Quitter les favoris"
   document.getElementById('favorites-box').removeChild(quitFavoritesButton);
 };
 
+// Ajouter le bouton "Quitter les favoris" dans la boîte de favoris
+document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 
-  document.getElementById('favorites-box').appendChild(quitFavoritesButton);
+
+
 }
 
 
@@ -679,4 +674,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
