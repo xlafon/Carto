@@ -12,4 +12,4 @@
 [test10 panier](https://xlafon.github.io/Carto/carto_velo10.html)
 [test11 panier](https://xlafon.github.io/Carto/carto_velo11.html)
 [test12 favoris OK](https://xlafon.github.io/Carto/carto_velo12.html)
-[test12 test carnet](https://xlafon.github.io/Carto/carto_velo13.html)
+[test13 test carnet](https://xlafon.github.io/Carto/carto_velo13.html)
