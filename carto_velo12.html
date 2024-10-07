@@ -446,16 +446,6 @@ function showFavorites() {
     map.removeLayer(layer);
   });
 
-  // Réafficher les couches d'origine (offices de tourisme, parkings à vélo, etc.)
-  if (map.hasLayer(officesLayer)) map.removeLayer(officesLayer);
-  if (map.hasLayer(bikeParkingLayer)) map.removeLayer(bikeParkingLayer);
-  if (map.hasLayer(waterPointsLayer)) map.removeLayer(waterPointsLayer);
-  if (map.hasLayer(bikeRoutesLayer)) map.removeLayer(bikeRoutesLayer);
-  if (map.hasLayer(hotelsLayer)) map.removeLayer(hotelsLayer);
-  if (map.hasLayer(campingCarLayer)) map.removeLayer(campingCarLayer);
-  if (map.hasLayer(campingsLayer)) map.removeLayer(campingsLayer);
-  if (map.hasLayer(autreshebLayer)) map.removeLayer(autreshebLayer);
-
   // Réaffiche les couches d'origine après avoir tout retiré
   map.addLayer(officesLayer);
   map.addLayer(bikeParkingLayer);
@@ -469,6 +459,7 @@ function showFavorites() {
   // Retirer le bouton "Quitter les favoris"
   document.getElementById('favorites-box').removeChild(quitFavoritesButton);
 };
+
 
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
@@ -688,4 +679,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
