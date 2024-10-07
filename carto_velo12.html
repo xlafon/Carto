@@ -96,6 +96,8 @@
     //FAVORIS
     var favorites = [];
   
+    //variable pour suivre si vous êtes en mode "Voir les favoris" :
+    var inFavoritesMode = false;
     
 // Fonction pour mettre à jour le compteur de favoris et l'affichage de la corbeille
 function updateFavoritesCount() {
@@ -475,6 +477,7 @@ function addBikeRoutesLayer(url, layer) {
 
 
 function showFavorites() {
+  inFavoritesMode = true;  // On est en mode favoris
   // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
   map.eachLayer(function(layer) {
     if (layer instanceof L.TileLayer) return; 
@@ -515,6 +518,7 @@ function showFavorites() {
   quitFavoritesButton.className = 'quit-favorites-button';
   quitFavoritesButton.innerText = 'Quitter les favoris';
   quitFavoritesButton.onclick = function() {
+     inFavoritesMode = false;  // Sortie du mode favoris
     // Supprimer toutes les couches, sauf la couche de tuiles de base
     map.eachLayer(function(layer) {
       if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
@@ -760,4 +764,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
