@@ -1,11 +1,13 @@
  .leaflet-control-custom {
-      background-color: white;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-    }
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000; /* Ajouté pour s'assurer que le menu est visible au-dessus de la carte */
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
 
     .leaflet-control-custom button {
       display: block;
