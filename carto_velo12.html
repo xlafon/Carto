@@ -96,7 +96,8 @@
     //FAVORIS
     var favorites = [];
 
-  function updateFavoritesCount() {
+// Fonction pour mettre à jour le compteur de favoris et l'affichage de la corbeille
+function updateFavoritesCount() {
   var favoritesCount = document.getElementById('favorites-count');
   var favoriteIcon = document.querySelector('.favorite-icon');
   var trashIcon = document.getElementById('trash-icon');
@@ -115,8 +116,8 @@
   }
 }
 
-    // Fonction pour ajouter un favori
-    function addToFavorites(item) {
+// Fonction pour ajouter un favori
+function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
     // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
     if (Array.isArray(item.lat)) {
@@ -145,8 +146,9 @@
     console.error("Invalid item data:", item);
   }
 }
+
 // Fonction pour retirer un favori spécifique
- function removeFromFavorites(item) {
+function removeFromFavorites(item) {
   var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
   if (index > -1) {
     favorites.splice(index, 1);
@@ -156,7 +158,7 @@
 
 // Fonction pour vider tous les favoris
 function clearAllFavorites() {
-  favorites = [];  // Réinitialiser la liste des favoris
+  favorites = [];  // Vider la liste des favoris
   updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
 
   // Supprimer les couches des favoris sur la carte
@@ -174,23 +176,13 @@ document.getElementById('trash-icon').addEventListener('click', function() {
   }
 });
 
- // Fonction d'animation pour la boîte des favoris   
+// Fonction d'animation pour la boîte des favoris
 function flashFavoritesBox() {
   var favoritesBox = document.getElementById('favorites-box');
-
-  // Réinitialiser la classe 'flash' pour s'assurer que l'animation se rejoue
-  favoritesBox.classList.remove('flash');
-  
-  // Forcer un reflow pour redémarrer l'animation
-  void favoritesBox.offsetWidth;
-
-  // Appliquer de nouveau la classe 'flash' pour jouer l'animation
-  favoritesBox.classList.add('flash');
+  favoritesBox.classList.remove('flash');  // Réinitialiser l'animation
+  void favoritesBox.offsetWidth;  // Forcer un reflow pour redémarrer l'animation
+  favoritesBox.classList.add('flash');  // Appliquer de nouveau la classe 'flash'
 }
-
-// Appelez cette fonction chaque fois qu'un favori est ajouté
-
-
 
    
 
@@ -762,4 +754,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
