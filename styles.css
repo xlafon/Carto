@@ -175,7 +175,7 @@
       display: none;
       z-index: 1000;
     }
-       /* Style de la boîte des favoris */
+      /* Style de la boîte des favoris */
 .favorites-box {
   position: absolute;
   top: 10px;
@@ -192,15 +192,14 @@
 }
 
 .favorite-icon {
-  width: 40px;
-  height: 40px;
+  width: 32px;  /* Taille réduite à 32px */
+  height: 32px;
 }
 
 #favorites-count {
   font-size: 16px;
   font-weight: bold;
   color: #333;
-  margin-left: 10px;
 }
 
 .view-favorites-button {
@@ -235,7 +234,7 @@
   background-color: #c82333;
 }
 
-/* Effet visuel lors de l'ajout d'un favori */
+/* Animation visuelle lors de l'ajout d'un favori */
 .favorites-box.flash {
   animation: flashEffect 0.5s ease-in-out;
 }
