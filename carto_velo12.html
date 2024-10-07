@@ -145,7 +145,11 @@ function flashFavoritesBox() {
         updateFavoritesCount();
       }
     }
-
+//voir pour le sortir ?
+function isFavorite(item) {
+      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
+    }
+    
     function updateFavoritesCount() {
   var favoritesCount = document.getElementById('favorites-count');
   var favoriteIcon = document.querySelector('.favorite-icon');
@@ -165,11 +169,7 @@ function flashFavoritesBox() {
   }
 }
 
-    function isFavorite(item) {
-      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
-    }
-
-    // Fonction pour vider tous les favoris
+// Fonction pour vider tous les favoris
 function clearAllFavorites() {
   // Vider la liste des favoris
   favorites = [];
@@ -191,6 +191,7 @@ document.getElementById('trash-icon').addEventListener('click', function() {
     clearAllFavorites();  // Supprimer tous les favoris
   }
 });
+
 
     function showInfoBox(content, item) {
   var infoBox = document.getElementById('info-box');
@@ -748,4 +749,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
