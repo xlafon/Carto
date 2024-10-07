@@ -139,12 +139,12 @@ function flashFavoritesBox() {
 
 
     function removeFromFavorites(item) {
-      var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
-      if (index > -1) {
-        favorites.splice(index, 1);
-        updateFavoritesCount();
-      }
-    }
+  var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    updateFavoritesCount();  // Mettre à jour le compteur et l'icône de favoris
+  }
+}
 
     
     function updateFavoritesCount() {
@@ -166,28 +166,13 @@ function flashFavoritesBox() {
   }
 }
 
-// Fonction pour vider tous les favoris
-function clearAllFavorites() {
-  // Vider la liste des favoris
-  favorites = [];
-
-  // Mettre à jour le compteur et l'icône de favoris
-  updateFavoritesCount();
-
-  // Vider les couches des favoris de la carte
-  map.eachLayer(function(layer) {
-    if (!(layer instanceof L.TileLayer)) {
-      map.removeLayer(layer);
-    }
-  });
-}
-
 // Ajouter l'événement de clic pour l'icône de corbeille
 document.getElementById('trash-icon').addEventListener('click', function() {
   if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
     clearAllFavorites();  // Supprimer tous les favoris
   }
 });
+
 
 function isFavorite(item) {
       return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
@@ -749,4 +734,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-6
+7
