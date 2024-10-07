@@ -420,50 +420,57 @@ function showFavorites() {
   favorites.forEach(function(item) {
     if (item.lat && item.lon && item.icon && item.popupContent) {
       // Vérifiez si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
+      var lat, lon;
       if (Array.isArray(item.lat)) {
         // Si c'est un GeoJSON avec un tableau de coordonnées
-        var lat = item.lat[1]; // Coordonnées longitude dans GeoJSON
-        var lon = item.lat[0]; // Coordonnées latitude dans GeoJSON
-        var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
+        lat = item.lat[1]; // Coordonnées latitude dans GeoJSON
+        lon = item.lat[0]; // Coordonnées longitude dans GeoJSON
       } else {
         // API Overpass ou format normal
-        var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+        lat = item.lat;
+        lon = item.lon;
       }
-      marker.bindPopup(item.popupContent);
+
+      var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
+
+      // Remplacer l'info-bulle par l'infobox
+      marker.on('click', function(e) {
+        L.DomEvent.stopPropagation(e); // Empêcher les événements de propagation
+        showInfoBox(item.popupContent, { lat: lat, lon: lon, icon: item.icon, popupContent: item.popupContent });
+      });
     } else {
       console.error("Invalid favorite data:", item);
     }
   });
 
- // Ajouter le bouton "Quitter les favoris"
-var quitFavoritesButton = document.createElement('button');
-quitFavoritesButton.className = 'quit-favorites-button';
-quitFavoritesButton.innerText = 'Quitter les favoris';
-quitFavoritesButton.onclick = function() {
-  // Supprimer toutes les couches, sauf la couche de tuiles de base
-  map.eachLayer(function(layer) {
-    if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
-    map.removeLayer(layer);
-  });
+  // Ajouter le bouton "Quitter les favoris"
+  var quitFavoritesButton = document.createElement('button');
+  quitFavoritesButton.className = 'quit-favorites-button';
+  quitFavoritesButton.innerText = 'Quitter les favoris';
+  quitFavoritesButton.onclick = function() {
+    // Supprimer toutes les couches, y compris celles qui sont déjà affichées
+    map.eachLayer(function(layer) {
+      if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+      map.removeLayer(layer);
+    });
 
-  // Réafficher les couches sélectionnées depuis l'objet `selectedLayers`
-  Object.keys(selectedLayers).forEach(function(layerId) {
-    var layer = selectedLayers[layerId];
-    if (layer) {
-      map.addLayer(layer);  // Réafficher la couche
-    }
-  });
+    // Réafficher les couches d'origine après avoir tout retiré
+    map.addLayer(officesLayer);
+    map.addLayer(bikeParkingLayer);
+    map.addLayer(waterPointsLayer);
+    map.addLayer(bikeRoutesLayer);
+    map.addLayer(hotelsLayer);
+    map.addLayer(campingCarLayer);
+    map.addLayer(campingsLayer);
+    map.addLayer(autreshebLayer);
 
-  // Retirer le bouton "Quitter les favoris"
-  document.getElementById('favorites-box').removeChild(quitFavoritesButton);
-};
+    // Retirer le bouton "Quitter les favoris"
+    document.getElementById('favorites-box').removeChild(quitFavoritesButton);
+  };
 
-document.getElementById('favorites-box').appendChild(quitFavoritesButton);
-
-
-
-
+  document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
 
@@ -687,4 +694,4 @@ document.getElementById('favorites-box').appendChild(quitFavoritesButton);
   </script>
 </body>
 </html>
-8
+9
