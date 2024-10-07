@@ -149,14 +149,19 @@ function flashFavoritesBox() {
   var favoritesCount = document.getElementById('favorites-count');
   var favoriteIcon = document.querySelector('.favorite-icon');
   var count = favorites.length;
-  
+
+  // Mettre à jour le texte du compteur
   favoritesCount.innerText = count;
 
   // Changer l'icône en fonction du nombre de favoris
   if (count > 0) {
-    favoriteIcon.src = 'icons/favoritered.png';  // Icône rouge s'il y a des favoris
+    favoriteIcon.src = 'icons/favoritered.png';  // Icône rouge
+    favoriteIcon.classList.remove('black');
+    favoriteIcon.classList.add('red');
   } else {
-    favoriteIcon.src = 'icons/favorite1.png';  // Icône noire s'il n'y a pas de favoris
+    favoriteIcon.src = 'icons/favorite.png';  // Icône noire
+    favoriteIcon.classList.remove('red');
+    favoriteIcon.classList.add('black');
   }
 }
 
