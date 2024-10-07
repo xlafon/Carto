@@ -146,8 +146,18 @@ function flashFavoritesBox() {
     }
 
     function updateFavoritesCount() {
-      document.getElementById('favorites-count').innerText = favorites.length;
-    }
+  var favoritesCount = document.getElementById('favorites-count');
+  var favoriteIcon = document.querySelector('.favorite-icon');
+  var count = favorites.length;
+  
+  favoritesCount.innerText = count;
+
+  if (count > 0) {
+    favoriteIcon.classList.add('active');  // Ajouter la classe active pour rendre le cœur rouge
+  } else {
+    favoriteIcon.classList.remove('active');  // Retirer la classe active pour rendre le cœur noir
+  }
+}
 
     function isFavorite(item) {
       return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
@@ -709,4 +719,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
