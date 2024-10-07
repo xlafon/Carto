@@ -191,10 +191,19 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* Cœur noir par défaut */
 .favorite-icon {
-  width: 32px;  /* Taille réduite à 32px */
+  width: 32px;
   height: 32px;
+  filter: brightness(0); /* Couleur noire */
+  transition: filter 0.3s ease;
 }
+
+/* Cœur rouge lorsqu'il y a des favoris */
+.favorite-icon.active {
+  filter: none; /* Retirer le filtre pour afficher l'icône rouge */
+}
+
 
 #favorites-count {
   font-size: 16px;
