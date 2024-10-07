@@ -777,10 +777,18 @@ function showFavorites() {
           }
         });
 
+    
+    // Ajoutez ce log pour vérifier
+    console.log("Contrôle personnalisé ajouté");
         return container;
       }
     });
 
+    L.control.layers(null, {
+  'Offices de Tourisme': officesLayer,
+  'Parcours vélo': bikeRoutesLayer
+}).addTo(map);
+    
     map.addControl(new customControl());
 
     document.getElementById('view-favorites').addEventListener('click', function() {
@@ -836,4 +844,4 @@ function showFavorites() {
   
 </body>
 </html>
-7
+8
