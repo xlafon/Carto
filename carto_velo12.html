@@ -155,13 +155,9 @@ function flashFavoritesBox() {
 
   // Changer l'icône en fonction du nombre de favoris
   if (count > 0) {
-    favoriteIcon.src = 'icons/favoritered.png';  // Icône rouge
-    favoriteIcon.classList.remove('black');
-    favoriteIcon.classList.add('red');
+    favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
   } else {
-    favoriteIcon.src = 'icons/favorite.png';  // Icône noire
-    favoriteIcon.classList.remove('red');
-    favoriteIcon.classList.add('black');
+    favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
   }
 }
 
@@ -725,4 +721,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-9
+1
