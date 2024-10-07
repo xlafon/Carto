@@ -1,27 +1,22 @@
- .leaflet-control-custom {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 2000; /* Ajouté pour s'assurer que le menu est visible au-dessus de la carte */
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-}
+.leaflet-control-custom {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+    }
 
     .leaflet-control-custom button {
-  margin: 5px;
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  border-radius: 3px;
-}
-.leaflet-control-custom button:hover {
-  background-color: #0056b3;
-}
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
     .leaflet-control-custom .header {
       display: flex;
       align-items: center;
@@ -269,38 +264,3 @@
 .trash-icon:hover {
   opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
 }
-
-.travel-popup {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 50%;
-  top: 50%;
-  width: 60%;
-  height: 80%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  overflow: hidden;
-}
-
-.travel-popup-content {
-  padding: 20px;
-  position: relative;
-}
-
-.close-popup {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 24px;
-}
-
-#travel-content {
-  max-height: 200px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-}
-
