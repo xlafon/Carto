@@ -253,13 +253,15 @@
   }
 }
 .trash-icon {
-  width: 24px;
+  width: 24px; /* Plus petite icône */
   height: 24px;
   cursor: pointer;
   margin-left: 10px;
+  display: none; /* Masquer par défaut */
   transition: opacity 0.3s ease;
 }
 
 .trash-icon:hover {
-  opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
+  opacity: 0.7; /* Ajouter un effet de survol */
 }
+
