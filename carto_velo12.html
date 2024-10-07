@@ -95,7 +95,8 @@
 
     //FAVORIS
     var favorites = [];
-
+  
+    
 // Fonction pour mettre à jour le compteur de favoris et l'affichage de la corbeille
 function updateFavoritesCount() {
   var favoritesCount = document.getElementById('favorites-count');
@@ -161,10 +162,10 @@ function clearAllFavorites() {
   favorites = [];  // Vider la liste des favoris
   updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
 
-  // Supprimer les couches des favoris sur la carte
+  // Supprimer uniquement les couches des favoris (pas les selected icons)
   map.eachLayer(function(layer) {
-    if (!(layer instanceof L.TileLayer)) {
-      map.removeLayer(layer);
+    if (!(layer instanceof L.TileLayer) && !(selectedLayers[layer._leaflet_id])) {
+      map.removeLayer(layer);  // Retirer uniquement les couches non sélectionnées (favoris)
     }
   });
 }
@@ -586,7 +587,7 @@ function showFavorites() {
   selectedIconsContainer.appendChild(iconWrapper);
 }
 
-    var selectedLayers = {};  // Object to store selected layers
+    var selectedLayers = {};  // Objet pour stocker les couches sélectionnées des selected icons
 
 
     function removeSelectedIcon(iconUrl) {
@@ -754,4 +755,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
