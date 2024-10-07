@@ -446,15 +446,32 @@ quitFavoritesButton.onclick = function() {
     map.removeLayer(layer);
   });
 
-  // Optionnel : si vous souhaitez laisser la carte complètement vide, ne réaffichez pas les couches ici
+  // Parcourir les icônes sélectionnées dans le conteneur "selected-icons"
+  var selectedIconsContainer = document.getElementById('selected-icons');
+  var selectedLayers = [];
+
+  // Vérifier toutes les icônes sélectionnées pour réafficher les couches correspondantes
+  Array.from(selectedIconsContainer.getElementsByTagName('img')).forEach(function(img) {
+    var layerId = img.dataset.layer; // Chaque icône a l'ID de la couche associée
+
+    // Ajouter à la carte la couche correspondante si elle est dans les icônes sélectionnées
+    map.eachLayer(function(layer) {
+      if (layer._leaflet_id == layerId) {
+        selectedLayers.push(layer);
+      }
+    });
+  });
+
+  // Réajouter seulement les couches sélectionnées
+  selectedLayers.forEach(function(layer) {
+    map.addLayer(layer);
+  });
 
   // Retirer le bouton "Quitter les favoris"
   document.getElementById('favorites-box').removeChild(quitFavoritesButton);
 };
 
-// Ajouter le bouton "Quitter les favoris" dans la boîte de favoris
 document.getElementById('favorites-box').appendChild(quitFavoritesButton);
-
 
 
 }
@@ -674,4 +691,4 @@ document.getElementById('favorites-box').appendChild(quitFavoritesButton);
   </script>
 </body>
 </html>
-5
+6
