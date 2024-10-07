@@ -19,6 +19,7 @@
   <span id="favorites-count">0</span>
   <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
   <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
+  <button id="travel-book" class="travel-book-button">Carnet de voyage</button> <!-- Nouveau bouton -->
 </div>
 
 </div>
@@ -91,6 +92,72 @@
       popupAnchor: [0, -32]
     });
 
+//Créer une popup pour afficher le contenu du carnet de voyage
+    <div id="travel-popup" class="travel-popup">
+  <div class="travel-popup-content">
+    <span id="close-travel-popup" class="close-popup">&times;</span>
+    <h2>Carnet de voyage</h2>
+    <div id="travel-content"></div> <!-- Contenu des infobox favoris -->
+    <div id="travel-map" style="width: 100%; height: 400px;"></div> <!-- Carte des favoris -->
+  </div>
+</div>
+
+    //Gérer l'affichage de la popup et de la carte
+    document.getElementById('travel-book').addEventListener('click', function() {
+  var popup = document.getElementById('travel-popup');
+  var travelContent = document.getElementById('travel-content');
+  var travelMapContainer = document.getElementById('travel-map');
+
+  // Effacer le contenu précédent
+  travelContent.innerHTML = '';
+
+  // Ajouter les informations des favoris dans la popup
+  favorites.forEach(function(item) {
+    var info = document.createElement('div');
+    info.innerHTML = `<strong>${item.popupContent}</strong>`;
+    travelContent.appendChild(info);
+  });
+
+  // Afficher la popup
+  popup.style.display = 'block';
+
+  // Initialiser ou mettre à jour la carte dans la popup
+  setTimeout(function() { // Ajoutez un délai pour s'assurer que la carte est correctement redimensionnée
+    var travelMap = L.map('travel-map').setView([43.492949, -1.474841], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(travelMap);
+
+    // Ajouter les favoris sur la carte du carnet de voyage
+    var bounds = [];
+    favorites.forEach(function(item) {
+      var lat = Array.isArray(item.lat) ? item.lat[1] : item.lat;
+      var lon = Array.isArray(item.lon) ? item.lon[0] : item.lon;
+
+      var marker = L.marker([lat, lon], { icon: item.icon }).addTo(travelMap);
+      bounds.push([lat, lon]);
+    });
+
+    // Centrer la carte sur les favoris
+    if (bounds.length > 0) {
+      travelMap.fitBounds(bounds);
+    }
+  }, 100); // Fin du délai pour la carte
+});
+
+// Fermer la popup au clic sur le bouton de fermeture
+document.getElementById('close-travel-popup').addEventListener('click', function() {
+  var popup = document.getElementById('travel-popup');
+  popup.style.display = 'none';
+});
+
+    var travelBookButton = document.getElementById('travel-book');
+if (count > 0) {
+  travelBookButton.style.display = 'inline';  // Afficher le bouton
+} else {
+  travelBookButton.style.display = 'none';  // Masquer le bouton
+}
 
 
     //FAVORIS
@@ -762,4 +829,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
