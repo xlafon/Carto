@@ -159,16 +159,21 @@ function removeFromFavorites(item) {
 
 // Fonction pour vider tous les favoris
 function clearAllFavorites() {
-  favorites = [];  // Vider la liste des favoris
-  updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+  // Vider la liste des favoris
+  favorites = [];
 
-  // Supprimer uniquement les couches des favoris (pas les selected icons)
+  // Mettre à jour le compteur et l'icône de favoris
+  updateFavoritesCount();
+
+  // Vider les couches des favoris de la carte, mais ne pas toucher aux selected icons
   map.eachLayer(function(layer) {
-    if (!(layer instanceof L.TileLayer) && !(selectedLayers[layer._leaflet_id])) {
-      map.removeLayer(layer);  // Retirer uniquement les couches non sélectionnées (favoris)
+    // Supprimer uniquement les couches des favoris qui ne sont pas dans selectedLayers
+    if (!(layer instanceof L.TileLayer) && !selectedLayers[layer._leaflet_id]) {
+      map.removeLayer(layer);
     }
   });
 }
+
 
 // Ajouter l'événement de clic pour l'icône de corbeille
 document.getElementById('trash-icon').addEventListener('click', function() {
@@ -755,4 +760,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
