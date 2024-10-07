@@ -684,23 +684,23 @@ function showFavorites() {
     var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
     var customControl = L.Control.extend({
-      options: {
-        position: 'topleft'
-      },
-      onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-control-custom');
+  options: {
+    position: 'topleft'
+  },
+  onAdd: function (map) {
+    var container = L.DomUtil.create('div', 'leaflet-control-custom');
 
-        var header = L.DomUtil.create('div', 'header', container);
+    // En-tête du menu
+    var header = L.DomUtil.create('div', 'header', container);
+    var logo = L.DomUtil.create('img', '', header);
+    logo.src = 'icons/LOGO_VISIT64.png';
+    var title = L.DomUtil.create('h2', '', header);
+    title.innerHTML = 'Carte vélo 64';
 
-        var logo = L.DomUtil.create('img', '', header);
-        logo.src = 'icons/LOGO_VISIT64.png';
-        
-        var title = L.DomUtil.create('h2', '', header);
-        title.innerHTML = 'Carte vélo 64';
+    // Conteneur des boutons
+    var buttonContainer = L.DomUtil.create('div', 'button-container', container);
 
-        var buttonContainer = L.DomUtil.create('div', 'button-container', container);
-        
-        // Ajout de tous les boutons ici
+    // Bouton pour afficher les Offices de Tourisme
         var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
         buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
         L.DomEvent.on(buttonOffices, 'click', function () {
@@ -708,7 +708,7 @@ function showFavorites() {
             addDataToLayer(url, layer, '#007bff', true);
           });
         });
-
+// Bouton pour afficher les Parcours vélo
         var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
@@ -836,4 +836,4 @@ function showFavorites() {
   
 </body>
 </html>
-6
+7
