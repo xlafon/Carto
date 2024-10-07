@@ -24,6 +24,16 @@
 
 </div>
   
+  //Créer une popup pour afficher le contenu du carnet de voyage
+    <div id="travel-popup" class="travel-popup">
+  <div class="travel-popup-content">
+    <span id="close-travel-popup" class="close-popup">&times;</span>
+    <h2>Carnet de voyage</h2>
+    <div id="travel-content"></div> <!-- Contenu des infobox favoris -->
+    <div id="travel-map" style="width: 100%; height: 400px;"></div> <!-- Carte des favoris -->
+  </div>
+</div>
+  
   <script>
     var map = L.map('map').setView([43.492949, -1.474841], 13);
 
@@ -92,15 +102,7 @@
       popupAnchor: [0, -32]
     });
 
-//Créer une popup pour afficher le contenu du carnet de voyage
-    <div id="travel-popup" class="travel-popup">
-  <div class="travel-popup-content">
-    <span id="close-travel-popup" class="close-popup">&times;</span>
-    <h2>Carnet de voyage</h2>
-    <div id="travel-content"></div> <!-- Contenu des infobox favoris -->
-    <div id="travel-map" style="width: 100%; height: 400px;"></div> <!-- Carte des favoris -->
-  </div>
-</div>
+
 
     //Gérer l'affichage de la popup et de la carte
     document.getElementById('travel-book').addEventListener('click', function() {
@@ -152,7 +154,13 @@ document.getElementById('close-travel-popup').addEventListener('click', function
   popup.style.display = 'none';
 });
 
-   
+   var travelBookButton = document.getElementById('travel-book');
+if (count > 0) {
+  travelBookButton.style.display = 'inline';  // Afficher le bouton
+} else {
+  travelBookButton.style.display = 'none';  // Masquer le bouton
+}
+
 
 
     //FAVORIS
@@ -824,4 +832,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
