@@ -253,8 +253,8 @@
   }
 }
 .trash-icon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   margin-left: 10px;
   transition: opacity 0.3s ease;
