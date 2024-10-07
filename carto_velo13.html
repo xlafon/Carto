@@ -15,9 +15,12 @@
   <div id="info-box"></div>
   <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
-  <img src="icons/favorite1.png" alt="Favoris" class="favorite-icon">
+  <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
   <span id="favorites-count">0</span>
   <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+  <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
+</div>
+
 </div>
   
   <script>
@@ -88,9 +91,36 @@
       popupAnchor: [0, -32]
     });
 
-    var favorites = [];
 
-    function addToFavorites(item) {
+
+    //FAVORIS
+    var favorites = [];
+  
+    //variable pour suivre si vous êtes en mode "Voir les favoris" :
+    var inFavoritesMode = false;
+    
+// Fonction pour mettre à jour le compteur de favoris et l'affichage de la corbeille
+function updateFavoritesCount() {
+  var favoritesCount = document.getElementById('favorites-count');
+  var favoriteIcon = document.querySelector('.favorite-icon');
+  var trashIcon = document.getElementById('trash-icon');
+  var count = favorites.length;
+
+  // Mettre à jour le texte du compteur
+  favoritesCount.innerText = count;
+
+  // Afficher/Masquer l'icône de la corbeille en fonction du nombre de favoris
+  if (count > 0) {
+    favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
+    trashIcon.style.display = 'inline';  // Afficher l'icône de la corbeille
+  } else {
+    favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
+    trashIcon.style.display = 'none';  // Masquer l'icône de la corbeille
+  }
+}
+
+// Fonction pour ajouter un favori
+function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
     // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
     if (Array.isArray(item.lat)) {
@@ -113,56 +143,65 @@
         });
       }
     }
-    updateFavoritesCount();
-    flashFavoritesBox();  // Déclencher l'animation à l'ajout
+     updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+      flashFavoritesBox();     // Déclencher l'animation à l'ajout
   } else {
     console.error("Invalid item data:", item);
   }
 }
 
-function flashFavoritesBox() {
-  var favoritesBox = document.getElementById('favorites-box');
-
-  // Réinitialiser la classe 'flash' pour s'assurer que l'animation se rejoue
-  favoritesBox.classList.remove('flash');
-  
-  // Forcer un reflow pour redémarrer l'animation
-  void favoritesBox.offsetWidth;
-
-  // Appliquer de nouveau la classe 'flash' pour jouer l'animation
-  favoritesBox.classList.add('flash');
-}
-
-// Appelez cette fonction chaque fois qu'un favori est ajouté
-
-
-
-    function removeFromFavorites(item) {
-      var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
-      if (index > -1) {
-        favorites.splice(index, 1);
-        updateFavoritesCount();
-      }
-    }
-
-    function updateFavoritesCount() {
-  var favoritesCount = document.getElementById('favorites-count');
-  var favoriteIcon = document.querySelector('.favorite-icon');
-  var count = favorites.length;
-  
-  favoritesCount.innerText = count;
-
-  if (count > 0) {
-    favoriteIcon.classList.add('active');  // Ajouter la classe active pour rendre le cœur rouge
-  } else {
-    favoriteIcon.classList.remove('active');  // Retirer la classe active pour rendre le cœur noir
+// Fonction pour retirer un favori spécifique
+function removeFromFavorites(item) {
+  var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
   }
 }
 
-    function isFavorite(item) {
+// Fonction pour vider tous les favoris
+function clearAllFavorites() {
+  favorites = [];  // Vider la liste des favoris
+  updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+
+  // Vider les couches des favoris uniquement si on est en mode "Voir les favoris"
+  if (inFavoritesMode) {
+    map.eachLayer(function(layer) {
+      // Supprimer uniquement les couches des favoris qui ne sont pas dans selectedLayers
+      if (!(layer instanceof L.TileLayer) && !selectedLayers[layer._leaflet_id]) {
+        map.removeLayer(layer);
+      }
+    });
+  }
+}
+
+// Ajouter l'événement de clic pour l'icône de corbeille
+document.getElementById('trash-icon').addEventListener('click', function() {
+  if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
+    clearAllFavorites();  // Supprimer tous les favoris
+  }
+});
+
+// Fonction d'animation pour la boîte des favoris
+function flashFavoritesBox() {
+  var favoritesBox = document.getElementById('favorites-box');
+  favoritesBox.classList.remove('flash');  // Réinitialiser l'animation
+  void favoritesBox.offsetWidth;  // Forcer un reflow pour redémarrer l'animation
+  favoritesBox.classList.add('flash');  // Appliquer de nouveau la classe 'flash'
+}
+
+   
+
+    
+
+
+
+
+//vérifier si un élément est déjà présent dans la liste des favoris
+function isFavorite(item) {
       return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
     }
-
+    
     function showInfoBox(content, item) {
   var infoBox = document.getElementById('info-box');
   infoBox.innerHTML = content;
@@ -436,11 +475,14 @@ function addBikeRoutesLayer(url, layer) {
 
 
 function showFavorites() {
+  inFavoritesMode = true;  // On est en mode favoris
   // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
   map.eachLayer(function(layer) {
     if (layer instanceof L.TileLayer) return; 
     map.removeLayer(layer);
   });
+
+  
 
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
@@ -474,6 +516,7 @@ function showFavorites() {
   quitFavoritesButton.className = 'quit-favorites-button';
   quitFavoritesButton.innerText = 'Quitter les favoris';
   quitFavoritesButton.onclick = function() {
+     inFavoritesMode = false;  // Sortie du mode favoris
     // Supprimer toutes les couches, sauf la couche de tuiles de base
     map.eachLayer(function(layer) {
       if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
@@ -551,7 +594,7 @@ function showFavorites() {
   selectedIconsContainer.appendChild(iconWrapper);
 }
 
-    var selectedLayers = {};  // Object to store selected layers
+    var selectedLayers = {};  // Objet pour stocker les couches sélectionnées des selected icons
 
 
     function removeSelectedIcon(iconUrl) {
@@ -719,3 +762,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
+1
