@@ -15,10 +15,10 @@
   <div id="info-box"></div>
   <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
-    <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
-    <span id="favorites-count">0</span>
-    <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
-  </div>
+  <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
+  <span id="favorites-count">0</span>
+  <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+</div>
   
   <script>
     var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -119,6 +119,16 @@
   }
 }
 
+function flashFavoritesBox() {
+  var favoritesBox = document.getElementById('favorites-box');
+  favoritesBox.classList.add('flash');
+
+  setTimeout(function() {
+    favoritesBox.classList.remove('flash');
+  }, 500); // Durée de l'animation "flash"
+}
+
+// Appelez cette fonction lorsque vous ajoutez un favori
 
 
     function removeFromFavorites(item) {
@@ -693,4 +703,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
