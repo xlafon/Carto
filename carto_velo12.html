@@ -149,6 +149,7 @@ function flashFavoritesBox() {
     function updateFavoritesCount() {
   var favoritesCount = document.getElementById('favorites-count');
   var favoriteIcon = document.querySelector('.favorite-icon');
+  var trashIcon = document.getElementById('trash-icon');  // Récupérer l'icône de la corbeille
   var count = favorites.length;
 
   // Mettre à jour le texte du compteur
@@ -157,8 +158,10 @@ function flashFavoritesBox() {
   // Changer l'icône en fonction du nombre de favoris
   if (count > 0) {
     favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
+    trashIcon.style.display = 'inline';  // Afficher l'icône de la corbeille
   } else {
     favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
+    trashIcon.style.display = 'none';  // Masquer l'icône de la corbeille
   }
 }
 
@@ -745,4 +748,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
