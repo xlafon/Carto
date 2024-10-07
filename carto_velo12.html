@@ -92,19 +92,33 @@
 
     function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
-    if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
-      favorites.push({
-        lat: item.lat,
-        lon: item.lon,
-        icon: item.icon,
-        popupContent: item.popupContent
-      });
-      updateFavoritesCount();
+    // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
+    if (Array.isArray(item.lat)) {
+      if (!favorites.some(fav => fav.lat[0] === item.lat[0] && fav.lon[1] === item.lon[1])) {
+        favorites.push({
+          lat: item.lat,
+          lon: item.lon,
+          icon: item.icon,
+          popupContent: item.popupContent
+        });
+      }
+    } else {
+      // Gestion des points Overpass (les coordonnées sont séparées)
+      if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
+        favorites.push({
+          lat: item.lat,
+          lon: item.lon,
+          icon: item.icon,
+          popupContent: item.popupContent
+        });
+      }
     }
+    updateFavoritesCount();
   } else {
     console.error("Invalid item data:", item);
   }
 }
+
 
 
     function removeFromFavorites(item) {
@@ -396,16 +410,25 @@ function addBikeRoutesLayer(url, layer) {
 
 
 function showFavorites() {
-  // Effacer toutes les couches de la carte
+  // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
   map.eachLayer(function(layer) {
-    if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+    if (layer instanceof L.TileLayer) return; 
     map.removeLayer(layer);
   });
 
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
     if (item.lat && item.lon && item.icon && item.popupContent) {
-      var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+      // Vérifiez si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
+      if (Array.isArray(item.lat)) {
+        // Si c'est un GeoJSON avec un tableau de coordonnées
+        var lat = item.lat[1]; // Coordonnées longitude dans GeoJSON
+        var lon = item.lat[0]; // Coordonnées latitude dans GeoJSON
+        var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
+      } else {
+        // API Overpass ou format normal
+        var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(map);
+      }
       marker.bindPopup(item.popupContent);
     } else {
       console.error("Invalid favorite data:", item);
@@ -434,6 +457,7 @@ function showFavorites() {
   };
   document.getElementById('favorites-box').appendChild(quitFavoritesButton);
 }
+
 
 
 
@@ -648,3 +672,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
+1
