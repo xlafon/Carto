@@ -22,6 +22,7 @@
     <button id="travel-book" class="travel-book-button">Carnet de voyage</button>
   </div>
 
+  <!-- Popup du Carnet de Voyage -->
   <div id="travel-popup" class="travel-popup">
     <div class="travel-popup-content">
       <span id="close-travel-popup" class="close-popup">&times;</span>
@@ -32,112 +33,250 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Initialisation de la carte Leaflet
-      var map = L.map('map').setView([43.492949, -1.474841], 13);
+    var map = L.map('map').setView([43.492949, -1.474841], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+    var officesLayer = L.layerGroup().addTo(map);
+    var bikeParkingLayer = L.layerGroup();
+    var waterPointsLayer = L.layerGroup();
+    var bikeRoutesLayer = L.layerGroup();
+    var hotelsLayer = L.layerGroup();
+    var campingCarLayer = L.layerGroup();
+    var campingsLayer = L.layerGroup();
+    var autreshebLayer = L.layerGroup();
+    var currentGpxLayer = null;
+    var currentMarker = null;
 
-      var officesLayer = L.layerGroup().addTo(map);
-      var bikeParkingLayer = L.layerGroup();
-      var waterPointsLayer = L.layerGroup();
-      var bikeRoutesLayer = L.layerGroup();
-      var hotelsLayer = L.layerGroup();
-      var campingCarLayer = L.layerGroup();
-      var campingsLayer = L.layerGroup();
-      var autreshebLayer = L.layerGroup();
-      var currentGpxLayer = null;
-      var currentMarker = null;
+    // Créer les icônes personnalisées
+    var touristOfficeIcon = L.icon({ iconUrl: 'icons/tourist_office.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var bikeParkingIcon = L.icon({ iconUrl: 'icons/bicycle_parking.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var waterPointIcon = L.icon({ iconUrl: 'icons/water_point.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var hotelIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var campingCarIcon = L.icon({ iconUrl: 'icons/camping-car.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var campingIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var autreshebIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    var bikeIcon = L.icon({ iconUrl: 'icons/velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
 
-      // Icônes personnalisées
-      var touristOfficeIcon = L.icon({ iconUrl: 'icons/tourist_office.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var bikeParkingIcon = L.icon({ iconUrl: 'icons/bicycle_parking.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var waterPointIcon = L.icon({ iconUrl: 'icons/water_point.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var hotelIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var campingCarIcon = L.icon({ iconUrl: 'icons/camping-car.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var campingIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var autreshebIcon = L.icon({ iconUrl: 'icons/logo_acc_velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
-      var bikeIcon = L.icon({ iconUrl: 'icons/velo.png', iconSize: [32, 32], iconAnchor: [16, 32], popupAnchor: [0, -32] });
+    // FAVORIS
+    var favorites = [];
+    var inFavoritesMode = false;
 
-      // Gestion du Carnet de voyage
-      document.getElementById('travel-book').addEventListener('click', function () {
-        var popup = document.getElementById('travel-popup');
-        var travelContent = document.getElementById('travel-content');
-        travelContent.innerHTML = '';
+    function updateFavoritesCount() {
+      var favoritesCount = document.getElementById('favorites-count');
+      var favoriteIcon = document.querySelector('.favorite-icon');
+      var trashIcon = document.getElementById('trash-icon');
+      var count = favorites.length;
+      favoritesCount.innerText = count;
+      if (count > 0) {
+        favoriteIcon.src = 'icons/favoritered.png';
+        trashIcon.style.display = 'inline';
+      } else {
+        favoriteIcon.src = 'icons/favorite.png';
+        trashIcon.style.display = 'none';
+      }
+    }
 
-        favorites.forEach(function (item) {
-          var info = document.createElement('div');
-          info.innerHTML = `<strong>${item.popupContent}</strong>`;
-          travelContent.appendChild(info);
+    // Gestion du Carnet de voyage
+    document.getElementById('travel-book').addEventListener('click', function() {
+      var popup = document.getElementById('travel-popup');
+      var travelContent = document.getElementById('travel-content');
+      travelContent.innerHTML = '';
+
+      favorites.forEach(function(item) {
+        var info = document.createElement('div');
+        info.innerHTML = `<strong>${item.popupContent}</strong>`;
+        travelContent.appendChild(info);
+      });
+
+      popup.style.display = 'block';
+
+      setTimeout(function () {
+        var travelMap = L.map('travel-map').setView([43.492949, -1.474841], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(travelMap);
+
+        var bounds = [];
+        favorites.forEach(function(item) {
+          var lat = Array.isArray(item.lat) ? item.lat[1] : item.lat;
+          var lon = Array.isArray(item.lon) ? item.lon[0] : item.lon;
+          var marker = L.marker([lat, lon], { icon: item.icon }).addTo(travelMap);
+          bounds.push([lat, lon]);
         });
 
-        popup.style.display = 'block';
+        if (bounds.length > 0) {
+          travelMap.fitBounds(bounds);
+        }
+      }, 100);
+    });
 
-        setTimeout(function () {
-          var travelMap = L.map('travel-map').setView([43.492949, -1.474841], 13);
-          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(travelMap);
+    document.getElementById('close-travel-popup').addEventListener('click', function() {
+      var popup = document.getElementById('travel-popup');
+      popup.style.display = 'none';
+    });
 
-          var bounds = [];
-          favorites.forEach(function (item) {
-            var lat = Array.isArray(item.lat) ? item.lat[1] : item.lat;
-            var lon = Array.isArray(item.lon) ? item.lon[0] : item.lon;
-            var marker = L.marker([lat, lon], { icon: item.icon }).addTo(travelMap);
-            bounds.push([lat, lon]);
-          });
+    // Gestion des favoris (affichage)
+    document.getElementById('view-favorites').addEventListener('click', function() {
+      showFavorites();
+    });
 
-          if (bounds.length > 0) {
-            travelMap.fitBounds(bounds);
-          }
-        }, 100);
+    function showFavorites() {
+      inFavoritesMode = true;
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer) return;
+        map.removeLayer(layer);
       });
 
-      document.getElementById('close-travel-popup').addEventListener('click', function () {
-        var popup = document.getElementById('travel-popup');
-        popup.style.display = 'none';
-      });
-
-      // Ajout d'un contrôle personnalisé
-      var customControl = L.Control.extend({
-        options: { position: 'topleft' },
-        onAdd: function (map) {
-          var container = L.DomUtil.create('div', 'leaflet-control-custom');
-          var header = L.DomUtil.create('div', 'header', container);
-          var logo = L.DomUtil.create('img', '', header);
-          logo.src = 'icons/LOGO_VISIT64.png';
-          var title = L.DomUtil.create('h2', '', header);
-          title.innerHTML = 'Carte vélo 64';
-
-          var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
-          buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
-          L.DomEvent.on(buttonOffices, 'click', function () {
-            // Ajout d'une couche d'exemple
-            console.log("Office de tourisme affiché");
+      favorites.forEach(function(item) {
+        if (item.lat && item.lon && item.icon && item.popupContent) {
+          var lat = Array.isArray(item.lat) ? item.lat[1] : item.lat;
+          var lon = Array.isArray(item.lon) ? item.lon[0] : item.lon;
+          var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
+          marker.on('click', function(e) {
+            L.DomEvent.stopPropagation(e);
+            showInfoBox(item.popupContent, { lat: lat, lon: lon, icon: item.icon, popupContent: item.popupContent });
           });
-
-          var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', container);
-          buttonBikeRoutes.innerHTML = 'Parcours vélo';
-          L.DomEvent.on(buttonBikeRoutes, 'click', function () {
-            // Ajout d'une couche d'exemple
-            console.log("Parcours vélo affiché");
-          });
-
-          return container;
         }
       });
+    }
 
-      map.addControl(new customControl());
+    var customControl = L.Control.extend({
+      options: {
+        position: 'topleft'
+      },
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-control-custom');
+        var header = L.DomUtil.create('div', 'header', container);
+        var logo = L.DomUtil.create('img', '', header);
+        logo.src = 'icons/LOGO_VISIT64.png';
+        var title = L.DomUtil.create('h2', '', header);
+        title.innerHTML = 'Carte vélo 64';
 
-      // Gestion des favoris (pour montrer les favoris par ex.)
-      var favorites = [];
-      document.getElementById('view-favorites').addEventListener('click', function () {
-        console.log("Afficher les favoris");
-      });
+        var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
+                buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
+        L.DomEvent.on(buttonOffices, 'click', function () {
+          toggleLayer(officesLayer, 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;', touristOfficeIcon, 'office', 'icons/tourist_office.png', addDataToLayer);
+        });
 
+        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', container);
+        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
+          toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', bikeIcon, 'bike_routes', 'icons/velo.png', addBikeRoutesLayer);
+        });
+
+        var buttonBike = L.DomUtil.create('button', 'bike-button', container);
+        buttonBike.innerHTML = 'Mobilité et Services';
+        var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
+
+        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
+        buttonBikeParking.innerHTML = 'Parking à vélo';
+        L.DomEvent.on(buttonBikeParking, 'click', function () {
+          toggleLayer(bikeParkingLayer, 'data/bike_parking.geojson', bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
+        });
+
+        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+        buttonWaterPoints.innerHTML = 'Points d\'eau';
+        L.DomEvent.on(buttonWaterPoints, 'click', function () {
+          toggleLayer(waterPointsLayer, 'data/water_points.geojson', waterPointIcon, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
+        });
+
+        L.DomEvent.on(buttonBike, 'click', function () {
+          submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
+        buttonAccommodations.innerHTML = 'Hébergements Accueil Vélo';
+        var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
+
+        var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonHotels.innerHTML = 'Hôtels';
+        L.DomEvent.on(buttonHotels, 'click', function () {
+          toggleLayer(hotelsLayer, 'data/HOT.geojson', hotelIcon, 'hotel', 'icons/hotel.png', addGeoJsonLayer);
+        });
+
+        var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampings.innerHTML = 'Campings';
+        L.DomEvent.on(buttonCampings, 'click', function () {
+          toggleLayer(campingsLayer, 'data/HPA.geojson', campingIcon, 'camping', 'icons/camping.png', addGeoJsonLayer);
+        });
+
+        var buttonAutresHeb = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonAutresHeb.innerHTML = 'Autres hébergements';
+        L.DomEvent.on(buttonAutresHeb, 'click', function () {
+          toggleLayer(autreshebLayer, 'data/AUTRESHEEB.geojson', autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png', addGeoJsonLayer);
+        });
+
+        var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampingCar.innerHTML = 'Aires de camping-car';
+        L.DomEvent.on(buttonCampingCar, 'click', function () {
+          toggleLayer(campingCarLayer, 'data/ACC.geojson', campingCarIcon, 'camping_car', 'icons/camping-car.png', addGeoJsonLayer);
+        });
+
+        L.DomEvent.on(buttonAccommodations, 'click', function () {
+          submenuAccommodations.style.display = submenuAccommodations.style.display === 'block' ? 'none' : 'block';
+        });
+
+        return container;
+      }
     });
+
+    map.addControl(new customControl());
+
+    function toggleLayer(layer, url, icon, type, iconUrl, callback) {
+      if (map.hasLayer(layer)) {
+        map.removeLayer(layer);
+        removeSelectedIcon(iconUrl);
+      } else {
+        if (callback) {
+          callback(url, layer, icon, type);
+        }
+        map.addLayer(layer);
+        addSelectedIcon(iconUrl, layer);
+      }
+    }
+
+    function addSelectedIcon(iconUrl, layer) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      var iconWrapper = document.createElement('div');
+      iconWrapper.style.position = 'relative';
+
+      var img = document.createElement('img');
+      img.src = iconUrl;
+      img.dataset.layerId = layer._leaflet_id;
+      selectedLayers[layer._leaflet_id] = layer;
+
+      img.onclick = function () {
+        map.removeLayer(layer);
+        selectedIconsContainer.removeChild(iconWrapper);
+        delete selectedLayers[layer._leaflet_id];
+      };
+
+      var cross = document.createElement('div');
+      cross.className = 'cross';
+      cross.innerHTML = '✖';
+      cross.onclick = function () {
+        map.removeLayer(layer);
+        selectedIconsContainer.removeChild(iconWrapper);
+        delete selectedLayers[layer._leaflet_id];
+      };
+
+      iconWrapper.appendChild(img);
+      iconWrapper.appendChild(cross);
+      selectedIconsContainer.appendChild(iconWrapper);
+    }
+
+    function removeSelectedIcon(iconUrl) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      var imgs = selectedIconsContainer.getElementsByTagName('img');
+      Array.from(imgs).forEach(function (img) {
+        if (img.src.includes(iconUrl)) {
+          selectedIconsContainer.removeChild(img.parentElement);
+        }
+      });
+    }
   </script>
 </body>
 </html>
+1
