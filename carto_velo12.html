@@ -171,7 +171,11 @@
         if (isOffice) {
           popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
           if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
-                   popupContent += `(source OSM)`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+          if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          popupContent += `(source OSM)`;
         } else {
           popupContent += element.tags.name || "No name";
         }
@@ -221,23 +225,90 @@
           if (type === 'bike_parking') {
             popupContent += `<strong>Parking à vélo</strong><br>`;
             if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} places<br>`;
-                        popupContent += `(source OSM)`;
+            if (feature.properties.bicycle_parking) popupContent += `Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}<br>`;
+            popupContent += `(source OSM)`;
           } else if (type === 'hotel') {
             if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-            
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/hotels/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
             }
           } else if (type === 'camping') {
             if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-           
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]} emplacements<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/camping/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
             }
           } else if (type === 'camping-car') {
             if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-           
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["Equipement"]) popupContent += `${feature.properties["Equipement"]}<br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/aire-de-camping-car/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
             }
           } else {
             if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
-           
-            
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties["Identifiant"]) {
+              if (feature.properties["Identifiant"].startsWith("VIL")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/village-de-vacances/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("RET")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/residence-de-tourisme/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("HLO")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/chambre-d-hotes/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("HCO")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/hebergement-collectif/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              }
+            }
           }
         }
         if (popupContent) {
@@ -265,7 +336,16 @@ function addBikeRoutesLayer(url, layer) {
       onEachFeature: function (feature, layer) {
         var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
         var popupContent = `<span style="font-size: 14px;"><strong>${feature.properties.SyndicObjectName}</strong></span><br><br>`;
-       
+        if (feature.properties.PHOTO) {
+          popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
+        }
+        popupContent += "<strong>" + tempsDifficulte + "<br>" +
+                        "" + feature.properties.DISTANCE + " km<br></strong><br>";
+        var commune = feature.properties.COMMUNE;
+        var syndicObjectID = feature.properties.SyndicObjectID;
+        var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
+        var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
+        popupContent += `<a href="${moreInfoLink}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
         layer.on('click', function() {
           if (currentGpxLayer) {
             map.removeLayer(currentGpxLayer);
@@ -425,7 +505,7 @@ function showFavorites() {
     var campingCarUrl = 'data/ACC.geojson';
     var campingsUrl = 'data/HPA.geojson';
     var autreshebUrl = 'data/AUTRESHEEB.geojson';
-  
+    var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
     var BikeRoutesUrl = 'data/ITIVELO.geojson';
 
     var customControl = L.Control.extend({
@@ -533,13 +613,30 @@ function showFavorites() {
 
     function translateOpeningHours(openingHours) {
       return openingHours.replace(/Mo/g, 'Lun')
-                         
+                         .replace(/Tu/g, 'Mar')
+                         .replace(/We/g, 'Mer')
+                         .replace(/Th/g, 'Jeu')
+                         .replace(/Fr/g, 'Ven')
+                         .replace(/Sa/g, 'Sam')
+                         .replace(/Su/g, 'Dim')
+                         .replace(/Jan/g, 'Janv')
+                         .replace(/Feb/g, 'Févr')
+                         .replace(/Mar/g, 'Mars')
+                         .replace(/Apr/g, 'Avr')
+                         .replace(/May/g, 'Mai')
+                         .replace(/Jun/g, 'Juin')
+                         .replace(/Jul/g, 'Juil')
+                         .replace(/Aug/g, 'Août')
+                         .replace(/Sep/g, 'Sept')
+                         .replace(/Oct/g, 'Oct')
+                         .replace(/Nov/g, 'Nov')
                          .replace(/Dec/g, 'Déc');
     }
 
     function mapBicycleParkingType(type) {
       var mapping = {
-        
+        'stands': 'arceaux',
+        'wall_loops': 'ratelier',
         'shed': 'abri vélo'
       };
       return mapping[type] || type;
@@ -551,5 +648,3 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
-3
