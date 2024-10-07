@@ -145,10 +145,7 @@ function flashFavoritesBox() {
         updateFavoritesCount();
       }
     }
-//voir pour le sortir ?
-function isFavorite(item) {
-      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
-    }
+
     
     function updateFavoritesCount() {
   var favoritesCount = document.getElementById('favorites-count');
@@ -749,4 +746,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
