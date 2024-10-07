@@ -22,15 +22,7 @@
   <button id="travel-book" class="travel-book-button">Carnet de voyage</button> <!-- Nouveau bouton -->
 </div>
 
-  <!-- Ajoutez la popup ici, avant la fin du body -->
-  <div id="travel-popup" class="travel-popup">
-    <div class="travel-popup-content">
-      <span id="close-travel-popup" class="close-popup">&times;</span>
-      <h2>Carnet de voyage</h2>
-      <div id="travel-content"></div> <!-- Contenu des infobox favoris -->
-      <div id="travel-map" style="width: 100%; height: 400px;"></div> <!-- Carte des favoris -->
-    </div>
-  </div>
+ 
   
     
   <script>
@@ -830,6 +822,18 @@ function showFavorites() {
       return raisonSociale.replace(/\s+/g, '-');
     }
   </script>
+
+
+ <!-- Ajoutez la popup ici, avant la fin du body -->
+  <div id="travel-popup" class="travel-popup">
+    <div class="travel-popup-content">
+      <span id="close-travel-popup" class="close-popup">&times;</span>
+      <h2>Carnet de voyage</h2>
+      <div id="travel-content"></div> <!-- Contenu des infobox favoris -->
+      <div id="travel-map" style="width: 100%; height: 400px;"></div> <!-- Carte des favoris -->
+    </div>
+  </div>
+  
 </body>
 </html>
-5
+6
