@@ -91,8 +91,31 @@
       popupAnchor: [0, -32]
     });
 
+
+
+    //FAVORIS
     var favorites = [];
 
+  function updateFavoritesCount() {
+  var favoritesCount = document.getElementById('favorites-count');
+  var favoriteIcon = document.querySelector('.favorite-icon');
+  var trashIcon = document.getElementById('trash-icon');
+  var count = favorites.length;
+
+  // Mettre à jour le texte du compteur
+  favoritesCount.innerText = count;
+
+  // Afficher/Masquer l'icône de la corbeille en fonction du nombre de favoris
+  if (count > 0) {
+    favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
+    trashIcon.style.display = 'inline';  // Afficher l'icône de la corbeille
+  } else {
+    favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
+    trashIcon.style.display = 'none';  // Masquer l'icône de la corbeille
+  }
+}
+
+    // Fonction pour ajouter un favori
     function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
     // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
@@ -122,7 +145,36 @@
     console.error("Invalid item data:", item);
   }
 }
+// Fonction pour retirer un favori spécifique
+ function removeFromFavorites(item) {
+  var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+  }
+}
 
+// Fonction pour vider tous les favoris
+function clearAllFavorites() {
+  favorites = [];  // Réinitialiser la liste des favoris
+  updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+
+  // Supprimer les couches des favoris sur la carte
+  map.eachLayer(function(layer) {
+    if (!(layer instanceof L.TileLayer)) {
+      map.removeLayer(layer);
+    }
+  });
+}
+
+// Ajouter l'événement de clic pour l'icône de corbeille
+document.getElementById('trash-icon').addEventListener('click', function() {
+  if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
+    clearAllFavorites();  // Supprimer tous les favoris
+  }
+});
+
+ // Fonction d'animation pour la boîte des favoris   
 function flashFavoritesBox() {
   var favoritesBox = document.getElementById('favorites-box');
 
@@ -140,42 +192,14 @@ function flashFavoritesBox() {
 
 
 
-    function removeFromFavorites(item) {
-  var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
-  if (index > -1) {
-    favorites.splice(index, 1);
-    updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
-  }
-}
+   
 
     
-    function updateFavoritesCount() {
-  var favoritesCount = document.getElementById('favorites-count');
-  var favoriteIcon = document.querySelector('.favorite-icon');
-  var trashIcon = document.getElementById('trash-icon');
-  var count = favorites.length;
-
-  // Mettre à jour le texte du compteur
-  favoritesCount.innerText = count;
-
-  // Afficher/Masquer l'icône de la corbeille en fonction du nombre de favoris
-  if (count > 0) {
-    favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
-    trashIcon.style.display = 'inline';  // Afficher l'icône de la corbeille
-  } else {
-    favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
-    trashIcon.style.display = 'none';  // Masquer l'icône de la corbeille
-  }
-}
-
-// Ajouter l'événement de clic pour l'icône de corbeille
-document.getElementById('trash-icon').addEventListener('click', function() {
-  if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
-    clearAllFavorites();  // Supprimer tous les favoris
-  }
-});
 
 
+
+
+//vérifier si un élément est déjà présent dans la liste des favoris
 function isFavorite(item) {
       return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
     }
@@ -459,18 +483,7 @@ function showFavorites() {
     map.removeLayer(layer);
   });
 
-  // Fonction pour vider tous les favoris
-function clearAllFavorites() {
-  favorites = [];  // Réinitialiser la liste des favoris
-  updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
-
-  // Vider les couches des favoris de la carte
-  map.eachLayer(function(layer) {
-    if (!(layer instanceof L.TileLayer)) {
-      map.removeLayer(layer);
-    }
-  });
-}
+  
 
   // Ajouter les favoris à la carte
   favorites.forEach(function(item) {
@@ -749,4 +762,4 @@ function clearAllFavorites() {
   </script>
 </body>
 </html>
-8
+1
