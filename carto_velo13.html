@@ -707,7 +707,8 @@ function showFavorites() {
         title.innerHTML = 'Carte vélo 64';
 
         var buttonContainer = L.DomUtil.create('div', 'button-container', container);
-
+        
+        // Ajout de tous les boutons ici
         var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
         buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
         L.DomEvent.on(buttonOffices, 'click', function () {
