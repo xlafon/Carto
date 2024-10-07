@@ -452,19 +452,10 @@ quitFavoritesButton.onclick = function() {
 
   // Vérifier toutes les icônes sélectionnées pour réafficher les couches correspondantes
   Array.from(selectedIconsContainer.getElementsByTagName('img')).forEach(function(img) {
-    var layerId = img.dataset.layer; // Chaque icône a l'ID de la couche associée
-
-    // Ajouter à la carte la couche correspondante si elle est dans les icônes sélectionnées
-    map.eachLayer(function(layer) {
-      if (layer._leaflet_id == layerId) {
-        selectedLayers.push(layer);
-      }
-    });
-  });
-
-  // Réajouter seulement les couches sélectionnées
-  selectedLayers.forEach(function(layer) {
-    map.addLayer(layer);
+    var layer = img.dataset.layerObject;  // Récupérer directement la couche stockée dans dataset
+    if (layer) {
+      map.addLayer(layer);  // Réafficher la couche
+    }
   });
 
   // Retirer le bouton "Quitter les favoris"
@@ -472,6 +463,7 @@ quitFavoritesButton.onclick = function() {
 };
 
 document.getElementById('favorites-box').appendChild(quitFavoritesButton);
+
 
 
 }
@@ -499,32 +491,34 @@ document.getElementById('favorites-box').appendChild(quitFavoritesButton);
     }
 
     function addSelectedIcon(iconUrl, layer) {
-      var selectedIconsContainer = document.getElementById('selected-icons');
-      if (!selectedIconsContainer) return;
+  var selectedIconsContainer = document.getElementById('selected-icons');
+  if (!selectedIconsContainer) return;
 
-      var iconWrapper = document.createElement('div');
-      iconWrapper.style.position = 'relative';
+  var iconWrapper = document.createElement('div');
+  iconWrapper.style.position = 'relative';
 
-      var img = document.createElement('img');
-      img.src = iconUrl;
-      img.dataset.layer = layer._leaflet_id;
-      img.onclick = function() {
-        map.removeLayer(layer);
-        selectedIconsContainer.removeChild(iconWrapper);
-      };
+  var img = document.createElement('img');
+  img.src = iconUrl;
+  img.dataset.layer = layer._leaflet_id;  // Stocker l'ID de la couche dans l'icône
+  img.dataset.layerObject = layer;        // Stocker directement la couche dans dataset
+  img.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
 
-      var cross = document.createElement('div');
-      cross.className = 'cross';
-      cross.innerHTML = '✖';
-      cross.onclick = function() {
-        map.removeLayer(layer);
-        selectedIconsContainer.removeChild(iconWrapper);
-      };
+  var cross = document.createElement('div');
+  cross.className = 'cross';
+  cross.innerHTML = '✖';
+  cross.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+  };
 
-      iconWrapper.appendChild(img);
-      iconWrapper.appendChild(cross);
-      selectedIconsContainer.appendChild(iconWrapper);
-    }
+  iconWrapper.appendChild(img);
+  iconWrapper.appendChild(cross);
+  selectedIconsContainer.appendChild(iconWrapper);
+}
+
 
     function removeSelectedIcon(iconUrl) {
       var selectedIconsContainer = document.getElementById('selected-icons');
@@ -691,4 +685,4 @@ document.getElementById('favorites-box').appendChild(quitFavoritesButton);
   </script>
 </body>
 </html>
-6
+7
