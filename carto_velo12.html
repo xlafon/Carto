@@ -114,6 +114,7 @@
       }
     }
     updateFavoritesCount();
+    flashFavoritesBox();  // Déclencher l'animation à l'ajout
   } else {
     console.error("Invalid item data:", item);
   }
@@ -121,14 +122,19 @@
 
 function flashFavoritesBox() {
   var favoritesBox = document.getElementById('favorites-box');
-  favoritesBox.classList.add('flash');
 
-  setTimeout(function() {
-    favoritesBox.classList.remove('flash');
-  }, 500); // Durée de l'animation "flash"
+  // Réinitialiser la classe 'flash' pour s'assurer que l'animation se rejoue
+  favoritesBox.classList.remove('flash');
+  
+  // Forcer un reflow pour redémarrer l'animation
+  void favoritesBox.offsetWidth;
+
+  // Appliquer de nouveau la classe 'flash' pour jouer l'animation
+  favoritesBox.classList.add('flash');
 }
 
-// Appelez cette fonction lorsque vous ajoutez un favori
+// Appelez cette fonction chaque fois qu'un favori est ajouté
+
 
 
     function removeFromFavorites(item) {
@@ -703,4 +709,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
