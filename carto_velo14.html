@@ -676,8 +676,7 @@ function isFavorite(item) {
 
 
 // Fonction générer un PDF
-
- // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles
+// Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles
 function captureMapWithTiles(map) {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas');
@@ -686,9 +685,12 @@ function captureMapWithTiles(map) {
     const tileSize = 256;  // Taille de chaque tuile
     const bounds = map.getPixelBounds();  // Limites visibles de la carte en pixels
     const zoom = map.getZoom();  // Niveau de zoom actuel
-    const tileLayer = map.eachLayer(function(layer) {
+
+    // Trouver la couche de tuiles active
+    let tileLayer;
+    map.eachLayer(function(layer) {
       if (layer instanceof L.TileLayer) {
-        return layer;  // Trouver la couche de tuiles dans la carte
+        tileLayer = layer;  // Sauvegarder la couche de tuiles
       }
     });
 
@@ -718,13 +720,12 @@ function captureMapWithTiles(map) {
     let loadedTiles = 0;
 
     // Fonction pour charger chaque tuile
-    function loadTile(tilePoint, x, y) {
-      const tileUrl = tileLayer.getTileUrl(tilePoint);
+    function loadTile(x, y, tileUrl) {
       const img = new Image();
       img.crossOrigin = 'Anonymous';  // Gérer les tuiles cross-origin
 
       img.onload = function () {
-        context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize);
+        context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
         loadedTiles++;
         if (loadedTiles === tileCount) {
           // Toutes les tuiles sont chargées, générer l'image
@@ -739,7 +740,7 @@ function captureMapWithTiles(map) {
         }
       };
 
-      img.src = tileUrl;
+      img.src = tileUrl;  // Charger l'image de la tuile
     }
 
     // Charger toutes les tuiles visibles
@@ -748,8 +749,9 @@ function captureMapWithTiles(map) {
         const tilePoint = new L.Point(x, y);
         tilePoint.z = zoom;
 
+        const tileUrl = tileLayer.getTileUrl(tilePoint);  // URL de la tuile
         tileCount++;
-        loadTile(tilePoint, x - startTile.x, y - startTile.y);
+        loadTile(x, y, tileUrl);  // Charger et dessiner la tuile
       }
     }
   });
@@ -806,6 +808,8 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
+
+ 
 
 
 
@@ -1377,4 +1381,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-2
+3
