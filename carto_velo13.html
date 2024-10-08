@@ -553,17 +553,24 @@ function isFavorite(item) {
 
     // Afficher les favoris sur la carte et dans la popup carnet de voyage
     document.getElementById('travel-notebook').addEventListener('click', function () {
-      // Ouvrir la popup
+  // Ouvrir la popup
   document.getElementById('travel-popup').style.display = 'block';
+
+  // Effacer les marqueurs existants sur la carte de la popup
+  travelMap.eachLayer(function (layer) {
+    if (layer instanceof L.Marker) {
+      travelMap.removeLayer(layer);
+    }
+  });
 
   // Utiliser un petit timeout pour s'assurer que la popup est bien visible avant d'appeler invalidateSize()
   setTimeout(function () {
     travelMap.invalidateSize();  // Corrige les problèmes de rendu
-    
     // Centrer la carte sur les favoris
     centerMapOnFavorites(travelMap);
   }, 300);
-      // Ajouter les favoris à la carte de la popup
+
+  // Ajouter les favoris à la carte de la popup
   favorites.forEach(function (item) {
     if (item.lat && item.lon && item.icon && item.popupContent) {
       var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(travelMap);
@@ -581,6 +588,7 @@ function isFavorite(item) {
     favoritesInfoBox.appendChild(block);
   });
 });
+
     // Fermer la popup carnet de voyage
     document.querySelector('.close-button').addEventListener('click', function () {
       document.getElementById('travel-popup').style.display = 'none';
@@ -1120,4 +1128,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
