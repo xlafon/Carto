@@ -820,7 +820,7 @@ function stripHtml(html) {
 }
     
 // Fonction pour générer le PDF
-function generatePdf() {
+document.getElementById('download-pdf').addEventListener('click', function () {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
@@ -1417,4 +1417,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+6
