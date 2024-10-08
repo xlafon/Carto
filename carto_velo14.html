@@ -777,7 +777,8 @@ function captureMapWithTilesAndMarkers(map, markers) {
       img.crossOrigin = 'Anonymous';  // Gérer les tuiles cross-origin
 
       img.onload = function () {
-        context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
+        context.drawImage(iconImage, x * tileSize - 24, y * tileSize - 48, 48, 48);  // Ajuster la taille de l'icône (ici 48x48)
+
         loadedTiles++;
         if (loadedTiles === tileCount) {
           // Une fois les tuiles chargées, ajouter les marqueurs
@@ -1474,4 +1475,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-3
+4
