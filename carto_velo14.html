@@ -675,58 +675,6 @@ function isFavorite(item) {
     });
 
 
-// Fonction générer un PDF
-// Fonction pour nettoyer le contenu HTML des infoboxes
-function stripHtml(html) {
-  var tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
-}
-
-// Fonction pour générer le PDF
-document.getElementById('download-pdf').addEventListener('click', function () {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();  // Initialiser jsPDF
-  
-  // Titre du PDF
-  doc.setFontSize(18);
-  doc.text('Carnet de voyage', 10, 10);
-  
-  let y = 20;  // Position verticale initiale pour les informations
-
-  // Capture de la carte avec les tuiles chargées et les marqueurs
-  captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
-    // Ajouter l'image de la carte au PDF
-    doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
-    y += 110;  // Ajuster la position pour les informations des favoris
-
-    // Boucle sur chaque favori pour ajouter les informations au PDF
-    favorites.forEach(function (item, index) {
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text(`Favori ${index + 1}:`, 10, y);
-      y += 8;
-
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'normal');
-
-      // Nettoyer le contenu HTML des infoboxes
-      const cleanText = stripHtml(item.popupContent);
-      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
-      doc.text(lines, 10, y);
-      y += lines.length * 7 + 10;
-
-      // Gérer les débordements de page
-      if (y > 270) {
-        doc.addPage();
-        y = 20;
-      }
-    });
-
-    // Sauvegarder le PDF
-    doc.save('carnet-de-voyage.pdf');
-  });
-});
 
 // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles et ajoutant les marqueurs
 function captureMapWithTilesAndMarkers(map, markers) {
@@ -864,17 +812,17 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
 
 
 // Fonction pour générer le PDF
-document.getElementById('download-pdf').addEventListener('click', function () {
+function generatePdf() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();  // Initialiser jsPDF
-
+  
   // Titre du PDF
   doc.setFontSize(18);
   doc.text('Carnet de voyage', 10, 10);
   
   let y = 20;  // Position verticale initiale pour les informations
 
-  // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
+  // Capture de la carte avec les tuiles chargées et les marqueurs
   captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
     // Ajouter l'image de la carte au PDF
     doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
@@ -906,7 +854,13 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     // Sauvegarder le PDF
     doc.save('carnet-de-voyage.pdf');
   });
-});
+}
+
+// Supprimer tout gestionnaire d'événements existant avant d'ajouter le nouveau
+document.getElementById('download-pdf').removeEventListener('click', generatePdf);
+
+// Ajouter l'événement de génération de PDF
+document.getElementById('download-pdf').addEventListener('click', generatePdf);
 
 
     
@@ -1480,4 +1434,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-5
+6
