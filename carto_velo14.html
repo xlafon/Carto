@@ -777,8 +777,7 @@ function captureMapWithTilesAndMarkers(map, markers) {
       img.crossOrigin = 'Anonymous';  // Gérer les tuiles cross-origin
 
       img.onload = function () {
-        context.drawImage(iconImage, x * tileSize - 24, y * tileSize - 48, 48, 48);  // Ajuster la taille de l'icône (ici 48x48)
-
+        context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
         loadedTiles++;
         if (loadedTiles === tileCount) {
           // Une fois les tuiles chargées, ajouter les marqueurs
@@ -865,20 +864,13 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
 
 
 // Fonction pour générer le PDF
-// Supprimer tout gestionnaire d'événements existant avant d'ajouter le nouveau
-document.getElementById('download-pdf').removeEventListener('click', generatePdf);
-
-// Ajouter l'événement de génération de PDF
-document.getElementById('download-pdf').addEventListener('click', generatePdf);
-
-// Fonction pour générer le PDF
-function generatePdf() {
+document.getElementById('download-pdf').addEventListener('click', function () {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();  // Initialiser jsPDF
-  
+
   // Titre du PDF
   doc.setFontSize(18);
-  doc.text('Carnet de voyage carte vélo visit64.com', 10, 10);
+  doc.text('Carnet de voyage', 10, 10);
   
   let y = 20;  // Position verticale initiale pour les informations
 
@@ -1482,4 +1474,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-4
+3
