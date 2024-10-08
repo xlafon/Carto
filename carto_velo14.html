@@ -677,7 +677,9 @@ function isFavorite(item) {
 
 // Fonction générer un PDF
 // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles
-function captureMapWithTiles(map) {
+
+// Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles et ajoutant les marqueurs
+function captureMapWithTilesAndMarkers(map, markers) {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -728,7 +730,8 @@ function captureMapWithTiles(map) {
         context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
         loadedTiles++;
         if (loadedTiles === tileCount) {
-          // Toutes les tuiles sont chargées, générer l'image
+          // Une fois les tuiles chargées, ajouter les markers
+          addMarkersToCanvas(context, markers, map, startTile, tileSize);
           resolve(canvas.toDataURL('image/png'));
         }
       };
@@ -736,6 +739,7 @@ function captureMapWithTiles(map) {
       img.onerror = function () {
         loadedTiles++;
         if (loadedTiles === tileCount) {
+          addMarkersToCanvas(context, markers, map, startTile, tileSize);
           resolve(canvas.toDataURL('image/png'));
         }
       };
@@ -757,11 +761,21 @@ function captureMapWithTiles(map) {
   });
 }
 
-// Fonction pour nettoyer le contenu HTML des infoboxes
-function stripHtml(html) {
-  var tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
+// Fonction pour ajouter les marqueurs sur le canvas
+function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
+  markers.forEach(function(marker) {
+    const latLng = marker.getLatLng();
+    const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
+
+    const x = (point.x / tileSize) - startTile.x;
+    const y = (point.y / tileSize) - startTile.y;
+
+    // Ajouter un simple rectangle ou un cercle comme marker sur le canvas
+    context.fillStyle = 'red';
+    context.beginPath();
+    context.arc(x * tileSize, y * tileSize, 10, 0, 2 * Math.PI);  // Dessiner un cercle de rayon 10px
+    context.fill();
+  });
 }
 
 // Fonction pour générer le PDF
@@ -775,8 +789,8 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   
   let y = 20;  // Position verticale initiale pour les informations
 
-  // Capture de la carte Leaflet en assemblant les tuiles
-  captureMapWithTiles(map).then(function (mapImage) {
+  // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
+  captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
     // Ajouter l'image de la carte au PDF
     doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
     y += 110;  // Ajuster la position pour les informations des favoris
@@ -808,8 +822,6 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
-
- 
 
 
 
@@ -1381,4 +1393,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-3
+4
