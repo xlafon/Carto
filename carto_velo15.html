@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carte avec Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+
+   <style>
+     .leaflet-control-custom {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .leaflet-control-custom button {
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .leaflet-control-custom .header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .leaflet-control-custom h2 {
+      margin: 0;
+      padding: 10px;
+    }
+    .leaflet-control-custom img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .leaflet-control-custom .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .leaflet-control-custom .offices-button {
+      background-color: #007bff;
+      color: white;
+      padding-left: 10px;
+    }
+    .leaflet-control-custom .offices-button:hover {
+      background-color: #0056b3;
+    }
+    .leaflet-control-custom .parcours-button {
+      background-color: #dc3545;
+    }
+    .leaflet-control-custom .parcours-button:hover {
+      background-color: #c82333;
+    }
+    .leaflet-control-custom .bike-button {
+      background-color: #ffc107;
+    }
+    .leaflet-control-custom .bike-button:hover {
+      background-color: #e0a800;
+    }
+    .leaflet-control-custom .accommodations-button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .accommodations-button:hover {
+      background-color: #1e7e34;
+    }
+    .leaflet-control-custom .mobilite-button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .mobilite-button:hover {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .submenu {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+    .leaflet-control-custom .submenu button {
+      background-color: #1e7e34;
+    }
+    .leaflet-control-custom .submenu button:hover {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .bike-submenu button {
+      background-color: #ffc107;
+    }
+    .leaflet-control-custom .bike-submenu button:hover {
+      background-color: #e0a800;
+    }
+    .leaflet-control-custom .accommodations-submenu button {
+      background-color: #28a745;
+    }
+    .leaflet-control-custom .accommodations-submenu button:hover {
+      background-color: #1e7e34;
+    }
+    
+    .en-savoir-plus-button2 {
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #dc3545;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      float: right;
+    }
+    .en-savoir-plus-button2:hover {
+      background-color: #c82333;
+    }
+    .selected-icons {
+      position: absolute;
+      top: 10px;
+      left: 100px;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .selected-icons img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      position: relative;
+    }
+    .selected-icons .cross {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 16px;
+      height: 16px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      line-height: 1;
+    }
+    #info-box {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      max-height: none;
+      overflow-y: hidden;
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+      /* Style de la boîte des favoris */
+.favorites-box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Style de l'icône de favoris */
+.favorite-icon {
+  width: 32px;
+  height: 32px;
+  transition: all 0.3s ease;
+}
+#favorites-count {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+     .view-favorites-button {
+  padding: 7px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-favorites-button:hover {
+  background-color: #0056b3;
+}
+
+.quit-favorites-button {
+  padding: 7px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quit-favorites-button:hover {
+  background-color: #c82333;
+}
+
+/* Animation visuelle lors de l'ajout d'un favori */
+.favorites-box.flash {
+  animation: flashEffect 0.5s ease-in-out;
+}
+
+@keyframes flashEffect {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.5); /* Rouge au lieu de bleu */
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+}
+.trash-icon {
+  width: 24px; /* Taille réduite */
+  height: 24px;
+  cursor: pointer;
+  margin-left: 10px;
+  display: none;  /* Masquer par défaut */
+  transition: opacity 0.3s ease;
+}
+
+.trash-icon:hover {
+  opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
+}
+ /* Style de la boîte des favoris */
+  .popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;  /* Ascenseur dans la popup principale si nécessaire */
+  max-height: 80vh;  /* Limiter la hauteur maximale pour éviter de dépasser la fenêtre */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: color 0.3s ease;
+  z-index: 1001;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+.favorite-block {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+  height: 350px;  /* Fixe la hauteur de toutes les infobox */
+}
+
+.favorite-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.favorite-block p {
+  margin-bottom: 30px;  /* Laisser de l'espace pour le bouton "En savoir plus" */
+}
+
+.en-savoir-plus-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.en-savoir-plus-button:hover {
+  background-color: #0056b3;
+}
+#favorites-info-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes de taille égale */
+  gap: 10px;  /* Espace entre les infoboxes */
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+#download-pdf {
+  background-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+#download-pdf:hover {
+  background-color: #218838;
+}
+
+     </style>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 600px;"></div>
+  <div id="info-box"></div>
+  <div class="selected-icons" id="selected-icons"></div>
+  <div id="favorites-box" class="favorites-box">
+    <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
+    <span id="favorites-count">0</span>
+    <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+    <button id="travel-notebook" class="view-favorites-button">Carnet de voyage</button>
+    <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
+  </div>
+
+  <!-- Popup Carnet de voyage -->
+<div id="travel-popup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="close-button">&times;</span>
+    <div id="popup-map" style="width: 100%; height: 400px;"></div>
+    <div id="favorites-info-boxes"></div>
+    <button id="download-pdf" class="view-favorites-button">Télécharger le PDF</button>
+
+  </div>
+</div>
+
+  
+  <script>
+    var map = L.map('map').setView([43.492949, -1.474841], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var officesLayer = L.layerGroup().addTo(map);
+    var bikeParkingLayer = L.layerGroup();
+    var waterPointsLayer = L.layerGroup();
+    var bikeRoutesLayer = L.layerGroup();
+    var hotelsLayer = L.layerGroup();
+    var campingCarLayer = L.layerGroup();
+    var campingsLayer = L.layerGroup();
+    var autreshebLayer = L.layerGroup();
+    var currentGpxLayer = null;
+    var currentMarker = null;
+
+    // Créer une icône personnalisée pour les offices de tourisme
+    var touristOfficeIcon = L.icon({
+      iconUrl: 'icons/tourist_office.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var bikeParkingIcon = L.icon({
+      iconUrl: 'icons/bicycle_parking.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var waterPointIcon = L.icon({
+      iconUrl: 'icons/water_point.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var hotelIcon = L.icon({
+      iconUrl: 'icons/logo_acc_velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var campingCarIcon = L.icon({
+      iconUrl: 'icons/camping-car.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var campingIcon = L.icon({
+      iconUrl: 'icons/logo_acc_velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var autreshebIcon = L.icon({
+      iconUrl: 'icons/logo_acc_velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var bikeIcon = L.icon({
+      iconUrl: 'icons/velo.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+
+
+
+    //FAVORIS
+    var favorites = [];
+  
+    //variable pour suivre si vous êtes en mode "Voir les favoris" :
+    var inFavoritesMode = false;
+    
+// Fonction pour mettre à jour le compteur de favoris et l'affichage de la corbeille
+function updateFavoritesCount() {
+  var favoritesCount = document.getElementById('favorites-count');
+  var favoriteIcon = document.querySelector('.favorite-icon');
+  var trashIcon = document.getElementById('trash-icon');
+  var count = favorites.length;
+
+  // Mettre à jour le texte du compteur
+  favoritesCount.innerText = count;
+
+  // Afficher/Masquer l'icône de la corbeille en fonction du nombre de favoris
+  if (count > 0) {
+    favoriteIcon.src = 'icons/favoritered.png';  // Afficher l'icône rouge
+    trashIcon.style.display = 'inline';  // Afficher l'icône de la corbeille
+  } else {
+    favoriteIcon.src = 'icons/favorite.png';  // Revenir à l'icône noire
+    trashIcon.style.display = 'none';  // Masquer l'icône de la corbeille
+  }
+}
+
+// Fonction pour ajouter un favori
+function addToFavorites(item) {
+  if (item.lat && item.lon && item.icon && item.popupContent) {
+    // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
+    if (Array.isArray(item.lat)) {
+      // Vérifier si le favori existe déjà dans la liste en utilisant les coordonnées GeoJSON [lon, lat]
+      if (!favorites.some(fav => fav.lat[0] === item.lat[0] && fav.lon[1] === item.lon[1])) {
+        favorites.push({
+          lat: item.lat,  // Coordonnées sous forme de tableau GeoJSON [lon, lat]
+          lon: item.lon,
+          icon: item.icon,
+          popupContent: item.popupContent
+        });
+      }
+    } else {
+      // Gestion des points Overpass (les coordonnées sont séparées)
+      if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
+        favorites.push({
+          lat: item.lat,  // Coordonnées séparées pour Overpass
+          lon: item.lon,
+          icon: item.icon,
+          popupContent: item.popupContent
+        });
+      }
+    }
+    updateFavoritesCount();  // Mettre à jour le compteur de favoris
+  }
+}
+
+// Fonction pour vider tous les favoris
+function clearAllFavorites() {
+  favorites = [];  // Vider la liste des favoris
+  updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+
+  // Vider les couches des favoris uniquement si on est en mode "Voir les favoris"
+  if (inFavoritesMode) {
+    map.eachLayer(function(layer) {
+      // Supprimer uniquement les couches des favoris qui ne sont pas dans selectedLayers
+      if (!(layer instanceof L.TileLayer) && !selectedLayers[layer._leaflet_id]) {
+        map.removeLayer(layer);
+      }
+    });
+  }
+}
+
+// Ajouter l'événement de clic pour l'icône de corbeille
+document.getElementById('trash-icon').addEventListener('click', function() {
+  if (confirm('Êtes-vous sûr de vouloir supprimer tous les favoris ?')) {
+    clearAllFavorites();  // Supprimer tous les favoris
+  }
+});
+
+// Fonction d'animation pour la boîte des favoris
+function flashFavoritesBox() {
+  var favoritesBox = document.getElementById('favorites-box');
+  favoritesBox.classList.remove('flash');  // Réinitialiser l'animation
+  void favoritesBox.offsetWidth;  // Forcer un reflow pour redémarrer l'animation
+  favoritesBox.classList.add('flash');  // Appliquer de nouveau la classe 'flash'
+}
+
+   
+
+    
+
+
+
+
+//vérifier si un élément est déjà présent dans la liste des favoris
+function isFavorite(item) {
+      return favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon);
+    }
+    
+    function showInfoBox(content, item) {
+  var infoBox = document.getElementById('info-box');
+  infoBox.innerHTML = content;
+
+  var favoriteButton = document.createElement('img');
+  favoriteButton.className = 'favorite-button';
+  if (isFavorite(item)) {
+    favoriteButton.src = 'icons/removefav.png';
+    favoriteButton.alt = 'Retirer des favoris';
+    favoriteButton.onclick = function() {
+      removeFromFavorites(item);
+      showInfoBox(content, item); // Mettre à jour le bouton
+    };
+  } else {
+    favoriteButton.src = 'icons/addfav.png';
+    favoriteButton.alt = 'Ajouter aux favoris';
+    favoriteButton.onclick = function() {
+      addToFavorites(item);
+      showInfoBox(content, item); // Mettre à jour le bouton
+    };
+  }
+
+  infoBox.appendChild(favoriteButton);
+  infoBox.style.display = 'block';
+}
+
+    //POPUP Carnet de voyage
+    // Ajout d'une carte dans la popup carnet de voyage
+    var travelMap = L.map('popup-map').setView([43.492949, -1.474841], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(travelMap);
+
+    // Afficher les favoris sur la carte et dans la popup carnet de voyage
+    document.getElementById('travel-notebook').addEventListener('click', function () {
+  // Ouvrir la popup
+  document.getElementById('travel-notebook').addEventListener('click', function () {
+  var popup = document.getElementById('travel-popup');
+  popup.classList.add('active');
+    console.log('Popup ouverte');  // Ajoutez ceci pour vérifier que l'événement est bien déclenché
+});
+
+  // Effacer les marqueurs existants sur la carte de la popup
+  travelMap.eachLayer(function (layer) {
+    if (layer instanceof L.Marker) {
+      travelMap.removeLayer(layer);
+    }
+  });
+
+  // Utiliser un petit timeout pour s'assurer que la popup est bien visible avant d'appeler invalidateSize()
+  setTimeout(function () {
+    travelMap.invalidateSize();  // Corrige les problèmes de rendu
+    // Centrer la carte sur les favoris
+    centerMapOnFavorites(travelMap);
+  }, 300);
+
+  // Ajouter les favoris à la carte de la popup
+  favorites.forEach(function (item) {
+    var lat, lon;
+    
+    // Vérifier si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
+    if (Array.isArray(item.lat)) {
+      lat = item.lat[1]; // Coordonnées latitude dans GeoJSON (lon, lat)
+      lon = item.lat[0]; // Coordonnées longitude dans GeoJSON (lon, lat)
+    } else {
+      lat = item.lat;
+      lon = item.lon;
+    }
+
+    // Ajouter le marqueur à la carte
+    var marker = L.marker([lat, lon], { icon: item.icon }).addTo(travelMap);
+    marker.bindPopup(item.popupContent);
+  });
+
+  // Afficher les infoboxes des favoris
+  var favoritesInfoBox = document.getElementById('favorites-info-boxes');
+  favoritesInfoBox.innerHTML = '';  // Vider le contenu précédent
+  favorites.forEach(function (item) {
+    var block = document.createElement('div');
+    block.className = 'favorite-block';
+    block.innerHTML = item.popupContent;
+    favoritesInfoBox.appendChild(block);
+  });
+});
+    // Fermer la popup carnet de voyage
+   document.querySelector('.close-button').addEventListener('click', function () {
+  var popup = document.getElementById('travel-popup');
+  popup.classList.remove('active');
+});
+    
+    function hideInfoBox() {
+      var infoBox = document.getElementById('info-box');
+      infoBox.style.display = 'none';
+      console.log('Popup fermée');  // Ajoutez ceci pour vérifier la fermeture
+    }
+
+    map.on('click', function() {
+      hideInfoBox();
+      if (currentGpxLayer) {
+        map.removeLayer(currentGpxLayer);
+        currentGpxLayer = null;
+      }
+    });
+
+
+
+
+// Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles et ajoutant les marqueurs
+function captureMapWithTilesAndMarkers(map, markers) {
+  return new Promise((resolve) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    const tileSize = 256;  // Taille de chaque tuile
+    const bounds = map.getPixelBounds();  // Limites visibles de la carte en pixels
+    const zoom = map.getZoom();  // Niveau de zoom actuel
+
+    // Trouver la couche de tuiles active
+    let tileLayer;
+    map.eachLayer(function(layer) {
+      if (layer instanceof L.TileLayer) {
+        tileLayer = layer;  // Sauvegarder la couche de tuiles
+      }
+    });
+
+    if (!tileLayer) {
+      console.error('Aucune couche de tuiles trouvée sur la carte.');
+      return;
+    }
+
+    const startTile = {
+      x: Math.floor(bounds.min.x / tileSize),
+      y: Math.floor(bounds.min.y / tileSize)
+    };
+
+    const endTile = {
+      x: Math.floor(bounds.max.x / tileSize),
+      y: Math.floor(bounds.max.y / tileSize)
+    };
+
+    // Dimension du canvas à générer
+    const canvasWidth = (endTile.x - startTile.x + 1) * tileSize;
+    const canvasHeight = (endTile.y - startTile.y + 1) * tileSize;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let tileCount = 0;
+    let loadedTiles = 0;
+
+    // Fonction pour charger chaque tuile
+    function loadTile(x, y, tileUrl) {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';  // Gérer les tuiles cross-origin
+
+      img.onload = function () {
+        context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
+        loadedTiles++;
+        if (loadedTiles === tileCount) {
+          // Une fois les tuiles chargées, ajouter les marqueurs
+          addMarkersToCanvas(context, markers, map, startTile, tileSize).then(() => {
+            resolve(canvas.toDataURL('image/png'));
+          });
+        }
+      };
+
+      img.onerror = function () {
+        loadedTiles++;
+        if (loadedTiles === tileCount) {
+          addMarkersToCanvas(context, markers, map, startTile, tileSize).then(() => {
+            resolve(canvas.toDataURL('image/png'));
+          });
+        }
+      };
+
+      img.src = tileUrl;  // Charger l'image de la tuile
+    }
+
+    // Charger toutes les tuiles visibles
+    for (let x = startTile.x; x <= endTile.x; x++) {
+      for (let y = startTile.y; y <= endTile.y; y++) {
+        const tilePoint = new L.Point(x, y);
+        tilePoint.z = zoom;
+
+        const tileUrl = tileLayer.getTileUrl(tilePoint);  // URL de la tuile
+        tileCount++;
+        loadTile(x, y, tileUrl);  // Charger et dessiner la tuile
+      }
+    }
+  });
+}
+
+// Fonction pour ajouter les marqueurs sur le canvas, avec la prise en charge des coordonnées GeoJSON et Overpass
+function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
+  return new Promise((resolve) => {
+    let loadedIcons = 0;
+    const totalMarkers = markers.length;
+
+    markers.forEach(function(marker) {
+      let lat, lon;
+
+      // Gérer le cas des coordonnées GeoJSON (tableau [lon, lat])
+      if (Array.isArray(marker.lat)) {
+        lat = marker.lat[1]; // Extraire la latitude à partir du tableau GeoJSON
+        lon = marker.lat[0]; // Extraire la longitude à partir du tableau GeoJSON
+      } else {
+        // Gérer le cas des coordonnées Overpass (valeurs séparées)
+        lat = marker.lat;
+        lon = marker.lon;
+      }
+
+      const latLng = L.latLng(lat, lon);  // Créer un objet LatLng
+      const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
+
+      const x = (point.x / tileSize) - startTile.x;
+      const y = (point.y / tileSize) - startTile.y;
+
+      // Utiliser l'icône du favori
+      const iconImage = new Image();
+      iconImage.src = marker.icon.options.iconUrl;
+      iconImage.onload = function() {
+        context.drawImage(iconImage, x * tileSize - 16, y * tileSize - 32, 32, 32);  // Dessiner l'icône au centre du point
+        loadedIcons++;
+        if (loadedIcons === totalMarkers) {
+          resolve();
+        }
+      };
+      iconImage.onerror = function() {
+        loadedIcons++;
+        if (loadedIcons === totalMarkers) {
+          resolve();
+        }
+      };
+    });
+
+    if (totalMarkers === 0) {
+      resolve();  // Si aucun marqueur, on résout immédiatement
+    }
+  });
+}
+
+// Fonction pour nettoyer le contenu HTML des infoboxes
+function stripHtml(html) {
+  var tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || "";
+}
+    
+// Fonction pour générer le PDF
+document.getElementById('download-pdf').addEventListener('click', function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();  // Initialiser jsPDF
+
+  // Titre du PDF
+  doc.setFontSize(18);
+  doc.text('Carnet de voyage', 10, 10);
+  
+  let y = 20;  // Position verticale initiale pour les informations
+
+  // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
+  captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
+    // Ajouter l'image de la carte au PDF
+    doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
+    y += 110;  // Ajuster la position pour les informations des favoris
+
+    // Boucle sur chaque favori pour ajouter les informations au PDF
+    favorites.forEach(function (item, index) {
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Favori ${index + 1}:`, 10, y);
+      y += 8;
+
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'normal');
+
+      // Nettoyer le contenu HTML des infoboxes
+      const cleanText = stripHtml(item.popupContent);
+      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
+      doc.text(lines, 10, y);
+      y += lines.length * 7 + 10;
+
+      // Gérer les débordements de page
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+
+    // Sauvegarder le PDF
+    doc.save('carnet-de-voyage.pdf');
+  });
+});
+
+
+    
+
+    function addDataToLayer(url, layer, color, isOffice = false) {
+  $.getJSON(url, function(data) {
+    data.elements.forEach(function(element) {
+      var popupContent = "";
+      if (element.tags) {
+        if (isOffice) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+          if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          popupContent += `(source OSM)`;
+        } else {
+          popupContent += element.tags.name || "No name";
+        }
+      }
+
+      if (element.type === "node") {
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker([element.lat, element.lon], markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
+        });
+        layer.addLayer(marker);
+      } else if (element.type === "way") {
+        var latlngs = element.geometry.map(function(geo) {
+          return [geo.lat, geo.lon];
+        });
+        var polygon = L.polygon(latlngs, { color: color });
+        polygon.on('click', function() {
+          showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
+        });
+        layer.addLayer(polygon);
+
+        var centroid = polygon.getBounds().getCenter();
+        var markerOptions = isOffice ? { icon: touristOfficeIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker(centroid, markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
+        });
+        layer.addLayer(marker);
+      }
+    });
+  });
+}
+
+
+    function addGeoJsonLayer(url, layer, icon, type) {
+  $.getJSON(url, function(data) {
+    L.geoJson(data, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: icon });
+      },
+      onEachFeature: function (feature, layer) {
+        var popupContent = "";
+        if (feature.properties) {
+          if (type === 'bike_parking') {
+            popupContent += `<strong>Parking à vélo</strong><br>`;
+            if (feature.properties.capacity) popupContent += `Capacité : ${feature.properties.capacity} places<br>`;
+            if (feature.properties.bicycle_parking) popupContent += `Type : ${mapBicycleParkingType(feature.properties.bicycle_parking)}<br>`;
+            popupContent += `(source OSM)`;
+          } else if (type === 'hotel') {
+            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/hotels/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+            }
+          } else if (type === 'camping') {
+            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]} emplacements<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/camping/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+            }
+          } else if (type === 'camping-car') {
+            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["Equipement"]) popupContent += `${feature.properties["Equipement"]}<br>`;
+            if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+              var commune = feature.properties.Commune;
+              var identifiant = feature.properties.Identifiant;
+              var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+              var moreInfoUrl = `https://www.tourisme64.com/hebergements/aire-de-camping-car/${commune}/${identifiant}-${raisonSociale}/`;
+              popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+            }
+          } else {
+            if (feature.properties["Raison sociale"]) popupContent += `<span style="font-size: 14px;"><strong>${feature.properties["Raison sociale"]}</strong></span><br>`;
+            if (feature.properties["Classement"]) popupContent += `<strong>${feature.properties["Classement"]}</strong><br>`;
+            if (feature.properties["Lien première photo"]) popupContent += `<img src="${feature.properties["Lien première photo"]}" width="200px"><br>`;
+            if (feature.properties["Capacité Nb logements"]) popupContent += `${feature.properties["Capacité Nb logements"]}<br>`;
+            if (feature.properties["TEL"]) popupContent += `Tel.${feature.properties["TEL"]}<br>`;
+            if (feature.properties.URL) popupContent += `Site web : <a href="${feature.properties.URL}" target="_blank">${feature.properties.URL}</a><br><br>`;
+            if (feature.properties["Identifiant"]) {
+              if (feature.properties["Identifiant"].startsWith("VIL")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/village-de-vacances/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("RET")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/residence-de-tourisme/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("HLO")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/chambre-d-hotes/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              } else if (feature.properties["Identifiant"].startsWith("HCO")) {
+                if (feature.properties.Commune && feature.properties.Identifiant && feature.properties["Raison sociale"]) {
+                  var commune = feature.properties.Commune;
+                  var identifiant = feature.properties.Identifiant;
+                  var raisonSociale = formatRaisonSociale(feature.properties["Raison sociale"]);
+                  var moreInfoUrl = `https://www.tourisme64.com/hebergements/hebergement-collectif/${commune}/${identifiant}-${raisonSociale}/`;
+                  popupContent += `<a href="${moreInfoUrl}" target="_blank" class="en-savoir-plus-button">En savoir plus</a>`;
+                }
+              }
+            }
+          }
+        }
+        if (popupContent) {
+          layer.on('click', function() {
+            var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: icon, popupContent };
+            if (item.lat && item.lon && item.icon && item.popupContent) {
+              showInfoBox(popupContent, item);
+            } else {
+              console.error("Invalid item data:", item);
+            }
+          });
+        }
+      }
+    }).addTo(layer);
+  });
+}
+
+
+function addBikeRoutesLayer(url, layer) {
+  $.getJSON(url, function(data) {
+    L.geoJson(data, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: bikeIcon });
+      },
+      onEachFeature: function (feature, layer) {
+        var tempsDifficulte = feature.properties.ITITEMPSDIF.replace(/\|/g, ' - ');
+        var popupContent = `<span style="font-size: 14px;"><strong>${feature.properties.SyndicObjectName}</strong></span><br><br>`;
+        if (feature.properties.PHOTO) {
+          popupContent += `<img src="https://cdt64.media.tourinsoft.eu/upload/${feature.properties.PHOTO}" width="200px"><br><br>`;
+        }
+        popupContent += "<strong>" + tempsDifficulte + "<br>" +
+                        "" + feature.properties.DISTANCE + " km<br></strong><br>";
+        var commune = feature.properties.COMMUNE;
+        var syndicObjectID = feature.properties.SyndicObjectID;
+        var syndicObjectName = feature.properties.SyndicObjectName.replace(/ /g, '-').replace(/'/g, '-');
+        var moreInfoLink = `https://www.tourisme64.com/itineraire/${commune}/${syndicObjectID}-${syndicObjectName}`;
+        popupContent += `<a href="${moreInfoLink}" target="_blank" class="en-savoir-plus-button2">En savoir plus</a>`;
+        layer.on('click', function() {
+          if (currentGpxLayer) {
+            map.removeLayer(currentGpxLayer);
+          }
+          if (currentMarker) {
+            currentMarker.setIcon(bikeIcon);
+          }
+          layer.setIcon(L.icon({
+            iconUrl: 'icons/velo.png',
+            iconSize: [48, 48],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32],
+            className: 'darkened-icon'
+          }));
+          currentMarker = layer;
+          var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
+          currentGpxLayer = new L.GPX(gpxUrl, {
+            async: true,
+            marker_options: {
+              startIconUrl: '',
+              endIconUrl: '',
+              shadowUrl: '',
+              wptIconUrls: {
+                '': ''
+              }
+            },
+            polyline_options: {
+              color: 'red',
+              weight: 5,
+              opacity: 0.7,
+              dashArray: '5, 10'
+            }
+          }).on('loaded', function(e) {
+            map.fitBounds(e.target.getBounds());
+          }).addTo(map);
+          var item = { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent };
+          if (item.lat && item.lon && item.icon && item.popupContent) {
+            showInfoBox(popupContent, item);
+          } else {
+            console.error("Invalid item data:", item);
+          }
+        });
+      }
+    }).addTo(layer);
+  });
+}
+
+
+
+function showFavorites() {
+  inFavoritesMode = true;  // On est en mode favoris
+  // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
+  map.eachLayer(function(layer) {
+    if (layer instanceof L.TileLayer) return; 
+    map.removeLayer(layer);
+  });
+
+  
+
+  // Ajouter les favoris à la carte
+  favorites.forEach(function(item) {
+    if (item.lat && item.lon && item.icon && item.popupContent) {
+      var lat, lon;
+      
+      // Vérifiez si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
+      if (Array.isArray(item.lat)) {
+        lat = item.lat[1]; // Coordonnées latitude dans GeoJSON
+        lon = item.lat[0]; // Coordonnées longitude dans GeoJSON
+      } else {
+        lat = item.lat;
+        lon = item.lon;
+      }
+      
+      // Créer le marqueur
+      var marker = L.marker([lat, lon], { icon: item.icon }).addTo(map);
+      
+      // Remplacer l'info-bulle par l'infobox
+      marker.on('click', function(e) {
+        L.DomEvent.stopPropagation(e); // Empêcher les événements de propagation
+        showInfoBox(item.popupContent, { lat: lat, lon: lon, icon: item.icon, popupContent: item.popupContent });
+      });
+    } else {
+      console.error("Invalid favorite data:", item);
+    }
+  });
+
+  // Ajouter le bouton "Quitter les favoris"
+  var quitFavoritesButton = document.createElement('button');
+  quitFavoritesButton.className = 'quit-favorites-button';
+  quitFavoritesButton.innerText = 'Quitter les favoris';
+  quitFavoritesButton.onclick = function() {
+     inFavoritesMode = false;  // Sortie du mode favoris
+    // Supprimer toutes les couches, sauf la couche de tuiles de base
+    map.eachLayer(function(layer) {
+      if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+      map.removeLayer(layer);
+    });
+
+    // Réafficher les couches sélectionnées depuis l'objet `selectedLayers`
+    Object.keys(selectedLayers).forEach(function(layerId) {
+      var layer = selectedLayers[layerId];
+      if (layer) {
+        map.addLayer(layer);  // Réafficher la couche
+      }
+    });
+
+    // Retirer le bouton "Quitter les favoris"
+    document.getElementById('favorites-box').removeChild(quitFavoritesButton);
+  };
+
+  document.getElementById('favorites-box').appendChild(quitFavoritesButton);
+}
+
+
+   function addKmlLayer(url, layer) {
+      omnivore.kml(url).addTo(layer);
+    }
+
+    function toggleLayer(layer, url, icon, type, iconUrl, callback) {
+      if (map.hasLayer(layer)) {
+        map.removeLayer(layer);
+        removeSelectedIcon(iconUrl);
+      } else {
+        if (callback) {
+          callback(url, layer, icon, type);
+        }
+        map.addLayer(layer);
+        addSelectedIcon(iconUrl, layer);
+      }
+    }
+
+    function addSelectedIcon(iconUrl, layer) {
+  var selectedIconsContainer = document.getElementById('selected-icons');
+  if (!selectedIconsContainer) return;
+
+  var iconWrapper = document.createElement('div');
+  iconWrapper.style.position = 'relative';
+
+  var img = document.createElement('img');
+  img.src = iconUrl;
+  img.dataset.layerId = layer._leaflet_id;  // Stocker l'ID de la couche
+  selectedLayers[layer._leaflet_id] = layer; // Stocker la couche dans l'objet
+
+  img.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+    delete selectedLayers[layer._leaflet_id];  // Supprimer la couche de l'objet
+  };
+
+  var cross = document.createElement('div');
+  cross.className = 'cross';
+  cross.innerHTML = '✖';
+  cross.onclick = function() {
+    map.removeLayer(layer);
+    selectedIconsContainer.removeChild(iconWrapper);
+    delete selectedLayers[layer._leaflet_id];  // Supprimer la couche de l'objet
+  };
+
+  iconWrapper.appendChild(img);
+  iconWrapper.appendChild(cross);
+  selectedIconsContainer.appendChild(iconWrapper);
+}
+
+    var selectedLayers = {};  // Objet pour stocker les couches sélectionnées des selected icons
+
+
+    function removeSelectedIcon(iconUrl) {
+      var selectedIconsContainer = document.getElementById('selected-icons');
+      if (!selectedIconsContainer) return;
+
+      var imgs = selectedIconsContainer.getElementsByTagName('img');
+      Array.from(imgs).forEach(function(img) {
+        if (img.src.includes(iconUrl)) {
+          selectedIconsContainer.removeChild(img.parentElement);
+        }
+      });
+    }
+
+  
+
+
+     var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
+    var bikeParkingUrl = 'data/bike_parking.geojson';
+    var waterPointsUrl = 'data/water_points.geojson';
+    var hotelsUrl = 'data/HOT.geojson';
+    var campingCarUrl = 'data/ACC.geojson';
+    var campingsUrl = 'data/HPA.geojson';
+    var autreshebUrl = 'data/AUTRESHEEB.geojson';
+    var kmlFiles = ['KMLVELO/Velodyssee-Bayonne-BTZ-14122015.kml','KMLVELO/la-velodyssee-de-biarritz-a-st-jean-de-luz-etape-n19.kml','KMLVELO/cyclokml-nive-et-ocean.kml','KMLVELO/la-v-81-de-biarritz-a-urt-etape-n1.kml'];
+    var BikeRoutesUrl = 'data/ITIVELO.geojson';
+
+    var customControl = L.Control.extend({
+      options: {
+        position: 'topleft'
+      },
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-control-custom');
+
+        var header = L.DomUtil.create('div', 'header', container);
+
+        var logo = L.DomUtil.create('img', '', header);
+        logo.src = 'icons/LOGO_VISIT64.png';
+        
+        var title = L.DomUtil.create('h2', '', header);
+        title.innerHTML = 'Carte vélo 64';
+
+        var buttonContainer = L.DomUtil.create('div', 'button-container', container);
+
+        var buttonOffices = L.DomUtil.create('button', 'offices-button', container);
+        buttonOffices.innerHTML = '<img src="icons/tourist_office.png" alt="Office de Tourisme" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;"> Offices de Tourisme';
+        L.DomEvent.on(buttonOffices, 'click', function () {
+          toggleLayer(officesLayer, officesUrl, null, null, 'icons/tourist_office.png', function(url, layer) {
+            addDataToLayer(url, layer, '#007bff', true);
+          });
+        });
+
+        var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
+        buttonBikeRoutes.innerHTML = 'Parcours vélo';
+        L.DomEvent.on(buttonBikeRoutes, 'click', function () {
+          toggleLayer(bikeRoutesLayer, 'data/ITIVELO.geojson', null, null, 'icons/velo.png', function(url, layer) {
+            addBikeRoutesLayer(url, layer);
+          });
+        });
+
+                var buttonBike = L.DomUtil.create('button', 'bike-button', container);
+        buttonBike.innerHTML = 'Mobilité et Services';
+        var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
+
+        var buttonBikeParking = L.DomUtil.create('button', '', submenu);
+        buttonBikeParking.innerHTML = 'Parking à vélo';
+        L.DomEvent.on(buttonBikeParking, 'click', function () {
+          toggleLayer(bikeParkingLayer, bikeParkingUrl, bikeParkingIcon, 'bike_parking', 'icons/bicycle_parking.png', addGeoJsonLayer);
+        });
+
+        var buttonWaterPoints = L.DomUtil.create('button', '', submenu);
+        buttonWaterPoints.innerHTML = 'Points d\'eau';
+        L.DomEvent.on(buttonWaterPoints, 'click', function () {
+          toggleLayer(waterPointsLayer, waterPointsUrl, waterPointIcon, 'water_point', 'icons/water_point.png', addGeoJsonLayer);
+        });
+
+        L.DomEvent.on(buttonBike, 'click', function () {
+          if (submenu.style.display === 'none' || submenu.style.display === '') {
+            submenu.style.display = 'block';
+          } else {
+            submenu.style.display = 'none';
+          }
+        });
+
+        var buttonAccommodations = L.DomUtil.create('button', 'accommodations-button', container);
+        buttonAccommodations.innerHTML = 'Hébergements Accueil vélo';
+        var submenuAccommodations = L.DomUtil.create('div', 'submenu accommodations-submenu', container);
+
+        var buttonHotels = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonHotels.innerHTML = 'Hôtels';
+        L.DomEvent.on(buttonHotels, 'click', function () {
+          toggleLayer(hotelsLayer, hotelsUrl, hotelIcon, 'hotel', 'icons/hotel.png', addGeoJsonLayer);
+        });
+
+        var buttonCampings = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampings.innerHTML = 'Campings';
+        L.DomEvent.on(buttonCampings, 'click', function () {
+          toggleLayer(campingsLayer, campingsUrl, campingIcon, 'camping', 'icons/camping.png', addGeoJsonLayer);
+        });
+
+        var buttonautresheb = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonautresheb.innerHTML = 'Autres hébergements';
+        L.DomEvent.on(buttonautresheb, 'click', function () {
+          toggleLayer(autreshebLayer, autreshebUrl, autreshebIcon, 'autresheb', 'icons/logo_acc_velo.png', addGeoJsonLayer);
+        });
+
+        var buttonCampingCar = L.DomUtil.create('button', '', submenuAccommodations);
+        buttonCampingCar.innerHTML = 'Aires de camping-car';
+        L.DomEvent.on(buttonCampingCar, 'click', function () {
+          toggleLayer(campingCarLayer, campingCarUrl, campingCarIcon, 'camping_car', 'icons/camping-car.png', addGeoJsonLayer);
+        });
+
+        L.DomEvent.on(buttonAccommodations, 'click', function () {
+          if (submenuAccommodations.style.display === 'none' || submenuAccommodations.style.display === '') {
+            submenuAccommodations.style.display = 'block';
+          } else {
+            submenuAccommodations.style.display = 'none';
+          }
+        });
+
+        return container;
+      }
+    });
+
+    map.addControl(new customControl());
+
+    document.getElementById('view-favorites').addEventListener('click', function() {
+      showFavorites();
+    });
+
+    function translateOpeningHours(openingHours) {
+      return openingHours.replace(/Mo/g, 'Lun')
+                         .replace(/Tu/g, 'Mar')
+                         .replace(/We/g, 'Mer')
+                         .replace(/Th/g, 'Jeu')
+                         .replace(/Fr/g, 'Ven')
+                         .replace(/Sa/g, 'Sam')
+                         .replace(/Su/g, 'Dim')
+                         .replace(/Jan/g, 'Janv')
+                         .replace(/Feb/g, 'Févr')
+                         .replace(/Mar/g, 'Mars')
+                         .replace(/Apr/g, 'Avr')
+                         .replace(/May/g, 'Mai')
+                         .replace(/Jun/g, 'Juin')
+                         .replace(/Jul/g, 'Juil')
+                         .replace(/Aug/g, 'Août')
+                         .replace(/Sep/g, 'Sept')
+                         .replace(/Oct/g, 'Oct')
+                         .replace(/Nov/g, 'Nov')
+                         .replace(/Dec/g, 'Déc');
+    }
+
+    function mapBicycleParkingType(type) {
+      var mapping = {
+        'stands': 'arceaux',
+        'wall_loops': 'ratelier',
+        'shed': 'abri vélo'
+      };
+      return mapping[type] || type;
+    }
+
+    function formatRaisonSociale(raisonSociale) {
+      return raisonSociale.replace(/\s+/g, '-');
+    }
+  </script>
+</body>
+</html>
+1
