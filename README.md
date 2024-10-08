@@ -13,4 +13,5 @@
 [test11 panier](https://xlafon.github.io/Carto/carto_velo11.html)
 [test12 favoris OK](https://xlafon.github.io/Carto/carto_velo12.html)
 [test13 popup carnet](https://xlafon.github.io/Carto/carto_velo13.html)
-[test14 export carnet](https://xlafon.github.io/Carto/carto_velo14.html)
+[test14 export carnet OK](https://xlafon.github.io/Carto/carto_velo14.html)
+[test15 mise en page carnet OK](https://xlafon.github.io/Carto/carto_velo15.html)
