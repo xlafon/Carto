@@ -259,8 +259,7 @@
   opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
 }
  /* Style de la boîte des favoris */
-   /* Popup cachée par défaut */
-.popup-overlay {
+  .popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -273,30 +272,27 @@
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;  /* Transition pour une ouverture fluide */
+  transition: opacity 0.4s ease;
 }
 
-/* Quand la popup est active */
 .popup-overlay.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-
-     .popup-content {
+.popup-content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   width: 80%;
   max-width: 900px;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);  /* Ajout d'une ombre */
-  overflow-y: auto;  /* Ajout d'un scroll si le contenu dépasse */
-  max-height: 80vh;  /* Limite la hauteur maximale de la popup */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
-
-     .close-button {
+.close-button {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -312,22 +308,53 @@
   color: #ff0000;  /* Rouge au survol */
 }
 
-
-
-     #favorites-info-boxes {
+#favorites-info-boxes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes de taille égale */
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
   gap: 10px;  /* Espace entre les infoboxes */
-  max-height: 300px;  /* Hauteur maximale avec ascenseur */
-  overflow-y: auto;  /* Barre de défilement verticale si nécessaire */
+  max-height: 300px;  /* Limite la hauteur avec un ascenseur */
+  overflow-y: auto;  /* Ajoute une barre de défilement si nécessaire */
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Ajout d'une ombre légère */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Ombre légère */
 }
 
+.favorite-block {
+  position: relative;  /* Pour positionner le bouton à l'intérieur de l'infobox */
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;  /* Assurez-vous que le contenu reste dans les limites */
+}
 
-    .favorite-block 
+.favorite-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.en-savoir-plus-button {
+  position: absolute;  /* Absolu pour le placer à l'intérieur de l'infobox */
+  bottom: 10px;  /* Positionné en bas */
+  right: 10px;  /* Positionné à droite */
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.en-savoir-plus-button:hover {
+  background-color: #0056b3;
+}
+
      </style>
 </head>
 <body>
@@ -1144,4 +1171,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
