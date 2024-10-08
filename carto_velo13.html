@@ -363,13 +363,14 @@
   </div>
 
   <!-- Popup Carnet de voyage -->
-  <div id="travel-popup" class="popup-overlay" style="display:none;">
-    <div class="popup-content">
-      <span class="close-button">&times;</span>
-      <div id="popup-map" style="width: 100%; height: 400px;"></div>
-      <div id="favorites-info-boxes"></div>
-    </div>
+<div id="travel-popup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="close-button">&times;</span>
+    <div id="popup-map" style="width: 100%; height: 400px;"></div>
+    <div id="favorites-info-boxes"></div>
   </div>
+</div>
+
   
   <script>
     var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -1163,4 +1164,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-8
+9
