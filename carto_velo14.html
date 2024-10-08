@@ -677,88 +677,91 @@ function isFavorite(item) {
 
 // Fonction générer un PDF
 
-  // Fonction pour capturer la carte Leaflet
-  function captureMap() {
-    return new Promise(function (resolve) {
-      // Attendre que toutes les tuiles Leaflet soient chargées
-      var tiles = document.querySelectorAll('.leaflet-tile');
-      var totalTiles = tiles.length;
-      var loadedTiles = 0;
+ // Fonction pour capturer la carte une fois que toutes les tuiles sont chargées
+function captureMapWithLeaflet(mapElementId) {
+  return new Promise(function (resolve) {
+    const mapElement = document.getElementById(mapElementId);
+    const tiles = mapElement.querySelectorAll('.leaflet-tile');
+    
+    let totalTiles = tiles.length;
+    let loadedTiles = 0;
 
-      tiles.forEach(function (tile) {
-        if (tile.complete) {
+    tiles.forEach(function (tile) {
+      if (tile.complete) {
+        loadedTiles++;
+      } else {
+        tile.addEventListener('load', function () {
           loadedTiles++;
-        } else {
-          tile.addEventListener('load', function () {
-            loadedTiles++;
-            if (loadedTiles === totalTiles) {
-              html2canvas(document.getElementById('popup-map')).then(function (canvas) {
-                resolve(canvas.toDataURL('image/png'));
-              });
-            }
-          });
-        }
-      });
-
-      if (loadedTiles === totalTiles) {
-        html2canvas(document.getElementById('popup-map')).then(function (canvas) {
-          resolve(canvas.toDataURL('image/png'));
+          if (loadedTiles === totalTiles) {
+            // Lorsque toutes les tuiles sont chargées, on capture la carte
+            html2canvas(mapElement).then(function (canvas) {
+              resolve(canvas.toDataURL('image/png'));
+            });
+          }
         });
       }
     });
-  }
 
-  // Fonction pour nettoyer le contenu HTML des infoboxes
-  function stripHtml(html) {
-    var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = html;
-    return tempDiv.textContent || tempDiv.innerText || "";
-  }
-
-  // Fonction pour générer le PDF
-  document.getElementById('download-pdf').addEventListener('click', function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();  // Initialiser jsPDF
-
-    // Titre du PDF
-    doc.setFontSize(18);
-    doc.text('Carnet de voyage', 10, 10);
-    
-    let y = 20;  // Position verticale initiale pour les informations
-
-    // Capture de la carte avec les tuiles chargées
-    captureMap().then(function (mapImage) {
-      // Ajouter l'image de la carte au PDF
-      doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
-      y += 110;  // Ajuster la position pour les informations des favoris
-
-      // Boucle sur chaque favori pour ajouter les informations au PDF
-      favorites.forEach(function (item, index) {
-        doc.setFontSize(14);
-        doc.setFont('helvetica', 'bold');
-        doc.text(`Favori ${index + 1}:`, 10, y);
-        y += 8;
-
-        doc.setFontSize(12);
-        doc.setFont('helvetica', 'normal');
-
-        // Nettoyer le contenu HTML des infoboxes
-        const cleanText = stripHtml(item.popupContent);
-        const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
-        doc.text(lines, 10, y);
-        y += lines.length * 7 + 10;
-
-        // Gérer les débordements de page
-        if (y > 270) {
-          doc.addPage();
-          y = 20;
-        }
+    // Si toutes les tuiles étaient déjà chargées
+    if (loadedTiles === totalTiles) {
+      html2canvas(mapElement).then(function (canvas) {
+        resolve(canvas.toDataURL('image/png'));
       });
-
-      // Sauvegarder le PDF
-      doc.save('carnet-de-voyage.pdf');
-    });
+    }
   });
+}
+
+// Fonction pour nettoyer le contenu HTML des infoboxes
+function stripHtml(html) {
+  var tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  return tempDiv.textContent || tempDiv.innerText || "";
+}
+
+// Fonction pour générer le PDF
+document.getElementById('download-pdf').addEventListener('click', function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();  // Initialiser jsPDF
+
+  // Titre du PDF
+  doc.setFontSize(18);
+  doc.text('Carnet de voyage', 10, 10);
+  
+  let y = 20;  // Position verticale initiale pour les informations
+
+  // Capture de la carte une fois les tuiles chargées
+  captureMapWithLeaflet('popup-map').then(function (mapImage) {
+    // Ajouter l'image de la carte au PDF
+    doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
+    y += 110;  // Ajuster la position pour les informations des favoris
+
+    // Boucle sur chaque favori pour ajouter les informations au PDF
+    favorites.forEach(function (item, index) {
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Favori ${index + 1}:`, 10, y);
+      y += 8;
+
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'normal');
+
+      // Nettoyer le contenu HTML des infoboxes
+      const cleanText = stripHtml(item.popupContent);
+      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
+      doc.text(lines, 10, y);
+      y += lines.length * 7 + 10;
+
+      // Gérer les débordements de page
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+
+    // Sauvegarder le PDF
+    doc.save('carnet-de-voyage.pdf');
+  });
+});
 
 
 
@@ -1329,4 +1332,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-7
+8
