@@ -677,6 +677,7 @@ function isFavorite(item) {
 
 // Fonction générer un PDF
 
+
 // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles et ajoutant les marqueurs
 function captureMapWithTilesAndMarkers(map, markers) {
   return new Promise((resolve) => {
@@ -729,17 +730,19 @@ function captureMapWithTilesAndMarkers(map, markers) {
         context.drawImage(img, (x - startTile.x) * tileSize, (y - startTile.y) * tileSize, tileSize, tileSize);
         loadedTiles++;
         if (loadedTiles === tileCount) {
-          // Une fois les tuiles chargées, ajouter les markers
-          addMarkersToCanvas(context, markers, map, startTile, tileSize);
-          resolve(canvas.toDataURL('image/png'));
+          // Une fois les tuiles chargées, ajouter les marqueurs
+          addMarkersToCanvas(context, markers, map, startTile, tileSize).then(() => {
+            resolve(canvas.toDataURL('image/png'));
+          });
         }
       };
 
       img.onerror = function () {
         loadedTiles++;
         if (loadedTiles === tileCount) {
-          addMarkersToCanvas(context, markers, map, startTile, tileSize);
-          resolve(canvas.toDataURL('image/png'));
+          addMarkersToCanvas(context, markers, map, startTile, tileSize).then(() => {
+            resolve(canvas.toDataURL('image/png'));
+          });
         }
       };
 
@@ -762,34 +765,55 @@ function captureMapWithTilesAndMarkers(map, markers) {
 
 // Fonction pour ajouter les marqueurs sur le canvas, avec des icônes spécifiques selon la typologie
 function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
-  markers.forEach(function(marker) {
-    const latLng = L.latLng(marker.lat, marker.lon);  // Créer un objet LatLng
-    const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
+  return new Promise((resolve) => {
+    let loadedIcons = 0;
+    const totalMarkers = markers.length;
 
-    const x = (point.x / tileSize) - startTile.x;
-    const y = (point.y / tileSize) - startTile.y;
+    markers.forEach(function(marker) {
+      const latLng = L.latLng(marker.lat, marker.lon);  // Créer un objet LatLng
+      const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
 
-    // Vérifier la typologie du favori pour utiliser la bonne icône
-    let iconUrl;
-    if (marker.typology === 'office') {
-      iconUrl = 'icons/tourist_office.png';  // Exemple d'icône pour un office de tourisme
-    } else if (marker.typology === 'bike_parking') {
-      iconUrl = 'icons/bicycle_parking.png';  // Exemple d'icône pour un parking vélo
-    } else if (marker.typology === 'hotel') {
-      iconUrl = 'icons/hotel.png';  // Exemple d'icône pour un hôtel
-    } else if (marker.typology === 'water_point') {
-      iconUrl = 'icons/water_point.png';  // Exemple d'icône pour un point d'eau
-    } else {
-      // Icône par défaut si aucune typologie n'est spécifiée
-      iconUrl = 'icons/default_marker.png';
+      const x = (point.x / tileSize) - startTile.x;
+      const y = (point.y / tileSize) - startTile.y;
+
+      // Vérifier la typologie du favori pour utiliser la bonne icône
+      let iconUrl;
+      if (marker.typology === 'office') {
+        iconUrl = 'icons/tourist_office.png';  // Exemple d'icône pour un office de tourisme
+      } else if (marker.typology === 'bike_parking') {
+        iconUrl = 'icons/bicycle_parking.png';  // Exemple d'icône pour un parking vélo
+      } else if (marker.typology === 'hotel') {
+        iconUrl = 'icons/hotel.png';  // Exemple d'icône pour un hôtel
+      } else if (marker.typology === 'water_point') {
+        iconUrl = 'icons/water_point.png';  // Exemple d'icône pour un point d'eau
+      } else {
+        // Icône par défaut si aucune typologie n'est spécifiée
+        iconUrl = 'icons/default_marker.png';
+      }
+
+      // Charger l'icône et la dessiner sur le canvas
+      const iconImage = new Image();
+      iconImage.src = iconUrl;
+      iconImage.onload = function() {
+        context.drawImage(iconImage, x * tileSize - 16, y * tileSize - 32, 32, 32);  // Dessiner l'icône au centre du point
+        loadedIcons++;
+
+        // Vérifier si toutes les icônes sont chargées
+        if (loadedIcons === totalMarkers) {
+          resolve();
+        }
+      };
+      iconImage.onerror = function() {
+        loadedIcons++;
+        if (loadedIcons === totalMarkers) {
+          resolve();
+        }
+      };
+    });
+
+    if (totalMarkers === 0) {
+      resolve();  // Si aucun marqueur, on résout immédiatement
     }
-
-    // Charger l'icône et la dessiner sur le canvas
-    const iconImage = new Image();
-    iconImage.src = iconUrl;
-    iconImage.onload = function() {
-      context.drawImage(iconImage, x * tileSize - 16, y * tileSize - 32, 32, 32);  // Dessiner l'icône au centre du point
-    };
   });
 }
 
@@ -844,8 +868,6 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
-
-
 
 
     
@@ -1413,4 +1435,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-7
+8
