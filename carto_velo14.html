@@ -676,8 +676,6 @@ function isFavorite(item) {
 
 
 // Fonction générer un PDF
-
-
 // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles et ajoutant les marqueurs
 function captureMapWithTilesAndMarkers(map, markers) {
   return new Promise((resolve) => {
@@ -815,13 +813,6 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
       resolve();  // Si aucun marqueur, on résout immédiatement
     }
   });
-}
-
-// Fonction pour nettoyer le contenu HTML des infoboxes
-function stripHtml(html) {
-  var tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
 }
 
 // Fonction pour générer le PDF
@@ -1435,4 +1426,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-8
+9
