@@ -813,14 +813,26 @@ function captureMapWithTilesAndMarkers(map, markers) {
   });
 }
 
-// Fonction pour ajouter les marqueurs sur le canvas
+// Fonction pour ajouter les marqueurs sur le canvas, avec la prise en charge des coordonnées GeoJSON et Overpass
 function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
   return new Promise((resolve) => {
     let loadedIcons = 0;
     const totalMarkers = markers.length;
 
     markers.forEach(function(marker) {
-      const latLng = L.latLng(marker.lat, marker.lon);  // Créer un objet LatLng
+      let lat, lon;
+
+      // Gérer le cas des coordonnées GeoJSON (tableau [lon, lat])
+      if (Array.isArray(marker.lat)) {
+        lat = marker.lat[1]; // Extraire la latitude à partir du tableau GeoJSON
+        lon = marker.lat[0]; // Extraire la longitude à partir du tableau GeoJSON
+      } else {
+        // Gérer le cas des coordonnées Overpass (valeurs séparées)
+        lat = marker.lat;
+        lon = marker.lon;
+      }
+
+      const latLng = L.latLng(lat, lon);  // Créer un objet LatLng
       const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
 
       const x = (point.x / tileSize) - startTile.x;
@@ -830,7 +842,7 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
       const iconImage = new Image();
       iconImage.src = marker.icon.options.iconUrl;
       iconImage.onload = function() {
-        context.drawImage(iconImage, x * tileSize - 16, y * tileSize - 32, 32, 32);  // Dessiner l'icône
+        context.drawImage(iconImage, x * tileSize - 16, y * tileSize - 32, 32, 32);  // Dessiner l'icône au centre du point
         loadedIcons++;
         if (loadedIcons === totalMarkers) {
           resolve();
@@ -849,6 +861,7 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
     }
   });
 }
+
 
 // Fonction pour générer le PDF
 document.getElementById('download-pdf').addEventListener('click', function () {
@@ -1461,4 +1474,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-2
+3
