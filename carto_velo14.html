@@ -811,15 +811,9 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
   });
 }
 
-// Fonction pour nettoyer le contenu HTML des infoboxes
-function stripHtml(html) {
-  var tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
-}
     
 // Fonction pour générer le PDF
-function generatePdf() {
+document.getElementById('download-pdf').addEventListener('click', function () {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
@@ -1416,4 +1410,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+6
