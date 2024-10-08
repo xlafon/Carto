@@ -819,23 +819,20 @@ function stripHtml(html) {
 }
     
 // Fonction pour générer le PDF
-document.getElementById('download-pdf').addEventListener('click', function () {
+function generatePdf() {
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();  // Initialiser jsPDF
+  const doc = new jsPDF();
 
   // Titre du PDF
   doc.setFontSize(18);
   doc.text('Carnet de voyage', 10, 10);
-  
-  let y = 20;  // Position verticale initiale pour les informations
+  let y = 20;
 
-  // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
+  // Capture de la carte avec les tuiles et les marqueurs
   captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
-    // Ajouter l'image de la carte au PDF
-    doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
-    y += 110;  // Ajuster la position pour les informations des favoris
+    doc.addImage(mapImage, 'PNG', 10, y, 190, 100); // Image de la carte
+    y += 110; // Position pour les favoris
 
-    // Boucle sur chaque favori pour ajouter les informations au PDF
     favorites.forEach(function (item, index) {
       // Ajouter un encadré autour de chaque favori
       doc.setLineWidth(0.5);
@@ -901,7 +898,7 @@ function stripHtml(html) {
   tempDiv.innerHTML = html;
   return tempDiv.textContent || tempDiv.innerText || "";
 }
-
+// fin code génération PDF
 
     
 
@@ -1419,4 +1416,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
