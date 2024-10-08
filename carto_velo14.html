@@ -837,37 +837,21 @@ document.getElementById('download-pdf').addEventListener('click', function () {
 
     // Boucle sur chaque favori pour ajouter les informations au PDF
     favorites.forEach(function (item, index) {
-      // Ajouter un encadré autour de chaque favori
-      doc.setLineWidth(0.5);
-      doc.rect(10, y - 5, 190, 60); // Rectangle pour encadrer chaque favori
-
-      // Titre du favori (nom du lieu)
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
-      const cleanTitle = extractTitleFromHtml(item.popupContent);
-      doc.text(cleanTitle, 12, y);
+      doc.text(`Favori ${index + 1}:`, 10, y);
+      y += 8;
 
-      // Ajouter une icône si disponible
-      if (item.icon && item.icon.options.iconUrl) {
-        doc.addImage(item.icon.options.iconUrl, 'PNG', 170, y - 3, 20, 20); // Ajouter l'icône
-      }
-
-      // Ajouter une image/photo si disponible
-      const imageUrl = extractImageUrlFromHtml(item.popupContent); // Extraire l'URL de l'image
-      if (imageUrl) {
-        doc.addImage(imageUrl, 'PNG', 12, y + 10, 50, 30); // Ajouter la photo
-      }
-
-      // Ajouter la description en dessous de la photo
-      y += 15;
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
-      const cleanText = stripHtml(item.popupContent); // Nettoyer le contenu HTML
-      const lines = doc.splitTextToSize(cleanText, 160); // Limiter la largeur du texte
-      doc.text(lines, 12, y + 30);
+
+      // Nettoyer le contenu HTML des infoboxes
+      const cleanText = stripHtml(item.popupContent);
+      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
+      doc.text(lines, 10, y);
       y += lines.length * 7 + 10;
 
-      // Gérer le débordement de page
+      // Gérer les débordements de page
       if (y > 270) {
         doc.addPage();
         y = 20;
@@ -877,30 +861,7 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     // Sauvegarder le PDF
     doc.save('carnet-de-voyage.pdf');
   });
-}
-
-// Fonction pour extraire le titre du popupContent HTML
-function extractTitleFromHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const titleElement = tempDiv.querySelector('strong'); // Exemple : extraire un élément <strong> comme titre
-  return titleElement ? titleElement.textContent : 'Favori';
-}
-
-// Fonction pour extraire l'URL de l'image dans le HTML
-function extractImageUrlFromHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const imgElement = tempDiv.querySelector('img'); // Chercher une balise <img>
-  return imgElement ? imgElement.src : null;
-}
-
-// Fonction pour nettoyer le HTML
-function stripHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
-}
+});
 
 
     
@@ -1419,4 +1380,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+3
