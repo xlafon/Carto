@@ -105,16 +105,19 @@
       background-color: #1e7e34;
     }
     .en-savoir-plus-button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      float: right;
+    }
     .en-savoir-plus-button:hover {
       background-color: #0056b3;
     }
@@ -315,23 +318,29 @@
   right: 15px;
   font-size: 24px;
   cursor: pointer;
-  color: #333;  /* Couleur de base */
-  transition: color 0.3s ease;  /* Transition fluide pour les changements de couleur */
+  color: #333;
+  transition: color 0.3s ease;
+  z-index: 1001;  /* Assurez-vous que le bouton est toujours au-dessus */
 }
 
 .close-button:hover {
-  color: #ff0000;  /* Couleur rouge au survol */
+  color: #ff0000;
 }
+
 
 
      #favorites-info-boxes {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;  /* Espace entre les blocs */
-  max-height: 300px;  /* Limiter la hauteur des infoboxes */
-  overflow-y: auto;  /* Ajouter une barre de défilement si nécessaire */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes de taille égale */
+  gap: 10px;  /* Espace entre les infoboxes */
+  max-height: 300px;  /* Hauteur maximale avec ascenseur */
+  overflow-y: auto;  /* Barre de défilement verticale si nécessaire */
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Ajout d'une ombre légère */
 }
+
 
      .favorite-block {
   border: 1px solid #ddd;
@@ -347,7 +356,20 @@
   transform: translateY(-5px);  /* Léger déplacement vers le haut au survol */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  /* Ombre plus accentuée au survol */
 }
-
+ .en-savoir-plus-button3 {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+    .en-savoir-plus-button3:hover {
+      background-color: #0056b3;
+    }
      </style>
 </head>
 <body>
@@ -1164,4 +1186,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-9
+1
