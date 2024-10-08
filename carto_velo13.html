@@ -441,9 +441,9 @@ function addToFavorites(item) {
     // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
     if (Array.isArray(item.lat)) {
       // Vérifier si le favori existe déjà dans la liste en utilisant les coordonnées GeoJSON [lon, lat]
-      if (!favorites.some(fav => fav.lat[1] === item.lat[1] && fav.lon[0] === item.lon[0])) {
+      if (!favorites.some(fav => fav.lat[0] === item.lat[0] && fav.lon[1] === item.lon[1])) {
         favorites.push({
-          lat: item.lat,  // Coordonnées sous forme de tableau GeoJSON
+          lat: item.lat,  // Coordonnées sous forme de tableau GeoJSON [lon, lat]
           lon: item.lon,
           icon: item.icon,
           popupContent: item.popupContent
@@ -461,18 +461,6 @@ function addToFavorites(item) {
       }
     }
     updateFavoritesCount();  // Mettre à jour le compteur de favoris
-      flashFavoritesBox();     // Déclencher l'animation à l'ajout
-  } else {
-    console.error("Invalid item data:", item);
-  }
-}
-
-// Fonction pour retirer un favori spécifique
-function removeFromFavorites(item) {
-  var index = favorites.findIndex(fav => fav.lat === item.lat && fav.lon === item.lon);
-  if (index > -1) {
-    favorites.splice(index, 1);
-    updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
   }
 }
 
@@ -577,8 +565,8 @@ function isFavorite(item) {
     
     // Vérifier si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
     if (Array.isArray(item.lat)) {
-      lat = item.lat[1]; // Coordonnées latitude dans GeoJSON
-      lon = item.lat[0]; // Coordonnées longitude dans GeoJSON
+      lat = item.lat[1]; // Coordonnées latitude dans GeoJSON (lon, lat)
+      lon = item.lat[0]; // Coordonnées longitude dans GeoJSON (lon, lat)
     } else {
       lat = item.lat;
       lon = item.lon;
@@ -599,7 +587,6 @@ function isFavorite(item) {
     favoritesInfoBox.appendChild(block);
   });
 });
-
     // Fermer la popup carnet de voyage
     document.querySelector('.close-button').addEventListener('click', function () {
       document.getElementById('travel-popup').style.display = 'none';
