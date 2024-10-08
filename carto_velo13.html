@@ -553,30 +553,34 @@ function isFavorite(item) {
 
     // Afficher les favoris sur la carte et dans la popup carnet de voyage
     document.getElementById('travel-notebook').addEventListener('click', function () {
-      document.getElementById('travel-popup').style.display = 'block';
-      
-      // Centrer la carte sur les favoris
-      centerMapOnFavorites(travelMap);
+      // Ouvrir la popup
+  document.getElementById('travel-popup').style.display = 'block';
 
+  // Utiliser un petit timeout pour s'assurer que la popup est bien visible avant d'appeler invalidateSize()
+  setTimeout(function () {
+    travelMap.invalidateSize();  // Corrige les problèmes de rendu
+    
+    // Centrer la carte sur les favoris
+    centerMapOnFavorites(travelMap);
+  }, 300);
       // Ajouter les favoris à la carte de la popup
-      favorites.forEach(function (item) {
-        if (item.lat && item.lon && item.icon && item.popupContent) {
-          var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(travelMap);
-          marker.bindPopup(item.popupContent);
-        }
-      });
+  favorites.forEach(function (item) {
+    if (item.lat && item.lon && item.icon && item.popupContent) {
+      var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(travelMap);
+      marker.bindPopup(item.popupContent);
+    }
+  });
 
-      // Afficher les infoboxes des favoris
-      var favoritesInfoBox = document.getElementById('favorites-info-boxes');
-      favoritesInfoBox.innerHTML = '';  // Vider le contenu précédent
-      favorites.forEach(function (item) {
-        var block = document.createElement('div');
-        block.className = 'favorite-block';
-        block.innerHTML = item.popupContent;
-        favoritesInfoBox.appendChild(block);
-      });
-    });
-
+  // Afficher les infoboxes des favoris
+  var favoritesInfoBox = document.getElementById('favorites-info-boxes');
+  favoritesInfoBox.innerHTML = '';  // Vider le contenu précédent
+  favorites.forEach(function (item) {
+    var block = document.createElement('div');
+    block.className = 'favorite-block';
+    block.innerHTML = item.popupContent;
+    favoritesInfoBox.appendChild(block);
+  });
+});
     // Fermer la popup carnet de voyage
     document.querySelector('.close-button').addEventListener('click', function () {
       document.getElementById('travel-popup').style.display = 'none';
@@ -1119,4 +1123,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
