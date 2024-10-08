@@ -288,47 +288,34 @@
   max-width: 900px;
   position: relative;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
-  max-height: 80vh;
+  overflow-y: auto;  /* Ascenseur dans la popup principale si nécessaire */
+  max-height: 80vh;  /* Limiter la hauteur maximale pour éviter de dépasser la fenêtre */
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 15px;
-  font-size: 28px;  /* Plus grand */
-  font-weight: bold;  /* Plus gras */
+  font-size: 28px;
+  font-weight: bold;
   cursor: pointer;
-  color: #000;  /* Noir */
+  color: #000;
   transition: color 0.3s ease;
   z-index: 1001;
 }
 
 .close-button:hover {
-  color: #ff0000;  /* Rouge au survol */
-}
-
-#favorites-info-boxes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
-  gap: 10px;  /* Espace entre les infoboxes */
-  max-height: 300px;  /* Limite la hauteur avec un ascenseur */
-  overflow-y: auto;  /* Ajoute une barre de défilement si nécessaire */
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Ombre légère */
+  color: #ff0000;
 }
 
 .favorite-block {
-  position: relative;  /* Pour positionner le bouton à l'intérieur de l'infobox */
+  position: relative;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
   background-color: #f5f5f5;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
-  overflow: hidden;  /* Assurez-vous que le contenu reste dans les limites */
 }
 
 .favorite-block:hover {
@@ -337,9 +324,9 @@
 }
 
 .en-savoir-plus-button {
-  position: absolute;  /* Absolu pour le placer à l'intérieur de l'infobox */
-  bottom: 10px;  /* Positionné en bas */
-  right: 10px;  /* Positionné à droite */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   background-color: #007bff;
   color: white;
   padding: 8px 12px;
@@ -353,6 +340,15 @@
 
 .en-savoir-plus-button:hover {
   background-color: #0056b3;
+}
+#favorites-info-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonnes */
+  gap: 10px;  /* Espace entre les infoboxes */
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Ombre légère */
 }
 
      </style>
@@ -1171,4 +1167,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
