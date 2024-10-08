@@ -271,8 +271,9 @@
 .trash-icon:hover {
   opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
 }
-
-     .popup-overlay {
+ /* Style de la boîte des favoris */
+   /* Popup cachée par défaut */
+.popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -283,14 +284,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;  /* Initialement transparent */
-  pointer-events: none;  /* Désactiver les événements lorsqu'il est invisible */
-  transition: opacity 0.4s ease;  /* Animation de transition */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;  /* Transition pour une ouverture fluide */
 }
 
+/* Quand la popup est active */
 .popup-overlay.active {
-  opacity: 1;  /* Devenir visible */
-  pointer-events: auto;  /* Activer les interactions */
+  opacity: 1;
+  pointer-events: auto;
 }
 
 
@@ -573,7 +575,11 @@ function isFavorite(item) {
     // Afficher les favoris sur la carte et dans la popup carnet de voyage
     document.getElementById('travel-notebook').addEventListener('click', function () {
   // Ouvrir la popup
-  document.getElementById('travel-popup').classList.add('active');
+  document.getElementById('travel-notebook').addEventListener('click', function () {
+  var popup = document.getElementById('travel-popup');
+  popup.classList.add('active');
+    console.log('Popup ouverte');  // Ajoutez ceci pour vérifier que l'événement est bien déclenché
+});
 
   // Effacer les marqueurs existants sur la carte de la popup
   travelMap.eachLayer(function (layer) {
@@ -618,15 +624,15 @@ function isFavorite(item) {
   });
 });
     // Fermer la popup carnet de voyage
-    document.querySelector('.close-button').addEventListener('click', function () {
-  // Fermer la popup
-  document.getElementById('travel-popup').classList.remove('active');
+   document.querySelector('.close-button').addEventListener('click', function () {
+  var popup = document.getElementById('travel-popup');
+  popup.classList.remove('active');
 });
-
     
     function hideInfoBox() {
       var infoBox = document.getElementById('info-box');
       infoBox.style.display = 'none';
+      console.log('Popup fermée');  // Ajoutez ceci pour vérifier la fermeture
     }
 
     map.on('click', function() {
@@ -1157,4 +1163,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-7
+8
