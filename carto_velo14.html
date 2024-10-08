@@ -971,7 +971,11 @@ function showFavorites() {
 
 
 // Fonction pour générer le PDF
-// Titre du PDF
+document.getElementById('download-pdf').addEventListener('click', function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();  // Initialiser jsPDF
+
+  // Titre du PDF
   doc.setFontSize(18);
   doc.text('Carnet de voyage', 10, 10);
   
@@ -1010,7 +1014,6 @@ function showFavorites() {
     y = 20;
   }
 });
-
 
     // Sauvegarder le PDF sous un nom par défaut
     doc.save('carnet-de-voyage.pdf');
@@ -1239,4 +1242,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
