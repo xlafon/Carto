@@ -9,6 +9,8 @@
   <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.5.1/gpx.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 
    <style>
      .leaflet-control-custom {
@@ -969,37 +971,50 @@ function showFavorites() {
 
 
 // Fonction pour générer le PDF
-document.getElementById('download-pdf').addEventListener('click', function () {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();  // Initialiser jsPDF
-
-  // Titre du PDF
+// Titre du PDF
   doc.setFontSize(18);
   doc.text('Carnet de voyage', 10, 10);
   
-  // Variable de suivi de la hauteur pour placer les éléments dans le PDF
-  let y = 20;
+  let y = 20;  // Position verticale initiale pour les informations
 
-  // Boucle sur chaque favori pour ajouter les informations au PDF
-  favorites.forEach(function (item, index) {
-    doc.setFontSize(12);
-    
-    // Ajout du nom et de la description des favoris
-    doc.text(`Favori ${index + 1}:`, 10, y);
-    y += 10;
-    
-    doc.text(`Description: ${item.popupContent}`, 10, y);
-    y += 10;
+  // Capture de la carte avec html2canvas
+  html2canvas(document.getElementById('popup-map')).then(function (canvas) {
+    const mapImage = canvas.toDataURL('image/png');  // Convertir la carte en image
 
-    // Gérer les débordements de page
-    if (y > 280) {
-      doc.addPage();
-      y = 10;
-    }
+    // Ajouter l'image de la carte au PDF
+    doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajouter l'image (ajuster la taille et la position)
+    y += 110;  // Ajuster la position pour les informations des favoris
+
+    // Boucle sur chaque favori pour ajouter les informations au PDF
+    favorites.forEach(function (item, index) {
+  // Titre pour chaque favori
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`Favori ${index + 1}:`, 10, y);
+  y += 8;
+  
+  // Description du favori
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'normal');
+  const lines = doc.splitTextToSize(item.popupContent, 180);  // Diviser le texte en plusieurs lignes
+  doc.text(lines, 10, y);
+  y += lines.length * 7 + 10;
+
+  // Ajout d'une bordure autour des sections des favoris (facultatif)
+  doc.setDrawColor(0, 0, 0);  // Noir
+  doc.rect(10, y - lines.length * 7 - 10, 190, lines.length * 7 + 10);  // Dessiner un rectangle autour de l'infobox
+
+  // Nouvelle page si nécessaire
+  if (y > 270) {
+    doc.addPage();
+    y = 20;
+  }
+});
+
+
+    // Sauvegarder le PDF sous un nom par défaut
+    doc.save('carnet-de-voyage.pdf');
   });
-
-  // Sauvegarder le PDF sous un nom par défaut
-  doc.save('carnet-de-voyage.pdf');
 });
 
 
@@ -1224,4 +1239,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-2
+3
