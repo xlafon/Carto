@@ -274,6 +274,48 @@
 .trash-icon:hover {
   opacity: 0.7; /* Effet de survol pour rendre la corbeille plus visible */
 }
+
+     .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+
+     .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 900px;
+        position: relative;
+     }
+
+     .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+     }
+
+     #favorites-info-boxes {
+        margin-top: 20px;
+     }
+
+     .favorite-block {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+     }
      </style>
 </head>
 <body>
@@ -281,13 +323,21 @@
   <div id="info-box"></div>
   <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
-  <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
-  <span id="favorites-count">0</span>
-  <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
-  <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
-</div>
+    <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
+    <span id="favorites-count">0</span>
+    <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+    <button id="travel-notebook" class="view-favorites-button">Carnet de voyage</button>
+    <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
+  </div>
 
-</div>
+  <!-- Popup Carnet de voyage -->
+  <div id="travel-popup" class="popup-overlay" style="display:none;">
+    <div class="popup-content">
+      <span class="close-button">&times;</span>
+      <div id="popup-map" style="width: 100%; height: 400px;"></div>
+      <div id="favorites-info-boxes"></div>
+    </div>
+  </div>
   
   <script>
     var map = L.map('map').setView([43.492949, -1.474841], 13);
@@ -494,6 +544,47 @@ function isFavorite(item) {
   infoBox.style.display = 'block';
 }
 
+    //POPUP Carnet de voyage
+    // Ajout d'une carte dans la popup carnet de voyage
+    var travelMap = L.map('popup-map').setView([43.492949, -1.474841], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(travelMap);
+
+    // Afficher les favoris sur la carte et dans la popup carnet de voyage
+    document.getElementById('travel-notebook').addEventListener('click', function () {
+      document.getElementById('travel-popup').style.display = 'block';
+      
+      // Centrer la carte sur les favoris
+      centerMapOnFavorites(travelMap);
+
+      // Ajouter les favoris à la carte de la popup
+      favorites.forEach(function (item) {
+        if (item.lat && item.lon && item.icon && item.popupContent) {
+          var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(travelMap);
+          marker.bindPopup(item.popupContent);
+        }
+      });
+
+      // Afficher les infoboxes des favoris
+      var favoritesInfoBox = document.getElementById('favorites-info-boxes');
+      favoritesInfoBox.innerHTML = '';  // Vider le contenu précédent
+      favorites.forEach(function (item) {
+        var block = document.createElement('div');
+        block.className = 'favorite-block';
+        block.innerHTML = item.popupContent;
+        favoritesInfoBox.appendChild(block);
+      });
+    });
+
+    // Fermer la popup carnet de voyage
+    document.querySelector('.close-button').addEventListener('click', function () {
+      document.getElementById('travel-popup').style.display = 'none';
+    });
+
+    // Ajouter des favoris pour les tests (à adapter selon vos besoins)
+    addToFavorites({ lat: 43.495, lon: -1.475, icon: touristOfficeIcon, popupContent: 'Office de tourisme - Bayonne' });
+    addToFavorites({ lat: 43.500, lon: -1.470, icon: bikeParkingIcon, popupContent: 'Parking vélo - Centre-ville' });
 
     function hideInfoBox() {
       var infoBox = document.getElementById('info-box');
@@ -1028,4 +1119,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
