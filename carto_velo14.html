@@ -677,16 +677,25 @@ function isFavorite(item) {
 
 // Fonction générer un PDF
 
- // Code pour capturer les tuiles Leaflet et assembler dans un canvas
+ // Fonction pour capturer la carte Leaflet en tant qu'image en assemblant les tuiles
 function captureMapWithTiles(map) {
   return new Promise((resolve) => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
-    const tileSize = 256;  // Taille de chaque tuile dans Leaflet
+    const tileSize = 256;  // Taille de chaque tuile
     const bounds = map.getPixelBounds();  // Limites visibles de la carte en pixels
     const zoom = map.getZoom();  // Niveau de zoom actuel
-    const tileLayer = map.getTileLayer();  // Récupérer le layer de tuiles Leaflet
+    const tileLayer = map.eachLayer(function(layer) {
+      if (layer instanceof L.TileLayer) {
+        return layer;  // Trouver la couche de tuiles dans la carte
+      }
+    });
+
+    if (!tileLayer) {
+      console.error('Aucune couche de tuiles trouvée sur la carte.');
+      return;
+    }
 
     const startTile = {
       x: Math.floor(bounds.min.x / tileSize),
@@ -718,13 +727,12 @@ function captureMapWithTiles(map) {
         context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize);
         loadedTiles++;
         if (loadedTiles === tileCount) {
-          // Toutes les tuiles sont chargées
+          // Toutes les tuiles sont chargées, générer l'image
           resolve(canvas.toDataURL('image/png'));
         }
       };
 
       img.onerror = function () {
-        // En cas d'erreur de chargement, ignorer cette tuile
         loadedTiles++;
         if (loadedTiles === tileCount) {
           resolve(canvas.toDataURL('image/png'));
@@ -738,7 +746,7 @@ function captureMapWithTiles(map) {
     for (let x = startTile.x; x <= endTile.x; x++) {
       for (let y = startTile.y; y <= endTile.y; y++) {
         const tilePoint = new L.Point(x, y);
-        tilePoint.z = zoom;  // Ajouter le niveau de zoom
+        tilePoint.z = zoom;
 
         tileCount++;
         loadTile(tilePoint, x - startTile.x, y - startTile.y);
@@ -746,7 +754,6 @@ function captureMapWithTiles(map) {
     }
   });
 }
-
 
 // Fonction pour nettoyer le contenu HTML des infoboxes
 function stripHtml(html) {
@@ -799,6 +806,7 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
+
 
 
 
@@ -1369,4 +1377,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-9
+1
