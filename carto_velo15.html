@@ -831,11 +831,11 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     y += 110;  // Ajuster la position pour les informations des favoris
 
     // Boucle sur chaque favori pour ajouter les informations au PDF
-    favorites.forEach(function (item, index) {
+    favorites.forEach(async function (item, index) {
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
 
-      // Extraire le titre du favori (par exemple en récupérant un <strong>)
+      // Extraire le titre du favori
       const cleanTitle = extractTitleFromHtml(item.popupContent);
       doc.text(`Favori ${index + 1}: ${cleanTitle}`, 10, y);  // Ajouter le titre en gras
       y += 8;
@@ -843,8 +843,13 @@ document.getElementById('download-pdf').addEventListener('click', function () {
       // Ajouter une image/photo si présente dans le popupContent
       const imageUrl = extractImageUrlFromHtml(item.popupContent); // Extraire l'URL de l'image
       if (imageUrl) {
-        doc.addImage(imageUrl, 'PNG', 10, y, 50, 30);  // Ajouter l'image
-        y += 35;  // Ajuster la position après l'image
+        try {
+          const imageBase64 = await convertImageToBase64(imageUrl);  // Convertir l'image en Base64
+          doc.addImage(imageBase64, 'PNG', 10, y, 50, 30);  // Ajouter l'image
+          y += 35;  // Ajuster la position après l'image
+        } catch (error) {
+          console.error('Erreur lors du chargement de l\'image :', error);
+        }
       }
 
       doc.setFontSize(12);
@@ -868,6 +873,27 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   });
 });
 
+// Fonction pour convertir une image en Base64
+function convertImageToBase64(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.onload = function () {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+      resolve(dataURL);
+    };
+    img.onerror = function () {
+      reject(new Error('Erreur lors du chargement de l\'image.'));
+    };
+    img.src = url;
+  });
+}
+
 // Fonction pour extraire le titre du popupContent HTML
 function extractTitleFromHtml(html) {
   const tempDiv = document.createElement('div');
@@ -890,6 +916,7 @@ function stripHtml(html) {
   tempDiv.innerHTML = html;
   return tempDiv.textContent || tempDiv.innerText || "";
 }
+
 
     
 
@@ -1407,4 +1434,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
