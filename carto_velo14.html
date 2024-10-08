@@ -764,7 +764,8 @@ function captureMapWithTilesAndMarkers(map, markers) {
 // Fonction pour ajouter les marqueurs sur le canvas
 function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
   markers.forEach(function(marker) {
-    const latLng = marker.getLatLng();
+    // Supposons que vos favoris sont des objets avec lat et lon
+    const latLng = L.latLng(marker.lat, marker.lon);  // Créer un objet LatLng
     const point = map.project(latLng, map.getZoom());  // Convertir LatLng en pixels sur la carte
 
     const x = (point.x / tileSize) - startTile.x;
@@ -822,7 +823,6 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
-
 
 
 
@@ -1393,4 +1393,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-4
+5
