@@ -677,39 +677,76 @@ function isFavorite(item) {
 
 // Fonction générer un PDF
 
- // Fonction pour capturer la carte une fois que toutes les tuiles sont chargées
-function captureMapWithLeaflet(mapElementId) {
-  return new Promise(function (resolve) {
-    const mapElement = document.getElementById(mapElementId);
-    const tiles = mapElement.querySelectorAll('.leaflet-tile');
-    
-    let totalTiles = tiles.length;
+ // Code pour capturer les tuiles Leaflet et assembler dans un canvas
+function captureMapWithTiles(map) {
+  return new Promise((resolve) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    const tileSize = 256;  // Taille de chaque tuile dans Leaflet
+    const bounds = map.getPixelBounds();  // Limites visibles de la carte en pixels
+    const zoom = map.getZoom();  // Niveau de zoom actuel
+    const tileLayer = map.getTileLayer();  // Récupérer le layer de tuiles Leaflet
+
+    const startTile = {
+      x: Math.floor(bounds.min.x / tileSize),
+      y: Math.floor(bounds.min.y / tileSize)
+    };
+
+    const endTile = {
+      x: Math.floor(bounds.max.x / tileSize),
+      y: Math.floor(bounds.max.y / tileSize)
+    };
+
+    // Dimension du canvas à générer
+    const canvasWidth = (endTile.x - startTile.x + 1) * tileSize;
+    const canvasHeight = (endTile.y - startTile.y + 1) * tileSize;
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    let tileCount = 0;
     let loadedTiles = 0;
 
-    tiles.forEach(function (tile) {
-      if (tile.complete) {
-        loadedTiles++;
-      } else {
-        tile.addEventListener('load', function () {
-          loadedTiles++;
-          if (loadedTiles === totalTiles) {
-            // Lorsque toutes les tuiles sont chargées, on capture la carte
-            html2canvas(mapElement).then(function (canvas) {
-              resolve(canvas.toDataURL('image/png'));
-            });
-          }
-        });
-      }
-    });
+    // Fonction pour charger chaque tuile
+    function loadTile(tilePoint, x, y) {
+      const tileUrl = tileLayer.getTileUrl(tilePoint);
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';  // Gérer les tuiles cross-origin
 
-    // Si toutes les tuiles étaient déjà chargées
-    if (loadedTiles === totalTiles) {
-      html2canvas(mapElement).then(function (canvas) {
-        resolve(canvas.toDataURL('image/png'));
-      });
+      img.onload = function () {
+        context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize);
+        loadedTiles++;
+        if (loadedTiles === tileCount) {
+          // Toutes les tuiles sont chargées
+          resolve(canvas.toDataURL('image/png'));
+        }
+      };
+
+      img.onerror = function () {
+        // En cas d'erreur de chargement, ignorer cette tuile
+        loadedTiles++;
+        if (loadedTiles === tileCount) {
+          resolve(canvas.toDataURL('image/png'));
+        }
+      };
+
+      img.src = tileUrl;
+    }
+
+    // Charger toutes les tuiles visibles
+    for (let x = startTile.x; x <= endTile.x; x++) {
+      for (let y = startTile.y; y <= endTile.y; y++) {
+        const tilePoint = new L.Point(x, y);
+        tilePoint.z = zoom;  // Ajouter le niveau de zoom
+
+        tileCount++;
+        loadTile(tilePoint, x - startTile.x, y - startTile.y);
+      }
     }
   });
 }
+
 
 // Fonction pour nettoyer le contenu HTML des infoboxes
 function stripHtml(html) {
@@ -729,8 +766,8 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   
   let y = 20;  // Position verticale initiale pour les informations
 
-  // Capture de la carte une fois les tuiles chargées
-  captureMapWithLeaflet('popup-map').then(function (mapImage) {
+  // Capture de la carte Leaflet en assemblant les tuiles
+  captureMapWithTiles(map).then(function (mapImage) {
     // Ajouter l'image de la carte au PDF
     doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
     y += 110;  // Ajuster la position pour les informations des favoris
@@ -1332,4 +1369,4 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   </script>
 </body>
 </html>
-8
+9
