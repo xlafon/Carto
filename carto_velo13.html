@@ -440,9 +440,10 @@ function addToFavorites(item) {
   if (item.lat && item.lon && item.icon && item.popupContent) {
     // Gestion des points GeoJSON (les coordonnées sont sous forme de tableau)
     if (Array.isArray(item.lat)) {
-      if (!favorites.some(fav => fav.lat[0] === item.lat[0] && fav.lon[1] === item.lon[1])) {
+      // Vérifier si le favori existe déjà dans la liste en utilisant les coordonnées GeoJSON [lon, lat]
+      if (!favorites.some(fav => fav.lat[1] === item.lat[1] && fav.lon[0] === item.lon[0])) {
         favorites.push({
-          lat: item.lat,
+          lat: item.lat,  // Coordonnées sous forme de tableau GeoJSON
           lon: item.lon,
           icon: item.icon,
           popupContent: item.popupContent
@@ -452,14 +453,14 @@ function addToFavorites(item) {
       // Gestion des points Overpass (les coordonnées sont séparées)
       if (!favorites.some(fav => fav.lat === item.lat && fav.lon === item.lon)) {
         favorites.push({
-          lat: item.lat,
+          lat: item.lat,  // Coordonnées séparées pour Overpass
           lon: item.lon,
           icon: item.icon,
           popupContent: item.popupContent
         });
       }
     }
-     updateFavoritesCount();  // Mettre à jour le compteur et l'affichage
+    updateFavoritesCount();  // Mettre à jour le compteur de favoris
       flashFavoritesBox();     // Déclencher l'animation à l'ajout
   } else {
     console.error("Invalid item data:", item);
@@ -572,10 +573,20 @@ function isFavorite(item) {
 
   // Ajouter les favoris à la carte de la popup
   favorites.forEach(function (item) {
-    if (item.lat && item.lon && item.icon && item.popupContent) {
-      var marker = L.marker([item.lat, item.lon], { icon: item.icon }).addTo(travelMap);
-      marker.bindPopup(item.popupContent);
+    var lat, lon;
+    
+    // Vérifier si les coordonnées sont sous forme de tableau (GeoJSON) ou d'objets individuels (API Overpass)
+    if (Array.isArray(item.lat)) {
+      lat = item.lat[1]; // Coordonnées latitude dans GeoJSON
+      lon = item.lat[0]; // Coordonnées longitude dans GeoJSON
+    } else {
+      lat = item.lat;
+      lon = item.lon;
     }
+
+    // Ajouter le marqueur à la carte
+    var marker = L.marker([lat, lon], { icon: item.icon }).addTo(travelMap);
+    marker.bindPopup(item.popupContent);
   });
 
   // Afficher les infoboxes des favoris
@@ -1128,4 +1139,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+6
