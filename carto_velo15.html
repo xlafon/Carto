@@ -387,8 +387,6 @@
     <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
     <span id="favorites-count">0</span>
     <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
-    
-
     <button id="travel-notebook" class="view-favorites-button">Carnet de voyage</button>
     <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
   </div>
@@ -400,7 +398,7 @@
     <div id="popup-map" style="width: 100%; height: 400px;"></div>
     <div id="favorites-info-boxes"></div>
     <button id="download-pdf" class="view-favorites-button">Télécharger le PDF</button>
-<button onclick="generateShareableLink()">Partager</button>
+
   </div>
 </div>
 
@@ -922,59 +920,8 @@ function extractDetailsFromPopup(item) {
 }
 
 
-//Fonctions pour générer un lien de partage des favoris depuis le carnet
-   // Fonction pour générer l'URL de partage
-function generateShareableLink() {
-  let baseUrl = "https://xlafon.github.io/Carto/carto_velo15.html";
-  
-  // Générer la liste des favoris à partir de la variable `favorites`
-  let favoritesParam = favorites.map(fav => `${fav.lat},${fav.lon}`).join("|");
-  
-  // Créer l'URL de partage
-  let shareableUrl = `${baseUrl}?favorites=${favoritesParam}`;
-  
-  // Afficher ou copier le lien généré
-  prompt("Voici le lien à partager :", shareableUrl);
-}
 
 
-
-// Fonction pour décoder les favoris depuis l'URL
-function loadFavoritesFromUrl() {
-  let params = new URLSearchParams(window.location.search);
-
-  if (params.has('favorites')) {
-    let favoritesParam = params.get('favorites');
-
-    let favoritesArray = favoritesParam.split('|').map(fav => {
-      let [lat, lon] = fav.split(',');
-      return { lat: parseFloat(lat), lon: parseFloat(lon) };
-    });
-
-    // Ajouter chaque favori à la carte sans interférer avec la logique de la carte
-    favoritesArray.forEach(fav => {
-      if (!isNaN(fav.lat) && !isNaN(fav.lon)) {
-        let marker = L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon });
-        marker.addTo(map).bindPopup("Favori partagé");
-      }
-    });
-  }
-}
-
-// Appeler cette fonction après que la carte est complètement prête
-map.whenReady(loadFavoritesFromUrl);
-
-
-// Appeler la fonction après que la carte est complètement chargée
-map.whenReady(loadFavoritesFromUrl);
-
-
-
-// Boucle pour ajouter les marqueurs des favoris
-favoritesArray.forEach(fav => {
-  L.marker([fav.lat, fav.lon], { icon: yourIcon }).addTo(map)
-    .bindPopup("Nom du favori");  // Vous pouvez aussi afficher plus d'infos ici
-});
 
     
 
@@ -1214,9 +1161,8 @@ function showFavorites() {
   inFavoritesMode = true;  // On est en mode favoris
   // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
   map.eachLayer(function(layer) {
-    if (!(layer instanceof L.TileLayer)) {
-      map.removeLayer(layer);
-    }
+    if (layer instanceof L.TileLayer) return; 
+    map.removeLayer(layer);
   });
 
   
@@ -1255,19 +1201,18 @@ function showFavorites() {
   quitFavoritesButton.onclick = function() {
      inFavoritesMode = false;  // Sortie du mode favoris
     // Supprimer toutes les couches, sauf la couche de tuiles de base
-     map.eachLayer(function(layer) {
-      if (!(layer instanceof L.TileLayer)) {
-        map.removeLayer(layer);
+    map.eachLayer(function(layer) {
+      if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
+      map.removeLayer(layer);
+    });
+
+    // Réafficher les couches sélectionnées depuis l'objet `selectedLayers`
+    Object.keys(selectedLayers).forEach(function(layerId) {
+      var layer = selectedLayers[layerId];
+      if (layer) {
+        map.addLayer(layer);  // Réafficher la couche
       }
     });
-    // Réactiver les couches sélectionnées précédemment
-    Object.keys(selectedLayers).forEach(function(layerId) {
-      map.addLayer(selectedLayers[layerId]);
-    });
-  };
-
-  document.getElementById('favorites-box').appendChild(quitButton);
-}
 
     // Retirer le bouton "Quitter les favoris"
     document.getElementById('favorites-box').removeChild(quitFavoritesButton);
@@ -1494,4 +1439,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-5
+1
