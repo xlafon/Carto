@@ -943,26 +943,27 @@ function generateShareableLink() {
 function loadFavoritesFromUrl() {
   let params = new URLSearchParams(window.location.search);
 
-  // Vérifier si des favoris existent dans l'URL
   if (params.has('favorites')) {
     let favoritesParam = params.get('favorites');
 
-    // Si le paramètre existe, créer le tableau de favoris
     let favoritesArray = favoritesParam.split('|').map(fav => {
       let [lat, lon] = fav.split(',');
       return { lat: parseFloat(lat), lon: parseFloat(lon) };
     });
 
-    // Ajouter chaque favori à la carte sans interférer avec la logique d'origine
+    // Ajouter chaque favori à la carte sans interférer avec la logique de la carte
     favoritesArray.forEach(fav => {
       if (!isNaN(fav.lat) && !isNaN(fav.lon)) {
-        L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon })
-          .addTo(map)
-          .bindPopup("Favori partagé"); // Utilisez une icône ou un popup personnalisé
+        let marker = L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon });
+        marker.addTo(map).bindPopup("Favori partagé");
       }
     });
   }
 }
+
+// Appeler cette fonction après que la carte est complètement prête
+map.whenReady(loadFavoritesFromUrl);
+
 
 // Appeler la fonction après que la carte est complètement chargée
 map.whenReady(loadFavoritesFromUrl);
@@ -1213,8 +1214,9 @@ function showFavorites() {
   inFavoritesMode = true;  // On est en mode favoris
   // Effacer toutes les couches de la carte, sauf la couche de tuiles de base
   map.eachLayer(function(layer) {
-    if (layer instanceof L.TileLayer) return; 
-    map.removeLayer(layer);
+    if (!(layer instanceof L.TileLayer)) {
+      map.removeLayer(layer);
+    }
   });
 
   
@@ -1253,18 +1255,19 @@ function showFavorites() {
   quitFavoritesButton.onclick = function() {
      inFavoritesMode = false;  // Sortie du mode favoris
     // Supprimer toutes les couches, sauf la couche de tuiles de base
-    map.eachLayer(function(layer) {
-      if (layer instanceof L.TileLayer) return; // Ne pas supprimer la couche de tuiles de base
-      map.removeLayer(layer);
-    });
-
-    // Réafficher les couches sélectionnées depuis l'objet `selectedLayers`
-    Object.keys(selectedLayers).forEach(function(layerId) {
-      var layer = selectedLayers[layerId];
-      if (layer) {
-        map.addLayer(layer);  // Réafficher la couche
+     map.eachLayer(function(layer) {
+      if (!(layer instanceof L.TileLayer)) {
+        map.removeLayer(layer);
       }
     });
+    // Réactiver les couches sélectionnées précédemment
+    Object.keys(selectedLayers).forEach(function(layerId) {
+      map.addLayer(selectedLayers[layerId]);
+    });
+  };
+
+  document.getElementById('favorites-box').appendChild(quitButton);
+}
 
     // Retirer le bouton "Quitter les favoris"
     document.getElementById('favorites-box').removeChild(quitFavoritesButton);
@@ -1491,4 +1494,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
