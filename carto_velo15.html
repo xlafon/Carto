@@ -989,16 +989,44 @@ function extractDetailsFromPopup(item) {
       var popupContent = "";
       if (element.tags) {
         popupContent += `<strong>${element.tags.name || "No name"}</strong><br>`;
+        if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
         if (element.tags.network) popupContent += `Réseau : ${element.tags.network}<br>`;
         if (element.tags.operator) popupContent += `Opérateur : ${element.tags.operator}<br>`;
-        popupContent += `(source OSM)`;
+        popupContent += `(source OSM)<br>`;
       }
 
+     // Gestion des nodes (points)
       if (element.type === "node") {
         var marker = L.marker([element.lat, element.lon], { icon: icon });
         marker.on('click', function(e) {
           L.DomEvent.stopPropagation(e);
           showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: icon, popupContent });
+        });
+        layer.addLayer(marker);
+      }
+
+      // Gestion des ways (polygones)
+      else if (element.type === "way") {
+        var latlngs = element.geometry.map(function(geo) {
+          return [geo.lat, geo.lon];
+        });
+
+        // Créer un polygone
+        var polygon = L.polygon(latlngs, { color: 'blue' });
+        polygon.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: e.latlng.lat, lon: e.latlng.lng, icon: icon, popupContent });
+        });
+        layer.addLayer(polygon);
+
+        // Calculer le centroid du polygone
+        var centroid = polygon.getBounds().getCenter();
+
+        // Ajouter un marqueur au centroid
+        var marker = L.marker(centroid, { icon: icon });
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: icon, popupContent });
         });
         layer.addLayer(marker);
       }
@@ -1480,4 +1508,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-3
+4
