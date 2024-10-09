@@ -831,14 +831,24 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     y += 110;  // Ajuster la position pour les informations des favoris
 
     // Boucle sur chaque favori pour ajouter les informations au PDF
-    favorites.forEach(async function (item, index) {
+    favorites.forEach(async function (item) {
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
 
-      // Extraire le titre du favori
+      // Extraire le nom du favori depuis le popupContent
       const cleanTitle = extractTitleFromHtml(item.popupContent);
-      doc.text(`Favori ${index + 1}: ${cleanTitle}`, 10, y);  // Ajouter le titre en gras
+      doc.text(`${cleanTitle}`, 10, y);  // Ajouter le nom du favori
       y += 8;
+
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'normal');
+
+      // Ajouter les autres informations telles que téléphone, URL, etc.
+      const details = extractDetailsFromPopup(item.popupContent);
+      details.forEach(function (line) {
+        doc.text(line, 10, y);  // Ajouter chaque détail sur une nouvelle ligne
+        y += 7;
+      });
 
       // Ajouter une image/photo si présente dans le popupContent
       const imageUrl = extractImageUrlFromHtml(item.popupContent); // Extraire l'URL de l'image
@@ -852,15 +862,6 @@ document.getElementById('download-pdf').addEventListener('click', function () {
         }
       }
 
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'normal');
-
-      // Nettoyer le contenu HTML des infoboxes et ajouter la description
-      const cleanText = stripHtml(item.popupContent);
-      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
-      doc.text(lines, 10, y);
-      y += lines.length * 7 + 10;
-
       // Gérer les débordements de page
       if (y > 270) {
         doc.addPage();
@@ -872,6 +873,49 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
+
+// Fonction pour extraire le titre du popupContent HTML
+function extractTitleFromHtml(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  const titleElement = tempDiv.querySelector('strong');  // Exemple : utiliser <strong> comme titre
+  return titleElement ? titleElement.textContent : 'Favori';
+}
+
+// Fonction pour extraire les détails comme téléphone, URL, etc.
+function extractDetailsFromPopup(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  const details = [];
+
+  // Exemple de structure, vous pouvez adapter selon le contenu de vos popup
+  const phoneElement = tempDiv.querySelector('a[href^="tel:"]');
+  if (phoneElement) {
+    details.push(`Téléphone : ${phoneElement.textContent}`);
+  }
+
+  const urlElement = tempDiv.querySelector('a[href^="http"]');
+  if (urlElement) {
+    details.push(`URL : ${urlElement.href}`);
+  }
+
+  const addressElement = tempDiv.querySelector('.address'); // Exemple pour une adresse
+  if (addressElement) {
+    details.push(`Adresse : ${addressElement.textContent}`);
+  }
+
+  // Ajoutez ici d'autres informations si nécessaire
+  return details;
+}
+
+// Fonction pour extraire l'URL de l'image dans le HTML
+function extractImageUrlFromHtml(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  const imgElement = tempDiv.querySelector('img');  // Chercher une balise <img>
+  return imgElement ? imgElement.src : null;
+}
 
 // Fonction pour convertir une image en Base64
 function convertImageToBase64(url) {
@@ -894,28 +938,13 @@ function convertImageToBase64(url) {
   });
 }
 
-// Fonction pour extraire le titre du popupContent HTML
-function extractTitleFromHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const titleElement = tempDiv.querySelector('strong');  // Exemple : utiliser <strong> comme titre
-  return titleElement ? titleElement.textContent : 'Favori';
-}
-
-// Fonction pour extraire l'URL de l'image dans le HTML
-function extractImageUrlFromHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const imgElement = tempDiv.querySelector('img');  // Chercher une balise <img>
-  return imgElement ? imgElement.src : null;
-}
-
-// Fonction pour nettoyer le HTML
+// Fonction pour nettoyer le HTML et supprimer les balises inutiles
 function stripHtml(html) {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
   return tempDiv.textContent || tempDiv.innerText || "";
 }
+
 
 
     
@@ -1434,4 +1463,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
