@@ -938,30 +938,35 @@ function generateShareableLink() {
 }
 
 
+
 // Fonction pour décoder les favoris depuis l'URL
 function loadFavoritesFromUrl() {
   let params = new URLSearchParams(window.location.search);
-  
+
   // Vérifier si des favoris existent dans l'URL
   if (params.has('favorites')) {
     let favoritesParam = params.get('favorites');
-    
-    // Créer une variable `favoritesArray` pour stocker les favoris
+
+    // Si le paramètre existe, créer le tableau de favoris
     let favoritesArray = favoritesParam.split('|').map(fav => {
       let [lat, lon] = fav.split(',');
       return { lat: parseFloat(lat), lon: parseFloat(lon) };
     });
 
-    // Ajouter chaque favori à la carte
+    // Ajouter chaque favori à la carte sans interférer avec la logique d'origine
     favoritesArray.forEach(fav => {
-      L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon }).addTo(map)
-        .bindPopup("Favori partagé");
+      if (!isNaN(fav.lat) && !isNaN(fav.lon)) {
+        L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon })
+          .addTo(map)
+          .bindPopup("Favori partagé"); // Utilisez une icône ou un popup personnalisé
+      }
     });
   }
 }
 
-// Appeler cette fonction lorsque la carte est chargée
-loadFavoritesFromUrl();
+// Appeler la fonction après que la carte est complètement chargée
+map.whenReady(loadFavoritesFromUrl);
+
 
 
 // Boucle pour ajouter les marqueurs des favoris
@@ -1486,4 +1491,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+4
