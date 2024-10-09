@@ -988,7 +988,7 @@ function extractDetailsFromPopup(item) {
     data.elements.forEach(function(element) {
       var popupContent = "";
       if (element.tags) {
-        popupContent += `<strong>${element.tags.name || "No name"}</strong><br>`;
+        popupContent += `<strong>Gare de ${element.tags.name || "No name"}</strong><br>`;
         if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
         if (element.tags.network) popupContent += `Réseau : ${element.tags.network}<br>`;
         if (element.tags.operator) popupContent += `Opérateur : ${element.tags.operator}<br>`;
