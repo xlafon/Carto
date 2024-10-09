@@ -387,6 +387,8 @@
     <img src="icons/favorite.png" alt="Favoris" class="favorite-icon">
     <span id="favorites-count">0</span>
     <button id="view-favorites" class="view-favorites-button">Voir les favoris</button>
+    <button onclick="generateShareableLink()">Partager</button>
+
     <button id="travel-notebook" class="view-favorites-button">Carnet de voyage</button>
     <img src="icons/trash.png" alt="Supprimer tous les favoris" class="trash-icon" id="trash-icon">
   </div>
@@ -398,7 +400,7 @@
     <div id="popup-map" style="width: 100%; height: 400px;"></div>
     <div id="favorites-info-boxes"></div>
     <button id="download-pdf" class="view-favorites-button">Télécharger le PDF</button>
-
+<button onclick="generateShareableLink()">Partager</button>
   </div>
 </div>
 
@@ -920,8 +922,43 @@ function extractDetailsFromPopup(item) {
 }
 
 
+//Fonctions pour générer un lien de partage des favoris depuis le carnet
+    // Fonction pour générer l'URL de partage
+function generateShareableLink() {
+  let baseUrl = "https://xlafon.github.io/Carto/carto_velo15.html";
+  let favoritesParam = favorites.map(fav => `${fav.lat},${fav.lon}`).join("|");
+  let shareableUrl = `${baseUrl}?favorites=${favoritesParam}`;
+  
+  // Afficher ou copier le lien généré
+  prompt("Voici le lien à partager :", shareableUrl);
+}
 
+// Fonction pour décoder les favoris depuis l'URL
+function loadFavoritesFromUrl() {
+  let params = new URLSearchParams(window.location.search);
+  if (params.has('favorites')) {
+    let favoritesParam = params.get('favorites');
+    let favoritesArray = favoritesParam.split('|').map(fav => {
+      let [lat, lon] = fav.split(',');
+      return { lat: parseFloat(lat), lon: parseFloat(lon) };
+    });
+    
+    // Ajouter chaque favori à la carte
+    favoritesArray.forEach(fav => {
+      L.marker([fav.lat, fav.lon], { icon: yourIcon }).addTo(map)
+        .bindPopup("Favori partagé");
+    });
+  }
+}
 
+// Appeler cette fonction lorsque la carte est chargée
+loadFavoritesFromUrl();
+
+// Boucle pour ajouter les marqueurs des favoris
+favoritesArray.forEach(fav => {
+  L.marker([fav.lat, fav.lon], { icon: yourIcon }).addTo(map)
+    .bindPopup("Nom du favori");  // Vous pouvez aussi afficher plus d'infos ici
+});
 
     
 
@@ -1439,4 +1476,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-7
+1
