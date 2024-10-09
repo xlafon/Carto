@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -811,12 +812,7 @@ function addMarkersToCanvas(context, markers, map, startTile, tileSize) {
   });
 }
 
-// Fonction pour nettoyer le contenu HTML des infoboxes
-function stripHtml(html) {
-  var tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
-}
+
     
 // Fonction pour générer le PDF
 document.getElementById('download-pdf').addEventListener('click', function () {
@@ -826,30 +822,39 @@ document.getElementById('download-pdf').addEventListener('click', function () {
   // Titre du PDF
   doc.setFontSize(18);
   doc.text('Carnet de voyage', 10, 10);
-  
-  let y = 20;  // Position verticale initiale pour les informations
+
+  let y = 30;  // Position verticale initiale pour les informations
 
   // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
   captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
-    // Ajouter l'image de la carte au PDF
+    // Ajouter l'image de la carte au PDF (si besoin plus tard)
     doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
     y += 110;  // Ajuster la position pour les informations des favoris
 
     // Boucle sur chaque favori pour ajouter les informations au PDF
-    favorites.forEach(function (item, index) {
+    favorites.forEach(function (item) {
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
-      doc.text(`Favori ${index + 1}:`, 10, y);
+
+      // Extraire le nom du favori depuis le popupContent
+      const cleanTitle = extractTitleFromHtml(item.popupContent);
+      doc.text(`${cleanTitle}`, 10, y);  // Ajouter le nom du favori
       y += 8;
 
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
 
-      // Nettoyer le contenu HTML des infoboxes
-      const cleanText = stripHtml(item.popupContent);
-      const lines = doc.splitTextToSize(cleanText, 180);  // Diviser le texte en lignes adaptées au PDF
-      doc.text(lines, 10, y);
-      y += lines.length * 7 + 10;
+      // Extraire les informations spécifiques selon le type de favori
+      const details = extractDetailsFromPopup(item);
+      details.forEach(function (line) {
+        doc.text(line, 10, y);  // Ajouter chaque détail sur une nouvelle ligne
+        y += 7;
+      });
+
+      // Ajouter les coordonnées GPS
+      const gpsCoords = `GPS : ${item.lat}, ${item.lon}`;
+      doc.text(gpsCoords, 10, y);
+      y += 7;
 
       // Gérer les débordements de page
       if (y > 270) {
@@ -862,6 +867,60 @@ document.getElementById('download-pdf').addEventListener('click', function () {
     doc.save('carnet-de-voyage.pdf');
   });
 });
+
+// Fonction pour extraire le titre du popupContent HTML
+function extractTitleFromHtml(html) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  const titleElement = tempDiv.querySelector('strong');  // Utiliser <strong> comme titre
+  return titleElement ? titleElement.textContent : 'Favori';
+}
+
+// Fonction pour extraire les détails spécifiques à chaque type de favori (Office, Parking à vélo, Hôtels, etc.)
+function extractDetailsFromPopup(item) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = item.popupContent;
+
+  const details = [];
+
+  // Extraire le téléphone (gérer "Téléphone" et "Tel.")
+  const phoneElement = Array.from(tempDiv.querySelectorAll('p, a'))
+    .find(p => p.textContent.includes("Téléphone") || p.textContent.includes("Tel."));
+  if (phoneElement) {
+    details.push(phoneElement.textContent);
+  }
+
+  // Extraire l'email
+  const emailElement = tempDiv.querySelector('a[href^="mailto:"]');
+  if (emailElement) {
+    details.push(`Email : ${emailElement.textContent}`);
+  }
+
+  // Extraire l'URL du site web
+  const websiteElement = tempDiv.querySelector('a[href^="http"]');
+  if (websiteElement) {
+    details.push(`Site web : ${websiteElement.href}`);
+  }
+
+  // Extraire les horaires d'ouverture
+  const openingHoursElement = Array.from(tempDiv.querySelectorAll('p'))
+    .find(p => p.textContent.includes("Heures d'ouverture"));
+  if (openingHoursElement) {
+    details.push(openingHoursElement.textContent);
+  }
+
+  // Extraire la description
+  const descriptionElement = Array.from(tempDiv.querySelectorAll('p'))
+    .find(p => p.textContent.includes("Description"));
+  if (descriptionElement) {
+    details.push(descriptionElement.textContent);
+  }
+
+  return details;
+}
+
+
+
 
 
     
@@ -1380,4 +1439,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-3
+1
