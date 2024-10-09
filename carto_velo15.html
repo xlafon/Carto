@@ -411,6 +411,7 @@
     }).addTo(map);
 
     var officesLayer = L.layerGroup().addTo(map);
+    var station = L.layerGroup();
     var bikeParkingLayer = L.layerGroup();
     var waterPointsLayer = L.layerGroup();
     var bikeRoutesLayer = L.layerGroup();
@@ -424,6 +425,12 @@
     // Créer une icône personnalisée pour les offices de tourisme
     var touristOfficeIcon = L.icon({
       iconUrl: 'icons/tourist_office.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32],
+      popupAnchor: [0, -32]
+    });
+    var stationIcon = L.icon({
+      iconUrl: 'icons/station.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
       popupAnchor: [0, -32]
@@ -973,7 +980,54 @@ function extractDetailsFromPopup(item) {
     });
   });
 }
+function addDataToLayer(url, layer, color, isstation = false) {
+  $.getJSON(url, function(data) {
+    data.elements.forEach(function(element) {
+      var popupContent = "";
+      if (element.tags) {
+        if (isstation) {
+          popupContent += `<strong>${element.tags.name || "No name"}</strong><br><br>`;
+          if (element.tags.phone) popupContent += `Téléphone : ${element.tags.phone}<br>`;
+          if (element.tags.website) popupContent += `Site web : <a href="${element.tags.website}" target="_blank">${element.tags.website}</a><br>`;
+          if (element.tags.email) popupContent += `Email : <a href="mailto:${element.tags.email}">${element.tags.email}</a><br>`;
+          if (element.tags.opening_hours) popupContent += `Heures d'ouverture : ${translateOpeningHours(element.tags.opening_hours)}<br><br>`;
+          if (element.tags.description) popupContent += `<strong>Description :</strong> ${element.tags.description}<br>`;
+          popupContent += `(source OSM)`;
+        } else {
+          popupContent += element.tags.name || "No name";
+        }
+      }
 
+      if (element.type === "node") {
+        var markerOptions = isstation ? { icon: stationIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker([element.lat, element.lon], markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: element.lat, lon: element.lon, icon: markerOptions.icon, popupContent });
+        });
+        layer.addLayer(marker);
+      } else if (element.type === "way") {
+        var latlngs = element.geometry.map(function(geo) {
+          return [geo.lat, geo.lon];
+        });
+        var polygon = L.polygon(latlngs, { color: color });
+        polygon.on('click', function() {
+          showInfoBox(popupContent, { lat: latlngs, lon: latlngs, icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }), popupContent });
+        });
+        layer.addLayer(polygon);
+
+        var centroid = polygon.getBounds().getCenter();
+        var markerOptions = isOffice ? { icon: stationIcon } : { icon: L.divIcon({ className: 'custom-icon', html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%;"></div>` }) };
+        var marker = L.marker(centroid, markerOptions);
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          showInfoBox(popupContent, { lat: centroid.lat, lon: centroid.lng, icon: markerOptions.icon, popupContent });
+        });
+        layer.addLayer(marker);
+      }
+    });
+  });
+}
 
     function addGeoJsonLayer(url, layer, icon, type) {
   $.getJSON(url, function(data) {
@@ -1290,6 +1344,7 @@ function showFavorites() {
 
 
      var officesUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr["information"="office"](area.searchArea);out geom;';
+    var stationUrl = 'https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(id:3600007450)->.searchArea;nwr[railway=station](area.searchArea);out geom;';
     var bikeParkingUrl = 'data/bike_parking.geojson';
     var waterPointsUrl = 'data/water_points.geojson';
     var hotelsUrl = 'data/HOT.geojson';
@@ -1324,6 +1379,7 @@ function showFavorites() {
           });
         });
 
+        
         var buttonBikeRoutes = L.DomUtil.create('button', 'parcours-button', buttonContainer);
         buttonBikeRoutes.innerHTML = 'Parcours vélo';
         L.DomEvent.on(buttonBikeRoutes, 'click', function () {
@@ -1336,6 +1392,12 @@ function showFavorites() {
         buttonBike.innerHTML = 'Mobilité et Services';
         var submenu = L.DomUtil.create('div', 'submenu bike-submenu', container);
 
+        var buttonstation = L.DomUtil.create('button', '', submenu);
+        buttonBikeParking.innerHTML = 'Gare SNCF';
+        L.DomEvent.on(buttonstation, 'click', function () {
+          toggleLayer(stationLayer, stationUrl, stationIcon, 'station', 'icons/station.png', addGeoJsonLayer);
+        });
+        
         var buttonBikeParking = L.DomUtil.create('button', '', submenu);
         buttonBikeParking.innerHTML = 'Parking à vélo';
         L.DomEvent.on(buttonBikeParking, 'click', function () {
@@ -1439,4 +1501,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-1
+2
