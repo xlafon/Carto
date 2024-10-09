@@ -844,7 +844,7 @@ document.getElementById('download-pdf').addEventListener('click', function () {
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
 
-      // Ajouter les autres informations telles que téléphone, URL, etc.
+      // Extraire les informations spécifiques selon le type de favori
       const details = extractDetailsFromPopup(item.popupContent);
       details.forEach(function (line) {
         doc.text(line, 10, y);  // Ajouter chaque détail sur une nouvelle ligne
@@ -883,30 +883,61 @@ function extractTitleFromHtml(html) {
   return titleElement ? titleElement.textContent : 'Favori';
 }
 
-// Fonction pour extraire les détails comme téléphone, URL, etc.
+// Fonction pour extraire les détails spécifiques à chaque type de favori (Office, Parking à vélo, Hôtels, etc.)
 function extractDetailsFromPopup(html) {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
-  
+
   const details = [];
 
-  // Exemple de structure, vous pouvez adapter selon le contenu de vos popup
+  // Extraire les informations communes (name, phone, website, email, horaires d'ouverture, etc.)
+  const nameElement = tempDiv.querySelector('strong');
+  if (nameElement) {
+    details.push(`Nom : ${nameElement.textContent}`);
+  }
+
   const phoneElement = tempDiv.querySelector('a[href^="tel:"]');
   if (phoneElement) {
     details.push(`Téléphone : ${phoneElement.textContent}`);
   }
 
-  const urlElement = tempDiv.querySelector('a[href^="http"]');
-  if (urlElement) {
-    details.push(`URL : ${urlElement.href}`);
+  const emailElement = tempDiv.querySelector('a[href^="mailto:"]');
+  if (emailElement) {
+    details.push(`Email : ${emailElement.textContent}`);
   }
 
-  const addressElement = tempDiv.querySelector('.address'); // Exemple pour une adresse
-  if (addressElement) {
-    details.push(`Adresse : ${addressElement.textContent}`);
+  const websiteElement = tempDiv.querySelector('a[href^="http"]');
+  if (websiteElement) {
+    details.push(`Site web : ${websiteElement.href}`);
   }
 
-  // Ajoutez ici d'autres informations si nécessaire
+  const openingHoursElement = tempDiv.querySelector('p:contains("Heures d\'ouverture")');
+  if (openingHoursElement) {
+    details.push(openingHoursElement.textContent);  // Ajouter les horaires d'ouverture si présents
+  }
+
+  const descriptionElement = tempDiv.querySelector('p:contains("Description")');
+  if (descriptionElement) {
+    details.push(`Description : ${descriptionElement.textContent}`);
+  }
+
+  // Ajouter les informations spécifiques aux Parkings à vélo
+  const capacityElement = tempDiv.querySelector('p:contains("Capacité")');
+  if (capacityElement) {
+    details.push(capacityElement.textContent);  // Ajouter la capacité de parking
+  }
+
+  const parkingTypeElement = tempDiv.querySelector('p:contains("Type")');
+  if (parkingTypeElement) {
+    details.push(parkingTypeElement.textContent);  // Ajouter le type de parking
+  }
+
+  // Ajouter les informations spécifiques pour les hôtels, campings, etc.
+  const capacityHousingElement = tempDiv.querySelector('p:contains("Capacité Nb logements")');
+  if (capacityHousingElement) {
+    details.push(capacityHousingElement.textContent);  // Ajouter la capacité de logements
+  }
+
   return details;
 }
 
@@ -937,13 +968,6 @@ function convertImageToBase64(url) {
     };
     img.src = url;
   });
-}
-
-// Fonction pour nettoyer le HTML et supprimer les balises inutiles
-function stripHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
 }
 
 
@@ -1464,4 +1488,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-4
+5
