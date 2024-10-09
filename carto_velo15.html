@@ -827,12 +827,12 @@ document.getElementById('download-pdf').addEventListener('click', function () {
 
   // Capture de la carte Leaflet en assemblant les tuiles et ajoutant les marqueurs
   captureMapWithTilesAndMarkers(map, favorites).then(function (mapImage) {
-    // Ajouter l'image de la carte au PDF
+    // Ajouter l'image de la carte au PDF (si besoin plus tard)
     doc.addImage(mapImage, 'PNG', 10, y, 190, 100);  // Ajuster la taille et la position de l'image
     y += 110;  // Ajuster la position pour les informations des favoris
 
     // Boucle sur chaque favori pour ajouter les informations au PDF
-    favorites.forEach(async function (item) {
+    favorites.forEach(function (item) {
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
 
@@ -845,23 +845,16 @@ document.getElementById('download-pdf').addEventListener('click', function () {
       doc.setFont('helvetica', 'normal');
 
       // Extraire les informations spécifiques selon le type de favori
-      const details = extractDetailsFromPopup(item.popupContent);
+      const details = extractDetailsFromPopup(item);
       details.forEach(function (line) {
         doc.text(line, 10, y);  // Ajouter chaque détail sur une nouvelle ligne
         y += 7;
       });
 
-      // Ajouter une image/photo si présente dans le popupContent
-      const imageUrl = extractImageUrlFromHtml(item.popupContent); // Extraire l'URL de l'image
-      if (imageUrl) {
-        try {
-          const imageBase64 = await convertImageToBase64(imageUrl);  // Convertir l'image en Base64
-          doc.addImage(imageBase64, 'PNG', 10, y, 50, 30);  // Ajouter l'image
-          y += 35;  // Ajuster la position après l'image
-        } catch (error) {
-          console.error('Erreur lors du chargement de l\'image :', error);
-        }
-      }
+      // Ajouter les coordonnées GPS
+      const gpsCoords = `GPS : ${item.lat}, ${item.lon}`;
+      doc.text(gpsCoords, 10, y);
+      y += 7;
 
       // Gérer les débordements de page
       if (y > 270) {
@@ -884,18 +877,17 @@ function extractTitleFromHtml(html) {
 }
 
 // Fonction pour extraire les détails spécifiques à chaque type de favori (Office, Parking à vélo, Hôtels, etc.)
-function extractDetailsFromPopup(html) {
+function extractDetailsFromPopup(item) {
   const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
+  tempDiv.innerHTML = item.popupContent;
 
   const details = [];
 
-  // Extraire le nom (déjà traité dans extractTitleFromHtml)
-  
-  // Extraire le téléphone
-  const phoneElement = tempDiv.querySelector('a[href^="tel:"]');
+  // Extraire le téléphone (gérer "Téléphone" et "Tel.")
+  const phoneElement = Array.from(tempDiv.querySelectorAll('p, a'))
+    .find(p => p.textContent.includes("Téléphone") || p.textContent.includes("Tel."));
   if (phoneElement) {
-    details.push(`Téléphone : ${phoneElement.textContent}`);
+    details.push(phoneElement.textContent);
   }
 
   // Extraire l'email
@@ -911,70 +903,22 @@ function extractDetailsFromPopup(html) {
   }
 
   // Extraire les horaires d'ouverture
-  const openingHoursText = Array.from(tempDiv.querySelectorAll('p'))
+  const openingHoursElement = Array.from(tempDiv.querySelectorAll('p'))
     .find(p => p.textContent.includes("Heures d'ouverture"));
-  if (openingHoursText) {
-    details.push(openingHoursText.textContent);
+  if (openingHoursElement) {
+    details.push(openingHoursElement.textContent);
   }
 
   // Extraire la description
-  const descriptionText = Array.from(tempDiv.querySelectorAll('p'))
+  const descriptionElement = Array.from(tempDiv.querySelectorAll('p'))
     .find(p => p.textContent.includes("Description"));
-  if (descriptionText) {
-    details.push(descriptionText.textContent);
-  }
-
-  // Ajouter les informations spécifiques aux Parkings à vélo
-  const capacityElement = Array.from(tempDiv.querySelectorAll('p'))
-    .find(p => p.textContent.includes("Capacité"));
-  if (capacityElement) {
-    details.push(capacityElement.textContent);  // Ajouter la capacité de parking
-  }
-
-  const parkingTypeElement = Array.from(tempDiv.querySelectorAll('p'))
-    .find(p => p.textContent.includes("Type"));
-  if (parkingTypeElement) {
-    details.push(parkingTypeElement.textContent);  // Ajouter le type de parking
-  }
-
-  // Ajouter les informations spécifiques pour les hôtels, campings, etc.
-  const capacityHousingElement = Array.from(tempDiv.querySelectorAll('p'))
-    .find(p => p.textContent.includes("Capacité Nb logements"));
-  if (capacityHousingElement) {
-    details.push(capacityHousingElement.textContent);  // Ajouter la capacité de logements
+  if (descriptionElement) {
+    details.push(descriptionElement.textContent);
   }
 
   return details;
 }
 
-// Fonction pour extraire l'URL de l'image dans le HTML
-function extractImageUrlFromHtml(html) {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = html;
-  const imgElement = tempDiv.querySelector('img');  // Chercher une balise <img>
-  return imgElement ? imgElement.src : null;
-}
-
-// Fonction pour convertir une image en Base64
-function convertImageToBase64(url) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.onload = function () {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const dataURL = canvas.toDataURL('image/png');
-      resolve(dataURL);
-    };
-    img.onerror = function () {
-      reject(new Error('Erreur lors du chargement de l\'image.'));
-    };
-    img.src = url;
-  });
-}
 
 
 
@@ -1495,4 +1439,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-6
+7
