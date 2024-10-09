@@ -923,29 +923,38 @@ function extractDetailsFromPopup(item) {
 
 
 //Fonctions pour générer un lien de partage des favoris depuis le carnet
-    // Fonction pour générer l'URL de partage
+   // Fonction pour générer l'URL de partage
 function generateShareableLink() {
   let baseUrl = "https://xlafon.github.io/Carto/carto_velo15.html";
+  
+  // Générer la liste des favoris à partir de la variable `favorites`
   let favoritesParam = favorites.map(fav => `${fav.lat},${fav.lon}`).join("|");
+  
+  // Créer l'URL de partage
   let shareableUrl = `${baseUrl}?favorites=${favoritesParam}`;
   
   // Afficher ou copier le lien généré
   prompt("Voici le lien à partager :", shareableUrl);
 }
 
+
 // Fonction pour décoder les favoris depuis l'URL
 function loadFavoritesFromUrl() {
   let params = new URLSearchParams(window.location.search);
+  
+  // Vérifier si des favoris existent dans l'URL
   if (params.has('favorites')) {
     let favoritesParam = params.get('favorites');
+    
+    // Créer une variable `favoritesArray` pour stocker les favoris
     let favoritesArray = favoritesParam.split('|').map(fav => {
       let [lat, lon] = fav.split(',');
       return { lat: parseFloat(lat), lon: parseFloat(lon) };
     });
-    
+
     // Ajouter chaque favori à la carte
     favoritesArray.forEach(fav => {
-      L.marker([fav.lat, fav.lon], { icon: yourIcon }).addTo(map)
+      L.marker([fav.lat, fav.lon], { icon: touristOfficeIcon }).addTo(map)
         .bindPopup("Favori partagé");
     });
   }
@@ -953,6 +962,7 @@ function loadFavoritesFromUrl() {
 
 // Appeler cette fonction lorsque la carte est chargée
 loadFavoritesFromUrl();
+
 
 // Boucle pour ajouter les marqueurs des favoris
 favoritesArray.forEach(fav => {
@@ -1476,4 +1486,4 @@ function showFavorites() {
   </script>
 </body>
 </html>
-2
+3
