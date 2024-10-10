@@ -1229,7 +1229,7 @@ function addBikeRoutesLayer(url, layer) {
           // Retirer les anciens hôtels
           hotelLayer.clearLayers();
 
-          $.getJSON('data/hotels.geojson', function(hotelData) {
+          $.getJSON('data/HOT.geojson', function(hotelData) {
             L.geoJson(hotelData, {
               pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, { icon: hotelIcon }); // Remplacer par ton icône d'hôtel
