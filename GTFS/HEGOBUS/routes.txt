@@ -1,0 +1,12 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color,route_sort_order,direction0_name,direction1_name
+153,Hegobus,31,Ligne 31,3,0C3F6C,FFFFFF,,Ehpad,
+154,Hegobus,33,Ligne 33,3,009A93,FFFFFF,,Behobia,
+147,Hegobus,35,Ligne 35,3,C60C4B,FFFFFF,,Autoport,
+150,Hegobus,37,Ligne 37,3,ADA81D,FFFFFF,,Vieux Fort,
+155,Hegobus,39,Ligne 39,3,FBBA00,FFFFFF,,Halte Routière,
+151,Hegobus,41,Ligne 41,3,AE0F0A,FFFFFF,,Zaldi Xurito,
+152,Hegobus,43,Ligne 43,3,0095DB,FFFFFF,,Urrugne Bourg,
+156,Hegobus,45,Ligne 45,3,006646,FFFFFF,,Grottes de Sare,
+157,Hegobus,47,Ligne 47,3,009E4D,FFFFFF,,St Pée Pont d'Amotz,
+148,Hegobus,49,Ligne 49,3,96368B,FFFFFF,,Halte Routière,
+158,Hegobus,51,Ligne 51,3,E8308A,FFFFFF,,Biarritz Gare,

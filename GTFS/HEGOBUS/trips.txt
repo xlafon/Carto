@@ -1,0 +1,2070 @@
+route_id,service_id,trip_id,trip_headsign,direction_id,block_id,shape_id,wheelchair_accessible,bikes_allowed
+153,N14,N530,Ehpad,0,NH002,,0,0
+153,N15,N818,Ehpad,0,NH002,,0,0
+153,N7,N16-H161,Ehpad,0,NH161,,0,0
+153,N2,N16-H261,Ehpad,0,NH261,,0,0
+153,N10,N285-H172,Ehpad,0,NH172,,0,0
+153,N9,N285-H261,Ehpad,0,NH261,,0,0
+153,PN14,PN284,Ehpad,0,,,0,0
+153,PN18,PN554,Ehpad,0,,,0,0
+153,N14,N546,Ehpad,0,NH001,,0,0
+153,N15,N831,Ehpad,0,NH001,,0,0
+153,N16,N1059,Ehpad,0,NH361,,0,0
+153,N10,N307-H172,Ehpad,0,NH172,,0,0
+153,N9,N307-H261,Ehpad,0,NH261,,0,0
+153,N8,N307-H361,Ehpad,0,NH361,,0,0
+153,N7,N40-H161,Ehpad,0,NH161,,0,0
+153,N2,N40-H261,Ehpad,0,NH261,,0,0
+153,N1,N40-H360,Ehpad,0,NH360,,0,0
+153,PN15,PN308,Ehpad,0,,,0,0
+153,PN19,PN576,Ehpad,0,,,0,0
+153,PN21,PN795,Ehpad,0,,,0,0
+153,N14,N557,Ehpad,0,NH002,,0,0
+153,N15,N841,Ehpad,0,NH002,,0,0
+153,N16,N1067,Ehpad,0,NH361,,0,0
+153,N10,N325-H172,Ehpad,0,NH172,,0,0
+153,N9,N325-H261,Ehpad,0,NH261,,0,0
+153,N8,N325-H361,Ehpad,0,NH361,,0,0
+153,N14,N569,Ehpad,0,NH001,,0,0
+153,N7,N58-H161,Ehpad,0,NH161,,0,0
+153,N2,N58-H261,Ehpad,0,NH261,,0,0
+153,N1,N58-H360,Ehpad,0,NH360,,0,0
+153,N15,N851,Ehpad,0,NH001,,0,0
+153,PN15,PN326,Ehpad,0,,,0,0
+153,PN19,PN594,Ehpad,0,,,0,0
+153,PN21,PN803,Ehpad,0,,,0,0
+153,N14,N580,Ehpad,0,NH002,,0,0
+153,N15,N863,Ehpad,0,NH002,,0,0
+153,N16,N1075,Ehpad,0,NH361,,0,0
+153,N10,N347-H172,Ehpad,0,NH172,,0,0
+153,N9,N347-H261,Ehpad,0,NH261,,0,0
+153,N8,N347-H361,Ehpad,0,NH361,,0,0
+153,N7,N80-H161,Ehpad,0,NH161,,0,0
+153,N2,N80-H261,Ehpad,0,NH261,,0,0
+153,N1,N80-H360,Ehpad,0,NH360,,0,0
+153,PN15,PN348,Ehpad,0,,,0,0
+153,PN19,PN616,Ehpad,0,,,0,0
+153,PN21,PN811,Ehpad,0,,,0,0
+153,N14,N596,Ehpad,0,NH001,,0,0
+153,N15,N877,Ehpad,0,NH001,,0,0
+153,N7,N103-H161,Ehpad,0,NH161,,0,0
+153,N2,N103-H261,Ehpad,0,NH261,,0,0
+153,N10,N369-H172,Ehpad,0,NH172,,0,0
+153,N9,N369-H261,Ehpad,0,NH261,,0,0
+153,PN14,PN372,Ehpad,0,,,0,0
+153,PN18,PN638,Ehpad,0,,,0,0
+153,N14,N613,Ehpad,0,NH002,,0,0
+153,N15,N893,Ehpad,0,NH002,,0,0
+153,N16,N1081,Ehpad,0,NH361,,0,0
+153,N1,N112,Ehpad,0,NH360,,0,0
+153,N8,N375,Ehpad,0,NH361,,0,0
+153,PN5,PN381,Ehpad,0,,,0,0
+153,PN16,PN644,Ehpad,0,,,0,0
+153,PN21,PN817,Ehpad,0,,,0,0
+153,N14,N630,Ehpad,0,NH001,,0,0
+153,N15,N908,Ehpad,0,NH001,,0,0
+153,N7,N134-H167,Ehpad,0,NH167,,0,0
+153,N2,N134-H261,Ehpad,0,NH261,,0,0
+153,N10,N393-H172,Ehpad,0,NH172,,0,0
+153,N9,N393-H261,Ehpad,0,NH261,,0,0
+153,PN14,PN402,Ehpad,0,,,0,0
+153,PN18,PN662,Ehpad,0,,,0,0
+153,N14,N643,Ehpad,0,NH002,,0,0
+153,N15,N920,Ehpad,0,NH002,,0,0
+153,N16,N1090,Ehpad,0,NH361,,0,0
+153,N1,N152,Ehpad,0,NH360,,0,0
+153,N8,N410,Ehpad,0,NH361,,0,0
+153,PN5,PN421,Ehpad,0,,,0,0
+153,PN16,PN679,Ehpad,0,,,0,0
+153,PN21,PN826,Ehpad,0,,,0,0
+153,N7,N154-H167,Ehpad,0,NH167,,0,0
+153,N2,N154-H268,Ehpad,0,NH268,,0,0
+153,N10,N412-H180,Ehpad,0,NH180,,0,0
+153,N9,N412-H268,Ehpad,0,NH268,,0,0
+153,PN14,PN423,Ehpad,0,,,0,0
+153,PN18,PN681,Ehpad,0,,,0,0
+153,N14,N660,Ehpad,0,NH013,,0,0
+153,N15,N933,Ehpad,0,NH013,,0,0
+153,N7,N177-H167,Ehpad,0,NH167,,0,0
+153,N2,N177-H268,Ehpad,0,NH268,,0,0
+153,N10,N435-H180,Ehpad,0,NH180,,0,0
+153,N9,N435-H268,Ehpad,0,NH268,,0,0
+153,N14,N678,Ehpad,0,NH012,,0,0
+153,N15,N949,Ehpad,0,NH012,,0,0
+153,PN14,PN446,Ehpad,0,,,0,0
+153,PN18,PN704,Ehpad,0,,,0,0
+153,N14,N697,Ehpad,0,NH013,,0,0
+153,N15,N963,Ehpad,0,NH013,,0,0
+153,N7,N206-H167,Ehpad,0,NH167,,0,0
+153,N2,N206-H268,Ehpad,0,NH268,,0,0
+153,N10,N460-H180,Ehpad,0,NH180,,0,0
+153,N9,N460-H268,Ehpad,0,NH268,,0,0
+153,PN14,PN475,Ehpad,0,,,0,0
+153,PN18,PN729,Ehpad,0,,,0,0
+153,N14,N716,Ehpad,0,NH012,,0,0
+153,N15,N979,Ehpad,0,NH012,,0,0
+153,N7,N235-H167,Ehpad,0,NH167,,0,0
+153,N2,N235-H268,Ehpad,0,NH268,,0,0
+153,N10,N485-H180,Ehpad,0,NH180,,0,0
+153,N9,N485-H268,Ehpad,0,NH268,,0,0
+153,PN14,PN504,Ehpad,0,,,0,0
+153,PN18,PN754,Ehpad,0,,,0,0
+153,N14,N738,Ehpad,0,NH013,,0,0
+153,N15,N996,Ehpad,0,NH013,,0,0
+153,N15,N1009,Ehpad,0,NH012,,0,0
+153,N14,N753,Ehpad,0,NH012,,0,0
+153,N7,N258-H167,Ehpad,0,NH167,,0,0
+153,N2,N258-H268,Ehpad,0,NH268,,0,0
+153,N10,N507-H180,Ehpad,0,NH180,,0,0
+153,N9,N507-H268,Ehpad,0,NH268,,0,0
+153,PN14,PN527,Ehpad,0,,,0,0
+153,PN18,PN776,Ehpad,0,,,0,0
+153,N15,N1020,Ehpad,0,NH013,,0,0
+153,N14,N767,Ehpad,0,NH013,,0,0
+153,N2,N272,Ehpad,0,NH268,,0,0
+153,N6,N273-H170,Ehpad,0,NH170,,0,0
+153,N4,N273-H170C,Ehpad,0,NH170C,,0,0
+153,N10,N521-H180,Ehpad,0,NH180,,0,0
+153,N9,N521-H268,Ehpad,0,NH268,,0,0
+153,PN6,PN541,Ehpad,0,,,0,0
+153,PN13,PN542,Ehpad,0,,,0,0
+153,PN18,PN790,Ehpad,0,,,0,0
+153,N15,N1031,Ehpad,0,NH012,,0,0
+153,N14,N779,Ehpad,0,NH012,,0,0
+153,N15,N1037,Ehpad,0,NH013,,0,0
+153,N6,N275-H170,Ehpad,0,NH170,,0,0
+153,N4,N275-H170C,Ehpad,0,NH170C,,0,0
+153,N2,N275-H267,Ehpad,0,NH267,,0,0
+153,N10,N523-H179,Ehpad,0,NH179,,0,0
+153,N9,N523-H267,Ehpad,0,NH267,,0,0
+153,N14,N788,Ehpad,0,NH013,,0,0
+153,PN14,PN544,Ehpad,0,,,0,0
+153,PN18,PN792,Ehpad,0,,,0,0
+153,N15,N1043,Ehpad,0,NH014,,0,0
+153,N14,N796,Ehpad,0,NH014,,0,0
+153,N15,N1049,Ehpad,0,NH011,,0,0
+153,N14,N805,Ehpad,0,NH011,,0,0
+153,N15,N1054,Ehpad,0,NH014,,0,0
+153,N14,N811,Ehpad,0,NH014,,0,0
+153,N10,N278-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N278-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N7,N4-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N4-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,PN14,PN272,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN547,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N531,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N15,N819,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N16,N1057,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N10,N298-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N298-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N8,N298-H361,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N7,N31-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N31-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N1,N31-H360,Plaza San Juan / Puiana,1,NH360,,0,0
+153,PN15,PN299,Plaza San Juan / Puiana,1,,,0,0
+153,PN19,PN567,Plaza San Juan / Puiana,1,,,0,0
+153,PN21,PN793,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N545,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N15,N832,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N14,N558,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N15,N842,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N16,N1064,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N10,N317-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N317-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N8,N317-H361,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N7,N50-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N50-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N1,N50-H360,Plaza San Juan / Puiana,1,NH360,,0,0
+153,PN15,PN318,Plaza San Juan / Puiana,1,,,0,0
+153,PN19,PN586,Plaza San Juan / Puiana,1,,,0,0
+153,PN21,PN800,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N568,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N15,N852,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N16,N1071,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N10,N336-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N336-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N8,N336-H361,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N7,N69-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N69-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N1,N69-H360,Plaza San Juan / Puiana,1,NH360,,0,0
+153,PN15,PN337,Plaza San Juan / Puiana,1,,,0,0
+153,PN19,PN605,Plaza San Juan / Puiana,1,,,0,0
+153,PN21,PN807,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N581,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N15,N864,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N14,N595,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N15,N878,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N10,N355-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N355-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N7,N88-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N88-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,PN14,PN356,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN624,Plaza San Juan / Puiana,1,,,0,0
+153,N16,N1079,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N8,N362,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N1,N95,Plaza San Juan / Puiana,1,NH360,,0,0
+153,PN5,PN363,Plaza San Juan / Puiana,1,,,0,0
+153,PN16,PN631,Plaza San Juan / Puiana,1,,,0,0
+153,PN21,PN815,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N614,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N15,N894,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N7,N119-H161,Plaza San Juan / Puiana,1,NH161,,0,0
+153,N2,N119-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N10,N381-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N381-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,PN14,PN388,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN650,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N629,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N15,N909,Plaza San Juan / Puiana,1,NH002,,0,0
+153,N16,N1087,Plaza San Juan / Puiana,1,NH361,,0,0
+153,N1,N138,Plaza San Juan / Puiana,1,NH360,,0,0
+153,N8,N397,Plaza San Juan / Puiana,1,NH361,,0,0
+153,PN5,PN406,Plaza San Juan / Puiana,1,,,0,0
+153,PN16,PN666,Plaza San Juan / Puiana,1,,,0,0
+153,PN21,PN823,Plaza San Juan / Puiana,1,,,0,0
+153,N7,N142-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N142-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,N10,N401-H172,Plaza San Juan / Puiana,1,NH172,,0,0
+153,N9,N401-H261,Plaza San Juan / Puiana,1,NH261,,0,0
+153,PN14,PN411,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN670,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N644,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N15,N921,Plaza San Juan / Puiana,1,NH001,,0,0
+153,N14,N659,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N15,N934,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N7,N168-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N168-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,N10,N426-H180,Plaza San Juan / Puiana,1,NH180,,0,0
+153,N9,N426-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,PN14,PN437,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN695,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N679,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N15,N950,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N7,N191-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N191-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,N10,N448-H180,Plaza San Juan / Puiana,1,NH180,,0,0
+153,N9,N448-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,PN14,PN460,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN717,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N696,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N15,N964,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N14,N717,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N15,N980,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N7,N222-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N222-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,N10,N474-H180,Plaza San Juan / Puiana,1,NH180,,0,0
+153,N9,N474-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,PN14,PN491,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN743,Plaza San Juan / Puiana,1,,,0,0
+153,N14,N737,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N15,N997,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N7,N247-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N247-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,N10,N496-H180,Plaza San Juan / Puiana,1,NH180,,0,0
+153,N9,N496-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,PN14,PN516,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN765,Plaza San Juan / Puiana,1,,,0,0
+153,N15,N1010,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N14,N754,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N7,N269-H167,Plaza San Juan / Puiana,1,NH167,,0,0
+153,N2,N269-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,N10,N518-H180,Plaza San Juan / Puiana,1,NH180,,0,0
+153,N9,N518-H268,Plaza San Juan / Puiana,1,NH268,,0,0
+153,PN14,PN538,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN787,Plaza San Juan / Puiana,1,,,0,0
+153,N15,N1021,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N14,N766,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N15,N1032,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N14,N780,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N6,N274-H170,Plaza San Juan / Puiana,1,NH170,,0,0
+153,N4,N274-H170C,Plaza San Juan / Puiana,1,NH170C,,0,0
+153,N2,N274-H267,Plaza San Juan / Puiana,1,NH267,,0,0
+153,N10,N522-H179,Plaza San Juan / Puiana,1,NH179,,0,0
+153,N9,N522-H267,Plaza San Juan / Puiana,1,NH267,,0,0
+153,PN14,PN543,Plaza San Juan / Puiana,1,,,0,0
+153,PN18,PN791,Plaza San Juan / Puiana,1,,,0,0
+153,N15,N1038,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N14,N787,Plaza San Juan / Puiana,1,NH012,,0,0
+153,N15,N1044,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N14,N797,Plaza San Juan / Puiana,1,NH013,,0,0
+153,N15,N1050,Plaza San Juan / Puiana,1,NH014,,0,0
+153,N14,N804,Plaza San Juan / Puiana,1,NH014,,0,0
+153,N15,N1055,Plaza San Juan / Puiana,1,NH011,,0,0
+153,N14,N812,Plaza San Juan / Puiana,1,NH011,,0,0
+154,N7,N13,Behobia,0,NH163,,0,0
+154,PN13,PN281,Behobia,0,,,0,0
+154,N2,N19,Behobia,0,NH263,,0,0
+154,N10,N288-H175,Behobia,0,NH175,,0,0
+154,N9,N288-H263,Behobia,0,NH263,,0,0
+154,PN6,PN287,Behobia,0,,,0,0
+154,PN18,PN557,Behobia,0,,,0,0
+154,N14,N547,Behobia,0,NH003,,0,0
+154,N15,N833,Behobia,0,NH003,,0,0
+154,N10,N315-H175,Behobia,0,NH175,,0,0
+154,N9,N315-H263,Behobia,0,NH263,,0,0
+154,N7,N48-H163,Behobia,0,NH163,,0,0
+154,N2,N48-H263,Behobia,0,NH263,,0,0
+154,PN14,PN316,Behobia,0,,,0,0
+154,PN18,PN584,Behobia,0,,,0,0
+154,N16,N1065,Behobia,0,NH360,,0,0
+154,N8,N321,Behobia,0,NH360,,0,0
+154,N1,N54,Behobia,0,NH361,,0,0
+154,PN5,PN322,Behobia,0,,,0,0
+154,PN16,PN590,Behobia,0,,,0,0
+154,PN21,PN801,Behobia,0,,,0,0
+154,N14,N567,Behobia,0,NH003,,0,0
+154,N15,N850,Behobia,0,NH003,,0,0
+154,N10,N338-H175,Behobia,0,NH175,,0,0
+154,N9,N338-H263,Behobia,0,NH263,,0,0
+154,N7,N71-H163,Behobia,0,NH163,,0,0
+154,N2,N71-H263,Behobia,0,NH263,,0,0
+154,PN14,PN339,Behobia,0,,,0,0
+154,PN18,PN607,Behobia,0,,,0,0
+154,N10,N350-H173,Behobia,0,NH173,,0,0
+154,N9,N350-H265,Behobia,0,NH265,,0,0
+154,N7,N83-H162,Behobia,0,NH162,,0,0
+154,N2,N83-H265,Behobia,0,NH265,,0,0
+154,PN14,PN351,Behobia,0,,,0,0
+154,PN18,PN619,Behobia,0,,,0,0
+154,N14,N592,Behobia,0,NH003,,0,0
+154,N15,N874,Behobia,0,NH003,,0,0
+154,N10,N360-H175,Behobia,0,NH175,,0,0
+154,N9,N360-H263,Behobia,0,NH263,,0,0
+154,N7,N93-H163,Behobia,0,NH163,,0,0
+154,N2,N93-H263,Behobia,0,NH263,,0,0
+154,PN14,PN361,Behobia,0,,,0,0
+154,PN18,PN629,Behobia,0,,,0,0
+154,N14,N603,Behobia,0,NH007,,0,0
+154,N15,N885,Behobia,0,NH007,,0,0
+154,N16,N1080,Behobia,0,NH360,,0,0
+154,N1,N109,Behobia,0,NH361,,0,0
+154,N8,N373,Behobia,0,NH360,,0,0
+154,PN5,PN378,Behobia,0,,,0,0
+154,PN16,PN642,Behobia,0,,,0,0
+154,PN21,PN816,Behobia,0,,,0,0
+154,N14,N616,Behobia,0,NH003,,0,0
+154,N15,N896,Behobia,0,NH003,,0,0
+154,N7,N133-H163,Behobia,0,NH163,,0,0
+154,N2,N133-H263,Behobia,0,NH263,,0,0
+154,N10,N392-H175,Behobia,0,NH175,,0,0
+154,N9,N392-H263,Behobia,0,NH263,,0,0
+154,PN14,PN401,Behobia,0,,,0,0
+154,PN18,PN661,Behobia,0,,,0,0
+154,N14,N635,Behobia,0,NH007,,0,0
+154,N15,N913,Behobia,0,NH007,,0,0
+154,N14,N650,Behobia,0,NH003,,0,0
+154,N15,N925,Behobia,0,NH003,,0,0
+154,N7,N156-H168,Behobia,0,NH168,,0,0
+154,N2,N156-H266,Behobia,0,NH266,,0,0
+154,N10,N414-H178,Behobia,0,NH178,,0,0
+154,N9,N414-H266,Behobia,0,NH266,,0,0
+154,PN14,PN425,Behobia,0,,,0,0
+154,PN18,PN683,Behobia,0,,,0,0
+154,N14,N667,Behobia,0,NH007,,0,0
+154,N15,N940,Behobia,0,NH007,,0,0
+154,N16,N1095,Behobia,0,NH362,,0,0
+154,N1,N170,Behobia,0,NH362,,0,0
+154,N8,N429,Behobia,0,NH362,,0,0
+154,PN5,PN439,Behobia,0,,,0,0
+154,PN16,PN698,Behobia,0,,,0,0
+154,PN21,PN831,Behobia,0,,,0,0
+154,N5,N175-H165,Behobia,0,NH165,,0,0
+154,N4,N175-H165C,Behobia,0,NH165C,,0,0
+154,N3,N175-H165V,Behobia,0,NH165V,,0,0
+154,N2,N175-H263,Behobia,0,NH263,,0,0
+154,N10,N433-H173,Behobia,0,NH173,,0,0
+154,N9,N433-H263,Behobia,0,NH263,,0,0
+154,PN14,PN444,Behobia,0,,,0,0
+154,PN18,PN702,Behobia,0,,,0,0
+154,N14,N680,Behobia,0,NH014,,0,0
+154,N15,N951,Behobia,0,NH014,,0,0
+154,N7,N181-H169,Behobia,0,NH169,,0,0
+154,N2,N181-H267,Behobia,0,NH267,,0,0
+154,N10,N439-H179,Behobia,0,NH179,,0,0
+154,N9,N439-H267,Behobia,0,NH267,,0,0
+154,PN14,PN450,Behobia,0,,,0,0
+154,PN18,PN708,Behobia,0,,,0,0
+154,N14,N699,Behobia,0,NH007,,0,0
+154,N15,N966,Behobia,0,NH007,,0,0
+154,N7,N216-H169,Behobia,0,NH169,,0,0
+154,N2,N216-H267,Behobia,0,NH267,,0,0
+154,N10,N469-H179,Behobia,0,NH179,,0,0
+154,N9,N469-H267,Behobia,0,NH267,,0,0
+154,N14,N711,Behobia,0,NH014,,0,0
+154,N15,N975,Behobia,0,NH014,,0,0
+154,PN14,PN485,Behobia,0,,,0,0
+154,PN18,PN738,Behobia,0,,,0,0
+154,N14,N733,Behobia,0,NH007,,0,0
+154,N15,N992,Behobia,0,NH007,,0,0
+154,N16,N1107,Behobia,0,NH362,,0,0
+154,N1,N238,Behobia,0,NH362,,0,0
+154,N8,N488,Behobia,0,NH362,,0,0
+154,PN5,PN507,Behobia,0,,,0,0
+154,PN16,PN757,Behobia,0,,,0,0
+154,PN21,PN843,Behobia,0,,,0,0
+154,N7,N248-H169,Behobia,0,NH169,,0,0
+154,N2,N248-H267,Behobia,0,NH267,,0,0
+154,N10,N497-H179,Behobia,0,NH179,,0,0
+154,N9,N497-H267,Behobia,0,NH267,,0,0
+154,PN14,PN517,Behobia,0,,,0,0
+154,PN18,PN766,Behobia,0,,,0,0
+154,N15,N1002,Behobia,0,NH014,,0,0
+154,N14,N745,Behobia,0,NH014,,0,0
+154,N15,N1029,Behobia,0,NH014,,0,0
+154,N14,N777,Behobia,0,NH014,,0,0
+154,N14,N533,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N15,N821,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N10,N302-H175,Grande Plage # Hondartza Nagusia,1,NH175,,0,0
+154,N9,N302-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,N7,N35-H163,Grande Plage # Hondartza Nagusia,1,NH163,,0,0
+154,N2,N35-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,PN14,PN303,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN571,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N559,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N15,N843,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N10,N326-H175,Grande Plage # Hondartza Nagusia,1,NH175,,0,0
+154,N9,N326-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,N7,N59-H163,Grande Plage # Hondartza Nagusia,1,NH163,,0,0
+154,N2,N59-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,PN14,PN327,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN595,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N16,N1070,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+154,N8,N334,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+154,N10,N335-H173,Grande Plage # Hondartza Nagusia,1,NH173,,0,0
+154,N9,N335-H265,Grande Plage # Hondartza Nagusia,1,NH265,,0,0
+154,N1,N67,Grande Plage # Hondartza Nagusia,1,NH361,,0,0
+154,N7,N68-H162,Grande Plage # Hondartza Nagusia,1,NH162,,0,0
+154,N2,N68-H265,Grande Plage # Hondartza Nagusia,1,NH265,,0,0
+154,PN5,PN335,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN14,PN336,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN16,PN603,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN604,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN21,PN806,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N578,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N15,N861,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N10,N352-H175,Grande Plage # Hondartza Nagusia,1,NH175,,0,0
+154,N9,N352-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,N7,N85-H163,Grande Plage # Hondartza Nagusia,1,NH163,,0,0
+154,N2,N85-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,PN14,PN353,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN621,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N602,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N15,N884,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N7,N111-H163,Grande Plage # Hondartza Nagusia,1,NH163,,0,0
+154,N2,N111-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,N10,N374-H175,Grande Plage # Hondartza Nagusia,1,NH175,,0,0
+154,N9,N374-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,PN14,PN380,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN643,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N617,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N15,N897,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N16,N1084,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+154,N1,N128,Grande Plage # Hondartza Nagusia,1,NH361,,0,0
+154,N8,N389,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+154,PN5,PN397,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN16,PN658,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN21,PN820,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N634,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N15,N912,Grande Plage # Hondartza Nagusia,1,NH003,,0,0
+154,N7,N143-H168,Grande Plage # Hondartza Nagusia,1,NH168,,0,0
+154,N2,N143-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+154,N10,N402-H178,Grande Plage # Hondartza Nagusia,1,NH178,,0,0
+154,N9,N402-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+154,PN14,PN412,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN671,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N651,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N15,N926,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N5,N163-H165,Grande Plage # Hondartza Nagusia,1,NH165,,0,0
+154,N4,N163-H165C,Grande Plage # Hondartza Nagusia,1,NH165C,,0,0
+154,N3,N163-H165V,Grande Plage # Hondartza Nagusia,1,NH165V,,0,0
+154,N2,N163-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,N10,N421-H173,Grande Plage # Hondartza Nagusia,1,NH173,,0,0
+154,N9,N421-H263,Grande Plage # Hondartza Nagusia,1,NH263,,0,0
+154,PN14,PN432,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN690,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N666,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N15,N939,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N7,N171-H169,Grande Plage # Hondartza Nagusia,1,NH169,,0,0
+154,N2,N171-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,N10,N428-H179,Grande Plage # Hondartza Nagusia,1,NH179,,0,0
+154,N9,N428-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,PN14,PN440,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN697,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N681,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N15,N952,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N16,N1098,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,N1,N186,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,N8,N443,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,PN5,PN455,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN16,PN712,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN21,PN834,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N698,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N15,N965,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N7,N197-H169,Grande Plage # Hondartza Nagusia,1,NH169,,0,0
+154,N2,N197-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,N10,N453-H179,Grande Plage # Hondartza Nagusia,1,NH179,,0,0
+154,N9,N453-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,PN14,PN466,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN722,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N712,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N15,N976,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N7,N232-H169,Grande Plage # Hondartza Nagusia,1,NH169,,0,0
+154,N2,N232-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,N10,N482-H179,Grande Plage # Hondartza Nagusia,1,NH179,,0,0
+154,N9,N482-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+154,PN14,PN501,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN751,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N14,N732,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N15,N991,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N15,N1003,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N14,N746,Grande Plage # Hondartza Nagusia,1,NH007,,0,0
+154,N16,N1110,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,N1,N253,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,N8,N502,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+154,PN5,PN522,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN16,PN771,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN21,PN846,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N7,N262-H168,Grande Plage # Hondartza Nagusia,1,NH168,,0,0
+154,N2,N262-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+154,N10,N511-H178,Grande Plage # Hondartza Nagusia,1,NH178,,0,0
+154,N9,N511-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+154,PN14,PN531,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,PN18,PN780,Grande Plage # Hondartza Nagusia,1,,,0,0
+154,N15,N1017,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+154,N14,N763,Grande Plage # Hondartza Nagusia,1,NH014,,0,0
+147,N6,N11-H164,Autoport,0,NH164,,0,0
+147,N4,N11-H164C,Autoport,0,NH164C,,0,0
+147,PN13,PN279,Autoport,0,,,0,0
+147,N2,N12,Autoport,0,NH262,,0,0
+147,N10,N284-H174,Autoport,0,NH174,,0,0
+147,N9,N284-H262,Autoport,0,NH262,,0,0
+147,PN6,PN280,Autoport,0,,,0,0
+147,PN18,PN553,Autoport,0,,,0,0
+147,N14,N537,Autoport,0,NH005,,0,0
+147,N15,N824,Autoport,0,NH005,,0,0
+147,N16,N1058,Autoport,0,NH360,,0,0
+147,N8,N299,Autoport,0,NH360,,0,0
+147,N1,N32,Autoport,0,NH361,,0,0
+147,PN5,PN300,Autoport,0,,,0,0
+147,PN16,PN568,Autoport,0,,,0,0
+147,PN21,PN794,Autoport,0,,,0,0
+147,N10,N303-H176,Autoport,0,NH176,,0,0
+147,N9,N303-H264,Autoport,0,NH264,,0,0
+147,N5,N36-H165,Autoport,0,NH165,,0,0
+147,N4,N36-H165C,Autoport,0,NH165C,,0,0
+147,N3,N36-H165V,Autoport,0,NH165V,,0,0
+147,N2,N36-H264,Autoport,0,NH264,,0,0
+147,PN14,PN304,Autoport,0,,,0,0
+147,PN18,PN572,Autoport,0,,,0,0
+147,N14,N563,Autoport,0,NH005,,0,0
+147,N15,N847,Autoport,0,NH005,,0,0
+147,N10,N318-H174,Autoport,0,NH174,,0,0
+147,N9,N318-H262,Autoport,0,NH262,,0,0
+147,N6,N51-H164,Autoport,0,NH164,,0,0
+147,N4,N51-H164C,Autoport,0,NH164C,,0,0
+147,N2,N51-H262,Autoport,0,NH262,,0,0
+147,PN14,PN319,Autoport,0,,,0,0
+147,PN18,PN587,Autoport,0,,,0,0
+147,N10,N333-H176,Autoport,0,NH176,,0,0
+147,N9,N333-H264,Autoport,0,NH264,,0,0
+147,N5,N66-H165,Autoport,0,NH165,,0,0
+147,N4,N66-H165C,Autoport,0,NH165C,,0,0
+147,N3,N66-H165V,Autoport,0,NH165V,,0,0
+147,N2,N66-H264,Autoport,0,NH264,,0,0
+147,PN14,PN334,Autoport,0,,,0,0
+147,PN18,PN602,Autoport,0,,,0,0
+147,N14,N582,Autoport,0,NH005,,0,0
+147,N15,N865,Autoport,0,NH005,,0,0
+147,N16,N1074,Autoport,0,NH360,,0,0
+147,N8,N345,Autoport,0,NH360,,0,0
+147,N1,N78,Autoport,0,NH361,,0,0
+147,PN5,PN346,Autoport,0,,,0,0
+147,PN16,PN614,Autoport,0,,,0,0
+147,PN21,PN810,Autoport,0,,,0,0
+147,N10,N353-H174,Autoport,0,NH174,,0,0
+147,N9,N353-H262,Autoport,0,NH262,,0,0
+147,N6,N86-H164,Autoport,0,NH164,,0,0
+147,N4,N86-H164C,Autoport,0,NH164C,,0,0
+147,N2,N86-H262,Autoport,0,NH262,,0,0
+147,PN14,PN354,Autoport,0,,,0,0
+147,PN18,PN622,Autoport,0,,,0,0
+147,N14,N610,Autoport,0,NH005,,0,0
+147,N15,N890,Autoport,0,NH005,,0,0
+147,N4,N107,Autoport,0,NH165C,,0,0
+147,N5,N108-H165,Autoport,0,NH165,,0,0
+147,N3,N108-H165V,Autoport,0,NH165V,,0,0
+147,N2,N108-H264,Autoport,0,NH264,,0,0
+147,N10,N372-H176,Autoport,0,NH176,,0,0
+147,N9,N372-H264,Autoport,0,NH264,,0,0
+147,PN8,PN376,Autoport,0,,,0,0
+147,PN11,PN377,Autoport,0,,,0,0
+147,PN18,PN641,Autoport,0,,,0,0
+147,N14,N621,Autoport,0,NH008,,0,0
+147,N15,N900,Autoport,0,NH008,,0,0
+147,N14,N637,Autoport,0,NH005,,0,0
+147,N15,N914,Autoport,0,NH005,,0,0
+147,N16,N1088,Autoport,0,NH360,,0,0
+147,N1,N140,Autoport,0,NH361,,0,0
+147,N8,N399,Autoport,0,NH360,,0,0
+147,PN5,PN408,Autoport,0,,,0,0
+147,PN16,PN668,Autoport,0,,,0,0
+147,PN21,PN824,Autoport,0,,,0,0
+147,N7,N153-H169,Autoport,0,NH169,,0,0
+147,N2,N153-H267,Autoport,0,NH267,,0,0
+147,N10,N411-H179,Autoport,0,NH179,,0,0
+147,N9,N411-H267,Autoport,0,NH267,,0,0
+147,PN14,PN422,Autoport,0,,,0,0
+147,PN18,PN680,Autoport,0,,,0,0
+147,N14,N656,Autoport,0,NH008,,0,0
+147,N15,N932,Autoport,0,NH008,,0,0
+147,N14,N673,Autoport,0,NH011,,0,0
+147,N15,N944,Autoport,0,NH011,,0,0
+147,N6,N172-H170,Autoport,0,NH170,,0,0
+147,N4,N172-H170C,Autoport,0,NH170C,,0,0
+147,N2,N172-H262,Autoport,0,NH262,,0,0
+147,N10,N430-H174,Autoport,0,NH174,,0,0
+147,N9,N430-H262,Autoport,0,NH262,,0,0
+147,PN14,PN441,Autoport,0,,,0,0
+147,PN18,PN699,Autoport,0,,,0,0
+147,N14,N683,Autoport,0,NH008,,0,0
+147,N15,N954,Autoport,0,NH008,,0,0
+147,N6,N193,Autoport,0,NH168,,0,0
+147,N4,N194-H168,Autoport,0,NH168,,0,0
+147,N2,N194-H266,Autoport,0,NH266,,0,0
+147,N10,N450-H178,Autoport,0,NH178,,0,0
+147,N9,N450-H266,Autoport,0,NH266,,0,0
+147,PN10,PN462,Autoport,0,,,0,0
+147,PN9,PN463,Autoport,0,,,0,0
+147,PN18,PN719,Autoport,0,,,0,0
+147,N16,N1102,Autoport,0,NH362,,0,0
+147,N1,N203,Autoport,0,NH362,,0,0
+147,N8,N459,Autoport,0,NH362,,0,0
+147,N14,N704,Autoport,0,NH011,,0,0
+147,N15,N969,Autoport,0,NH011,,0,0
+147,PN5,PN472,Autoport,0,,,0,0
+147,PN16,PN728,Autoport,0,,,0,0
+147,PN21,PN838,Autoport,0,,,0,0
+147,N6,N218,Autoport,0,NH170,,0,0
+147,N4,N219,Autoport,0,NH170C,,0,0
+147,N2,N220,Autoport,0,NH264,,0,0
+147,N10,N471,Autoport,0,NH176,,0,0
+147,N9,N472,Autoport,0,NH264,,0,0
+147,PN10,PN487,Autoport,0,,,0,0
+147,PN8,PN488,Autoport,0,,,0,0
+147,PN6,PN489,Autoport,0,,,0,0
+147,PN17,PN740,Autoport,0,,,0,0
+147,PN20,PN741,Autoport,0,,,0,0
+147,N14,N721,Autoport,0,NH008,,0,0
+147,N15,N984,Autoport,0,NH008,,0,0
+147,N14,N740,Autoport,0,NH011,,0,0
+147,N15,N998,Autoport,0,NH011,,0,0
+147,N7,N243-H168,Autoport,0,NH168,,0,0
+147,N2,N243-H266,Autoport,0,NH266,,0,0
+147,N10,N492-H178,Autoport,0,NH178,,0,0
+147,N9,N492-H266,Autoport,0,NH266,,0,0
+147,PN14,PN512,Autoport,0,,,0,0
+147,PN18,PN761,Autoport,0,,,0,0
+147,N15,N1005,Autoport,0,NH008,,0,0
+147,N14,N749,Autoport,0,NH008,,0,0
+147,N6,N260-H170,Autoport,0,NH170,,0,0
+147,N4,N260-H170C,Autoport,0,NH170C,,0,0
+147,N2,N261,Autoport,0,NH264,,0,0
+147,N9,N509,Autoport,0,NH264,,0,0
+147,N10,N510,Autoport,0,NH176,,0,0
+147,PN13,PN529,Autoport,0,,,0,0
+147,PN6,PN530,Autoport,0,,,0,0
+147,PN20,PN778,Autoport,0,,,0,0
+147,PN17,PN779,Autoport,0,,,0,0
+147,N16,N1112,Autoport,0,NH362,,0,0
+147,N1,N265,Autoport,0,NH362,,0,0
+147,N8,N514,Autoport,0,NH362,,0,0
+147,PN5,PN534,Autoport,0,,,0,0
+147,PN16,PN783,Autoport,0,,,0,0
+147,PN21,PN848,Autoport,0,,,0,0
+147,N15,N1019,Autoport,0,NH011,,0,0
+147,N14,N765,Autoport,0,NH011,,0,0
+147,N5,N20-H165,Grande Plage # Hondartza Nagusia,1,NH165,,0,0
+147,N4,N20-H165C,Grande Plage # Hondartza Nagusia,1,NH165C,,0,0
+147,N3,N20-H165V,Grande Plage # Hondartza Nagusia,1,NH165V,,0,0
+147,PN13,PN288,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N2,N21,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,N10,N289-H176,Grande Plage # Hondartza Nagusia,1,NH176,,0,0
+147,N9,N289-H264,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,PN6,PN289,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN558,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N549,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N15,N835,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N10,N306-H174,Grande Plage # Hondartza Nagusia,1,NH174,,0,0
+147,N9,N306-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,N6,N39-H164,Grande Plage # Hondartza Nagusia,1,NH164,,0,0
+147,N4,N39-H164C,Grande Plage # Hondartza Nagusia,1,NH164C,,0,0
+147,N2,N39-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,PN14,PN307,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN575,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N16,N1060,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+147,N8,N309,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+147,N1,N42,Grande Plage # Hondartza Nagusia,1,NH361,,0,0
+147,PN5,PN310,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN16,PN578,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN21,PN796,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N10,N322-H176,Grande Plage # Hondartza Nagusia,1,NH176,,0,0
+147,N9,N322-H264,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,N5,N55-H165,Grande Plage # Hondartza Nagusia,1,NH165,,0,0
+147,N4,N55-H165C,Grande Plage # Hondartza Nagusia,1,NH165C,,0,0
+147,N3,N55-H165V,Grande Plage # Hondartza Nagusia,1,NH165V,,0,0
+147,N2,N55-H264,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,PN14,PN323,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN591,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N571,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N15,N854,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N10,N339-H174,Grande Plage # Hondartza Nagusia,1,NH174,,0,0
+147,N9,N339-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,N6,N72-H164,Grande Plage # Hondartza Nagusia,1,NH164,,0,0
+147,N4,N72-H164C,Grande Plage # Hondartza Nagusia,1,NH164C,,0,0
+147,N2,N72-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,PN14,PN340,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN608,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N594,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N15,N876,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N10,N356-H176,Grande Plage # Hondartza Nagusia,1,NH176,,0,0
+147,N9,N356-H264,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,N5,N89-H165,Grande Plage # Hondartza Nagusia,1,NH165,,0,0
+147,N4,N89-H165C,Grande Plage # Hondartza Nagusia,1,NH165C,,0,0
+147,N3,N89-H165V,Grande Plage # Hondartza Nagusia,1,NH165V,,0,0
+147,N2,N89-H264,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,PN14,PN357,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN625,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N16,N1076,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+147,N8,N358,Grande Plage # Hondartza Nagusia,1,NH360,,0,0
+147,N1,N91,Grande Plage # Hondartza Nagusia,1,NH361,,0,0
+147,PN5,PN359,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN16,PN627,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN21,PN812,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N609,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N15,N891,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N4,N114,Grande Plage # Hondartza Nagusia,1,NH164C,,0,0
+147,N6,N115-H164,Grande Plage # Hondartza Nagusia,1,NH164,,0,0
+147,N2,N115-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,N10,N377-H174,Grande Plage # Hondartza Nagusia,1,NH174,,0,0
+147,N9,N377-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,PN8,PN383,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN11,PN384,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN646,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N622,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N15,N901,Grande Plage # Hondartza Nagusia,1,NH005,,0,0
+147,N14,N636,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N15,N915,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N14,N657,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N15,N931,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N16,N1091,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,N1,N155,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,N8,N413,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,PN5,PN424,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN16,PN682,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN21,PN827,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N6,N157-H170,Grande Plage # Hondartza Nagusia,1,NH170,,0,0
+147,N4,N157-H170C,Grande Plage # Hondartza Nagusia,1,NH170C,,0,0
+147,N2,N157-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,N10,N415-H174,Grande Plage # Hondartza Nagusia,1,NH174,,0,0
+147,N9,N415-H262,Grande Plage # Hondartza Nagusia,1,NH262,,0,0
+147,PN14,PN426,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN684,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N672,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N15,N945,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N7,N176-H168,Grande Plage # Hondartza Nagusia,1,NH168,,0,0
+147,N2,N176-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+147,N10,N434-H178,Grande Plage # Hondartza Nagusia,1,NH178,,0,0
+147,N9,N434-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+147,PN14,PN445,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN703,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N684,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N15,N955,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N2,N199,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,N6,N200-H170,Grande Plage # Hondartza Nagusia,1,NH170,,0,0
+147,N4,N200-H170C,Grande Plage # Hondartza Nagusia,1,NH170C,,0,0
+147,N10,N455,Grande Plage # Hondartza Nagusia,1,NH176,,0,0
+147,N9,N456,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,PN6,PN468,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN13,PN469,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN17,PN724,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN20,PN725,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N703,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N15,N970,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N16,N1104,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,N1,N221,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,N8,N473,Grande Plage # Hondartza Nagusia,1,NH362,,0,0
+147,PN5,PN490,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN16,PN742,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN21,PN840,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N722,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N15,N983,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N6,N226,Grande Plage # Hondartza Nagusia,1,NH168,,0,0
+147,N4,N227-H168,Grande Plage # Hondartza Nagusia,1,NH168,,0,0
+147,N2,N227-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+147,N10,N478-H178,Grande Plage # Hondartza Nagusia,1,NH178,,0,0
+147,N9,N478-H266,Grande Plage # Hondartza Nagusia,1,NH266,,0,0
+147,PN10,PN495,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN9,PN496,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN747,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N14,N739,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N15,N999,Grande Plage # Hondartza Nagusia,1,NH008,,0,0
+147,N2,N250,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,N6,N251-H170,Grande Plage # Hondartza Nagusia,1,NH170,,0,0
+147,N4,N251-H170C,Grande Plage # Hondartza Nagusia,1,NH170C,,0,0
+147,N10,N499,Grande Plage # Hondartza Nagusia,1,NH176,,0,0
+147,N9,N500,Grande Plage # Hondartza Nagusia,1,NH264,,0,0
+147,PN6,PN519,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN13,PN520,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN17,PN768,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN20,PN769,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N15,N1006,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N14,N750,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N7,N268-H169,Grande Plage # Hondartza Nagusia,1,NH169,,0,0
+147,N2,N268-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+147,N10,N517-H179,Grande Plage # Hondartza Nagusia,1,NH179,,0,0
+147,N9,N517-H267,Grande Plage # Hondartza Nagusia,1,NH267,,0,0
+147,PN14,PN537,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,PN18,PN786,Grande Plage # Hondartza Nagusia,1,,,0,0
+147,N15,N1030,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+147,N14,N778,Grande Plage # Hondartza Nagusia,1,NH011,,0,0
+150,N10,N281,Vieux Fort,0,NH173,,0,0
+150,N7,N8,Vieux Fort,0,NH162,,0,0
+150,PN13,PN276,Vieux Fort,0,,,0,0
+150,PN17,PN550,Vieux Fort,0,,,0,0
+150,N14,N534,Vieux Fort,0,NH004,,0,0
+150,N15,N822,Vieux Fort,0,NH004,,0,0
+150,N14,N564,Vieux Fort,0,NH004,,0,0
+150,N15,N848,Vieux Fort,0,NH004,,0,0
+150,N14,N598,Vieux Fort,0,NH004,,0,0
+150,N15,N880,Vieux Fort,0,NH004,,0,0
+150,N7,N102,Vieux Fort,0,NH162,,0,0
+150,N10,N368,Vieux Fort,0,NH173,,0,0
+150,PN13,PN371,Vieux Fort,0,,,0,0
+150,PN17,PN637,Vieux Fort,0,,,0,0
+150,N14,N639,Vieux Fort,0,NH004,,0,0
+150,N15,N917,Vieux Fort,0,NH004,,0,0
+150,N5,N196-H165,Vieux Fort,0,NH165,,0,0
+150,N4,N196-H165C,Vieux Fort,0,NH165C,,0,0
+150,N3,N196-H165V,Vieux Fort,0,NH165V,,0,0
+150,N10,N452,Vieux Fort,0,NH173,,0,0
+150,PN13,PN465,Vieux Fort,0,,,0,0
+150,PN17,PN721,Vieux Fort,0,,,0,0
+150,N15,N1015,Vieux Fort,0,NH015,,0,0
+150,N12,N760-H006,Vieux Fort,0,NH006,,0,0
+150,N11,N760-H015,Vieux Fort,0,NH015,,0,0
+150,N10,N300,Bourg # Herri Barnea,1,NH173,,0,0
+150,N7,N33,Bourg # Herri Barnea,1,NH162,,0,0
+150,PN13,PN301,Bourg # Herri Barnea,1,,,0,0
+150,PN17,PN569,Bourg # Herri Barnea,1,,,0,0
+150,N14,N552,Bourg # Herri Barnea,1,NH004,,0,0
+150,N15,N836,Bourg # Herri Barnea,1,NH004,,0,0
+150,N14,N579,Bourg # Herri Barnea,1,NH004,,0,0
+150,N15,N862,Bourg # Herri Barnea,1,NH004,,0,0
+150,N7,N118,Bourg # Herri Barnea,1,NH162,,0,0
+150,N10,N380,Bourg # Herri Barnea,1,NH173,,0,0
+150,PN13,PN387,Bourg # Herri Barnea,1,,,0,0
+150,PN17,PN649,Bourg # Herri Barnea,1,,,0,0
+150,N14,N618,Bourg # Herri Barnea,1,NH004,,0,0
+150,N15,N898,Bourg # Herri Barnea,1,NH004,,0,0
+150,N3,N214,Bourg # Herri Barnea,1,NH165V,,0,0
+150,N10,N467,Bourg # Herri Barnea,1,NH173,,0,0
+150,PN7,PN483,Bourg # Herri Barnea,1,,,0,0
+150,PN17,PN736,Bourg # Herri Barnea,1,,,0,0
+150,N5,N229-H165,Bourg # Herri Barnea,1,NH165,,0,0
+150,N4,N229-H165C,Bourg # Herri Barnea,1,NH165C,,0,0
+150,PN12,PN498,Bourg # Herri Barnea,1,,,0,0
+150,N12,N727-H006,Bourg # Herri Barnea,1,NH006,,0,0
+150,N11,N727-H015,Bourg # Herri Barnea,1,NH015,,0,0
+150,N15,N988,Bourg # Herri Barnea,1,NH015,,0,0
+150,N15,N1023,Bourg # Herri Barnea,1,NH008,,0,0
+150,N14,N769,Bourg # Herri Barnea,1,NH008,,0,0
+155,N10,N279-H171,Halte Routière,0,NH171,,0,0
+155,N9,N279-H260,Halte Routière,0,NH260,,0,0
+155,N7,N5-H160,Halte Routière,0,NH160,,0,0
+155,N2,N5-H260,Halte Routière,0,NH260,,0,0
+155,PN14,PN273,Halte Routière,0,,,0,0
+155,PN18,PN548,Halte Routière,0,,,0,0
+155,N10,N308-H171,Halte Routière,0,NH171,,0,0
+155,N9,N308-H260,Halte Routière,0,NH260,,0,0
+155,N7,N41-H160,Halte Routière,0,NH160,,0,0
+155,N2,N41-H260,Halte Routière,0,NH260,,0,0
+155,PN14,PN309,Halte Routière,0,,,0,0
+155,PN18,PN577,Halte Routière,0,,,0,0
+155,N12,N560-H006,Halte Routière,0,NH006,,0,0
+155,N11,N560-H015,Halte Routière,0,NH015,,0,0
+155,N15,N844,Halte Routière,0,NH015,,0,0
+155,N10,N341-H171,Halte Routière,0,NH171,,0,0
+155,N9,N341-H260,Halte Routière,0,NH260,,0,0
+155,N7,N74-H160,Halte Routière,0,NH160,,0,0
+155,N2,N74-H260,Halte Routière,0,NH260,,0,0
+155,PN14,PN342,Halte Routière,0,,,0,0
+155,PN18,PN610,Halte Routière,0,,,0,0
+155,N11,N589-H015,Halte Routière,0,NH015,,0,0
+155,N12,N589-J054,Halte Routière,0,NJ054,,0,0
+155,N15,N871,Halte Routière,0,NH015,,0,0
+155,N12,N604-H006,Halte Routière,0,NH006,,0,0
+155,N11,N604-J061,Halte Routière,0,NJ061,,0,0
+155,N15,N886,Halte Routière,0,NJ061,,0,0
+155,N14,N615,Halte Routière,0,NH009,,0,0
+155,N15,N895,Halte Routière,0,NH009,,0,0
+155,N7,N117-H166,Halte Routière,0,NH166,,0,0
+155,N2,N117-H260,Halte Routière,0,NH260,,0,0
+155,N10,N379-H177,Halte Routière,0,NH177,,0,0
+155,N9,N379-H260,Halte Routière,0,NH260,,0,0
+155,PN14,PN386,Halte Routière,0,,,0,0
+155,PN18,PN648,Halte Routière,0,,,0,0
+155,N11,N631-H015,Halte Routière,0,NH015,,0,0
+155,N12,N631-J055,Halte Routière,0,NJ055,,0,0
+155,N15,N910,Halte Routière,0,NH015,,0,0
+155,N12,N653-H010,Halte Routière,0,NH010,,0,0
+155,N11,N653-J061,Halte Routière,0,NJ061,,0,0
+155,N15,N928,Halte Routière,0,NJ061,,0,0
+155,N7,N159-H166,Halte Routière,0,NH166,,0,0
+155,N2,N159-H265,Halte Routière,0,NH265,,0,0
+155,N10,N417-H177,Halte Routière,0,NH177,,0,0
+155,N9,N417-H265,Halte Routière,0,NH265,,0,0
+155,PN14,PN428,Halte Routière,0,,,0,0
+155,PN18,PN686,Halte Routière,0,,,0,0
+155,N14,N661,Halte Routière,0,NH009,,0,0
+155,N15,N935,Halte Routière,0,NH009,,0,0
+155,N11,N675-H016,Halte Routière,0,NH016,,0,0
+155,N12,N675-J055,Halte Routière,0,NJ055,,0,0
+155,N15,N947,Halte Routière,0,NH016,,0,0
+155,N12,N701-H010,Halte Routière,0,NH010,,0,0
+155,N11,N701-J064,Halte Routière,0,NJ064,,0,0
+155,N15,N968,Halte Routière,0,NJ064,,0,0
+155,N7,N210-H166,Halte Routière,0,NH166,,0,0
+155,N2,N210-H265,Halte Routière,0,NH265,,0,0
+155,N10,N463-H177,Halte Routière,0,NH177,,0,0
+155,N9,N463-H265,Halte Routière,0,NH265,,0,0
+155,PN14,PN479,Halte Routière,0,,,0,0
+155,PN18,PN732,Halte Routière,0,,,0,0
+155,N14,N713,Halte Routière,0,NH009,,0,0
+155,N15,N977,Halte Routière,0,NH009,,0,0
+155,N11,N724-H016,Halte Routière,0,NH016,,0,0
+155,N12,N724-J055,Halte Routière,0,NJ055,,0,0
+155,N15,N985,Halte Routière,0,NH016,,0,0
+155,N7,N252-H166,Halte Routière,0,NH166,,0,0
+155,N2,N252-H265,Halte Routière,0,NH265,,0,0
+155,N10,N501-H177,Halte Routière,0,NH177,,0,0
+155,N9,N501-H265,Halte Routière,0,NH265,,0,0
+155,PN14,PN521,Halte Routière,0,,,0,0
+155,PN18,PN770,Halte Routière,0,,,0,0
+155,N15,N1011,Halte Routière,0,NJ064,,0,0
+155,N12,N755-H010,Halte Routière,0,NH010,,0,0
+155,N11,N755-J064,Halte Routière,0,NJ064,,0,0
+155,N15,N1018,Halte Routière,0,NH009,,0,0
+155,N14,N764,Halte Routière,0,NH009,,0,0
+155,N15,N1027,Halte Routière,0,NH016,,0,0
+155,N11,N775-H016,Halte Routière,0,NH016,,0,0
+155,N12,N775-J055,Halte Routière,0,NJ055,,0,0
+155,N7,N24-H160,Water Sport Center,1,NH160,,0,0
+155,N2,N24-H260,Water Sport Center,1,NH260,,0,0
+155,N10,N291-H171,Water Sport Center,1,NH171,,0,0
+155,N9,N291-H260,Water Sport Center,1,NH260,,0,0
+155,PN14,PN292,Water Sport Center,1,,,0,0
+155,PN18,PN560,Water Sport Center,1,,,0,0
+155,N12,N542-H006,Water Sport Center,1,NH006,,0,0
+155,N11,N542-H015,Water Sport Center,1,NH015,,0,0
+155,N15,N829,Water Sport Center,1,NH015,,0,0
+155,N10,N323-H171,Water Sport Center,1,NH171,,0,0
+155,N9,N323-H260,Water Sport Center,1,NH260,,0,0
+155,N7,N56-H160,Water Sport Center,1,NH160,,0,0
+155,N2,N56-H260,Water Sport Center,1,NH260,,0,0
+155,PN14,PN324,Water Sport Center,1,,,0,0
+155,PN18,PN592,Water Sport Center,1,,,0,0
+155,N11,N574-H015,Water Sport Center,1,NH015,,0,0
+155,N12,N574-J054,Water Sport Center,1,NJ054,,0,0
+155,N15,N857,Water Sport Center,1,NH015,,0,0
+155,N12,N588-H006,Water Sport Center,1,NH006,,0,0
+155,N11,N588-J061,Water Sport Center,1,NJ061,,0,0
+155,N15,N870,Water Sport Center,1,NJ061,,0,0
+155,N10,N357-H171,Water Sport Center,1,NH171,,0,0
+155,N9,N357-H260,Water Sport Center,1,NH260,,0,0
+155,N7,N90-H160,Water Sport Center,1,NH160,,0,0
+155,N2,N90-H260,Water Sport Center,1,NH260,,0,0
+155,PN14,PN358,Water Sport Center,1,,,0,0
+155,PN18,PN626,Water Sport Center,1,,,0,0
+155,N11,N605-H015,Water Sport Center,1,NH015,,0,0
+155,N12,N605-J055,Water Sport Center,1,NJ055,,0,0
+155,N15,N887,Water Sport Center,1,NH015,,0,0
+155,N12,N632-H006,Water Sport Center,1,NH006,,0,0
+155,N11,N632-J061,Water Sport Center,1,NJ061,,0,0
+155,N15,N911,Water Sport Center,1,NJ061,,0,0
+155,N7,N139-H166,Water Sport Center,1,NH166,,0,0
+155,N2,N139-H260,Water Sport Center,1,NH260,,0,0
+155,N10,N398-H177,Water Sport Center,1,NH177,,0,0
+155,N9,N398-H260,Water Sport Center,1,NH260,,0,0
+155,PN14,PN407,Water Sport Center,1,,,0,0
+155,PN18,PN667,Water Sport Center,1,,,0,0
+155,N14,N638,Water Sport Center,1,NH009,,0,0
+155,N15,N916,Water Sport Center,1,NH009,,0,0
+155,N11,N654-H016,Water Sport Center,1,NH016,,0,0
+155,N12,N654-J055,Water Sport Center,1,NJ055,,0,0
+155,N15,N929,Water Sport Center,1,NH016,,0,0
+155,N12,N676-H010,Water Sport Center,1,NH010,,0,0
+155,N11,N676-J064,Water Sport Center,1,NJ064,,0,0
+155,N15,N948,Water Sport Center,1,NJ064,,0,0
+155,N7,N178-H166,Water Sport Center,1,NH166,,0,0
+155,N2,N178-H265,Water Sport Center,1,NH265,,0,0
+155,N10,N436-H177,Water Sport Center,1,NH177,,0,0
+155,N9,N436-H265,Water Sport Center,1,NH265,,0,0
+155,PN14,PN447,Water Sport Center,1,,,0,0
+155,PN18,PN705,Water Sport Center,1,,,0,0
+155,N14,N692,Water Sport Center,1,NH009,,0,0
+155,N15,N960,Water Sport Center,1,NH009,,0,0
+155,N11,N700-H016,Water Sport Center,1,NH016,,0,0
+155,N12,N700-J055,Water Sport Center,1,NJ055,,0,0
+155,N15,N967,Water Sport Center,1,NH016,,0,0
+155,N7,N231-H166,Water Sport Center,1,NH166,,0,0
+155,N2,N231-H265,Water Sport Center,1,NH265,,0,0
+155,N10,N481-H177,Water Sport Center,1,NH177,,0,0
+155,N9,N481-H265,Water Sport Center,1,NH265,,0,0
+155,N12,N725-H010,Water Sport Center,1,NH010,,0,0
+155,N11,N725-J064,Water Sport Center,1,NJ064,,0,0
+155,N15,N986,Water Sport Center,1,NJ064,,0,0
+155,PN14,PN500,Water Sport Center,1,,,0,0
+155,PN18,PN750,Water Sport Center,1,,,0,0
+155,N15,N1001,Water Sport Center,1,NH009,,0,0
+155,N14,N742,Water Sport Center,1,NH009,,0,0
+155,N15,N1012,Water Sport Center,1,NH016,,0,0
+155,N11,N756-H016,Water Sport Center,1,NH016,,0,0
+155,N12,N756-J055,Water Sport Center,1,NJ055,,0,0
+155,N7,N266-H166,Water Sport Center,1,NH166,,0,0
+155,N2,N266-H265,Water Sport Center,1,NH265,,0,0
+155,N10,N515-H177,Water Sport Center,1,NH177,,0,0
+155,N9,N515-H265,Water Sport Center,1,NH265,,0,0
+155,PN14,PN535,Water Sport Center,1,,,0,0
+155,PN18,PN784,Water Sport Center,1,,,0,0
+155,N15,N1026,Water Sport Center,1,NJ064,,0,0
+155,N12,N774-H010,Water Sport Center,1,NH010,,0,0
+155,N11,N774-J064,Water Sport Center,1,NJ064,,0,0
+151,N14,N525,Zaldi Xurito,0,NJ053,,0,0
+151,N15,N815,Zaldi Xurito,0,NJ053,,0,0
+151,N7,N7,Zaldi Xurito,0,NJ112,,0,0
+151,PN13,PN275,Zaldi Xurito,0,,,0,0
+151,N7,N25-J111,Zaldi Xurito,0,NJ111,,0,0
+151,N2,N25-J211,Zaldi Xurito,0,NJ211,,0,0
+151,N10,N292-J122,Zaldi Xurito,0,NJ122,,0,0
+151,N9,N292-J211,Zaldi Xurito,0,NJ211,,0,0
+151,PN14,PN293,Zaldi Xurito,0,,,0,0
+151,PN18,PN561,Zaldi Xurito,0,,,0,0
+151,N14,N540,Zaldi Xurito,0,NJ051,,0,0
+151,N15,N827,Zaldi Xurito,0,NJ051,,0,0
+151,N10,N310-J125,Zaldi Xurito,0,NJ125,,0,0
+151,N9,N310-J213,Zaldi Xurito,0,NJ213,,0,0
+151,N7,N43-J112,Zaldi Xurito,0,NJ112,,0,0
+151,N2,N43-J213,Zaldi Xurito,0,NJ213,,0,0
+151,PN14,PN311,Zaldi Xurito,0,,,0,0
+151,PN18,PN579,Zaldi Xurito,0,,,0,0
+151,N16,N1061,Zaldi Xurito,0,NJ261,,0,0
+151,N8,N311,Zaldi Xurito,0,NJ261,,0,0
+151,N1,N44,Zaldi Xurito,0,NJ261,,0,0
+151,N14,N555,Zaldi Xurito,0,NJ053,,0,0
+151,N15,N839,Zaldi Xurito,0,NJ053,,0,0
+151,PN5,PN312,Zaldi Xurito,0,,,0,0
+151,PN16,PN580,Zaldi Xurito,0,,,0,0
+151,PN21,PN797,Zaldi Xurito,0,,,0,0
+151,N10,N327-J122,Zaldi Xurito,0,NJ122,,0,0
+151,N9,N327-J211,Zaldi Xurito,0,NJ211,,0,0
+151,N7,N60-J111,Zaldi Xurito,0,NJ111,,0,0
+151,N2,N60-J211,Zaldi Xurito,0,NJ211,,0,0
+151,PN14,PN328,Zaldi Xurito,0,,,0,0
+151,PN18,PN596,Zaldi Xurito,0,,,0,0
+151,N14,N572,Zaldi Xurito,0,NJ051,,0,0
+151,N15,N855,Zaldi Xurito,0,NJ051,,0,0
+151,N16,N1072,Zaldi Xurito,0,NJ261,,0,0
+151,N8,N342,Zaldi Xurito,0,NJ261,,0,0
+151,N1,N75,Zaldi Xurito,0,NJ261,,0,0
+151,PN5,PN343,Zaldi Xurito,0,,,0,0
+151,PN16,PN611,Zaldi Xurito,0,,,0,0
+151,PN21,PN808,Zaldi Xurito,0,,,0,0
+151,N10,N344-J125,Zaldi Xurito,0,NJ125,,0,0
+151,N9,N344-J213,Zaldi Xurito,0,NJ213,,0,0
+151,N7,N77-J112,Zaldi Xurito,0,NJ112,,0,0
+151,N2,N77-J213,Zaldi Xurito,0,NJ213,,0,0
+151,PN14,PN345,Zaldi Xurito,0,,,0,0
+151,PN18,PN613,Zaldi Xurito,0,,,0,0
+151,N14,N586,Zaldi Xurito,0,NJ053,,0,0
+151,N15,N868,Zaldi Xurito,0,NJ053,,0,0
+151,N10,N363-J122,Zaldi Xurito,0,NJ122,,0,0
+151,N9,N363-J211,Zaldi Xurito,0,NJ211,,0,0
+151,N7,N96-J111,Zaldi Xurito,0,NJ111,,0,0
+151,N2,N96-J211,Zaldi Xurito,0,NJ211,,0,0
+151,PN14,PN364,Zaldi Xurito,0,,,0,0
+151,PN18,PN632,Zaldi Xurito,0,,,0,0
+151,N14,N600,Zaldi Xurito,0,NJ051,,0,0
+151,N15,N882,Zaldi Xurito,0,NJ051,,0,0
+151,N16,N1082,Zaldi Xurito,0,NJ261,,0,0
+151,N1,N116,Zaldi Xurito,0,NJ261,,0,0
+151,N8,N378,Zaldi Xurito,0,NJ261,,0,0
+151,PN5,PN385,Zaldi Xurito,0,,,0,0
+151,PN16,PN647,Zaldi Xurito,0,,,0,0
+151,PN21,PN818,Zaldi Xurito,0,,,0,0
+151,N7,N123-J112,Zaldi Xurito,0,NJ112,,0,0
+151,N2,N123-J215,Zaldi Xurito,0,NJ215,,0,0
+151,N10,N384-J127,Zaldi Xurito,0,NJ127,,0,0
+151,N9,N384-J215,Zaldi Xurito,0,NJ215,,0,0
+151,PN14,PN392,Zaldi Xurito,0,,,0,0
+151,PN18,PN653,Zaldi Xurito,0,,,0,0
+151,N14,N623,Zaldi Xurito,0,NJ053,,0,0
+151,N15,N902,Zaldi Xurito,0,NJ053,,0,0
+151,N7,N144-J117,Zaldi Xurito,0,NJ117,,0,0
+151,N2,N144-J216,Zaldi Xurito,0,NJ216,,0,0
+151,N10,N403-J128,Zaldi Xurito,0,NJ128,,0,0
+151,N9,N403-J216,Zaldi Xurito,0,NJ216,,0,0
+151,PN14,PN413,Zaldi Xurito,0,,,0,0
+151,PN18,PN672,Zaldi Xurito,0,,,0,0
+151,N14,N640,Zaldi Xurito,0,NJ051,,0,0
+151,N15,N918,Zaldi Xurito,0,NJ051,,0,0
+151,N12,N648,Zaldi Xurito,0,NJ054,,0,0
+151,N11,N649,Zaldi Xurito,0,NJ063,,0,0
+151,N16,N1092,Zaldi Xurito,0,NJ261,,0,0
+151,N1,N158,Zaldi Xurito,0,NJ261,,0,0
+151,N8,N416,Zaldi Xurito,0,NJ261,,0,0
+151,PN5,PN427,Zaldi Xurito,0,,,0,0
+151,PN16,PN685,Zaldi Xurito,0,,,0,0
+151,PN21,PN828,Zaldi Xurito,0,,,0,0
+151,N7,N164-J118,Zaldi Xurito,0,NJ118,,0,0
+151,N2,N164-J215,Zaldi Xurito,0,NJ215,,0,0
+151,N10,N422-J127,Zaldi Xurito,0,NJ127,,0,0
+151,N9,N422-J215,Zaldi Xurito,0,NJ215,,0,0
+151,PN14,PN433,Zaldi Xurito,0,,,0,0
+151,PN18,PN691,Zaldi Xurito,0,,,0,0
+151,N14,N664,Zaldi Xurito,0,NJ053,,0,0
+151,N15,N937,Zaldi Xurito,0,NJ053,,0,0
+151,N7,N182-J117,Zaldi Xurito,0,NJ117,,0,0
+151,N2,N182-J216,Zaldi Xurito,0,NJ216,,0,0
+151,N10,N440-J128,Zaldi Xurito,0,NJ128,,0,0
+151,N9,N440-J216,Zaldi Xurito,0,NJ216,,0,0
+151,PN14,PN451,Zaldi Xurito,0,,,0,0
+151,PN18,PN709,Zaldi Xurito,0,,,0,0
+151,N12,N686,Zaldi Xurito,0,NJ059,,0,0
+151,N11,N687,Zaldi Xurito,0,NJ063,,0,0
+151,N15,N956,Zaldi Xurito,0,NJ063,,0,0
+151,N16,N1100,Zaldi Xurito,0,NJ260,,0,0
+151,N1,N195,Zaldi Xurito,0,NJ260,,0,0
+151,N8,N451,Zaldi Xurito,0,NJ260,,0,0
+151,PN5,PN464,Zaldi Xurito,0,,,0,0
+151,PN16,PN720,Zaldi Xurito,0,,,0,0
+151,PN21,PN836,Zaldi Xurito,0,,,0,0
+151,N7,N208-J118,Zaldi Xurito,0,NJ118,,0,0
+151,N2,N208-J215,Zaldi Xurito,0,NJ215,,0,0
+151,N10,N461-J127,Zaldi Xurito,0,NJ127,,0,0
+151,N9,N461-J215,Zaldi Xurito,0,NJ215,,0,0
+151,PN14,PN477,Zaldi Xurito,0,,,0,0
+151,PN18,PN730,Zaldi Xurito,0,,,0,0
+151,N14,N706,Zaldi Xurito,0,NJ060,,0,0
+151,N15,N971,Zaldi Xurito,0,NJ060,,0,0
+151,N7,N233-J117,Zaldi Xurito,0,NJ117,,0,0
+151,N2,N233-J216,Zaldi Xurito,0,NJ216,,0,0
+151,N10,N483-J128,Zaldi Xurito,0,NJ128,,0,0
+151,N9,N483-J216,Zaldi Xurito,0,NJ216,,0,0
+151,PN14,PN502,Zaldi Xurito,0,,,0,0
+151,PN18,PN752,Zaldi Xurito,0,,,0,0
+151,N12,N728,Zaldi Xurito,0,NJ059,,0,0
+151,N11,N729,Zaldi Xurito,0,NJ063,,0,0
+151,N15,N989,Zaldi Xurito,0,NJ063,,0,0
+151,N16,N1108,Zaldi Xurito,0,NJ260,,0,0
+151,N1,N245,Zaldi Xurito,0,NJ260,,0,0
+151,N8,N494,Zaldi Xurito,0,NJ260,,0,0
+151,PN5,PN514,Zaldi Xurito,0,,,0,0
+151,PN16,PN763,Zaldi Xurito,0,,,0,0
+151,PN21,PN844,Zaldi Xurito,0,,,0,0
+151,N7,N254-J118,Zaldi Xurito,0,NJ118,,0,0
+151,N2,N254-J215,Zaldi Xurito,0,NJ215,,0,0
+151,N10,N503-J127,Zaldi Xurito,0,NJ127,,0,0
+151,N9,N503-J215,Zaldi Xurito,0,NJ215,,0,0
+151,PN14,PN523,Zaldi Xurito,0,,,0,0
+151,PN18,PN772,Zaldi Xurito,0,,,0,0
+151,N15,N1007,Zaldi Xurito,0,NJ060,,0,0
+151,N14,N751,Zaldi Xurito,0,NJ060,,0,0
+151,N7,N270-J117,Zaldi Xurito,0,NJ117,,0,0
+151,N2,N270-J216,Zaldi Xurito,0,NJ216,,0,0
+151,N10,N519-J128,Zaldi Xurito,0,NJ128,,0,0
+151,N9,N519-J216,Zaldi Xurito,0,NJ216,,0,0
+151,PN14,PN539,Zaldi Xurito,0,,,0,0
+151,PN18,PN788,Zaldi Xurito,0,,,0,0
+151,N15,N1024,Zaldi Xurito,0,NJ063,,0,0
+151,N12,N770,Zaldi Xurito,0,NJ059,,0,0
+151,N11,N771,Zaldi Xurito,0,NJ063,,0,0
+151,N15,N1034,Zaldi Xurito,0,NJ060,,0,0
+151,N14,N783,Zaldi Xurito,0,NJ060,,0,0
+151,N15,N1040,Zaldi Xurito,0,NJ063,,0,0
+151,N12,N790,Zaldi Xurito,0,NJ059,,0,0
+151,N11,N791,Zaldi Xurito,0,NJ063,,0,0
+151,N11,N795,Zaldi Xurito,0,NJ064,,0,0
+151,N15,N1046,Zaldi Xurito,0,NJ060,,0,0
+151,N14,N800,Zaldi Xurito,0,NJ060,,0,0
+151,N15,N1052,Zaldi Xurito,0,NJ064,,0,0
+151,N12,N807,Zaldi Xurito,0,NJ059,,0,0
+151,N11,N808,Zaldi Xurito,0,NJ064,,0,0
+151,N14,N527,Lafitenea,1,NJ051,,0,0
+151,N15,N817,Lafitenea,1,NJ051,,0,0
+151,N10,N282-J122,Lafitenea,1,NJ122,,0,0
+151,N9,N282-J211,Lafitenea,1,NJ211,,0,0
+151,N7,N9-J111,Lafitenea,1,NJ111,,0,0
+151,N2,N9-J211,Lafitenea,1,NJ211,,0,0
+151,PN14,PN277,Lafitenea,1,,,0,0
+151,PN18,PN551,Lafitenea,1,,,0,0
+151,N7,N23,Lafitenea,1,NJ112,,0,0
+151,PN13,PN291,Lafitenea,1,,,0,0
+151,N14,N544,Lafitenea,1,NJ053,,0,0
+151,N15,N830,Lafitenea,1,NJ053,,0,0
+151,N10,N301-J125,Lafitenea,1,NJ125,,0,0
+151,N9,N301-J213,Lafitenea,1,NJ213,,0,0
+151,N2,N34,Lafitenea,1,NJ213,,0,0
+151,PN6,PN302,Lafitenea,1,,,0,0
+151,PN18,PN570,Lafitenea,1,,,0,0
+151,N14,N562,Lafitenea,1,NJ051,,0,0
+151,N15,N846,Lafitenea,1,NJ051,,0,0
+151,N10,N316-J122,Lafitenea,1,NJ122,,0,0
+151,N9,N316-J211,Lafitenea,1,NJ211,,0,0
+151,N7,N49-J111,Lafitenea,1,NJ111,,0,0
+151,N2,N49-J211,Lafitenea,1,NJ211,,0,0
+151,PN14,PN317,Lafitenea,1,,,0,0
+151,PN18,PN585,Lafitenea,1,,,0,0
+151,N16,N1068,Lafitenea,1,NJ261,,0,0
+151,N8,N328,Lafitenea,1,NJ261,,0,0
+151,N1,N61,Lafitenea,1,NJ261,,0,0
+151,PN5,PN329,Lafitenea,1,,,0,0
+151,PN16,PN597,Lafitenea,1,,,0,0
+151,PN21,PN804,Lafitenea,1,,,0,0
+151,N14,N577,Lafitenea,1,NJ053,,0,0
+151,N15,N860,Lafitenea,1,NJ053,,0,0
+151,N10,N332-J125,Lafitenea,1,NJ125,,0,0
+151,N9,N332-J213,Lafitenea,1,NJ213,,0,0
+151,N7,N65-J112,Lafitenea,1,NJ112,,0,0
+151,N2,N65-J213,Lafitenea,1,NJ213,,0,0
+151,PN14,PN333,Lafitenea,1,,,0,0
+151,PN18,PN601,Lafitenea,1,,,0,0
+151,N14,N591,Lafitenea,1,NJ051,,0,0
+151,N15,N873,Lafitenea,1,NJ051,,0,0
+151,N10,N351-J122,Lafitenea,1,NJ122,,0,0
+151,N9,N351-J211,Lafitenea,1,NJ211,,0,0
+151,N7,N84-J111,Lafitenea,1,NJ111,,0,0
+151,N2,N84-J211,Lafitenea,1,NJ211,,0,0
+151,PN14,PN352,Lafitenea,1,,,0,0
+151,PN18,PN620,Lafitenea,1,,,0,0
+151,N16,N1078,Lafitenea,1,NJ261,,0,0
+151,N8,N361,Lafitenea,1,NJ261,,0,0
+151,N1,N94,Lafitenea,1,NJ261,,0,0
+151,PN5,PN362,Lafitenea,1,,,0,0
+151,PN16,PN630,Lafitenea,1,,,0,0
+151,PN21,PN814,Lafitenea,1,,,0,0
+151,N14,N606,Lafitenea,1,NJ053,,0,0
+151,N15,N888,Lafitenea,1,NJ053,,0,0
+151,N7,N105,Lafitenea,1,NJ112,,0,0
+151,N2,N106,Lafitenea,1,NJ213,,0,0
+151,N10,N371-J125,Lafitenea,1,NJ125,,0,0
+151,N9,N371-J213,Lafitenea,1,NJ213,,0,0
+151,PN13,PN374,Lafitenea,1,,,0,0
+151,PN6,PN375,Lafitenea,1,,,0,0
+151,PN18,PN640,Lafitenea,1,,,0,0
+151,N2,N122,Lafitenea,1,NJ215,,0,0
+151,PN6,PN391,Lafitenea,1,,,0,0
+151,N14,N627,Lafitenea,1,NJ051,,0,0
+151,N15,N906,Lafitenea,1,NJ051,,0,0
+151,N2,N131,Lafitenea,1,,,0,0
+151,N7,N132,Lafitenea,1,NJ111,,0,0
+151,N10,N391-J122,Lafitenea,1,NJ122,,0,0
+151,N9,N391-J211,Lafitenea,1,NJ211,,0,0
+151,PN14,PN400,Lafitenea,1,,,0,0
+151,PN18,PN660,Lafitenea,1,,,0,0
+151,N16,N1089,Lafitenea,1,NJ261,,0,0
+151,N1,N141,Lafitenea,1,NJ261,,0,0
+151,N8,N400,Lafitenea,1,NJ261,,0,0
+151,PN5,PN409,Lafitenea,1,,,0,0
+151,PN16,PN669,Lafitenea,1,,,0,0
+151,PN21,PN825,Lafitenea,1,,,0,0
+151,PN14,PN410,Lafitenea,1,,,0,0
+151,N7,N150,Lafitenea,1,NJ112,,0,0
+151,N2,N151,Lafitenea,1,NJ215,,0,0
+151,N10,N409-J127,Lafitenea,1,NJ127,,0,0
+151,N9,N409-J215,Lafitenea,1,NJ215,,0,0
+151,PN13,PN419,Lafitenea,1,,,0,0
+151,PN6,PN420,Lafitenea,1,,,0,0
+151,PN18,PN678,Lafitenea,1,,,0,0
+151,N14,N652,Lafitenea,1,NJ053,,0,0
+151,N15,N927,Lafitenea,1,NJ053,,0,0
+151,N12,N670,Lafitenea,1,NJ054,,0,0
+151,N11,N671,Lafitenea,1,NJ063,,0,0
+151,N15,N943,Lafitenea,1,NJ063,,0,0
+151,N7,N169-J117,Lafitenea,1,NJ117,,0,0
+151,N2,N169-J216,Lafitenea,1,NJ216,,0,0
+151,N10,N427-J128,Lafitenea,1,NJ128,,0,0
+151,N9,N427-J216,Lafitenea,1,NJ216,,0,0
+151,PN14,PN438,Lafitenea,1,,,0,0
+151,PN18,PN696,Lafitenea,1,,,0,0
+151,N16,N1097,Lafitenea,1,NJ261,,0,0
+151,N1,N179,Lafitenea,1,NJ261,,0,0
+151,N8,N437,Lafitenea,1,NJ261,,0,0
+151,PN5,PN448,Lafitenea,1,,,0,0
+151,PN16,PN706,Lafitenea,1,,,0,0
+151,PN21,PN833,Lafitenea,1,,,0,0
+151,N14,N691,Lafitenea,1,NJ053,,0,0
+151,N15,N959,Lafitenea,1,NJ053,,0,0
+151,N7,N190-J118,Lafitenea,1,NJ118,,0,0
+151,N2,N190-J215,Lafitenea,1,NJ215,,0,0
+151,N10,N447-J127,Lafitenea,1,NJ127,,0,0
+151,N9,N447-J215,Lafitenea,1,NJ215,,0,0
+151,PN14,PN459,Lafitenea,1,,,0,0
+151,PN18,PN716,Lafitenea,1,,,0,0
+151,N14,N705,Lafitenea,1,NJ060,,0,0
+151,N7,N207,Lafitenea,1,NJ117,,0,0
+151,PN13,PN476,Lafitenea,1,,,0,0
+151,N2,N215,Lafitenea,1,NJ216,,0,0
+151,N10,N468-J128,Lafitenea,1,NJ128,,0,0
+151,N9,N468-J216,Lafitenea,1,NJ216,,0,0
+151,PN6,PN484,Lafitenea,1,,,0,0
+151,PN18,PN737,Lafitenea,1,,,0,0
+151,N12,N714,Lafitenea,1,NJ059,,0,0
+151,N11,N715,Lafitenea,1,NJ063,,0,0
+151,N15,N978,Lafitenea,1,NJ063,,0,0
+151,N16,N1106,Lafitenea,1,NJ260,,0,0
+151,N1,N230,Lafitenea,1,NJ260,,0,0
+151,N8,N480,Lafitenea,1,NJ260,,0,0
+151,PN5,PN499,Lafitenea,1,,,0,0
+151,PN16,PN749,Lafitenea,1,,,0,0
+151,PN21,PN842,Lafitenea,1,,,0,0
+151,N14,N736,Lafitenea,1,NJ060,,0,0
+151,N15,N995,Lafitenea,1,NJ060,,0,0
+151,N7,N242-J118,Lafitenea,1,NJ118,,0,0
+151,N2,N242-J215,Lafitenea,1,NJ215,,0,0
+151,N10,N491-J127,Lafitenea,1,NJ127,,0,0
+151,N9,N491-J215,Lafitenea,1,NJ215,,0,0
+151,PN14,PN511,Lafitenea,1,,,0,0
+151,PN18,PN760,Lafitenea,1,,,0,0
+151,N15,N1014,Lafitenea,1,NJ063,,0,0
+151,N12,N758,Lafitenea,1,NJ059,,0,0
+151,N11,N759,Lafitenea,1,NJ063,,0,0
+151,N7,N259-J117,Lafitenea,1,NJ117,,0,0
+151,N2,N259-J216,Lafitenea,1,NJ216,,0,0
+151,N10,N508-J128,Lafitenea,1,NJ128,,0,0
+151,N9,N508-J216,Lafitenea,1,NJ216,,0,0
+151,PN14,PN528,Lafitenea,1,,,0,0
+151,PN18,PN777,Lafitenea,1,,,0,0
+151,N16,N1113,Lafitenea,1,NJ260,,0,0
+151,N1,N267,Lafitenea,1,NJ260,,0,0
+151,N8,N516,Lafitenea,1,NJ260,,0,0
+151,PN5,PN536,Lafitenea,1,,,0,0
+151,PN16,PN785,Lafitenea,1,,,0,0
+151,PN21,PN849,Lafitenea,1,,,0,0
+151,N15,N1028,Lafitenea,1,NJ060,,0,0
+151,N14,N776,Lafitenea,1,NJ060,,0,0
+151,N7,N271-J118,Lafitenea,1,NJ118,,0,0
+151,N2,N271-J215,Lafitenea,1,NJ215,,0,0
+151,N10,N520-J127,Lafitenea,1,NJ127,,0,0
+151,N9,N520-J215,Lafitenea,1,NJ215,,0,0
+151,PN14,PN540,Lafitenea,1,,,0,0
+151,PN18,PN789,Lafitenea,1,,,0,0
+151,N15,N1036,Lafitenea,1,NJ063,,0,0
+151,N12,N785,Lafitenea,1,NJ059,,0,0
+151,N11,N786,Lafitenea,1,NJ063,,0,0
+151,N15,N1042,Lafitenea,1,NJ060,,0,0
+151,N14,N794,Lafitenea,1,NJ060,,0,0
+151,N15,N1048,Lafitenea,1,NJ064,,0,0
+151,N12,N802,Lafitenea,1,NJ059,,0,0
+151,N11,N803,Lafitenea,1,NJ064,,0,0
+151,N15,N1056,Lafitenea,1,NJ060,,0,0
+151,N14,N813,Lafitenea,1,NJ060,,0,0
+152,N7,N1,Urrugne Bourg,0,NJ110,,0,0
+152,PN13,PN269,Urrugne Bourg,0,,,0,0
+152,N10,N277-J121,Urrugne Bourg,0,NJ121,,0,0
+152,N9,N277-J210,Urrugne Bourg,0,NJ210,,0,0
+152,N2,N3,Urrugne Bourg,0,NJ210,,0,0
+152,N14,N526,Urrugne Bourg,0,NJ052,,0,0
+152,N15,N816,Urrugne Bourg,0,NJ052,,0,0
+152,PN6,PN271,Urrugne Bourg,0,,,0,0
+152,PN18,PN546,Urrugne Bourg,0,,,0,0
+152,N7,N14,Urrugne Bourg,0,NJ114,,0,0
+152,PN13,PN282,Urrugne Bourg,0,,,0,0
+152,N2,N26,Urrugne Bourg,0,NJ212,,0,0
+152,N10,N293-J124,Urrugne Bourg,0,NJ124,,0,0
+152,N9,N293-J212,Urrugne Bourg,0,NJ212,,0,0
+152,N14,N541,Urrugne Bourg,0,NJ050,,0,0
+152,N15,N828,Urrugne Bourg,0,NJ050,,0,0
+152,PN6,PN294,Urrugne Bourg,0,,,0,0
+152,PN18,PN562,Urrugne Bourg,0,,,0,0
+152,N16,N1062,Urrugne Bourg,0,NJ260,,0,0
+152,N10,N312-J121,Urrugne Bourg,0,NJ121,,0,0
+152,N9,N312-J210,Urrugne Bourg,0,NJ210,,0,0
+152,N8,N312-J260,Urrugne Bourg,0,NJ260,,0,0
+152,N7,N45-J110,Urrugne Bourg,0,NJ110,,0,0
+152,N2,N45-J210,Urrugne Bourg,0,NJ210,,0,0
+152,N1,N45-J260,Urrugne Bourg,0,NJ260,,0,0
+152,N14,N556,Urrugne Bourg,0,NJ052,,0,0
+152,N15,N840,Urrugne Bourg,0,NJ052,,0,0
+152,PN15,PN313,Urrugne Bourg,0,,,0,0
+152,PN19,PN581,Urrugne Bourg,0,,,0,0
+152,PN21,PN798,Urrugne Bourg,0,,,0,0
+152,N10,N329-J124,Urrugne Bourg,0,NJ124,,0,0
+152,N9,N329-J212,Urrugne Bourg,0,NJ212,,0,0
+152,N14,N573,Urrugne Bourg,0,NJ050,,0,0
+152,N7,N62-J114,Urrugne Bourg,0,NJ114,,0,0
+152,N2,N62-J212,Urrugne Bourg,0,NJ212,,0,0
+152,N15,N856,Urrugne Bourg,0,NJ050,,0,0
+152,PN14,PN330,Urrugne Bourg,0,,,0,0
+152,PN18,PN598,Urrugne Bourg,0,,,0,0
+152,N16,N1073,Urrugne Bourg,0,NJ260,,0,0
+152,N8,N343,Urrugne Bourg,0,NJ260,,0,0
+152,N1,N76,Urrugne Bourg,0,NJ260,,0,0
+152,PN5,PN344,Urrugne Bourg,0,,,0,0
+152,PN16,PN612,Urrugne Bourg,0,,,0,0
+152,PN21,PN809,Urrugne Bourg,0,,,0,0
+152,N10,N346-J121,Urrugne Bourg,0,NJ121,,0,0
+152,N9,N346-J210,Urrugne Bourg,0,NJ210,,0,0
+152,N14,N587,Urrugne Bourg,0,NJ052,,0,0
+152,N7,N79-J110,Urrugne Bourg,0,NJ110,,0,0
+152,N2,N79-J210,Urrugne Bourg,0,NJ210,,0,0
+152,N15,N869,Urrugne Bourg,0,NJ052,,0,0
+152,PN14,PN347,Urrugne Bourg,0,,,0,0
+152,PN18,PN615,Urrugne Bourg,0,,,0,0
+152,N10,N364-J124,Urrugne Bourg,0,NJ124,,0,0
+152,N9,N364-J212,Urrugne Bourg,0,NJ212,,0,0
+152,N14,N601,Urrugne Bourg,0,NJ050,,0,0
+152,N15,N883,Urrugne Bourg,0,NJ050,,0,0
+152,N7,N97,Urrugne Bourg,0,NJ115,,0,0
+152,N2,N98,Urrugne Bourg,0,NJ212,,0,0
+152,PN13,PN365,Urrugne Bourg,0,,,0,0
+152,PN6,PN366,Urrugne Bourg,0,,,0,0
+152,PN18,PN633,Urrugne Bourg,0,,,0,0
+152,N16,N1083,Urrugne Bourg,0,NJ262,,0,0
+152,N1,N120,Urrugne Bourg,0,NJ262,,0,0
+152,N8,N382,Urrugne Bourg,0,NJ262,,0,0
+152,PN5,PN389,Urrugne Bourg,0,,,0,0
+152,PN16,PN651,Urrugne Bourg,0,,,0,0
+152,PN21,PN819,Urrugne Bourg,0,,,0,0
+152,N7,N124,Urrugne Bourg,0,NJ116,,0,0
+152,N2,N125,Urrugne Bourg,0,NJ214,,0,0
+152,N10,N385-J126,Urrugne Bourg,0,NJ126,,0,0
+152,N9,N385-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N14,N624,Urrugne Bourg,0,NJ052,,0,0
+152,N15,N903,Urrugne Bourg,0,NJ052,,0,0
+152,PN13,PN393,Urrugne Bourg,0,,,0,0
+152,PN6,PN394,Urrugne Bourg,0,,,0,0
+152,PN18,PN654,Urrugne Bourg,0,,,0,0
+152,N7,N145,Urrugne Bourg,0,NJ115,,0,0
+152,N2,N146,Urrugne Bourg,0,NJ210,,0,0
+152,N10,N404,Urrugne Bourg,0,NJ121,,0,0
+152,N9,N405,Urrugne Bourg,0,NJ210,,0,0
+152,N11,N641,Urrugne Bourg,0,NJ062,,0,0
+152,N12,N642,Urrugne Bourg,0,NJ056,,0,0
+152,N15,N919,Urrugne Bourg,0,NJ062,,0,0
+152,PN13,PN414,Urrugne Bourg,0,,,0,0
+152,PN6,PN415,Urrugne Bourg,0,,,0,0
+152,PN17,PN673,Urrugne Bourg,0,,,0,0
+152,PN20,PN674,Urrugne Bourg,0,,,0,0
+152,N16,N1093,Urrugne Bourg,0,NJ262,,0,0
+152,N1,N160,Urrugne Bourg,0,NJ262,,0,0
+152,N8,N418,Urrugne Bourg,0,NJ262,,0,0
+152,PN5,PN429,Urrugne Bourg,0,,,0,0
+152,PN16,PN687,Urrugne Bourg,0,,,0,0
+152,PN21,PN829,Urrugne Bourg,0,,,0,0
+152,N7,N165-J116,Urrugne Bourg,0,NJ116,,0,0
+152,N2,N165-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N10,N423-J126,Urrugne Bourg,0,NJ126,,0,0
+152,N9,N423-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N14,N665,Urrugne Bourg,0,NJ057,,0,0
+152,N15,N938,Urrugne Bourg,0,NJ057,,0,0
+152,PN14,PN434,Urrugne Bourg,0,,,0,0
+152,PN18,PN692,Urrugne Bourg,0,,,0,0
+152,N7,N184,Urrugne Bourg,0,NJ115,,0,0
+152,N2,N185,Urrugne Bourg,0,NJ213,,0,0
+152,N10,N442-J125,Urrugne Bourg,0,NJ125,,0,0
+152,N9,N442-J213,Urrugne Bourg,0,NJ213,,0,0
+152,N12,N688,Urrugne Bourg,0,NJ056,,0,0
+152,N11,N689,Urrugne Bourg,0,NJ062,,0,0
+152,N15,N957,Urrugne Bourg,0,NJ062,,0,0
+152,PN13,PN453,Urrugne Bourg,0,,,0,0
+152,PN6,PN454,Urrugne Bourg,0,,,0,0
+152,PN18,PN711,Urrugne Bourg,0,,,0,0
+152,N16,N1101,Urrugne Bourg,0,NJ262,,0,0
+152,N1,N201,Urrugne Bourg,0,NJ262,,0,0
+152,N8,N457,Urrugne Bourg,0,NJ262,,0,0
+152,PN5,PN470,Urrugne Bourg,0,,,0,0
+152,PN16,PN726,Urrugne Bourg,0,,,0,0
+152,PN21,PN837,Urrugne Bourg,0,,,0,0
+152,N7,N209-J116,Urrugne Bourg,0,NJ116,,0,0
+152,N2,N209-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N10,N462-J126,Urrugne Bourg,0,NJ126,,0,0
+152,N9,N462-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N14,N707,Urrugne Bourg,0,NJ057,,0,0
+152,N15,N972,Urrugne Bourg,0,NJ057,,0,0
+152,PN14,PN478,Urrugne Bourg,0,,,0,0
+152,PN18,PN731,Urrugne Bourg,0,,,0,0
+152,N7,N234-J115,Urrugne Bourg,0,NJ115,,0,0
+152,N2,N234-J213,Urrugne Bourg,0,NJ213,,0,0
+152,N10,N484-J125,Urrugne Bourg,0,NJ125,,0,0
+152,N9,N484-J213,Urrugne Bourg,0,NJ213,,0,0
+152,N12,N730,Urrugne Bourg,0,NJ056,,0,0
+152,N11,N731,Urrugne Bourg,0,NJ061,,0,0
+152,N15,N990,Urrugne Bourg,0,NJ061,,0,0
+152,PN14,PN503,Urrugne Bourg,0,,,0,0
+152,PN18,PN753,Urrugne Bourg,0,,,0,0
+152,N16,N1109,Urrugne Bourg,0,NJ262,,0,0
+152,N1,N246,Urrugne Bourg,0,NJ262,,0,0
+152,N8,N495,Urrugne Bourg,0,NJ262,,0,0
+152,PN5,PN515,Urrugne Bourg,0,,,0,0
+152,PN16,PN764,Urrugne Bourg,0,,,0,0
+152,PN21,PN845,Urrugne Bourg,0,,,0,0
+152,N15,N1008,Urrugne Bourg,0,NJ057,,0,0
+152,N7,N255-J116,Urrugne Bourg,0,NJ116,,0,0
+152,N2,N255-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N10,N504-J126,Urrugne Bourg,0,NJ126,,0,0
+152,N9,N504-J214,Urrugne Bourg,0,NJ214,,0,0
+152,N14,N752,Urrugne Bourg,0,NJ057,,0,0
+152,PN14,PN524,Urrugne Bourg,0,,,0,0
+152,PN18,PN773,Urrugne Bourg,0,,,0,0
+152,N15,N1025,Urrugne Bourg,0,NJ062,,0,0
+152,N12,N772,Urrugne Bourg,0,NJ056,,0,0
+152,N11,N773,Urrugne Bourg,0,NJ062,,0,0
+152,N15,N1035,Urrugne Bourg,0,NJ057,,0,0
+152,N14,N784,Urrugne Bourg,0,NJ057,,0,0
+152,N15,N1041,Urrugne Bourg,0,NJ062,,0,0
+152,N12,N792,Urrugne Bourg,0,NJ058,,0,0
+152,N11,N793,Urrugne Bourg,0,NJ062,,0,0
+152,N15,N1047,Urrugne Bourg,0,NJ057,,0,0
+152,N14,N801,Urrugne Bourg,0,NJ057,,0,0
+152,N15,N1053,Urrugne Bourg,0,NJ062,,0,0
+152,N12,N809,Urrugne Bourg,0,NJ058,,0,0
+152,N11,N810,Urrugne Bourg,0,NJ062,,0,0
+152,N14,N524,Alturan,1,NJ050,,0,0
+152,N15,N814,Alturan,1,NJ050,,0,0
+152,N7,N15,Alturan,1,NJ110,,0,0
+152,PN13,PN283,Alturan,1,,,0,0
+152,N14,N539,Alturan,1,NJ052,,0,0
+152,N15,N826,Alturan,1,NJ052,,0,0
+152,N10,N297-J121,Alturan,1,NJ121,,0,0
+152,N9,N297-J210,Alturan,1,NJ210,,0,0
+152,N2,N30,Alturan,1,NJ210,,0,0
+152,PN6,PN298,Alturan,1,,,0,0
+152,PN18,PN566,Alturan,1,,,0,0
+152,N14,N554,Alturan,1,NJ050,,0,0
+152,N15,N838,Alturan,1,NJ050,,0,0
+152,N10,N314-J124,Alturan,1,NJ124,,0,0
+152,N9,N314-J212,Alturan,1,NJ212,,0,0
+152,N7,N47-J114,Alturan,1,NJ114,,0,0
+152,N2,N47-J212,Alturan,1,NJ212,,0,0
+152,PN14,PN315,Alturan,1,,,0,0
+152,PN18,PN583,Alturan,1,,,0,0
+152,N16,N1066,Alturan,1,NJ260,,0,0
+152,N8,N324,Alturan,1,NJ260,,0,0
+152,N1,N57,Alturan,1,NJ260,,0,0
+152,PN5,PN325,Alturan,1,,,0,0
+152,PN16,PN593,Alturan,1,,,0,0
+152,PN21,PN802,Alturan,1,,,0,0
+152,N14,N570,Alturan,1,NJ052,,0,0
+152,N15,N853,Alturan,1,NJ052,,0,0
+152,N10,N331-J121,Alturan,1,NJ121,,0,0
+152,N9,N331-J210,Alturan,1,NJ210,,0,0
+152,N7,N64-J110,Alturan,1,NJ110,,0,0
+152,N2,N64-J210,Alturan,1,NJ210,,0,0
+152,PN14,PN332,Alturan,1,,,0,0
+152,PN18,PN600,Alturan,1,,,0,0
+152,N14,N584,Alturan,1,NJ050,,0,0
+152,N15,N867,Alturan,1,NJ050,,0,0
+152,N10,N349-J124,Alturan,1,NJ124,,0,0
+152,N9,N349-J212,Alturan,1,NJ212,,0,0
+152,N7,N82-J114,Alturan,1,NJ114,,0,0
+152,N2,N82-J212,Alturan,1,NJ212,,0,0
+152,PN14,PN350,Alturan,1,,,0,0
+152,PN18,PN618,Alturan,1,,,0,0
+152,N16,N1077,Alturan,1,NJ260,,0,0
+152,N8,N359,Alturan,1,NJ260,,0,0
+152,N1,N92,Alturan,1,NJ260,,0,0
+152,PN5,PN360,Alturan,1,,,0,0
+152,PN16,PN628,Alturan,1,,,0,0
+152,PN21,PN813,Alturan,1,,,0,0
+152,N14,N599,Alturan,1,NJ052,,0,0
+152,N15,N881,Alturan,1,NJ052,,0,0
+152,N7,N100-J110,Alturan,1,NJ110,,0,0
+152,N2,N100-J210,Alturan,1,NJ210,,0,0
+152,N10,N366-J121,Alturan,1,NJ121,,0,0
+152,N9,N366-J210,Alturan,1,NJ210,,0,0
+152,PN13,PN368,Alturan,1,,,0,0
+152,PN6,PN369,Alturan,1,,,0,0
+152,PN18,PN635,Alturan,1,,,0,0
+152,N14,N620,Alturan,1,NJ050,,0,0
+152,N15,N899,Alturan,1,NJ050,,0,0
+152,N7,N127-J115,Alturan,1,NJ115,,0,0
+152,N2,N127-J212,Alturan,1,NJ212,,0,0
+152,N9,N387,Alturan,1,NJ212,,0,0
+152,N10,N388,Alturan,1,NJ124,,0,0
+152,PN14,PN396,Alturan,1,,,0,0
+152,PN20,PN656,Alturan,1,,,0,0
+152,PN17,PN657,Alturan,1,,,0,0
+152,N16,N1086,Alturan,1,NJ262,,0,0
+152,N1,N137,Alturan,1,NJ262,,0,0
+152,N8,N396,Alturan,1,NJ262,,0,0
+152,PN5,PN405,Alturan,1,,,0,0
+152,PN16,PN665,Alturan,1,,,0,0
+152,PN21,PN822,Alturan,1,,,0,0
+152,N7,N148-J116,Alturan,1,NJ116,,0,0
+152,N2,N148-J214,Alturan,1,NJ214,,0,0
+152,N10,N407-J126,Alturan,1,NJ126,,0,0
+152,N9,N407-J214,Alturan,1,NJ214,,0,0
+152,PN14,PN417,Alturan,1,,,0,0
+152,PN18,PN676,Alturan,1,,,0,0
+152,N14,N655,Alturan,1,NJ052,,0,0
+152,N15,N930,Alturan,1,NJ052,,0,0
+152,N12,N662,Alturan,1,NJ056,,0,0
+152,N11,N663,Alturan,1,NJ062,,0,0
+152,N15,N936,Alturan,1,NJ062,,0,0
+152,N7,N167-J115,Alturan,1,NJ115,,0,0
+152,N2,N167-J210,Alturan,1,NJ210,,0,0
+152,N10,N425-J121,Alturan,1,NJ121,,0,0
+152,N9,N425-J210,Alturan,1,NJ210,,0,0
+152,PN14,PN436,Alturan,1,,,0,0
+152,PN18,PN694,Alturan,1,,,0,0
+152,N16,N1096,Alturan,1,NJ262,,0,0
+152,N1,N174,Alturan,1,NJ262,,0,0
+152,N8,N432,Alturan,1,NJ262,,0,0
+152,PN5,PN443,Alturan,1,,,0,0
+152,PN16,PN701,Alturan,1,,,0,0
+152,PN21,PN832,Alturan,1,,,0,0
+152,N14,N682,Alturan,1,NJ057,,0,0
+152,N15,N953,Alturan,1,NJ057,,0,0
+152,N7,N189-J116,Alturan,1,NJ116,,0,0
+152,N2,N189-J214,Alturan,1,NJ214,,0,0
+152,N10,N446-J126,Alturan,1,NJ126,,0,0
+152,N9,N446-J214,Alturan,1,NJ214,,0,0
+152,PN14,PN458,Alturan,1,,,0,0
+152,PN18,PN715,Alturan,1,,,0,0
+152,N7,N205,Alturan,1,NJ115,,0,0
+152,PN13,PN474,Alturan,1,,,0,0
+152,N2,N212,Alturan,1,NJ213,,0,0
+152,N10,N465-J125,Alturan,1,NJ125,,0,0
+152,N9,N465-J213,Alturan,1,NJ213,,0,0
+152,PN6,PN481,Alturan,1,,,0,0
+152,PN18,PN734,Alturan,1,,,0,0
+152,N12,N719,Alturan,1,NJ056,,0,0
+152,N11,N720,Alturan,1,NJ061,,0,0
+152,N15,N982,Alturan,1,NJ061,,0,0
+152,N16,N1105,Alturan,1,NJ262,,0,0
+152,N1,N224,Alturan,1,NJ262,,0,0
+152,N8,N476,Alturan,1,NJ262,,0,0
+152,PN5,PN493,Alturan,1,,,0,0
+152,PN16,PN745,Alturan,1,,,0,0
+152,PN21,PN841,Alturan,1,,,0,0
+152,N14,N726,Alturan,1,NJ057,,0,0
+152,N15,N987,Alturan,1,NJ057,,0,0
+152,N7,N237-J116,Alturan,1,NJ116,,0,0
+152,N2,N237-J214,Alturan,1,NJ214,,0,0
+152,N10,N487-J126,Alturan,1,NJ126,,0,0
+152,N9,N487-J214,Alturan,1,NJ214,,0,0
+152,PN14,PN506,Alturan,1,,,0,0
+152,PN18,PN756,Alturan,1,,,0,0
+152,N15,N1004,Alturan,1,NJ061,,0,0
+152,N12,N747,Alturan,1,NJ056,,0,0
+152,N11,N748,Alturan,1,NJ061,,0,0
+152,N7,N256-J115,Alturan,1,NJ115,,0,0
+152,N2,N256-J213,Alturan,1,NJ213,,0,0
+152,N10,N505-J125,Alturan,1,NJ125,,0,0
+152,N9,N505-J213,Alturan,1,NJ213,,0,0
+152,PN14,PN525,Alturan,1,,,0,0
+152,PN18,PN774,Alturan,1,,,0,0
+152,N16,N1111,Alturan,1,NJ262,,0,0
+152,N1,N264,Alturan,1,NJ262,,0,0
+152,N8,N513,Alturan,1,NJ262,,0,0
+152,PN5,PN533,Alturan,1,,,0,0
+152,PN16,PN782,Alturan,1,,,0,0
+152,PN21,PN847,Alturan,1,,,0,0
+152,N15,N1022,Alturan,1,NJ057,,0,0
+152,N14,N768,Alturan,1,NJ057,,0,0
+152,N15,N1033,Alturan,1,NJ062,,0,0
+152,N12,N781,Alturan,1,NJ056,,0,0
+152,N11,N782,Alturan,1,NJ062,,0,0
+152,N15,N1039,Alturan,1,NJ057,,0,0
+152,N14,N789,Alturan,1,NJ057,,0,0
+152,N15,N1045,Alturan,1,NJ062,,0,0
+152,N12,N798,Alturan,1,NJ058,,0,0
+152,N11,N799,Alturan,1,NJ062,,0,0
+152,N15,N1051,Alturan,1,NJ057,,0,0
+152,N14,N806,Alturan,1,NJ057,,0,0
+156,N7,N18,Grottes de Sare,0,NH47001,,0,0
+156,N10,N287,Grottes de Sare,0,NH47001,,0,0
+156,PN13,PN286,Grottes de Sare,0,,,0,0
+156,PN17,PN556,Grottes de Sare,0,,,0,0
+156,N14,N538,Grottes de Sare,0,N45001,,0,0
+156,N15,N825,Grottes de Sare,0,N45001,,0,0
+156,N16,N1063,Grottes de Sare,0,NH45007,,0,0
+156,N10,N313-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N9,N313-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N8,N313-H45007,Grottes de Sare,0,NH45007,,0,0
+156,N7,N46-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N2,N46-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N1,N46-H45007,Grottes de Sare,0,NH45007,,0,0
+156,N14,N561,Grottes de Sare,0,N45001,,0,0
+156,N15,N845,Grottes de Sare,0,N45001,,0,0
+156,PN15,PN314,Grottes de Sare,0,,,0,0
+156,PN19,PN582,Grottes de Sare,0,,,0,0
+156,PN21,PN799,Grottes de Sare,0,,,0,0
+156,N14,N575,Grottes de Sare,0,N45003,,0,0
+156,N15,N858,Grottes de Sare,0,N45003,,0,0
+156,N10,N348-H45001,Grottes de Sare,0,NH45001,,0,0
+156,N9,N348-H45005,Grottes de Sare,0,NH45005,,0,0
+156,N14,N590,Grottes de Sare,0,N45002,,0,0
+156,N7,N81-H45001,Grottes de Sare,0,NH45001,,0,0
+156,N2,N81-H45005,Grottes de Sare,0,NH45005,,0,0
+156,N15,N872,Grottes de Sare,0,N45002,,0,0
+156,PN14,PN349,Grottes de Sare,0,,,0,0
+156,PN18,PN617,Grottes de Sare,0,,,0,0
+156,N14,N607,Grottes de Sare,0,N45003,,0,0
+156,N15,N889,Grottes de Sare,0,N45003,,0,0
+156,N7,N126-H45001,Grottes de Sare,0,NH45001,,0,0
+156,N2,N126-H45005,Grottes de Sare,0,NH45005,,0,0
+156,N10,N386-H45001,Grottes de Sare,0,NH45001,,0,0
+156,N9,N386-H45005,Grottes de Sare,0,NH45005,,0,0
+156,PN14,PN395,Grottes de Sare,0,,,0,0
+156,PN18,PN655,Grottes de Sare,0,,,0,0
+156,N14,N628,Grottes de Sare,0,N45001,,0,0
+156,N15,N907,Grottes de Sare,0,N45001,,0,0
+156,N16,N1085,Grottes de Sare,0,NH45007,,0,0
+156,N1,N136,Grottes de Sare,0,NH45007,,0,0
+156,N8,N395,Grottes de Sare,0,NH45007,,0,0
+156,PN5,PN404,Grottes de Sare,0,,,0,0
+156,PN16,PN664,Grottes de Sare,0,,,0,0
+156,PN21,PN821,Grottes de Sare,0,,,0,0
+156,N7,N147-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N2,N147-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N10,N406-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N9,N406-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N14,N645,Grottes de Sare,0,N45003,,0,0
+156,N15,N922,Grottes de Sare,0,N45003,,0,0
+156,PN14,PN416,Grottes de Sare,0,,,0,0
+156,PN18,PN675,Grottes de Sare,0,,,0,0
+156,N14,N668,Grottes de Sare,0,N45001,,0,0
+156,N15,N941,Grottes de Sare,0,N45001,,0,0
+156,N7,N180-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N2,N180-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N10,N438-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N9,N438-H45006,Grottes de Sare,0,NH45006,,0,0
+156,PN14,PN449,Grottes de Sare,0,,,0,0
+156,PN18,PN707,Grottes de Sare,0,,,0,0
+156,N16,N1099,Grottes de Sare,0,NH45007,,0,0
+156,N1,N187,Grottes de Sare,0,NH45007,,0,0
+156,N8,N444,Grottes de Sare,0,NH45007,,0,0
+156,PN5,PN456,Grottes de Sare,0,,,0,0
+156,PN16,PN713,Grottes de Sare,0,,,0,0
+156,PN21,PN835,Grottes de Sare,0,,,0,0
+156,N14,N693,Grottes de Sare,0,N45002,,0,0
+156,N15,N961,Grottes de Sare,0,N45002,,0,0
+156,N14,N718,Grottes de Sare,0,N45003,,0,0
+156,N15,N981,Grottes de Sare,0,N45003,,0,0
+156,N7,N223-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N2,N223-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N10,N475-H45002,Grottes de Sare,0,NH45002,,0,0
+156,N9,N475-H45006,Grottes de Sare,0,NH45006,,0,0
+156,PN14,PN492,Grottes de Sare,0,,,0,0
+156,PN18,PN744,Grottes de Sare,0,,,0,0
+156,N14,N734,Grottes de Sare,0,N45002,,0,0
+156,N15,N993,Grottes de Sare,0,N45002,,0,0
+156,N7,N249-19,Grottes de Sare,0,N19,,0,0
+156,N2,N249-H45006,Grottes de Sare,0,NH45006,,0,0
+156,N10,N498-19,Grottes de Sare,0,N19,,0,0
+156,N9,N498-H45006,Grottes de Sare,0,NH45006,,0,0
+156,PN14,PN518,Grottes de Sare,0,,,0,0
+156,PN18,PN767,Grottes de Sare,0,,,0,0
+156,N14,N532,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N15,N820,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N7,N17,Halte Routière # Autobus Geltokia,1,N19,,0,0
+156,N10,N286,Halte Routière # Autobus Geltokia,1,N19,,0,0
+156,PN13,PN285,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN17,PN555,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N7,N27-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+156,N2,N27-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+156,N10,N294-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+156,N9,N294-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+156,PN14,PN295,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN18,PN563,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N14,N548,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N15,N834,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N16,N1069,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N10,N330-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+156,N9,N330-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+156,N8,N330-H45007,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N14,N576,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N7,N63-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+156,N2,N63-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+156,N1,N63-H45007,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N15,N859,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,PN15,PN331,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN19,PN599,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN21,PN805,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N14,N593,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N15,N875,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N10,N365-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+156,N9,N365-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+156,N7,N99-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+156,N2,N99-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+156,PN14,PN367,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN18,PN634,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N14,N612,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N15,N892,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N14,N625,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N15,N904,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N14,N646,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N15,N923,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N7,N161-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+156,N2,N161-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,N10,N419-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+156,N9,N419-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,PN14,PN430,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN18,PN688,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N16,N1094,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N1,N166,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N8,N424,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,PN5,PN435,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN16,PN693,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN21,PN830,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N14,N674,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N15,N946,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N14,N694,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N15,N962,Halte Routière # Autobus Geltokia,1,N45001,,0,0
+156,N7,N198-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+156,N2,N198-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,N10,N454-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+156,N9,N454-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,PN14,PN467,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN18,PN723,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N14,N708,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N15,N973,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N16,N1103,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N1,N217,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,N8,N470,Halte Routière # Autobus Geltokia,1,NH45007,,0,0
+156,PN5,PN486,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN16,PN739,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN21,PN839,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N7,N236-19,Halte Routière # Autobus Geltokia,1,N19,,0,0
+156,N2,N236-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,N10,N486-19,Halte Routière # Autobus Geltokia,1,N19,,0,0
+156,N9,N486-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+156,PN14,PN505,Halte Routière # Autobus Geltokia,1,,,0,0
+156,PN18,PN755,Halte Routière # Autobus Geltokia,1,,,0,0
+156,N15,N1000,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N14,N741,Halte Routière # Autobus Geltokia,1,N45003,,0,0
+156,N15,N1016,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+156,N14,N761,Halte Routière # Autobus Geltokia,1,N45002,,0,0
+157,N10,N304-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N9,N304-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,N7,N37-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N2,N37-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,PN14,PN305,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN573,St Pée Pont d'Amotz,0,,,0,0
+157,N14,N553,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N15,N837,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N10,N337-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N9,N337-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,N7,N70-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N2,N70-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,PN14,PN338,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN606,St Pée Pont d'Amotz,0,,,0,0
+157,N14,N583,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N15,N866,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N4,N110,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,PN8,PN379,St Pée Pont d'Amotz,0,,,0,0
+157,N6,N113-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N2,N113-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,N10,N376-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N9,N376-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,PN11,PN382,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN645,St Pée Pont d'Amotz,0,,,0,0
+157,N14,N626,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N15,N905,St Pée Pont d'Amotz,0,N47001,,0,0
+157,N7,N149-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N2,N149-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,N10,N408-H47001,St Pée Pont d'Amotz,0,NH47001,,0,0
+157,N9,N408-H47003,St Pée Pont d'Amotz,0,NH47003,,0,0
+157,PN14,PN418,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN677,St Pée Pont d'Amotz,0,,,0,0
+157,N14,N669,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N15,N942,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N7,N173-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N2,N173-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,N10,N431-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N9,N431-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,PN14,PN442,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN700,St Pée Pont d'Amotz,0,,,0,0
+157,N6,N204,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,PN10,PN473,St Pée Pont d'Amotz,0,,,0,0
+157,N14,N709,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N15,N974,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N4,N213-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N2,N213-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,N10,N466-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N9,N466-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,PN9,PN482,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN735,St Pée Pont d'Amotz,0,,,0,0
+157,N15,N1013,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N14,N757,St Pée Pont d'Amotz,0,N47002,,0,0
+157,N7,N257-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N2,N257-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,N10,N506-H45001,St Pée Pont d'Amotz,0,NH45001,,0,0
+157,N9,N506-H45005,St Pée Pont d'Amotz,0,NH45005,,0,0
+157,PN14,PN526,St Pée Pont d'Amotz,0,,,0,0
+157,PN18,PN775,St Pée Pont d'Amotz,0,,,0,0
+157,N7,N10-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+157,N2,N10-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+157,N10,N283-H45002,Halte Routière # Autobus Geltokia,1,NH45002,,0,0
+157,N9,N283-H45006,Halte Routière # Autobus Geltokia,1,NH45006,,0,0
+157,PN14,PN278,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN552,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N14,N535,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N15,N823,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N10,N320-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N9,N320-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,N7,N53-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N2,N53-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,PN14,PN321,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN589,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N14,N565,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N15,N849,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N10,N354-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N9,N354-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,N7,N87-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N2,N87-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,PN14,PN355,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN623,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N14,N597,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N15,N879,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N7,N135-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N2,N135-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,N10,N394-H47001,Halte Routière # Autobus Geltokia,1,NH47001,,0,0
+157,N9,N394-H47003,Halte Routière # Autobus Geltokia,1,NH47003,,0,0
+157,PN14,PN403,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN663,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N14,N647,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N15,N924,Halte Routière # Autobus Geltokia,1,N47001,,0,0
+157,N7,N162-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N2,N162-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,N10,N420-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N9,N420-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,PN14,PN431,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN689,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N7,N188-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N2,N188-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,N10,N445-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N9,N445-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,N14,N690,Halte Routière # Autobus Geltokia,1,N47002,,0,0
+157,N15,N958,Halte Routière # Autobus Geltokia,1,N47002,,0,0
+157,PN14,PN457,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN714,Halte Routière # Autobus Geltokia,1,,,0,0
+157,N14,N735,Halte Routière # Autobus Geltokia,1,N47002,,0,0
+157,N15,N994,Halte Routière # Autobus Geltokia,1,N47002,,0,0
+157,N7,N241-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N2,N241-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,N10,N490-H45001,Halte Routière # Autobus Geltokia,1,NH45001,,0,0
+157,N9,N490-H45005,Halte Routière # Autobus Geltokia,1,NH45005,,0,0
+157,PN14,PN510,Halte Routière # Autobus Geltokia,1,,,0,0
+157,PN18,PN759,Halte Routière # Autobus Geltokia,1,,,0,0
+148,N7,N2,Halte Routière,0,NC100,,0,0
+148,PN13,PN270,Halte Routière,0,,,0,0
+148,N10,N276,Halte Routière,0,NC100,,0,0
+148,PN17,PN545,Halte Routière,0,,,0,0
+148,N13,N529,Halte Routière,0,N49001,,0,0
+148,N10,N319,Halte Routière,0,NC100,,0,0
+148,N7,N52,Halte Routière,0,NC100,,0,0
+148,PN13,PN320,Halte Routière,0,,,0,0
+148,PN17,PN588,Halte Routière,0,,,0,0
+148,N13,N566,Halte Routière,0,N49001,,0,0
+148,N7,N101,Halte Routière,0,NC100,,0,0
+148,N10,N367,Halte Routière,0,NC100,,0,0
+148,PN13,PN370,Halte Routière,0,,,0,0
+148,PN17,PN636,Halte Routière,0,,,0,0
+148,N13,N611,Halte Routière,0,N49001,,0,0
+148,N13,N658,Halte Routière,0,N49001,,0,0
+148,N7,N183,Halte Routière,0,NC100,,0,0
+148,N10,N441,Halte Routière,0,NC100,,0,0
+148,PN13,PN452,Halte Routière,0,,,0,0
+148,PN17,PN710,Halte Routière,0,,,0,0
+148,N13,N710,Halte Routière,0,N49001,,0,0
+148,N7,N228,Halte Routière,0,NC100,,0,0
+148,N10,N479,Halte Routière,0,NC100,,0,0
+148,PN13,PN497,Halte Routière,0,,,0,0
+148,PN17,PN748,Halte Routière,0,,,0,0
+148,N7,N29,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N10,N296,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,PN13,PN297,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN17,PN565,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,N13,N550,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,N49001,,0,0
+148,N10,N340,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N7,N73,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,PN13,PN341,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN17,PN609,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,N13,N585,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,N49001,,0,0
+148,N4,N129,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N6,N130,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N10,N390,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,PN8,PN398,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN10,PN399,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN17,PN659,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,N13,N633,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,N49001,,0,0
+148,N13,N685,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,N49001,,0,0
+148,N7,N211,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N10,N464,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,PN13,PN480,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN17,PN733,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,N4,N239,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N6,N240,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,N10,N489,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,NC100,,0,0
+148,PN8,PN508,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN10,PN509,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,PN17,PN758,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,,,0,0
+148,N13,N744,Gare SNCF / Place Harana / Quartier Lac # Aintzira Auzoa,1,N49001,,0,0
+158,N10,N280,Biarritz Gare,0,NJ123,,0,0
+158,N7,N6,Biarritz Gare,0,NJ113,,0,0
+158,PN13,PN274,Biarritz Gare,0,,,0,0
+158,PN17,PN549,Biarritz Gare,0,,,0,0
+158,N12,N528,Biarritz Gare,0,NJ054,,0,0
+158,N7,N28,Biarritz Gare,0,NJ113,,0,0
+158,N10,N295,Biarritz Gare,0,NJ123,,0,0
+158,N12,N543,Biarritz Gare,0,NJ054,,0,0
+158,PN13,PN296,Biarritz Gare,0,,,0,0
+158,PN17,PN564,Biarritz Gare,0,,,0,0
+158,N7,N104,Biarritz Gare,0,NJ113,,0,0
+158,N10,N370,Biarritz Gare,0,NJ123,,0,0
+158,N12,N608,Biarritz Gare,0,NJ054,,0,0
+158,PN13,PN373,Biarritz Gare,0,,,0,0
+158,PN17,PN639,Biarritz Gare,0,,,0,0
+158,N12,N677,Biarritz Gare,0,NJ058,,0,0
+158,N7,N202,Biarritz Gare,0,NJ114,,0,0
+158,N10,N458,Biarritz Gare,0,NJ124,,0,0
+158,N12,N702,Biarritz Gare,0,NJ058,,0,0
+158,PN13,PN471,Biarritz Gare,0,,,0,0
+158,PN17,PN727,Biarritz Gare,0,,,0,0
+158,N7,N244,Biarritz Gare,0,NJ114,,0,0
+158,N10,N493,Biarritz Gare,0,NJ124,,0,0
+158,N12,N743,Biarritz Gare,0,NJ058,,0,0
+158,PN13,PN513,Biarritz Gare,0,,,0,0
+158,PN17,PN762,Biarritz Gare,0,,,0,0
+158,N7,N22,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ113,,0,0
+158,N10,N290,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ123,,0,0
+158,PN13,PN290,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN559,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,N12,N536,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ054,,0,0
+158,N10,N305,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ123,,0,0
+158,N7,N38,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ113,,0,0
+158,N12,N551,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ054,,0,0
+158,PN13,PN306,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN574,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,N7,N121,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ113,,0,0
+158,N10,N383,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ123,,0,0
+158,N12,N619,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ054,,0,0
+158,PN13,PN390,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN652,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,N7,N192,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ114,,0,0
+158,N10,N449,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ124,,0,0
+158,N12,N695,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ058,,0,0
+158,PN13,PN461,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN718,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,N7,N225,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ114,,0,0
+158,N10,N477,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ124,,0,0
+158,N12,N723,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ058,,0,0
+158,PN13,PN494,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN746,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,N7,N263,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ114,,0,0
+158,N10,N512,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ124,,0,0
+158,N12,N762,Halte Routière # Autobus Geltokia / Place # Plaza,1,NJ058,,0,0
+158,PN13,PN532,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0
+158,PN17,PN781,Halte Routière # Autobus Geltokia / Place # Plaza,1,,,0,0

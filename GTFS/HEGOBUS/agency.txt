@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email,tts_agency_name
+Hegobus,Hegobus,https://hegobus.fr/,Europe/Paris,fr,0 800 891 091,https://hegobus.fr/fr/titres-et-tarifs/titres-de-transport/,,Hegobus
