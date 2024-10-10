@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - Tram de Bayonne avec HEGOBUS</title>
+  <title>Carte Leaflet - TXIKNORD</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -25,7 +25,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Fonction pour charger et parser les fichiers GTFS
 async function fetchGTFSFile(fileName) {
-  const response = await fetch(`GTFS/HEGOBUS/${fileName}`);
+  const response = await fetch(`GTFS/TXIKNORD/${fileName}`);
   const text = await response.text();
   const data = Papa.parse(text, {header: true}).data;
   return data;
@@ -37,8 +37,9 @@ async function loadGTFSData() {
   const trips = await fetchGTFSFile('trips.txt');
   const stopTimes = await fetchGTFSFile('stop_times.txt');
   const routes = await fetchGTFSFile('routes.txt');
+  const shapes = await fetchGTFSFile('shapes.txt');
 
-  return { stops, trips, stopTimes, routes };
+  return { stops, trips, stopTimes, routes, shapes };
 }
 
 // Ajouter les arrêts à la carte
@@ -57,34 +58,37 @@ function addStopsToMap(stops) {
   });
 }
 
-// Afficher le tracé du tram lors du clic sur un arrêt
-async function afficherTracéLigne(stopId) {
-  const { stops, trips, stopTimes, routes } = await loadGTFSData();
+// Afficher le tracé d'une ligne à partir de shapes.txt
+function afficherTracéLigne(stopId) {
+  loadGTFSData().then(data => {
+    const { stops, trips, stopTimes, shapes } = data;
 
-  // Filtrer les trips associés à l'arrêt cliqué
-  const stopTripIds = stopTimes.filter(st => st.stop_id === stopId).map(st => st.trip_id);
+    // Filtrer les trips associés à l'arrêt cliqué
+    const stopTripIds = stopTimes.filter(st => st.stop_id === stopId).map(st => st.trip_id);
 
-  if (stopTripIds.length > 0) {
-    const tripId = stopTripIds[0]; // Choisir le premier trajet pour cet arrêt
+    if (stopTripIds.length > 0) {
+      const tripId = stopTripIds[0]; // Choisir le premier trajet pour cet arrêt
 
-    // Récupérer les arrêts associés à ce trajet
-    const tripStopTimes = stopTimes.filter(st => st.trip_id === tripId);
-    const tripStopIds = tripStopTimes.map(st => st.stop_id);
+      // Filtrer les shapes associés à ce trip
+      const shapeId = trips.find(trip => trip.trip_id === tripId).shape_id;
+      const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
 
-    // Extraire les coordonnées des arrêts de ce trajet
-    const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
-    const tripCoordinates = tripStops.map(stop => [parseFloat(stop.stop_lat), parseFloat(stop.stop_lon)]);
+      // Extraire les coordonnées des shapes (tracés)
+      const shapeCoordinates = tripShapes
+        .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+        .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
 
-    // Supprimer le tracé précédent
-    if (typeof tracéLigne !== 'undefined') {
-      map.removeLayer(tracéLigne);
+      // Supprimer le tracé précédent si nécessaire
+      if (typeof tracéLigne !== 'undefined') {
+        map.removeLayer(tracéLigne);
+      }
+
+      // Tracer la ligne
+      tracéLigne = L.polyline(shapeCoordinates, { color: 'blue' }).addTo(map);
+    } else {
+      alert("Pas de trajet trouvé pour cet arrêt.");
     }
-
-    // Tracer la ligne
-    tracéLigne = L.polyline(tripCoordinates, { color: 'blue' }).addTo(map);
-  } else {
-    alert("Pas de trajet trouvé pour cet arrêt.");
-  }
+  });
 }
 
 // Charger et afficher les arrêts sur la carte
