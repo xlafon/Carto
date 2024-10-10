@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carte Leaflet - Tram de Bayonne</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map { height: 600px; }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+  // Initialisation de la carte centrée sur Bayonne
+  var map = L.map('map').setView([43.492949, -1.474841], 13); // Coordonnées de Bayonne
+  
+  // Ajouter une couche de tuiles OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  // Exemple de données GeoJSON pour les arrêts de tram
+  var tramStops = {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-1.474841, 43.492949]
+        },
+        "properties": {
+          "name": "Arrêt 1",
+          "line": "Ligne A",
+          "horaires": "10:00, 10:30, 11:00"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-1.478950, 43.490000]
+        },
+        "properties": {
+          "name": "Arrêt 2",
+          "line": "Ligne B",
+          "horaires": "09:30, 10:00, 10:45"
+        }
+      }
+    ]
+  };
+
+  // Ajouter les arrêts de tram à la carte
+  L.geoJSON(tramStops, {
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup(
+        "<b>" + feature.properties.name + "</b><br>" +
+        "Ligne: " + feature.properties.line + "<br>" +
+        "Horaires: " + feature.properties.horaires
+      );
+
+      layer.on('click', function (e) {
+        // Appeler une fonction pour afficher le tracé de la ligne au clic
+        afficherTracéLigne(feature.properties.line);
+      });
+    }
+  }).addTo(map);
+
+  // Fonction pour afficher le tracé de la ligne de tram
+  function afficherTracéLigne(line) {
+    // Exemple de tracé pour la ligne A
+    var ligneATracé = [
+      [43.492949, -1.474841],
+      [43.490000, -1.478950],
+      [43.485000, -1.480000]
+    ];
+
+    // Supprimer le tracé précédent si nécessaire
+    if (typeof tracéLigne !== 'undefined') {
+      map.removeLayer(tracéLigne);
+    }
+
+    // Afficher le nouveau tracé en fonction de la ligne
+    if (line === "Ligne A") {
+      tracéLigne = L.polyline(ligneATracé, { color: 'blue' }).addTo(map);
+    } else if (line === "Ligne B") {
+      // Exemple de tracé pour la ligne B
+      var ligneBTracé = [
+        [43.492949, -1.474841],
+        [43.495000, -1.472000],
+        [43.500000, -1.470000]
+      ];
+      tracéLigne = L.polyline(ligneBTracé, { color: 'green' }).addTo(map);
+    }
+  }
+</script>
+
+</body>
+</html>
