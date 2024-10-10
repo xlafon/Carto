@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - Sélection des Routes</title>
+  <title>Carte Leaflet - Routes avec Couleurs et Points d'Arrêts</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -10,6 +10,14 @@
     #map { height: 600px; }
     #route-selector {
       margin: 10px;
+    }
+    .stop-point {
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      margin-left: -6px;
+      margin-top: -6px;
     }
   </style>
 </head>
@@ -60,8 +68,10 @@ function addRoutesToMenu(routes) {
   const routeSelect = document.getElementById('routeSelect');
   routes.forEach(route => {
     const option = document.createElement('option');
+    const color = route.route_color ? `#${route.route_color}` : '#000000'; // Utiliser le route_color ou noir par défaut
     option.value = route.route_id;
-    option.text = route.route_long_name || `Ligne ${route.route_short_name}`;
+    option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+    option.style.color = color;
     routeSelect.appendChild(option);
   });
 
@@ -81,10 +91,13 @@ function clearPreviousMarkers() {
 
 // Afficher le tracé et les arrêts d'une ligne sélectionnée
 async function afficherTracéEtArrêts(routeId) {
-  const { stops, trips, stopTimes, shapes } = await loadGTFSData();
+  const { stops, trips, stopTimes, shapes, routes } = await loadGTFSData();
 
   // Filtrer les trips associés à la route sélectionnée
   const routeTrips = trips.filter(trip => trip.route_id === routeId);
+  const selectedRoute = routes.find(route => route.route_id === routeId);
+  const lineColor = selectedRoute.route_color ? `#${selectedRoute.route_color}` : '#000000';
+
   if (routeTrips.length > 0) {
     const tripId = routeTrips[0].trip_id; // Choisir un trip associé à la route
 
@@ -96,13 +109,20 @@ async function afficherTracéEtArrêts(routeId) {
     // Effacer les arrêts précédents
     clearPreviousMarkers();
 
-    // Ajouter les arrêts à la carte
+    // Ajouter les arrêts sous forme de points colorés sur la carte
     tripStops.forEach(stop => {
       const lat = parseFloat(stop.stop_lat);
       const lon = parseFloat(stop.stop_lon);
 
-      // Ajouter un marqueur pour chaque arrêt et les stocker dans markersLayer
-      const marker = L.marker([lat, lon]).bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
+      // Créer un point HTML customisé pour chaque arrêt
+      const stopPoint = L.divIcon({
+        className: 'stop-point',
+        html: `<div style="background-color:${lineColor};"></div>`,
+        iconSize: [12, 12]
+      });
+
+      // Ajouter les points des arrêts sur la carte
+      const marker = L.marker([lat, lon], {icon: stopPoint}).bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
       markersLayer.addLayer(marker);
     });
 
@@ -118,8 +138,8 @@ async function afficherTracéEtArrêts(routeId) {
       map.removeLayer(tracéLigne);
     }
 
-    // Tracer la ligne
-    tracéLigne = L.polyline(shapeCoordinates, { color: 'blue' }).addTo(map);
+    // Tracer la ligne avec la couleur spécifique
+    tracéLigne = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 }).addTo(map);
   } else {
     alert("Pas de trajet trouvé pour cette ligne.");
   }
@@ -136,4 +156,3 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-1
