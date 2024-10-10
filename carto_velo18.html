@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carte Leaflet - Survol et Sélection de Lignes avec Panneau Info</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map { height: 600px; }
+    #route-selector {
+      margin: 10px;
+    }
+    .stop-point {
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      margin-left: -9px;
+      margin-top: -9px;
+      border: 2px solid white;
+    }
+    #route-info {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 5px;
+      width: 250px;
+      height: 200px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<div id="route-selector">
+  <label for="routeSelect">Choisir une ligne de transport :</label>
+  <select id="routeSelect">
+    <option value="all">Voir toutes les lignes</option>
+  </select>
+</div>
+
+<div id="map"></div>
+
+<!-- Panneau d'informations -->
+<div id="route-info">
+  <h4 id="route-title"></h4>
+  <div id="route-content"></div>
+</div>
+
+<script>
+// Initialisation de la carte centrée sur Bayonne
+var map = L.map('map').setView([43.492949, -1.474841], 13); // Coordonnées de Bayonne
+
+// Ajouter une couche de tuiles OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19
+}).addTo(map);
+
+// Liste des marqueurs pour les arrêts affichés
+let markersLayer = L.layerGroup().addTo(map);
+let allLinesLayer = L.layerGroup(); // Couche pour toutes les lignes
+
+// Fonction pour charger et parser les fichiers GTFS
+async function fetchGTFSFile(fileName) {
+  const response = await fetch(`GTFS/TXIKNORD/${fileName}`);
+  const text = await response.text();
+  const data = Papa.parse(text, {header: true}).data;
+  return data;
+}
+
+// Charger les fichiers GTFS
+async function loadGTFSData() {
+  const stops = await fetchGTFSFile('stops.txt');
+  const trips = await fetchGTFSFile('trips.txt');
+  const stopTimes = await fetchGTFSFile('stop_times.txt');
+  const routes = await fetchGTFSFile('routes.txt');
+  const shapes = await fetchGTFSFile('shapes.txt');
+  const agency = await fetchGTFSFile('agency.txt');
+
+  return { stops, trips, stopTimes, routes, shapes, agency };
+}
+
+// Ajouter les routes au menu déroulant
+function addRoutesToMenu(routes) {
+  const routeSelect = document.getElementById('routeSelect');
+  routes.forEach(route => {
+    if (route.route_short_name && route.route_long_name) {
+      const option = document.createElement('option');
+      const color = route.route_color ? `#${route.route_color}` : '#000000'; // Utiliser le route_color ou noir par défaut
+      option.value = route.route_id;
+      option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+      option.style.color = color;
+      routeSelect.appendChild(option);
+    }
+  });
+
+  // Lorsque l'utilisateur sélectionne une ligne
+  routeSelect.addEventListener('change', function () {
+    const selectedRouteId = this.value;
+    if (selectedRouteId === "all") {
+      afficherToutesLesLignes(); // Afficher toutes les lignes si sélectionné
+    } else {
+      afficherTracéEtArrêts(selectedRouteId);
+    }
+  });
+}
+
+// Effacer les marqueurs et tracés précédents
+function clearPreviousMarkersAndLines() {
+  markersLayer.clearLayers();
+  allLinesLayer.clearLayers();
+  document.getElementById('route-info').style.display = 'none'; // Masquer le panneau d'informations
+}
+
+// Afficher le tracé et les arrêts d'une ligne sélectionnée
+async function afficherTracéEtArrêts(routeId) {
+  const { stops, trips, stopTimes, shapes, routes, agency } = await loadGTFSData();
+  clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
+
+  // Filtrer les trips associés à la route sélectionnée
+  const routeTrips = trips.filter(trip => trip.route_id === routeId);
+  const selectedRoute = routes.find(route => route.route_id === routeId);
+  const lineColor = selectedRoute.route_color ? `#${selectedRoute.route_color}` : '#000000';
+  const agencyUrl = agency[0].agency_url; // Utiliser l'URL de l'agence
+
+  if (routeTrips.length > 0) {
+    const tripId = routeTrips[0].trip_id; // Choisir un trip associé à la route
+
+    // Récupérer les arrêts associés à ce trip
+    const tripStopTimes = stopTimes.filter(st => st.trip_id === tripId);
+    const tripStopIds = tripStopTimes.map(st => st.stop_id);
+    const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
+
+    // Ajouter les arrêts sous forme de points colorés sur la carte
+    tripStops.forEach(stop => {
+      const lat = parseFloat(stop.stop_lat);
+      const lon = parseFloat(stop.stop_lon);
+
+      // Récupérer les informations des lignes passant par cet arrêt
+      const lignes = routeTrips.map(trip => {
+        const route = routes.find(r => r.route_id === trip.route_id);
+        const color = route.route_color ? `#${route.route_color}` : '#000000';
+        return `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
+      }).filter((ligne, index, self) => self.indexOf(ligne) === index).join('<br>'); // Eviter les doublons
+
+      // Créer un point HTML customisé pour chaque arrêt
+      const stopPoint = L.divIcon({
+        className: 'stop-point',
+        html: `<div style="background-color:${lineColor};"></div>`,
+        iconSize: [18, 18]
+      });
+
+      // Ajouter les points des arrêts sur la carte avec événement clic
+      const marker = L.marker([lat, lon], {icon: stopPoint}).on('click', function () {
+        afficherInfoArret(stop.stop_name, lignes, agencyUrl);
+      });
+      markersLayer.addLayer(marker);
+    });
+
+    // Récupérer le tracé associé au trip
+    const shapeId = routeTrips[0].shape_id;
+    const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
+    const shapeCoordinates = tripShapes
+      .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+      .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
+
+    // Supprimer le tracé précédent si nécessaire
+    if (typeof tracéLigne !== 'undefined') {
+      map.removeLayer(tracéLigne);
+    }
+
+    // Tracer la ligne avec la couleur spécifique
+    tracéLigne = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 }).addTo(map);
+
+    // Afficher les informations de la ligne dans le panneau
+    afficherInfoLigne(selectedRoute, agencyUrl);
+  } else {
+    alert("Pas de trajet trouvé pour cette ligne.");
+  }
+}
+
+// Afficher toutes les lignes en même temps avec survol et clic
+async function afficherToutesLesLignes() {
+  const { trips, shapes, routes } = await loadGTFSData();
+  clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
+
+  routes.forEach(route => {
+    const lineColor = route.route_color ? `#${route.route_color}` : '#000000';
+
+    // Récupérer les trips pour cette route
+    const routeTrips = trips.filter(trip => trip.route_id === route.route_id);
+    if (routeTrips.length > 0) {
+      const tripId = routeTrips[0].trip_id;
+      const shapeId = routeTrips[0].shape_id;
+      const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
+      const shapeCoordinates = tripShapes
+        .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+        .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
+
+      // Ajouter chaque ligne à la couche "allLinesLayer"
+      const polyline = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 });
+
+      // Ajouter les événements de survol et de clic
+      polyline.on('mouseover', function () {
+        polyline.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+        afficherInfoLigne(route);
+      });
+
+      polyline.on('mouseout', function () {
+        polyline.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+      });
+
+      polyline.on('click', function () {
+        afficherTracéEtArrêts(route.route_id); // Afficher la ligne et les arrêts au clic
+      });
+
+      allLinesLayer.addLayer(polyline);
+    }
+  });
+
+  // Ajouter la couche des lignes au groupe des tracés
+  allLinesLayer.addTo(map);
+}
+
+// Afficher les informations d'une ligne dans le panneau
+function afficherInfoLigne(route, agencyUrl) {
+  const routeTitle = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+  const content = `
+    <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
+  `;
+  document.getElementById('route-title').innerHTML = routeTitle;
+  document.getElementById('route-content').innerHTML = content;
+  document.getElementById('route-info').style.display = 'block';
+}
+
+// Afficher les informations d'un arrêt dans le panneau
+function afficherInfoArret(stopName, lignes, agencyUrl) {
+  const stopTitle = `<b>Arrêt :</b> ${stopName}`;
+  const content = `
+    ${lignes}<br><br>
+    <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
+  `;
+  document.getElementById('route-title').innerHTML = stopTitle;
+  document.getElementById('route-content').innerHTML = content;
+  document.getElementById('route-info').style.display = 'block';
+}
+
+// Charger et afficher les routes dans le menu déroulant
+loadGTFSData().then(data => {
+  addRoutesToMenu(data.routes);
+});
+</script>
+
+<!-- Charger la librairie PapaParse pour parser les fichiers CSV -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+</body>
+</html>
+4
