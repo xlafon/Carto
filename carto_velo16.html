@@ -380,7 +380,7 @@
      </style>
 </head>
 <body>
-  <div id="map" style="width: 100%; height: 500px;"></div>
+  <div id="map" style="width: 100%; height: 600px;"></div>
   <div id="info-box"></div>
   <div class="selected-icons" id="selected-icons"></div>
   <div id="favorites-box" class="favorites-box">
@@ -1174,7 +1174,7 @@ function addBikeRoutesLayer(url, layer) {
         var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
         var gpxLayer = null;
 
-        // Survol du marqueur
+        // Survol du marqueur : afficher uniquement le tracé, sans zoom
         marker.on('mouseover', function() {
           if (!gpxLayer) {
             gpxLayer = new L.GPX(gpxUrl, {
@@ -1193,9 +1193,7 @@ function addBikeRoutesLayer(url, layer) {
                 opacity: 0.7,
                 dashArray: '5, 10'
               }
-            }).on('loaded', function(e) {
-              map.fitBounds(e.target.getBounds());
-            }).addTo(map);
+            }).addTo(map); // Ajouter le tracé sans zoom
           }
         });
 
@@ -1207,14 +1205,19 @@ function addBikeRoutesLayer(url, layer) {
           }
         });
 
+        // Au clic sur le marqueur : afficher le tracé et effectuer un zoom
         marker.on('click', function(e) {
           L.DomEvent.stopPropagation(e); // Empêcher la propagation des événements de clic
+          if (gpxLayer) {
+            map.fitBounds(gpxLayer.getBounds()); // Zoom sur le tracé
+          }
           showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent });
         });
       }
     }).addTo(layer);
   });
 }
+
 
 
 
@@ -1509,4 +1512,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-2
+3
