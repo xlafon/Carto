@@ -1198,6 +1198,7 @@ function addBikeRoutesLayer(url, layer) {
 
         // Fonction pour afficher les parkings à vélo le long du tracé
         function displayBikeParkingsAlongTrack() {
+          bikeParkingLayer.clearLayers(); // Vider la couche des parkings avant d'ajouter de nouveaux parkings
           $.getJSON('data/bike_parking.geojson', function(bikeParkingData) {
             L.geoJson(bikeParkingData, {
               pointToLayer: function (feature, latlng) {
@@ -1251,6 +1252,10 @@ function addBikeRoutesLayer(url, layer) {
         marker.on('click', function(e) {
           L.DomEvent.stopPropagation(e); // Empêcher la propagation des événements de clic
           isClicked = true; // Marquer le statut comme cliqué
+
+          // Vider la couche des parkings à vélo avant d'ajouter les nouveaux parkings
+          bikeParkingLayer.clearLayers();
+
           if (gpxLayer) {
             trackLatLngs = extractLatLngsFromGPX(gpxLayer); // Récupérer les points du tracé
             map.fitBounds(gpxLayer.getBounds()); // Zoom sur le tracé
@@ -1594,4 +1599,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-7
+8
