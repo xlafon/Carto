@@ -33,6 +33,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(map);
 
+// Liste des marqueurs pour les arrêts affichés
+let markersLayer = L.layerGroup().addTo(map);
+
 // Fonction pour charger et parser les fichiers GTFS
 async function fetchGTFSFile(fileName) {
   const response = await fetch(`GTFS/TXIKNORD/${fileName}`);
@@ -71,6 +74,11 @@ function addRoutesToMenu(routes) {
   });
 }
 
+// Effacer les marqueurs précédents des arrêts
+function clearPreviousMarkers() {
+  markersLayer.clearLayers();
+}
+
 // Afficher le tracé et les arrêts d'une ligne sélectionnée
 async function afficherTracéEtArrêts(routeId) {
   const { stops, trips, stopTimes, shapes } = await loadGTFSData();
@@ -85,15 +93,17 @@ async function afficherTracéEtArrêts(routeId) {
     const tripStopIds = tripStopTimes.map(st => st.stop_id);
     const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
 
+    // Effacer les arrêts précédents
+    clearPreviousMarkers();
+
     // Ajouter les arrêts à la carte
     tripStops.forEach(stop => {
       const lat = parseFloat(stop.stop_lat);
       const lon = parseFloat(stop.stop_lon);
 
-      // Ajouter un marqueur pour chaque arrêt
-      L.marker([lat, lon])
-        .addTo(map)
-        .bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
+      // Ajouter un marqueur pour chaque arrêt et les stocker dans markersLayer
+      const marker = L.marker([lat, lon]).bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
+      markersLayer.addLayer(marker);
     });
 
     // Récupérer le tracé associé au trip
@@ -126,4 +136,3 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-1
