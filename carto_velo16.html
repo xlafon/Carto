@@ -1214,6 +1214,10 @@ function addBikeRoutesLayer(url, layer) {
 
                 // Vérifier si le parking est proche du tracé
                 if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 500)) { // Tolérance de 500 mètres
+                  parkingMarker.on('click', function(e) {
+                    L.DomEvent.stopPropagation(e); // Empêcher la propagation du clic
+                    showInfoBox(feature.properties, { lat: lat, lon: lon }); // Afficher l'infobox pour le parking
+                  });
                   parkingMarker.addTo(bikeParkingLayer);
                 }
               }
@@ -1229,7 +1233,7 @@ function addBikeRoutesLayer(url, layer) {
           // Retirer les anciens hôtels
           hotelLayer.clearLayers();
 
-          $.getJSON('data/HOT.geojson', function(hotelData) {
+          $.getJSON('data/hotels.geojson', function(hotelData) {
             L.geoJson(hotelData, {
               pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, { icon: hotelIcon }); // Remplacer par ton icône d'hôtel
@@ -1240,6 +1244,10 @@ function addBikeRoutesLayer(url, layer) {
 
                 // Vérifier si l'hôtel est proche du tracé
                 if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 1000)) { // Tolérance de 1000 mètres
+                  hotelMarker.on('click', function(e) {
+                    L.DomEvent.stopPropagation(e); // Empêcher la propagation du clic
+                    showInfoBox(feature.properties, { lat: lat, lon: lon }); // Afficher l'infobox pour l'hôtel
+                  });
                   hotelMarker.addTo(hotelLayer);
                 }
               }
@@ -1351,6 +1359,7 @@ map.on('click', function() {
   bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
   hotelLayer.clearLayers(); // Retirer les hôtels
 });
+
 
 
 
@@ -1651,4 +1660,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-5
+6
