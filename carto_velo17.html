@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  <title>Carte Leaflet - Tram de Bayonne</title>
+  <title>Carte Leaflet - Tram de Bayonne avec HEGOBUS</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -16,89 +15,86 @@
 <div id="map"></div>
 
 <script>
-  // Initialisation de la carte centrée sur Bayonne
-  var map = L.map('map').setView([43.492949, -1.474841], 13); // Coordonnées de Bayonne
-  
-  // Ajouter une couche de tuiles OpenStreetMap
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19
-  }).addTo(map);
+// Initialisation de la carte centrée sur Bayonne
+var map = L.map('map').setView([43.492949, -1.474841], 13); // Coordonnées de Bayonne
 
-  // Exemple de données GeoJSON pour les arrêts de tram
-  var tramStops = {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-1.474841, 43.492949]
-        },
-        "properties": {
-          "name": "Arrêt 1",
-          "line": "Ligne A",
-          "horaires": "10:00, 10:30, 11:00"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-1.478950, 43.490000]
-        },
-        "properties": {
-          "name": "Arrêt 2",
-          "line": "Ligne B",
-          "horaires": "09:30, 10:00, 10:45"
-        }
-      }
-    ]
-  };
+// Ajouter une couche de tuiles OpenStreetMap
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19
+}).addTo(map);
 
-  // Ajouter les arrêts de tram à la carte
-  L.geoJSON(tramStops, {
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup(
-        "<b>" + feature.properties.name + "</b><br>" +
-        "Ligne: " + feature.properties.line + "<br>" +
-        "Horaires: " + feature.properties.horaires
-      );
+// Fonction pour charger et parser les fichiers GTFS
+async function fetchGTFSFile(fileName) {
+  const response = await fetch(`GTFS/HEGOBUS/${fileName}`);
+  const text = await response.text();
+  const data = Papa.parse(text, {header: true}).data;
+  return data;
+}
 
-      layer.on('click', function (e) {
-        // Appeler une fonction pour afficher le tracé de la ligne au clic
-        afficherTracéLigne(feature.properties.line);
+// Charger les fichiers GTFS
+async function loadGTFSData() {
+  const stops = await fetchGTFSFile('stops.txt');
+  const trips = await fetchGTFSFile('trips.txt');
+  const stopTimes = await fetchGTFSFile('stop_times.txt');
+  const routes = await fetchGTFSFile('routes.txt');
+
+  return { stops, trips, stopTimes, routes };
+}
+
+// Ajouter les arrêts à la carte
+function addStopsToMap(stops) {
+  stops.forEach(stop => {
+    const lat = parseFloat(stop.stop_lat);
+    const lon = parseFloat(stop.stop_lon);
+
+    // Ajouter un marqueur pour chaque arrêt
+    L.marker([lat, lon])
+      .addTo(map)
+      .bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`)
+      .on('click', function () {
+        afficherTracéLigne(stop.stop_id);
       });
-    }
-  }).addTo(map);
+  });
+}
 
-  // Fonction pour afficher le tracé de la ligne de tram
-  function afficherTracéLigne(line) {
-    // Exemple de tracé pour la ligne A
-    var ligneATracé = [
-      [43.492949, -1.474841],
-      [43.490000, -1.478950],
-      [43.485000, -1.480000]
-    ];
+// Afficher le tracé du tram lors du clic sur un arrêt
+async function afficherTracéLigne(stopId) {
+  const { stops, trips, stopTimes, routes } = await loadGTFSData();
 
-    // Supprimer le tracé précédent si nécessaire
+  // Filtrer les trips associés à l'arrêt cliqué
+  const stopTripIds = stopTimes.filter(st => st.stop_id === stopId).map(st => st.trip_id);
+
+  if (stopTripIds.length > 0) {
+    const tripId = stopTripIds[0]; // Choisir le premier trajet pour cet arrêt
+
+    // Récupérer les arrêts associés à ce trajet
+    const tripStopTimes = stopTimes.filter(st => st.trip_id === tripId);
+    const tripStopIds = tripStopTimes.map(st => st.stop_id);
+
+    // Extraire les coordonnées des arrêts de ce trajet
+    const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
+    const tripCoordinates = tripStops.map(stop => [parseFloat(stop.stop_lat), parseFloat(stop.stop_lon)]);
+
+    // Supprimer le tracé précédent
     if (typeof tracéLigne !== 'undefined') {
       map.removeLayer(tracéLigne);
     }
 
-    // Afficher le nouveau tracé en fonction de la ligne
-    if (line === "Ligne A") {
-      tracéLigne = L.polyline(ligneATracé, { color: 'blue' }).addTo(map);
-    } else if (line === "Ligne B") {
-      // Exemple de tracé pour la ligne B
-      var ligneBTracé = [
-        [43.492949, -1.474841],
-        [43.495000, -1.472000],
-        [43.500000, -1.470000]
-      ];
-      tracéLigne = L.polyline(ligneBTracé, { color: 'green' }).addTo(map);
-    }
+    // Tracer la ligne
+    tracéLigne = L.polyline(tripCoordinates, { color: 'blue' }).addTo(map);
+  } else {
+    alert("Pas de trajet trouvé pour cet arrêt.");
   }
+}
+
+// Charger et afficher les arrêts sur la carte
+loadGTFSData().then(data => {
+  addStopsToMap(data.stops);
+});
 </script>
+
+<!-- Charger la librairie PapaParse pour parser les fichiers CSV -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
 </body>
 </html>
