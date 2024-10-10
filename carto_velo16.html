@@ -1150,7 +1150,7 @@ function extractDetailsFromPopup(item) {
 }
 
 
-var bikeParkingLayer = null; // Variable globale pour la couche des parkings à vélo
+var bikeParkingLayer = L.layerGroup(); // Initialisation de la couche des parkings à vélo
 var currentGpxLayer = null;  // Variable globale pour le tracé GPX actuel
 
 function addBikeRoutesLayer(url, layer) {
@@ -1199,13 +1199,8 @@ function addBikeRoutesLayer(url, layer) {
 
         // Fonction pour afficher les parkings à vélo le long du tracé
         function displayBikeParkingsAlongTrack() {
-          // Si la couche des parkings à vélo existe déjà, la retirer de la carte
-          if (bikeParkingLayer) {
-            map.removeLayer(bikeParkingLayer);
-          }
-
-          // Créer une nouvelle couche des parkings à vélo
-          bikeParkingLayer = L.layerGroup();
+          // Retirer les anciens parkings à vélo
+          bikeParkingLayer.clearLayers();
 
           $.getJSON('data/bike_parking.geojson', function(bikeParkingData) {
             L.geoJson(bikeParkingData, {
@@ -1274,9 +1269,7 @@ function addBikeRoutesLayer(url, layer) {
           }
 
           // Retirer les parkings à vélo existants de la carte avant d'ajouter les nouveaux
-          if (bikeParkingLayer) {
-            map.removeLayer(bikeParkingLayer);
-          }
+          bikeParkingLayer.clearLayers();
 
           // Ajouter le nouveau tracé
           currentGpxLayer = new L.GPX(gpxUrl, {
@@ -1312,15 +1305,13 @@ function addBikeRoutesLayer(url, layer) {
             map.removeLayer(currentGpxLayer); // Retirer le tracé
             currentGpxLayer = null;
           }
-          if (bikeParkingLayer) {
-            map.removeLayer(bikeParkingLayer); // Retirer les parkings à vélo
-            bikeParkingLayer = null; // Réinitialiser la variable
-          }
+          bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
         });
       }
     }).addTo(layer);
   });
 }
+
 
 
 
@@ -1619,4 +1610,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-1
+2
