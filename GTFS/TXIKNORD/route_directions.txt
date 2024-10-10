@@ -1,0 +1,88 @@
+route_id,direction_id,route_direction_name
+T1,0,Biarritz Mairie de Biarritz Louis Barthou
+T1,1,Bayonne Hauts de Bayonne
+T2,0,Bayonne Technocité
+T2,1,Tarnos Garròs
+4,0,Biarritz Aéroport/Bidart Izarbel
+4,1,Bayonne Sainsontan
+5,0,Biarritz Gare - Halle Iraty
+5,1,Bayonne Gare de Bayonne Parvis
+6,0,Bayonne Place des Basques / Biarritz Gare de Biarritz
+6,1,Saint Pierre d'Irube C.Cial Ametzondo
+30,0,Anglet Quintaou/Endarra
+30,1,Tarnos Square Mora
+32,0,Bayonne Hauts de Bayonne
+32,1,Anglet Chambre d'Amour
+34,0,Anglet Coeur de Sutar/Troix Croix
+34,1,Anglet Chambre d'Amour
+36,0,Anglet Redon/La Barre
+36,1,Biarritz Cité Scolaire
+38,0,Bayonne Place des Basques
+38,1,Bidart Lore Landa
+40,0,Tarnos Castillon
+40,1,Tarnos Grimau / La Baye
+42,0,Boucau La Pinède
+42,1,Tarnos Square Mora
+44,0,Bidart Uhabia
+44,1,Biarritz Mairie de Biarritz Louis Barthou
+46,0,Bayonne Marrac
+46,1,Bidart Mairie de Bidart
+48,0,Mouguerre Cigaro
+48,1,Bayonne Gare de Bayonne Parvis
+50,0,Bayonne Place des Basques
+50,1,Villefranque Mendiburua
+52,0,Bayonne Place des Basques
+52,1,Biarritz Gare de Biarritz
+54,0,Bayonne Hauts de Bayonne
+54,1,Saint-martin de Seignanx Stade Goni
+56,0,Bayonne Gare de Bayonne Parvis
+56,1,Ondres Ondres Plage
+68,0,Gare de Biarritz / Fal
+68,1,Lore Landa / Stade
+100,0,Anglet St Anne/Endarra
+100,1,Anglet Lazaret
+102,0,Anglet Stella Maris
+102,1,Anglet BAB 3000
+104,0,Tarnos Collège Wallon
+104,1,Tarnos Baudonne
+106,0,Tarnos collège Wallon
+106,1,Tarnos Castillon
+108,0,Biarritz Fal
+108,1,Biarritz Barbarénia
+110,0,Anglet Cantau
+110,1,Bayonne Gare
+112,0,Anglet Cantau
+114,0,Bayonne Villa Pia/Marrac
+114,1,Tarnos La Plaine
+116,0,Bayonne Lauga/Cassin/Marrac
+116,1,Tarnos La Plaine
+118,0,Bayonne Lauga/Cassin/Marrac
+118,1,Tarnos Grand Jean
+120,0,Bayonne Villa Pia/Marrac
+120,1,Tarnos Grand Jean
+122,0,Bayonne Lauga/Cassin/Marrac
+122,1,Saint Pierre D'Irube Mur à gauche/Hillans
+124,0,Saint Pierre D'Irube Aturri
+124,1,Saint Pierre D'Irube Bel Air
+126,0,Bayonne Camus/Harambillet
+126,1,Bayonne Séqué
+128,0,Villa Pia / St Amand
+128,1,Biarritz St-Martin
+130,0,Biarritz Fal
+130,1,Biarritz Halle Iraty
+136,0,Biarritz Cité Scolaire
+136,1,Bidart uhabia
+138,0,Bayonne Marrac
+138,1,Arcangues Arcangues Bourg
+N10,0,Biarritz Harispe
+N10,1,Biarritz Haraout
+N11,0,Biarritz Hippodrome
+N11,1,Biarritz St Charles
+N12,0,Biarritz Jardin Public
+N12,1,Biarritz Polyclinique
+N1,0,Bayonne Glain
+N1,1,Bayonne Porte d'Espagne
+N2,0,Bayonne Quartier St-Esprit
+N2,1,Bayonne Quartier Arènes
+N6,0,Bayonne Hôpital
+N6,1,Bayonne  Floride
