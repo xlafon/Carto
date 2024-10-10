@@ -200,22 +200,21 @@ async function afficherToutesLesLignes() {
       // Ajouter chaque ligne à la couche "allLinesLayer"
       const polyline = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 });
 
-      // Survol de la ligne pour afficher le nom et la couleur
-      polyline.on('mouseover', function () {
+      // Ajouter les événements de survol et de clic
+      polyline.on('mouseover', function (e) {
+        polyline.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+        const routeInfo = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+        document.getElementById('route-name').innerHTML = routeInfo;
         document.getElementById('route-info').style.display = 'block';
-        document.getElementById('route-name').innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
-        document.getElementById('route-name').style.color = lineColor;
-        polyline.setStyle({ color: '#FFD700' }); // Changer la couleur temporairement au survol
       });
 
-      polyline.on('mouseout', function () {
+      polyline.on('mouseout', function (e) {
+        polyline.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
         document.getElementById('route-info').style.display = 'none';
-        polyline.setStyle({ color: lineColor }); // Restaurer la couleur d'origine
       });
 
-      // Clic sur le tracé pour afficher uniquement cette ligne et ses arrêts
       polyline.on('click', function () {
-        afficherTracéEtArrêts(route.route_id); // Afficher uniquement cette ligne au clic
+        afficherTracéEtArrêts(route.route_id); // Afficher la ligne et les arrêts au clic
       });
 
       allLinesLayer.addLayer(polyline);
