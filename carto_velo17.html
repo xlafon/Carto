@@ -13,11 +13,12 @@
     }
     .stop-point {
       border-radius: 50%;
-      width: 12px;
-      height: 12px;
+      width: 18px; /* Augmentation de la taille des points */
+      height: 18px;
       display: inline-block;
-      margin-left: -6px;
-      margin-top: -6px;
+      margin-left: -9px;
+      margin-top: -9px;
+      border: 2px solid white;
     }
   </style>
 </head>
@@ -59,8 +60,9 @@ async function loadGTFSData() {
   const stopTimes = await fetchGTFSFile('stop_times.txt');
   const routes = await fetchGTFSFile('routes.txt');
   const shapes = await fetchGTFSFile('shapes.txt');
+  const agency = await fetchGTFSFile('agency.txt');
 
-  return { stops, trips, stopTimes, routes, shapes };
+  return { stops, trips, stopTimes, routes, shapes, agency };
 }
 
 // Ajouter les routes au menu déroulant
@@ -91,12 +93,13 @@ function clearPreviousMarkers() {
 
 // Afficher le tracé et les arrêts d'une ligne sélectionnée
 async function afficherTracéEtArrêts(routeId) {
-  const { stops, trips, stopTimes, shapes, routes } = await loadGTFSData();
+  const { stops, trips, stopTimes, shapes, routes, agency } = await loadGTFSData();
 
   // Filtrer les trips associés à la route sélectionnée
   const routeTrips = trips.filter(trip => trip.route_id === routeId);
   const selectedRoute = routes.find(route => route.route_id === routeId);
   const lineColor = selectedRoute.route_color ? `#${selectedRoute.route_color}` : '#000000';
+  const agencyUrl = agency[0].agency_url; // Utiliser l'URL de l'agence
 
   if (routeTrips.length > 0) {
     const tripId = routeTrips[0].trip_id; // Choisir un trip associé à la route
@@ -114,15 +117,33 @@ async function afficherTracéEtArrêts(routeId) {
       const lat = parseFloat(stop.stop_lat);
       const lon = parseFloat(stop.stop_lon);
 
+      // Récupérer les informations des lignes passant par cet arrêt
+      const lignes = routeTrips.map(trip => {
+        const route = routes.find(r => r.route_id === trip.route_id);
+        const color = route.route_color ? `#${route.route_color}` : '#000000';
+        return `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
+      }).join('<br>');
+
+      // Récupérer les horaires pour cet arrêt
+      const horaires = tripStopTimes
+        .filter(st => st.stop_id === stop.stop_id)
+        .map(st => `Arrivée: ${st.arrival_time}, Départ: ${st.departure_time}`)
+        .join('<br>');
+
       // Créer un point HTML customisé pour chaque arrêt
       const stopPoint = L.divIcon({
         className: 'stop-point',
         html: `<div style="background-color:${lineColor};"></div>`,
-        iconSize: [12, 12]
+        iconSize: [18, 18] // Augmenter la taille des points pour meilleure visibilité
       });
 
-      // Ajouter les points des arrêts sur la carte
-      const marker = L.marker([lat, lon], {icon: stopPoint}).bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
+      // Ajouter les points des arrêts sur la carte avec pop-up enrichi
+      const marker = L.marker([lat, lon], {icon: stopPoint}).bindPopup(`
+        <b>${stop.stop_name}</b><br>
+        ${lignes}<br><br>
+        ${horaires}<br><br>
+        <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
+      `);
       markersLayer.addLayer(marker);
     });
 
@@ -156,3 +177,4 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
+1
