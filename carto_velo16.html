@@ -1150,6 +1150,8 @@ function extractDetailsFromPopup(item) {
 }
 
 
+var bikeParkingLayer = null; // Variable globale pour stocker la couche des parkings à vélo
+
 function addBikeRoutesLayer(url, layer) {
   $.getJSON(url, function(data) {
     L.geoJson(data, {
@@ -1174,7 +1176,6 @@ function addBikeRoutesLayer(url, layer) {
         var gpxUrl = `https://cdt64.media.tourinsoft.eu/upload/${feature.properties.DOCGPX}`;
         var gpxLayer = null;
         var isClicked = false; // Variable pour gérer le statut du clic
-        var bikeParkingLayer = L.layerGroup(); // Layer pour les parkings à vélo
         var trackLatLngs = []; // Liste des coordonnées du tracé GPX
 
         // Fonction pour récupérer tous les points du tracé GPX
@@ -1198,7 +1199,14 @@ function addBikeRoutesLayer(url, layer) {
 
         // Fonction pour afficher les parkings à vélo le long du tracé
         function displayBikeParkingsAlongTrack() {
-          bikeParkingLayer.clearLayers(); // Vider la couche des parkings avant d'ajouter de nouveaux parkings
+          // Si la couche des parkings à vélo existe déjà, la retirer de la carte
+          if (bikeParkingLayer) {
+            map.removeLayer(bikeParkingLayer);
+          }
+
+          // Créer une nouvelle couche des parkings à vélo
+          bikeParkingLayer = L.layerGroup();
+
           $.getJSON('data/bike_parking.geojson', function(bikeParkingData) {
             L.geoJson(bikeParkingData, {
               pointToLayer: function (feature, latlng) {
@@ -1214,6 +1222,9 @@ function addBikeRoutesLayer(url, layer) {
                 }
               }
             });
+
+            // Ajouter la nouvelle couche à la carte
+            bikeParkingLayer.addTo(map);
           });
         }
 
@@ -1253,14 +1264,15 @@ function addBikeRoutesLayer(url, layer) {
           L.DomEvent.stopPropagation(e); // Empêcher la propagation des événements de clic
           isClicked = true; // Marquer le statut comme cliqué
 
-          // Vider la couche des parkings à vélo avant d'ajouter les nouveaux parkings
-          bikeParkingLayer.clearLayers();
+          // Retirer les parkings à vélo existants de la carte avant d'ajouter les nouveaux
+          if (bikeParkingLayer) {
+            map.removeLayer(bikeParkingLayer);
+          }
 
           if (gpxLayer) {
             trackLatLngs = extractLatLngsFromGPX(gpxLayer); // Récupérer les points du tracé
             map.fitBounds(gpxLayer.getBounds()); // Zoom sur le tracé
             displayBikeParkingsAlongTrack(); // Afficher les parkings à vélo
-            bikeParkingLayer.addTo(map); // Ajouter les parkings à vélo sur la carte
           } else {
             // Si le tracé n'est pas déjà visible (par exemple si aucun survol n'a eu lieu), le charger ici
             gpxLayer = new L.GPX(gpxUrl, {
@@ -1284,7 +1296,6 @@ function addBikeRoutesLayer(url, layer) {
               trackLatLngs = extractLatLngsFromGPX(gpxPolyline); // Récupérer les points du tracé
               map.fitBounds(gpxPolyline.getBounds()); // Zoom une fois le tracé chargé
               displayBikeParkingsAlongTrack(); // Afficher les parkings à vélo
-              bikeParkingLayer.addTo(map); // Ajouter les parkings à vélo sur la carte
             }).addTo(map);
           }
           showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent });
@@ -1293,16 +1304,21 @@ function addBikeRoutesLayer(url, layer) {
         // Optionnel : au second clic, retirer le tracé et les parkings et réinitialiser le statut du clic
         marker.on('dblclick', function(e) {
           isClicked = false; // Réinitialiser le statut du clic
-          if (gpxLayer) {
+                    if (gpxLayer) {
             map.removeLayer(gpxLayer); // Retirer le tracé
             gpxLayer = null;
           }
-          map.removeLayer(bikeParkingLayer); // Retirer les parkings à vélo
+          if (bikeParkingLayer) {
+            map.removeLayer(bikeParkingLayer); // Retirer les parkings à vélo
+            bikeParkingLayer = null; // Réinitialiser la variable
+          }
         });
       }
     }).addTo(layer);
   });
 }
+
+
 
 
 
@@ -1599,4 +1615,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-8
+9
