@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - TXIKNORD</title>
+  <title>Carte Leaflet - Sélection des Routes</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <style>
     #map { height: 600px; }
+    #route-selector {
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
+
+<div id="route-selector">
+  <label for="routeSelect">Choisir une ligne de transport :</label>
+  <select id="routeSelect">
+    <option value="">Sélectionner une ligne</option>
+  </select>
+</div>
 
 <div id="map"></div>
 
@@ -42,58 +52,72 @@ async function loadGTFSData() {
   return { stops, trips, stopTimes, routes, shapes };
 }
 
-// Ajouter les arrêts à la carte
-function addStopsToMap(stops) {
-  stops.forEach(stop => {
-    const lat = parseFloat(stop.stop_lat);
-    const lon = parseFloat(stop.stop_lon);
-
-    // Ajouter un marqueur pour chaque arrêt
-    L.marker([lat, lon])
-      .addTo(map)
-      .bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`)
-      .on('click', function () {
-        afficherTracéLigne(stop.stop_id);
-      });
+// Ajouter les routes au menu déroulant
+function addRoutesToMenu(routes) {
+  const routeSelect = document.getElementById('routeSelect');
+  routes.forEach(route => {
+    const option = document.createElement('option');
+    option.value = route.route_id;
+    option.text = route.route_long_name || `Ligne ${route.route_short_name}`;
+    routeSelect.appendChild(option);
   });
-}
 
-// Afficher le tracé d'une ligne à partir de shapes.txt
-function afficherTracéLigne(stopId) {
-  loadGTFSData().then(data => {
-    const { stops, trips, stopTimes, shapes } = data;
-
-    // Filtrer les trips associés à l'arrêt cliqué
-    const stopTripIds = stopTimes.filter(st => st.stop_id === stopId).map(st => st.trip_id);
-
-    if (stopTripIds.length > 0) {
-      const tripId = stopTripIds[0]; // Choisir le premier trajet pour cet arrêt
-
-      // Filtrer les shapes associés à ce trip
-      const shapeId = trips.find(trip => trip.trip_id === tripId).shape_id;
-      const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
-
-      // Extraire les coordonnées des shapes (tracés)
-      const shapeCoordinates = tripShapes
-        .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
-        .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
-
-      // Supprimer le tracé précédent si nécessaire
-      if (typeof tracéLigne !== 'undefined') {
-        map.removeLayer(tracéLigne);
-      }
-
-      // Tracer la ligne
-      tracéLigne = L.polyline(shapeCoordinates, { color: 'blue' }).addTo(map);
-    } else {
-      alert("Pas de trajet trouvé pour cet arrêt.");
+  // Lorsque l'utilisateur sélectionne une ligne
+  routeSelect.addEventListener('change', function () {
+    const selectedRouteId = this.value;
+    if (selectedRouteId) {
+      afficherTracéEtArrêts(selectedRouteId);
     }
   });
 }
 
-// Charger et afficher les arrêts sur la carte
+// Afficher le tracé et les arrêts d'une ligne sélectionnée
+async function afficherTracéEtArrêts(routeId) {
+  const { stops, trips, stopTimes, shapes } = await loadGTFSData();
+
+  // Filtrer les trips associés à la route sélectionnée
+  const routeTrips = trips.filter(trip => trip.route_id === routeId);
+  if (routeTrips.length > 0) {
+    const tripId = routeTrips[0].trip_id; // Choisir un trip associé à la route
+
+    // Récupérer les arrêts associés à ce trip
+    const tripStopTimes = stopTimes.filter(st => st.trip_id === tripId);
+    const tripStopIds = tripStopTimes.map(st => st.stop_id);
+    const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
+
+    // Ajouter les arrêts à la carte
+    tripStops.forEach(stop => {
+      const lat = parseFloat(stop.stop_lat);
+      const lon = parseFloat(stop.stop_lon);
+
+      // Ajouter un marqueur pour chaque arrêt
+      L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(`<b>${stop.stop_name}</b><br>ID de l'arrêt: ${stop.stop_id}`);
+    });
+
+    // Récupérer le tracé associé au trip
+    const shapeId = routeTrips[0].shape_id;
+    const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
+    const shapeCoordinates = tripShapes
+      .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+      .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
+
+    // Supprimer le tracé précédent si nécessaire
+    if (typeof tracéLigne !== 'undefined') {
+      map.removeLayer(tracéLigne);
+    }
+
+    // Tracer la ligne
+    tracéLigne = L.polyline(shapeCoordinates, { color: 'blue' }).addTo(map);
+  } else {
+    alert("Pas de trajet trouvé pour cette ligne.");
+  }
+}
+
+// Charger et afficher les routes dans le menu déroulant
 loadGTFSData().then(data => {
-  addStopsToMap(data.stops);
+  addRoutesToMenu(data.routes);
 });
 </script>
 
