@@ -1175,48 +1175,18 @@ function addBikeRoutesLayer(url, layer) {
         var gpxLayer = null;
         var isClicked = false; // Variable pour gérer le statut du clic
         var bikeParkingLayer = L.layerGroup(); // Layer pour les parkings à vélo
+        var trackLatLngs = []; // Liste des coordonnées du tracé GPX
 
-        // Survol du marqueur : afficher uniquement le tracé, sans zoom
-        marker.on('mouseover', function() {
-          if (!gpxLayer && !isClicked) { // S'assurer que le tracé n'est pas déjà affiché après un clic
-            gpxLayer = new L.GPX(gpxUrl, {
-              async: true,
-              marker_options: {
-                startIconUrl: '',
-                endIconUrl: '',
-                shadowUrl: '',
-                wptIconUrls: {
-                  '': ''
-                }
-              },
-              polyline_options: {
-                color: 'red',
-                weight: 5,
-                opacity: 0.7,
-                dashArray: '5, 10'
-              }
-            }).addTo(map); // Ajouter le tracé sans zoom
-          }
-        });
-
-        // Quand la souris quitte le marqueur
-        marker.on('mouseout', function() {
-          if (gpxLayer && !isClicked) { // Retirer le tracé uniquement si le marqueur n'a pas été cliqué
-            map.removeLayer(gpxLayer);
-            gpxLayer = null;
-          }
-        });
-
-        // Fonction pour vérifier si un point est proche d'un tracé GPX
-        function isPointNearTrack(point, track, tolerance) {
+        // Fonction pour vérifier si un point est proche d'un tracé
+        function isPointNearTrack(point, trackLatLngs, tolerance) {
           var latlng = L.latLng(point.lat, point.lon);
-          return track.getLatLngs().some(function(latlngs) {
-            return latlng.distanceTo(latlng) <= tolerance; // Vérifier si la distance est dans la tolérance
+          return trackLatLngs.some(function(latlngs) {
+            return latlng.distanceTo(latlngs) <= tolerance; // Vérifier si la distance est dans la tolérance
           });
         }
 
         // Fonction pour afficher les parkings à vélo le long du tracé
-        function displayBikeParkingsAlongTrack(gpxLayer) {
+        function displayBikeParkingsAlongTrack() {
           $.getJSON('data/bike_parking.geojson', function(bikeParkingData) {
             L.geoJson(bikeParkingData, {
               pointToLayer: function (feature, latlng) {
@@ -1227,7 +1197,7 @@ function addBikeRoutesLayer(url, layer) {
                 var lon = feature.geometry.coordinates[0];
 
                 // Vérifier si le parking est proche du tracé
-                if (isPointNearTrack({ lat: lat, lon: lon }, gpxLayer, 500)) { // Tolérance de 500 mètres
+                if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 500)) { // Tolérance de 500 mètres
                   parkingMarker.addTo(bikeParkingLayer);
                 }
               }
@@ -1241,7 +1211,7 @@ function addBikeRoutesLayer(url, layer) {
           isClicked = true; // Marquer le statut comme cliqué
           if (gpxLayer) {
             map.fitBounds(gpxLayer.getBounds()); // Zoom sur le tracé
-            displayBikeParkingsAlongTrack(gpxLayer); // Afficher les parkings à vélo
+            displayBikeParkingsAlongTrack(); // Afficher les parkings à vélo
             bikeParkingLayer.addTo(map); // Ajouter les parkings à vélo sur la carte
           } else {
             // Si le tracé n'est pas déjà visible (par exemple si aucun survol n'a eu lieu), le charger ici
@@ -1262,8 +1232,10 @@ function addBikeRoutesLayer(url, layer) {
                 dashArray: '5, 10'
               }
             }).on('loaded', function(e) {
-              map.fitBounds(e.target.getBounds()); // Zoom une fois le tracé chargé
-              displayBikeParkingsAlongTrack(gpxLayer); // Afficher les parkings à vélo
+              var gpxPolyline = e.target; // Le tracé GPX
+              trackLatLngs = gpxPolyline.getLatLngs(); // Récupérer les coordonnées du tracé
+              map.fitBounds(gpxPolyline.getBounds()); // Zoom une fois le tracé chargé
+              displayBikeParkingsAlongTrack(); // Afficher les parkings à vélo
               bikeParkingLayer.addTo(map); // Ajouter les parkings à vélo sur la carte
             }).addTo(map);
           }
@@ -1283,6 +1255,7 @@ function addBikeRoutesLayer(url, layer) {
     }).addTo(layer);
   });
 }
+
 
 
 
@@ -1578,4 +1551,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-5
+6
