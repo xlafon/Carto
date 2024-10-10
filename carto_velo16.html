@@ -1312,6 +1312,15 @@ function addBikeRoutesLayer(url, layer) {
   });
 }
 
+// Événement global pour retirer le tracé et les parkings si on clique en dehors
+map.on('click', function() {
+  if (currentGpxLayer) {
+    map.removeLayer(currentGpxLayer); // Retirer le tracé
+    currentGpxLayer = null;
+  }
+  bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
+});
+
 
 
 
@@ -1610,4 +1619,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-2
+3
