@@ -1151,6 +1151,7 @@ function extractDetailsFromPopup(item) {
 
 
 var bikeParkingLayer = L.layerGroup(); // Initialisation de la couche des parkings à vélo
+var hotelLayer = L.layerGroup(); // Initialisation de la couche des hôtels
 var currentGpxLayer = null;  // Variable globale pour le tracé GPX actuel
 
 function addBikeRoutesLayer(url, layer) {
@@ -1223,6 +1224,32 @@ function addBikeRoutesLayer(url, layer) {
           });
         }
 
+        // Fonction pour afficher les hôtels le long du tracé
+        function displayHotelsAlongTrack() {
+          // Retirer les anciens hôtels
+          hotelLayer.clearLayers();
+
+          $.getJSON('data/hotels.geojson', function(hotelData) {
+            L.geoJson(hotelData, {
+              pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, { icon: hotelIcon }); // Remplacer par ton icône d'hôtel
+              },
+              onEachFeature: function (feature, hotelMarker) {
+                var lat = feature.geometry.coordinates[1];
+                var lon = feature.geometry.coordinates[0];
+
+                // Vérifier si l'hôtel est proche du tracé
+                if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 1000)) { // Tolérance de 1000 mètres
+                  hotelMarker.addTo(hotelLayer);
+                }
+              }
+            });
+
+            // Ajouter la nouvelle couche à la carte
+            hotelLayer.addTo(map);
+          });
+        }
+
         // Survol du marqueur : afficher uniquement le tracé, sans zoom
         marker.on('mouseover', function() {
           if (!isClicked) { // S'assurer que le tracé n'est pas déjà affiché après un clic
@@ -1258,7 +1285,7 @@ function addBikeRoutesLayer(url, layer) {
           }
         });
 
-        // Au clic sur le marqueur : afficher le tracé, les parkings et effectuer un zoom
+        // Au clic sur le marqueur : afficher le tracé, les parkings, les hôtels et effectuer un zoom
         marker.on('click', function(e) {
           L.DomEvent.stopPropagation(e); // Empêcher la propagation des événements de clic
           isClicked = true; // Marquer le statut comme cliqué
@@ -1268,8 +1295,9 @@ function addBikeRoutesLayer(url, layer) {
             map.removeLayer(currentGpxLayer);
           }
 
-          // Retirer les parkings à vélo existants de la carte avant d'ajouter les nouveaux
+          // Retirer les parkings à vélo et les hôtels existants de la carte avant d'ajouter les nouveaux
           bikeParkingLayer.clearLayers();
+          hotelLayer.clearLayers();
 
           // Ajouter le nouveau tracé
           currentGpxLayer = new L.GPX(gpxUrl, {
@@ -1293,12 +1321,13 @@ function addBikeRoutesLayer(url, layer) {
             trackLatLngs = extractLatLngsFromGPX(gpxPolyline); // Récupérer les points du tracé
             map.fitBounds(gpxPolyline.getBounds()); // Zoom une fois le tracé chargé
             displayBikeParkingsAlongTrack(); // Afficher les parkings à vélo
+            displayHotelsAlongTrack(); // Afficher les hôtels
           }).addTo(map);
 
           showInfoBox(popupContent, { lat: feature.geometry.coordinates, lon: feature.geometry.coordinates, icon: bikeIcon, popupContent });
         });
 
-        // Optionnel : au second clic, retirer le tracé et les parkings et réinitialiser le statut du clic
+        // Optionnel : au second clic, retirer le tracé, les parkings et les hôtels, et réinitialiser le statut du clic
         marker.on('dblclick', function(e) {
           isClicked = false; // Réinitialiser le statut du clic
           if (currentGpxLayer) {
@@ -1306,20 +1335,23 @@ function addBikeRoutesLayer(url, layer) {
             currentGpxLayer = null;
           }
           bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
+          hotelLayer.clearLayers(); // Retirer les hôtels
         });
       }
     }).addTo(layer);
   });
 }
 
-// Événement global pour retirer le tracé et les parkings si on clique en dehors
+// Événement global pour retirer le tracé, les parkings et les hôtels si on clique en dehors
 map.on('click', function() {
   if (currentGpxLayer) {
     map.removeLayer(currentGpxLayer); // Retirer le tracé
     currentGpxLayer = null;
   }
   bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
+  hotelLayer.clearLayers(); // Retirer les hôtels
 });
+
 
 
 
@@ -1619,4 +1651,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-3
+4
