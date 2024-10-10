@@ -1216,7 +1216,12 @@ function addBikeRoutesLayer(url, layer) {
                 if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 500)) { // Tolérance de 500 mètres
                   parkingMarker.on('click', function(e) {
                     L.DomEvent.stopPropagation(e); // Empêcher la propagation du clic
-                    showInfoBox(feature.properties, { lat: lat, lon: lon }); // Afficher l'infobox pour le parking
+                    var parkingPopup = `
+                      <strong>Parking à vélo</strong><br>
+                      ${feature.properties.capacity ? 'Capacité : ' + feature.properties.capacity + ' places<br>' : ''}
+                      ${feature.properties.bicycle_parking ? 'Type : ' + feature.properties.bicycle_parking + '<br>' : ''}
+                    `;
+                    showInfoBox(parkingPopup, { lat: lat, lon: lon }); // Afficher l'infobox pour le parking
                   });
                   parkingMarker.addTo(bikeParkingLayer);
                 }
@@ -1342,7 +1347,6 @@ function addBikeRoutesLayer(url, layer) {
         });
 
         // Optionnel : au second clic, retirer le tracé, les parkings et les hôtels, et réinitialiser le statut du clic
-       
         marker.on('dblclick', function(e) {
           isClicked = false; // Réinitialiser le statut du clic
           if (currentGpxLayer) {
@@ -1668,4 +1672,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-8
+9
