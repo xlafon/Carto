@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - Survol et Sélection de Lignes avec Panneau Info</title>
+  <title>Carte Leaflet - Infobox avec Couleurs</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -34,6 +34,10 @@
       z-index: 1000;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
+    #route-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -41,7 +45,8 @@
 <div id="route-selector">
   <label for="routeSelect">Choisir une ligne de transport :</label>
   <select id="routeSelect">
-    <option value="all">Voir toutes les lignes</option>
+    <option value="">Sélectionner une ligne</option> <!-- Ligne vide pour ne rien sélectionner -->
+    <option value="all">Afficher toutes les lignes sur la carte</option> <!-- Option pour voir toutes les lignes -->
   </select>
 </div>
 
@@ -105,8 +110,10 @@ function addRoutesToMenu(routes) {
     const selectedRouteId = this.value;
     if (selectedRouteId === "all") {
       afficherToutesLesLignes(); // Afficher toutes les lignes si sélectionné
-    } else {
+    } else if (selectedRouteId !== "") {
       afficherTracéEtArrêts(selectedRouteId);
+    } else {
+      clearPreviousMarkersAndLines(); // Effacer les tracés et masquer l'infobox si aucune ligne n'est sélectionnée
     }
   });
 }
@@ -228,9 +235,10 @@ async function afficherToutesLesLignes() {
   allLinesLayer.addTo(map);
 }
 
-// Afficher les informations d'une ligne dans le panneau
+// Afficher les informations d'une ligne dans le panneau avec couleur
 function afficherInfoLigne(route, agencyUrl) {
-  const routeTitle = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+  const color = route.route_color ? `#${route.route_color}` : '#000000';
+  const routeTitle = `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
   const content = `
     <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
   `;
@@ -239,7 +247,7 @@ function afficherInfoLigne(route, agencyUrl) {
   document.getElementById('route-info').style.display = 'block';
 }
 
-// Afficher les informations d'un arrêt dans le panneau
+// Afficher les informations d'un arrêt dans le panneau avec couleur des lignes
 function afficherInfoArret(stopName, lignes, agencyUrl) {
   const stopTitle = `<b>Arrêt :</b> ${stopName}`;
   const content = `
@@ -262,4 +270,4 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-4
+1
