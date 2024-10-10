@@ -1233,7 +1233,7 @@ function addBikeRoutesLayer(url, layer) {
           // Retirer les anciens hôtels
           hotelLayer.clearLayers();
 
-          $.getJSON('data/HOT.geojson', function(hotelData) {
+          $.getJSON('data/HOT.geojson', function(hotelData) { // Chemin corrigé pour le fichier des hôtels
             L.geoJson(hotelData, {
               pointToLayer: function (feature, latlng) {
                 return L.marker(latlng, { icon: hotelIcon }); // Remplacer par ton icône d'hôtel
@@ -1246,7 +1246,13 @@ function addBikeRoutesLayer(url, layer) {
                 if (isPointNearTrack({ lat: lat, lon: lon }, trackLatLngs, 1000)) { // Tolérance de 1000 mètres
                   hotelMarker.on('click', function(e) {
                     L.DomEvent.stopPropagation(e); // Empêcher la propagation du clic
-                    showInfoBox(feature.properties, { lat: lat, lon: lon }); // Afficher l'infobox pour l'hôtel
+                    var hotelPopup = `
+                      <strong>${feature.properties["Raison sociale"]}</strong><br>
+                      ${feature.properties["Classement"] ? feature.properties["Classement"] + '<br>' : ''}
+                      ${feature.properties["TEL"] ? 'Tel: ' + feature.properties["TEL"] + '<br>' : ''}
+                      ${feature.properties.URL ? `<a href="${feature.properties.URL}" target="_blank">Site web</a><br>` : ''}
+                    `;
+                    showInfoBox(hotelPopup, { lat: lat, lon: lon }); // Afficher l'infobox pour l'hôtel
                   });
                   hotelMarker.addTo(hotelLayer);
                 }
@@ -1336,6 +1342,7 @@ function addBikeRoutesLayer(url, layer) {
         });
 
         // Optionnel : au second clic, retirer le tracé, les parkings et les hôtels, et réinitialiser le statut du clic
+       
         marker.on('dblclick', function(e) {
           isClicked = false; // Réinitialiser le statut du clic
           if (currentGpxLayer) {
@@ -1359,6 +1366,7 @@ map.on('click', function() {
   bikeParkingLayer.clearLayers(); // Retirer les parkings à vélo
   hotelLayer.clearLayers(); // Retirer les hôtels
 });
+
 
 
 
@@ -1660,4 +1668,4 @@ L.DomEvent.on(buttonGares, 'click', function () {
   </script>
 </body>
 </html>
-7
+8
