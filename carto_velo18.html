@@ -11,6 +11,14 @@
     #route-selector {
       margin: 10px;
     }
+    /* Conteneur des cases à cocher avec barre de défilement */
+    #checkbox-container {
+      max-height: 200px; /* Limiter la hauteur du conteneur */
+      overflow-y: auto; /* Ajouter une barre de défilement verticale */
+      border: 1px solid #ccc; /* Optionnel : ajouter une bordure */
+      padding: 5px;
+      width: 250px; /* Limiter la largeur du menu */
+    }
     .checkbox-item {
       display: flex;
       align-items: center;
@@ -202,4 +210,4 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-4
+5
