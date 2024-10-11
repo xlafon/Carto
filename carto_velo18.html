@@ -11,15 +11,6 @@
     #route-selector {
       margin: 10px;
     }
-    .stop-point {
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      display: inline-block;
-      margin-left: -9px;
-      margin-top: -9px;
-      border: 2px solid white;
-    }
     #route-info {
       position: absolute;
       bottom: 20px;
@@ -116,7 +107,7 @@ function addRoutesToMenu(routes) {
       const color = route.route_color ? `#${route.route_color}` : '#000000'; // Utiliser le route_color ou noir par défaut
       option.value = route.route_id;
       option.innerHTML = `${route.route_short_name} - ${route.route_long_name}`;
-      option.style.backgroundColor = color;
+      option.style.backgroundColor = color; // Ajouter la couleur d'arrière-plan
       option.style.color = '#fff'; // Couleur du texte pour assurer une bonne visibilité
       routeSelect.appendChild(option);
     }
@@ -173,7 +164,7 @@ async function afficherTracéEtArrêts(routeId) {
     const tripStopIds = tripStopTimes.map(st => st.stop_id);
     const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
 
-    // Ajouter les arrêts sous forme de points colorés sur la carte
+    // Ajouter les arrêts sous forme de cercles pleins sur la carte
     tripStops.forEach(stop => {
       const lat = parseFloat(stop.stop_lat);
       const lon = parseFloat(stop.stop_lon);
@@ -185,15 +176,13 @@ async function afficherTracéEtArrêts(routeId) {
         return `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
       }).filter((ligne, index, self) => self.indexOf(ligne) === index).join('<br>'); // Eviter les doublons
 
-      // Créer un point HTML customisé pour chaque arrêt
-      const stopPoint = L.divIcon({
-        className: 'stop-point',
-        html: `<div style="background-color:${lineColor};"></div>`,
-        iconSize: [18, 18]
-      });
-
-      // Ajouter les points des arrêts sur la carte avec événement clic
-      const marker = L.marker([lat, lon], {icon: stopPoint}).on('click', function () {
+      // Ajouter un cercle plein de la couleur du tracé pour chaque arrêt
+      const marker = L.circleMarker([lat, lon], {
+        color: lineColor,   // Couleur du bord
+        fillColor: lineColor, // Couleur de remplissage
+        fillOpacity: 1, // Opacité de remplissage
+        radius: 6 // Taille du cercle (ajuster selon vos préférences)
+      }).on('click', function () {
         afficherInfoArret(stop.stop_name, lignes, agencyUrl);
       });
       markersLayer.addLayer(marker);
@@ -294,4 +283,4 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-2
+3
