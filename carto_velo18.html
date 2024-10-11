@@ -71,6 +71,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let markersLayer = L.layerGroup().addTo(map);
 let allLinesLayer = L.layerGroup().addTo(map);
 
+// Fonction pour convertir les couleurs RGB en hexadécimal
+function rgbToHex(rgb) {
+  const rgbArray = rgb.match(/\d+/g);
+  return rgbArray ? '#' + rgbArray.map(x => parseInt(x).toString(16).padStart(2, '0')).join('') : '#000000';
+}
+
 // Charger le fichier GeoJSON
 async function loadGeoJSONData() {
   const response = await fetch('data/TXIKNORD.geojson'); // Chemin du fichier GeoJSON
@@ -87,8 +93,13 @@ function addRoutesToMenu(features) {
   features.forEach(feature => {
     const routeName = feature.properties.route_short_name;
     const routeLongName = feature.properties.route_long_name;
-    const routeColor = feature.properties.route_color || '#000000';
+    let routeColor = feature.properties.route_color || '#000000';
     
+    // Convertir la couleur RGB en hexadécimal
+    if (routeColor.startsWith('rgb')) {
+      routeColor = rgbToHex(routeColor);
+    }
+
     // Ajouter la ligne au tableau routes si elle n'est pas déjà présente
     if (routeName && !routes.some(route => route.route_short_name === routeName)) {
       routes.push({
@@ -166,7 +177,12 @@ function afficherTracéEtArrêts(features, selectedRouteId) {
   const selectedFeatures = features.filter(feature => feature.properties.route_short_name === selectedRouteId);
 
   selectedFeatures.forEach(feature => {
-    const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
+    let lineColor = feature.properties.route_color ? feature.properties.route_color : '#000000';
+
+    // Convertir la couleur RGB en hexadécimal si nécessaire
+    if (lineColor.startsWith('rgb')) {
+      lineColor = rgbToHex(lineColor);
+    }
 
     // Afficher le tracé de la ligne si la géométrie est un LineString ou MultiLineString
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
@@ -202,7 +218,12 @@ function afficherToutesLesLignes(features) {
   clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
 
   features.forEach(feature => {
-    const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
+    let lineColor = feature.properties.route_color ? feature.properties.route_color : '#000000';
+
+    // Convertir la couleur RGB en hexadécimal si nécessaire
+    if (lineColor.startsWith('rgb')) {
+      lineColor = rgbToHex(lineColor);
+    }
 
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
       createPolylineFromCoordinates(feature, lineColor);
@@ -214,7 +235,13 @@ function afficherToutesLesLignes(features) {
 
 // Afficher les informations d'une ligne dans le panneau avec couleur
 function afficherInfoLigne(properties) {
-  const color = properties.route_color ? `#${properties.route_color}` : '#000000';
+  let color = properties.route_color ? properties.route_color : '#000000';
+
+  // Convertir la couleur RGB en hexadécimal si nécessaire
+  if (color.startsWith('rgb')) {
+    color = rgbToHex(color);
+  }
+
   const routeTitle = `<span style="color:${color}"><b>${properties.route_short_name}</b> - ${properties.route_long_name}</span>`;
   const content = `
     <p>${properties.description || ''}</p>
@@ -248,4 +275,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-1
+2
