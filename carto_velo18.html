@@ -45,8 +45,8 @@
 <div id="route-selector">
   <label for="routeSelect">Choisir une ligne de transport :</label>
   <select id="routeSelect">
-    <option value="">Sélectionner une ligne</option> <!-- Ligne vide pour ne rien sélectionner -->
-    <option value="all">Afficher toutes les lignes sur la carte</option> <!-- Option pour voir toutes les lignes -->
+    <option value="">Sélectionner une ligne</option>
+    <option value="all">Afficher toutes les lignes sur la carte</option>
   </select>
 </div>
 
@@ -128,10 +128,18 @@ function clearPreviousMarkersAndLines() {
   document.getElementById('route-info').style.display = 'none'; // Masquer le panneau d'informations
 }
 
-// Vérifier si les coordonnées sont valides
+// Vérifier si les coordonnées sont valides et diagnostiquer les erreurs
 function coordinatesAreValid(coordinates) {
-  return Array.isArray(coordinates) && coordinates.length >= 2 &&
-         !isNaN(coordinates[0]) && !isNaN(coordinates[1]);
+  if (!Array.isArray(coordinates) || coordinates.length < 2) {
+    console.error("Coordonnées invalides", coordinates);
+    return false;
+  }
+  const [lon, lat] = coordinates;
+  if (isNaN(lon) || isNaN(lat)) {
+    console.error("Coordonnées non numériques", coordinates);
+    return false;
+  }
+  return true;
 }
 
 // Afficher le tracé et les arrêts d'une ligne sélectionnée
@@ -143,16 +151,20 @@ function afficherTracéEtArrêts(features, selectedRouteId) {
   selectedFeatures.forEach(feature => {
     const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
+    // Afficher le tracé de la ligne si la géométrie est un LineString ou MultiLineString
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      // Afficher le tracé de la ligne (si la géométrie est une ligne)
-      const line = L.geoJSON(feature, {
-        style: {
-          color: lineColor,
-          weight: 4
-        }
-      }).addTo(map);
-
-      allLinesLayer.addLayer(line);
+      if (feature.geometry.coordinates.every(coordinatesAreValid)) {
+        const line = L.geoJSON(feature, {
+          style: {
+            color: lineColor,
+            weight: 4
+          }
+        }).addTo(map);
+  
+        allLinesLayer.addLayer(line);
+      } else {
+        console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+      }
     }
 
     // Récupérer et afficher les arrêts sous forme de points colorés, si disponibles
@@ -187,28 +199,32 @@ function afficherToutesLesLignes(features) {
     const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      const line = L.geoJSON(feature, {
-        style: {
-          color: lineColor,
-          weight: 4
-        }
-      });
+      if (feature.geometry.coordinates.every(coordinatesAreValid)) {
+        const line = L.geoJSON(feature, {
+          style: {
+            color: lineColor,
+            weight: 4
+          }
+        });
 
-      // Ajouter les événements de survol et de clic
-      line.on('mouseover', function () {
-        line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
-        afficherInfoLigne(feature.properties);
-      });
+        // Ajouter les événements de survol et de clic
+        line.on('mouseover', function () {
+          line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+          afficherInfoLigne(feature.properties);
+        });
 
-      line.on('mouseout', function () {
-        line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
-      });
+        line.on('mouseout', function () {
+          line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+        });
 
-      line.on('click', function () {
-        afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
-      });
+        line.on('click', function () {
+          afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
+        });
 
-      allLinesLayer.addLayer(line);
+        allLinesLayer.addLayer(line);
+      } else {
+        console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+      }
     }
   });
 
@@ -251,4 +267,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-3
+4
