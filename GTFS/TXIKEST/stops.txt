@@ -1,0 +1,536 @@
+stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station,wheelchair_boarding,city_name,direction_id,ext_oldid,ext_zenbus_id
+place_VIBO,,Abense de bas Bourg,,43.25950000,-0.87995000,,,1,,0,Viodos-Abense-de-Bas,,place_26764,
+place_AGUE,,Aguerria,,43.46949313,-1.42574563,,,1,,0,Mouguerre,,place_AGUE,
+place_ALAI,,Aire de covoiturage des Aldudes,,43.09832160,-1.42717780,,,1,,0,Aldudes,,place_64016PERK,
+place_HAALD,,Aldabidea,Hasparren - Aldabidea,43.39506000,-1.30960000,,,1,,0,Hasparren,,,
+place_SOAL1,,Alegera,Souraïde - Alegera,43.33968615,-1.47042314,,,1,,0,Souraïde,,,
+place_ITAL,,Altzueta,,43.35019600,-1.41501900,,,1,,0,Itxassou,,place_534500001,
+place_SOUAM,,Amespetou,Souraïde - Amespetou,43.33590342,-1.50745958,,,1,,0,Souraïde,,,
+place_CAAN,,Annie-Enia,,43.35708000,-1.40388450,,,1,,0,Cambo-les-Bains,,place_766170005-766220009,
+place_URAR,,Ardanavy,,43.48474861,-1.32180986,,,1,,0,Urcuit,,place_19173673-19173676,
+place_ARCE,,Aroue Centre,,43.31785000,-0.91893350,,,1,,0,Aroue-Ithorots-Olhaïby,,place_17795,
+place_MAAR,,Arrabotu handia,,43.22116505,-0.89281540,,,1,,0,Mauléon-Licharre,,place_10154-10155,
+place_USAR,,Arrauntz,,43.42038000,-1.48116200,,,1,,0,Ustaritz,,place_17885,
+place_CAAR,,Artekoa,,43.36832800,-1.41057900,,,1,,0,Cambo-les-Bains,,place_557600002,
+place_SPIN,,Artzirin,Saint-Pée-sur-Nivelle - Artzirin,43.35625300,-1.56118800,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_CAAV,,Avenue d'Espagne,,43.35941050,-1.40367500,,,1,,0,Cambo-les-Bains,,place_789240001-795060010,
+place_CAAE,,Avenue de Navarre,Cambo-les-Bains - Avenue de Navarre,43.35904701,-1.39880255,,,1,,0,Cambo-les-Bains,,place_30013,
+place_BABA,,Bascule,,43.47871050,-1.18767000,,,1,,0,Bardos,,place_27655,
+place_USBA,,Bazter Karrika,,43.39288850,-1.45674750,,,1,,0,Ustaritz,,place_27542,
+place_CABE,,Behereko plaza,,43.37034200,-1.39924800,,,1,,0,Cambo-les-Bains,,place_559570001,
+place_DOBE,,Berraute,,43.32617900,-0.98817900,,,1,,0,Domezain-Berraute,,place_27710,
+place_SPBIL,,Bilanoa,Saint-Pée-sur-Nivelle - Bilanoa,43.35622695,-1.56595519,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_CABO,,Bon Air,,43.35920300,-1.39783250,,,1,,0,Cambo-les-Bains,,place_781240028-791180035,
+place_AIBO,,Bourg,,43.19949400,-1.15264100,,,1,,0,Ainhice-Mongelos,,place_17698,
+place_ARBO,,Bourg,,43.23322750,-1.09642000,,,1,,0,Larceveau-Arros-Cibits,,place_15820,
+place_AYBO,,Bourg,,43.39196920,-1.25474495,,,1,,0,Ayherre,,place_10156-10157,
+place_BABO,,Bourg,,43.42776822,-1.25711475,,,1,,0,La Bastide-Clairence,,place_26214,
+place_BRBO,,Bourg,,43.46078500,-1.33319650,,,1,,0,Briscous,,place_18080,
+place_CHBO,,Bourg,,43.29339050,-0.88192550,,,1,,0,Charritte-de-Bas,,place_16173,
+place_GUBO,,Bourg,,43.51236749,-1.20348494,,,1,,0,Guiche,,place_20465240,
+place_HEBO,,Bourg,,43.30670330,-1.24396710,,,1,,0,Hélette,,place_10162,
+place_IHBO,,Bourg,,43.28160940,-1.18088790,,,1,,0,Iholdy,,place_10165,
+place_SABU,,Bourg,,43.15147650,-0.89036850,,,1,,0,Sauguis-Saint-Étienne,,place_15690,
+place_SOBO,,Bourg,Souraïde - Bourg,43.34087100,-1.47421100,,,1,,0,Souraïde,,,
+place_URBO,,Bourg,,43.48615500,-1.33812300,,,1,,0,Urcuit,,place_15823,
+place_LABA,,Bourg/Abbaye,,43.48625650,-1.38733600,,,1,,0,Lahonce,,place_17758,
+place_ASBUD,,Burdin Bidea,Ascain - Burdin Bidea,43.34681000,-1.62371000,,,1,,0,Ascain,,,
+place_CABI,,Camping Bixta Eder,,43.35563895,-1.41430301,,,1,,0,Cambo-les-Bains,,place_29740,
+place_SOAM,,Carrière,Souraïde - Carrière,43.33293840,-1.48960333,,,1,,0,Souraïde,,,
+place_IKEA,,Centre Commercial Ametzondo,,43.48081100,-1.44299600,,,1,,0,Saint-Pierre-d'Irube,,place_IKEA,
+place_OSCE,,Centre de Loisirs,,43.24300511,-1.28442942,,,1,,0,Ossès,,place_16869450,
+place_URCE,,Centre de secours,,43.49138200,-1.29885700,,,1,,0,Urt,,place_15431,
+place_MOCE,,Centre Européen Fret,,43.48835600,-1.43274400,,,1,,0,Mouguerre,,place_29735,
+place_HACF,,CFA,,43.38179050,-1.33357900,,,1,,0,Hasparren,,place_26159,
+place_SJCHA,,Chantaco  LP Arrue ~ Xantako  Arrue LP,Saint-Jean-de-Luz - Chantaco  LP Arrue ~ Xantako  Arrue LP,43.37522800,-1.63794425,,,1,,0,Saint-Jean-de-Luz,,,
+place_SPCHE,,Cherchebruit ~ Herburua,Saint-Pée-sur-Nivelle - Cherchebruit ~ Herburua,43.32178961,-1.55026303,,,1,,0,Saint-Pée-sur-Nivelle,,place_SPECHE,
+place_CACH,,Chocolaterie,,43.35318900,-1.39851150,,,1,,0,Cambo-les-Bains,,place_771470042-787110038,
+place_URCH,,Château d'eau,,43.48731450,-1.35632150,,,1,,0,Urcuit,,place_15825,
+place_URCL,,Clos Biscarrague,,43.48737254,-1.34392151,,,1,,0,Urcuit,,place_26221,
+place_SACOL,,Col de Saint Ignace ~ San Inazioko Lepoa,Sare - Col de Saint Ignace ~ San Inazioko Lepoa,43.32525500,-1.60056800,,,1,,0,Sare,,,
+place_SACJ,,Collège Jean Pujo,,43.18255000,-1.33510000,,,1,,0,Saint-Étienne-de-Baïgorry,,place_17243;place_SACO,
+place_AIDAN,,Dantxaria ~ Dantxarinea,Ainhoa - Dantxaria ~ Dantxarinea,43.29348200,-1.50475000,,,1,,0,Ainhoa,,,
+place_URDE,,Destinée,,43.48778300,-1.35012650,,,1,,0,Urcuit,,place_26220,
+place_DOPL,,Domezain Place,,43.32592600,-0.96540300,,,1,,0,Domezain-Berraute,,place_17796,
+place_CADO,,Donapetria,,43.36250300,-1.38048100,,,1,,0,Cambo-les-Bains,,place_540030002,
+place_LADO,,Doria,,43.47314500,-1.39591750,,,1,,0,Lahonce,,place_17738,
+place_SPECO,,Ecole d'Amotz ~ Amotzeko Eskola,Saint-Pée-sur-Nivelle - Ecole d'Amotz ~ Amotzeko Eskola,43.33536800,-1.54871700,,,1,,0,Saint-Pée-sur-Nivelle,,place_SPECO,
+place_EDF,,EDF,,43.47037050,-1.48824650,,,1,,0,Bayonne,,place_EDF,
+place_AREG,,Eglise,,43.39990650,-1.10832600,,,1,,0,Arraute-Charritte,,place_15145,
+place_GAEG,,Eglise,,43.34056800,-1.05897800,,,1,,0,Garris,,place_18748,
+place_SAEG,,Eglise,,43.32658200,-1.03500100,,,1,,0,Saint-Palais,,place_15365,
+place_USEG,,Eglise,,43.39881700,-1.45536050,,,1,,0,Ustaritz,,place_18092,
+place_MOEG,,Eglise du Bourg,,43.46723500,-1.41630700,,,1,,0,Mouguerre,,place_18351,
+place_CAEL,,Elorrimendi,,43.35477950,-1.40555950,,,1,,0,Cambo-les-Bains,,place_740780001-777510033,
+place_IREN,,Entrée du Village,,43.17698000,-1.30162100,,,1,,0,Irouléguy,,place_26577,
+place_CAER,,Errobi Ikastola,,43.36042350,-1.40573100,,,1,,0,Cambo-les-Bains,,place_771490001-793150001,
+place_ESPL,,Espes Place,,43.26777400,-0.87976800,,,1,,0,Espès-Undurein,,place_16737,
+place_SOAL,,Etxetoa,Souraïde - Etxetoa,43.33822403,-1.46927784,,,1,,0,Souraïde,,,
+place_HAEY,,Eyhertzea,,43.38973450,-1.30325150,,,1,,0,Hasparren,,place_27616,
+place_CAFA,,Fagalde,,43.35452950,-1.40332600,,,1,,0,Cambo-les-Bains,,place_779450046-789250001,
+place_SAFO,,Fronton,,43.17872946,-1.34077982,,,1,,0,Saint-Étienne-de-Baïgorry,,place_16869606-17241-17273757,
+place_TRFR,,Fronton,,43.13047300,-0.87633650,,,1,,0,Trois-Villes,,place_16894,
+place_AIAIN,,Fronton ~ Pilota Plaza,Ainhoa - Fronton ~ Pilota Plaza,43.30716300,-1.49891500,,,1,,0,Ainhoa,,,
+place_SAGK,,Gaineko Karrika,,43.17487383,-1.34539361,,,1,,0,Saint-Étienne-de-Baïgorry,,place_17273677-17273693,
+place_SAGL,,Galanaene,,43.16605000,-1.23365000,,,1,,0,Saint-Jean-Pied-de-Port,,place_29868,
+place_ASGA,,Garataine,,43.16786400,-1.25230700,,,1,,0,Ascarat,,place_26517,
+place_MOGA,,Garatia,,43.46213400,-1.40112850,,,1,,0,Mouguerre,,place_27624,
+place_MAGA,,Gare,,43.22532800,-0.88871200,,,1,,0,Mauléon-Licharre,,place_18111,
+place_SAGD,,Gare d’Arrossa,,43.23453800,-1.30512950,,,1,,0,Saint-Martin-d'Arrossa,,place_64490GAMA,
+place_CAGR,,Gare Routière,,43.36020646,-1.40813331,,,1,,0,Cambo-les-Bains,,place_30012,
+place_USGA,,Gare routière,,43.38969000,-1.45220800,,,1,,0,Ustaritz,,place_10340,
+place_CAGS,,Gare SNCF,Cambo-les-Bains - Gare SNCF,43.36512596,-1.39697162,,,1,,0,Cambo-les-Bains,,place_27524-551800002,
+place_SAGS,,Gare SNCF,,43.16760000,-1.23750000,,,1,,0,Saint-Jean-Pied-de-Port,,place_27788,
+place_GARI,,Garinde,,43.48358720,-1.45343069,,,1,,0,Bayonne,,place_GARI,
+place_MEGE,,Gerezieta,,43.34816525,-1.27286165,,,1,,0,Mendionde,,place_10302-10303,
+place_GOPL,,Gotein Place,,43.19025000,-0.90340700,,,1,,0,Gotein-Libarrenx,,place_18317,
+place_CLGR,,Grancher,,43.35600400,-1.39951150,,,1,,0,Cambo-les-Bains,,place_526700001-537610001,
+place_SAGRO,,Grottes de Sare ~ Sarako Lezeak,Sare - Grottes de Sare ~ Sarako Lezeak,43.26821400,-1.57158700,,,1,,0,Sare,,,
+place_SJHAL,,Halte Routière ~ Autobus Geltokia,Saint-Jean-de-Luz - Halte Routière ~ Autobus Geltokia,43.38607650,-1.66088900,,,1,,0,Saint-Jean-de-Luz,,,
+place_CAHA,,Haurtzain,,43.36293950,-1.39060750,,,1,,0,Cambo-les-Bains,,place_775760001-796830001,
+place_ESHA,,Haïtzaga,Espelette - Haïtzaga,43.34407232,-1.43788892,,,1,,0,Espelette,,place_26092,
+place_SPHE,,Helbarrun,Saint-Pée-sur-Nivelle - Helbarrun,43.36103200,-1.60975000,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_USHE,,Herauritz,,43.41505900,-1.47005900,,,1,,0,Ustaritz,,place_17988,
+place_SAHO,,Hôpital,,43.32583950,-1.02609550,,,1,,0,Saint-Palais,,place_30023,
+place_SPIB,,Ibarrun,Saint-Pée-sur-Nivelle - Ibarrun,43.35611000,-1.56898700,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_CAIG,,Iguzkian,,43.36558100,-1.40927300,,,1,,0,Cambo-les-Bains,,place_546330002,
+place_SPITH,,Ithurraldea,Saint-Pée-sur-Nivelle - Ithurraldea,43.34685900,-1.54442800,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_ITIT,,Itsasuko Herriko Etxea,,43.33418200,-1.40689300,,,1,,0,Itxassou,,place_775610036-777500035,
+place_CAJA,,Jardin Public,,43.36818450,-1.40004700,,,1,,0,Cambo-les-Bains,,place_740770001-779530039,
+place_OSJE,,Jeantinea,,43.24997700,-1.06492050,,,1,,0,Ostabat-Asme,,place_26445,
+place_CAJU,,Juantxuto,,43.35749000,-1.40200700,,,1,,0,Cambo-les-Bains,,place_768160001-791150007,
+place_CAKA,,Kamboko Herriko Etxea,,43.36092300,-1.39922200,,,1,,0,Cambo-les-Bains,,place_559540002,
+place_ESPAT,,Kaminoko Patarra,Espelette - Kaminoko Patarra,43.33981700,-1.44412400,,,1,,0,Espelette,,place_30021,
+place_SPCOL,,Kapotenia,Saint-Pée-sur-Nivelle - Kapotenia,43.34090900,-1.52313600,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_URKEX,,Kexiloa,Urrugne - Kexiloa,43.37762000,-1.67315000,,,1,,0,Urrugne,,,
+place_ETCR,,La Croix,,43.31996050,-0.92393750,,,1,,0,Etcharry,,place_28491,
+place_USGU,,La Guadeloupe,,43.40336000,-1.46023550,,,1,,0,Ustaritz,,place_27544,
+place_LNTQ,,La Nautique,,43.48915550,-1.46640000,,,1,,0,Bayonne,,place_LNTQ,
+place_HALA,,Labiry,,43.38301090,-1.32716360,,,1,,0,Hasparren,,place_10161,
+place_ASLA,,Lanazia Larre Lore,Ascain - Lanazia Larre Lore,43.35666000,-1.63161500,,,1,,0,Ascain,,,
+place_CALA,,Landouzy,,43.35609950,-1.39779150,,,1,,0,Cambo-les-Bains,,place_768140001-781300001,
+place_AYLA,,Lauak,,43.38944170,-1.27164485,,,1,,0,Ayherre,,place_10158-10159,
+place_MELA,,Laxagueborde Berho,,43.16543150,-0.89285150,,,1,,0,Menditte,,place_16480,
+place_BIBA,,Le Battan,,43.46377050,-1.14439650,,,1,,0,Bidache,,place_26346,
+place_URLE,,Les Coteaux,,43.48874600,-1.28972500,,,1,,0,Urt,,place_28264,
+place_BRLE,,Les Salines,,43.45833500,-1.35913150,,,1,,0,Briscous,,place_17810,
+place_SLIN,,Les Salines,,43.48424470,-1.44842898,,,1,,0,Bayonne,,place_SLIN,
+place_CATE,,Les Terrasses,,43.35738333,-1.39574900,,,1,,0,Cambo-les-Bains,,place_766250029-775680002-775740001,
+place_GOBO,,Libarrenx Bourg,,43.19966700,-0.90254750,,,1,,0,Gotein-Libarrenx,,place_19366,
+place_SPEST,,Lot. Estekorena,Saint-Pée-sur-Nivelle - Lot. Estekorena,43.34093000,-1.54927000,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_BRLO,,Lot. Imistola,,43.45889450,-1.35390650,,,1,,0,Briscous,,place_18821,
+place_CALS,,Lot. Souberbielle,,43.36365085,-1.40660678,,,1,,0,Cambo-les-Bains,,place_27531,
+place_CALO,,Lotissement Arriéta,,43.36132600,-1.38354500,,,1,,0,Cambo-les-Bains,,place_27527,
+place_SALUR,,Lur Berri,Sare - Lur Berri,43.31219800,-1.58237800,,,1,,0,Sare,,place_SALUR,
+place_ASLU,,Lur Eder,Ascain - Lur Eder,43.35216644,-1.62780171,,,1,,0,Ascain,,place_ASLU,
+place_LUVI,,Luxe Village,,43.36341000,-1.07162800,,,1,,0,Luxe-Sumberraute,,place_27632,
+place_LYCE,,Lycée,,43.48089400,-1.48274050,,,1,,0,Bayonne,,place_LYCE,
+place_CILYC,,Lycée Maritime ~ Itsas Lizeoa,Ciboure - Lycée Maritime ~ Itsas Lizeoa,43.38337700,-1.68998000,,,1,,0,Ciboure,,,
+place_BOMA,,Mairie,,43.36785450,-1.26807470,,,1,,0,Bonloc,,place_10160,
+place_ISMA,,Mairie,,43.36568935,-1.20455590,,,1,,0,Isturits,,place_10300-10301,
+place_LAMA,,Mairie,,43.18995800,-1.16629750,,,1,,0,Lacarre,,place_16945,
+place_SAMA,,Mairie,,43.33981520,-1.21025580,,,1,,0,Saint-Esteben,,place_10304,
+place_SAMI,,Mairie,,43.34420060,-1.19657855,,,1,,0,Saint-Martin-d'Arberoue,,place_10305-10306,
+place_SJMA,,Mairie,,43.16308348,-1.23779649,,,1,,0,Saint-Jean-Pied-de-Port,,place_18110589-18110592,
+place_TAMI,,Mairie,,43.11752700,-0.86426300,,,1,,0,Tardets-Sorholus,,place_17875,
+place_UHMA,,Mairie,,43.27885000,-1.02163750,,,1,,0,Uhart-Mixe,,place_27815,
+place_CAMR,,Marienia,,43.34989300,-1.39901050,,,1,,0,Cambo-les-Bains,,place_771440002-785110003,
+place_MRRC,,Marracq / Largenté,,43.47663409,-1.48400526,,,1,,0,Bayonne,,place_MRCC-MRRC,
+place_CLMR,,Marronniers,,43.36213450,-1.40366450,,,1,,0,Cambo-les-Bains,,place_781290001-789170094,
+place_HAMN,,Mendeala,,43.38380850,-1.31303800,,,1,,0,Hasparren,,place_29872,
+place_ESME,,Mendi Alde Bourg,Espelette - Mendi Alde Bourg,43.33839963,-1.44727771,,,1,,0,Espelette,,place_30022,
+place_MOME,,Mendilaskor,,43.46252900,-1.40648200,,,1,,0,Mouguerre,,place_27244,
+place_NPLN,,Napoléon,,43.48697990,-1.46274638,,,1,,0,Bayonne,,place_NPLN,
+place_BAOL,,Olhaberri,,43.12640060,-1.37472310,,,1,,0,Banca,,place_64092OLHA,
+place_ITOD,,Ordokia,,43.33738516,-1.40345684,,,1,,0,Itxassou,,place_19422082-775700023-793140001,
+place_BEOY,,Oyantoa,,43.31314900,-1.01120950,,,1,,0,Béhasque-Lapiste,,place_27818,
+place_BRPA,,Pagoeta,,43.44941450,-1.33482400,,,1,,0,Briscous,,place_18071,
+place_LAPA,,Parc d'activités,,43.48985300,-1.42668650,,,1,,0,Lahonce,,place_10401-10628,
+place_SAPA,,Parking piscine Municipale,,43.18329428,-1.33414232,,,1,,0,Saint-Étienne-de-Baïgorry,,place_16869454,
+place_CAPA,,Paxkaleku,,43.36022100,-1.38526900,,,1,,0,Cambo-les-Bains,,place_548730037,
+place_ALPI,,Pierre Oteiza,,43.08949750,-1.42444950,,,1,,0,Aldudes,,place_64016MANE,
+place_ITPI,,Pilota plaza,,43.33350300,-1.41291400,,,1,,0,Itxassou,,place_557610002,
+place_BAPI,,Pisciculture,,43.12272868,-1.39786873,,,1,,0,Banca,,place_16873697,
+place_CAPI,,Piscine,,43.35844400,-1.40781450,,,1,,0,Cambo-les-Bains,,place_775750001-783510001,
+place_BAPL,,Place,,43.47590500,-1.20296050,,,1,,0,Bardos,,place_17805,
+place_SAPL,,Place,,43.16547800,-1.19413000,,,1,,0,Saint-Jean-le-Vieux,,place_19182,
+place_BASQ,,Place des Basques,,43.49367800,-1.47902700,,,1,,0,Bayonne,,place_BASQ,
+place_BIPL,,Place du Fronton,,43.48375900,-1.14128800,,,1,,0,Bidache,,place_29737,
+place_URPL,,Place d’Urepel,,43.07047120,-1.41680120,,,1,,0,Urepel,,place_64543UREP,
+place_HAHA,,Place Harana,Hasparren - Place Harana,43.38475400,-1.30365400,,,1,,0,Hasparren,,place_27615,
+place_CAPS,,Place Sorhainde,Cambo-les-Bains - Place Sorhainde,43.36120515,-1.40124593,,,1,,0,Cambo-les-Bains,,place_26163,
+place_ASPLA,,Place ~ Plaza,Ascain - Place ~ Plaza,43.34482150,-1.62080750,,,1,,0,Ascain,,,
+place_URPE,,Place/Ecole Saint James,,43.49402000,-1.29133500,,,1,,0,Urt,,place_17996,
+place_SPAMO,,Pont d'Amotz ~ Amotzeko Zubia,Saint-Pée-sur-Nivelle - Pont d'Amotz ~ Amotzeko Zubia,43.32920000,-1.54475000,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_SAPO,,Pont D'Arrossa,,43.22976130,-1.30224740,,,1,,0,Saint-Martin-d'Arrossa,,place_64490PTAR,
+place_SPPO,,Pont de Zumabia ~ Zumabiako zubia,Saint-Pée-sur-Nivelle - Pont de Zumabia ~ Zumabiako zubia,43.36489390,-1.59058131,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_CAPD,,Pont des Thermes,Cambo-les-Bains - Pont des Thermes,43.35569210,-1.39087696,,,1,,0,Cambo-les-Bains,,place_27528,
+place_GUPO,,Port,,43.52183010,-1.19651760,,,1,,0,Guiche,,place_10311,
+place_URPO,,Port,,43.49876300,-1.29832400,,,1,,0,Urt,,place_CD64-10762,
+place_CAPR,,Portail Arnaga,,43.36686900,-1.41592100,,,1,,0,Cambo-les-Bains,,place_27535,
+place_SAPOR,,Portua,Sare - Portua,43.30947500,-1.57246150,,,1,,0,Sare,,place_SAPOR,
+place_MAPO,,Potroénéa,,43.37951350,-1.08704750,,,1,,0,Masparraute,,place_27636,
+place_CAPT,,Putzunia,,43.36267800,-1.40161000,,,1,,0,Cambo-les-Bains,,place_564860046,
+place_BRCO,,Qu. La Commune,,43.46635200,-1.28231700,,,1,,0,Briscous,,place_28452,
+place_LALE,,Qu.Legarria,,43.37170300,-1.43149300,,,1,,0,Larressore,,place_17987,
+place_RESP,,Quai Resplandy,,43.48527250,-1.45963800,,,1,,0,Bayonne,,place_RESP,
+place_SPQUA,,Quartier Lac ~ Aintzira Auzoa,Saint-Pée-sur-Nivelle - Quartier Lac ~ Aintzira Auzoa,43.34357010,-1.52806671,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_HERD,,RD22,,43.30385025,-1.25185360,,,1,,0,Hélette,,place_10163-10164,
+place_REDU,,Réduit Boufflers,,43.49280200,-1.47204550,,,1,,0,Bayonne,,place_REDU,
+place_STLE,,Saint Léon,,43.48928662,-1.48232272,,,1,,0,Bayonne,,place_STLE,
+place_IRSA,,Salle Airoski,,43.25768700,-1.22762340,,,1,,0,Irissarry,,place_10166,
+place_ASSE,,Serres,Ascain - Serres,43.36235101,-1.63654178,,,1,,0,Ascain,,,
+place_TECH,,Technocité,,43.46795382,-1.49159167,,,1,,0,Bayonne,,place_TECH,
+place_LATE,,Tellechea,,43.48175550,-1.39225350,,,1,,0,Lahonce,,place_19118,
+place_CATO,,Toki Eder,,43.36151800,-1.39467200,,,1,,0,Cambo-les-Bains,,place_532500003,
+place_HATO,,Toki Ona,,43.40718850,-1.31167000,,,1,,0,Hasparren,,place_16015,
+place_CATR,,Trinquet,,43.36182000,-1.40029000,,,1,,0,Cambo-les-Bains,,place_568830002,
+place_ESCE,,Undurein Centre,,43.28250000,-0.87580000,,,1,,0,Espès-Undurein,,place_17793,
+place_SJUR,,Ur Bidea,Saint-Jean-de-Luz - Ur Bidea,43.38320350,-1.65002700,,,1,,0,Saint-Jean-de-Luz,,,
+place_HAUR,,Urcuray,,43.36767600,-1.35659100,,,1,,0,Hasparren,,place_19077,
+place_CAUR,,Urtsua,,43.36085100,-1.37863500,,,1,,0,Cambo-les-Bains,,place_526690002,
+place_CAUS,,Usimendia,,43.35701700,-1.41011450,,,1,,0,Cambo-les-Bains,,place_779560001-783520001,
+place_BEVI,,Village,,43.32768100,-1.00626150,,,1,,0,Béhasque-Lapiste,,place_27708,
+place_ETVI,,Village,,43.32157200,-0.92881650,,,1,,0,Etcharry,,place_27711,
+place_MAVI,,Village,,43.38988850,-1.09734200,,,1,,0,Masparraute,,place_27643,
+place_SAVI,,Village,,43.52347500,-1.15756650,,,1,,0,Sames,,place_10310,
+place_UHVI,,Village,,43.16462500,-1.24322000,,,1,,0,Uhart-Cize,,place_27786,
+place_VIEG,,Viodos Egui Begia,,43.24465300,-0.87899150,,,1,,0,Viodos-Abense-de-Bas,,place_16996,
+place_SPXAN,,Xan Ithurria Gantxiki,Saint-Pée-sur-Nivelle - Xan Ithurria Gantxiki,43.35470500,-1.54888500,,,1,,0,Saint-Pée-sur-Nivelle,,place_SPXAN,
+place_SPZI,,Z.A. Lizardia ~ Lizardia A.E.,Saint-Pée-sur-Nivelle - Z.A. Lizardia ~ Lizardia A.E.,43.35773230,-1.57470681,,,1,,0,Saint-Pée-sur-Nivelle,,,
+place_BRME,,Z.A. Mendiko Borda,,43.44202200,-1.32326200,,,1,,0,Briscous,,place_CD64-10760,
+place_ALER,,ZA Erreka Gorri,,43.09404290,-1.42498170,,,1,,0,Aldudes,,place_64016MIGE,
+place_BAZA,,ZAC Makila,,43.44063200,-1.48790200,,,1,,0,Bassussarry,,place_27551,
+VIBO01,,Abense de bas Bourg,Abense de bas Bourg - Viodos-Abense-de-Bas,43.25970000,-0.88000000,,,0,place_VIBO,0,Viodos-Abense-de-Bas,0,26764_1,VIBO01
+VIBO02,,Abense de bas Bourg,Abense de bas Bourg - Viodos-Abense-de-Bas,43.25930000,-0.87990000,,,0,place_VIBO,0,Viodos-Abense-de-Bas,1,26764_2,VIBO02
+AGUE01,,Aguerria,Aguerria - Mouguerre,43.46972600,-1.42618700,,,0,place_AGUE,0,Mouguerre,0,15748_1,AGUE01
+AGUE02,,Aguerria,Aguerria - Mouguerre,43.46926026,-1.42530425,,,0,place_AGUE,0,Mouguerre,1,15748_2,AGUE02
+ALAI02,,Aire de covoiturage des Aldudes,Aire de covoiturage des Aldudes - Aldudes,43.09832160,-1.42717780,,,0,place_ALAI,0,Aldudes,,64016PERK01,ALAI02
+HAALD2,,Aldabidea,Hasparren - Aldabidea,43.39506000,-1.30960000,,,0,place_HAALD,0,Hasparren,1,,HAALD2
+SOAL02,,Alegera,Souraïde - Alegera,43.33967347,-1.47044326,,,0,place_SOAL1,0,Souraïde,0,,SOAL02
+ITAL01,,Altzueta,Altzueta - Itxassou,43.35019600,-1.41501900,,,0,place_ITAL,0,Itxassou,,534500001,ITAL01
+SOUAM1,,Amespetou,Souraïde - Amespetou,43.33577759,-1.50740460,,,0,place_SOUAM,0,Souraïde,0,,SOUAM1
+SOUAM2,,Amespetou,Souraïde - Amespetou,43.33593854,-1.50753200,,,0,place_SOUAM,0,Souraïde,1,,SOUAM2
+CAAN01,,Annie-Enia,Annie-Enia - Cambo-les-Bains,43.35707800,-1.40384100,,,0,place_CAAN,0,Cambo-les-Bains,0,766220009,CAAN01
+CAAN02,,Annie-Enia,Annie-Enia - Cambo-les-Bains,43.35708200,-1.40392800,,,0,place_CAAN,0,Cambo-les-Bains,1,766170005,CAAN02
+URAR01,,Ardanavy,Ardanavy - Urcuit,43.48472199,-1.32200363,,,0,place_URAR,0,Urcuit,0,19173676,URAR01
+URAR02,,Ardanavy,Ardanavy - Urcuit,43.48477522,-1.32161608,,,0,place_URAR,0,Urcuit,1,19173673,URAR02
+ARCE01,,Aroue Centre,Aroue Centre - Aroue-Ithorots-Olhaïby,43.31806000,-0.91921100,,,0,place_ARCE,0,Aroue-Ithorots-Olhaïby,0,17795_1,ARCE01
+ARCE02,,Aroue Centre,Aroue Centre - Aroue-Ithorots-Olhaïby,43.31764000,-0.91865600,,,0,place_ARCE,0,Aroue-Ithorots-Olhaïby,1,17795_2,ARCE02
+MAAR01,,Arrabotu handia,Arrabotu handia - Mauléon-Licharre,43.22098520,-0.89262230,,,0,place_MAAR,0,Mauléon-Licharre,0,10154,MAAR01
+MAAR02,,Arrabotu handia,Arrabotu handia - Mauléon-Licharre,43.22134490,-0.89300850,,,0,place_MAAR,0,Mauléon-Licharre,1,10155,MAAR02
+USAR01,,Arrauntz,Arrauntz - Ustaritz,43.42038000,-1.48116200,,,0,place_USAR,0,Ustaritz,,17885_1,USAR01
+CAAR01,,Artekoa,Artekoa - Cambo-les-Bains,43.36832800,-1.41057900,,,0,place_CAAR,0,Cambo-les-Bains,,557600002,CAAR01
+SPIN01,,Artzirin,Saint-Pée-sur-Nivelle - Artzirin,43.35621400,-1.56113800,,,0,place_SPIN,0,Saint-Pée-sur-Nivelle,0,,SPIN01
+SPIN02,,Artzirin,Saint-Pée-sur-Nivelle - Artzirin,43.35629200,-1.56123800,,,0,place_SPIN,0,Saint-Pée-sur-Nivelle,1,,SPIN02
+CAAV01,,Avenue d'Espagne,Avenue d'Espagne - Cambo-les-Bains,43.35946200,-1.40370000,,,0,place_CAAV,0,Cambo-les-Bains,0,789240001,CAAV01
+CAAV02,,Avenue d'Espagne,Avenue d'Espagne - Cambo-les-Bains,43.35935900,-1.40365000,,,0,place_CAAV,0,Cambo-les-Bains,1,795060010,CAAV02
+CAAE01,,Avenue de Navarre,Avenue de Navarre - Cambo-les-Bains,43.35871710,-1.39869364,,,0,place_CAAE,0,Cambo-les-Bains,0,30013_1,CAAE01
+CAAE02,,Avenue de Navarre,Avenue de Navarre - Cambo-les-Bains,43.35927551,-1.39891682,,,0,place_CAAE,0,Cambo-les-Bains,1,30013_2,CAAE02
+BABA01,,Bascule,Bascule - Bardos,43.47864100,-1.18821500,,,0,place_BABA,0,Bardos,0,27655_1,BABA01
+BABA02,,Bascule,Bascule - Bardos,43.47878000,-1.18712500,,,0,place_BABA,0,Bardos,1,27655_2,BABA02
+USBA01,,Bazter Karrika,Bazter Karrika - Ustaritz,43.39304900,-1.45685800,,,0,place_USBA,0,Ustaritz,,27542_1,USBA01
+USBA02,,Bazter Karrika,Bazter Karrika - Ustaritz,43.39272800,-1.45663700,,,0,place_USBA,0,Ustaritz,1,27542_2,USBA02
+CABE01,,Behereko plaza,Behereko plaza - Cambo-les-Bains,43.37034200,-1.39924800,,,0,place_CABE,0,Cambo-les-Bains,,559570001,CABE01
+DOBE01,,Berraute,Berraute - Domezain-Berraute,43.32626300,-0.98837200,,,0,place_DOBE,0,Domezain-Berraute,0,27710_1,DOBE01
+DOBE02,,Berraute,Berraute - Domezain-Berraute,43.32609500,-0.98798600,,,0,place_DOBE,0,Domezain-Berraute,1,27710_2,DOBE02
+SPBIL1,,Bilanoa,Saint-Pée-sur-Nivelle - Bilanoa,43.35617429,-1.56648627,,,0,place_SPBIL,0,Saint-Pée-sur-Nivelle,0,,SPBIL1
+SPBIL2,,Bilanoa,Saint-Pée-sur-Nivelle - Bilanoa,43.35626400,-1.56557700,,,0,place_SPBIL,0,Saint-Pée-sur-Nivelle,1,,SPBIL2
+CABO01,,Bon Air,Bon Air - Cambo-les-Bains,43.35923700,-1.39777800,,,0,place_CABO,0,Cambo-les-Bains,0,791180035,CABO01
+CABO02,,Bon Air,Bon Air - Cambo-les-Bains,43.35916900,-1.39788700,,,0,place_CABO,0,Cambo-les-Bains,1,781240028,CABO02
+AIBO01,,Bourg,Bourg - Ainhice-Mongelos,43.19949400,-1.15264100,,,0,place_AIBO,0,Ainhice-Mongelos,,17698_1,AIBO01
+ARBO01,,Bourg,Bourg - Larceveau-Arros-Cibits,43.23292300,-1.09659400,,,0,place_ARBO,0,Larceveau-Arros-Cibits,0,15820_1,ARBO01
+ARBO02,,Bourg,Bourg - Larceveau-Arros-Cibits,43.23353200,-1.09624600,,,0,place_ARBO,0,Larceveau-Arros-Cibits,1,15820_2,ARBO02
+AYBO01,,Bourg,Bourg - Ayherre,43.39198820,-1.25473890,,,0,place_AYBO,0,Ayherre,0,10157,AYBO01
+AYBO02,,Bourg,Bourg - Ayherre,43.39195020,-1.25475100,,,0,place_AYBO,0,Ayherre,1,10156,AYBO02
+BABO02,,Bourg,Bourg - La Bastide-Clairence,43.42776822,-1.25711475,,,0,place_BABO,0,La Bastide-Clairence,,26214_1,BABO02
+BRBO01,,Bourg,Bourg - Briscous,43.46082100,-1.33317500,,,0,place_BRBO,0,Briscous,0,18080_1,BRBO01
+BRBO02,,Bourg,Bourg - Briscous,43.46074900,-1.33321800,,,0,place_BRBO,0,Briscous,1,18080_2,BRBO02
+CHBO01,,Bourg,Bourg - Charritte-de-Bas,43.29349900,-0.88201500,,,0,place_CHBO,0,Charritte-de-Bas,0,16173_1,CHBO01
+CHBO02,,Bourg,Bourg - Charritte-de-Bas,43.29328200,-0.88183600,,,0,place_CHBO,0,Charritte-de-Bas,1,16173_2,CHBO02
+GUBO01,,Bourg,Bourg - Guiche,43.51235995,-1.20340447,,,0,place_GUBO,0,Guiche,0,20465240_1,GUBO01
+GUBO02,,Bourg,Bourg - Guiche,43.51237503,-1.20356541,,,0,place_GUBO,0,Guiche,1,20465240_2,GUBO02
+HEBO01,,Bourg,Bourg - Hélette,43.30670330,-1.24396710,,,0,place_HEBO,0,Hélette,,10162,HEBO01
+IHBO01,,Bourg,Bourg - Iholdy,43.28160940,-1.18088790,,,0,place_IHBO,0,Iholdy,,10165,IHBO01
+SABU01,,Bourg,Bourg - Sauguis-Saint-Étienne,43.15150000,-0.89030000,,,0,place_SABU,0,Sauguis-Saint-Étienne,0,15690_1,SABU01
+SABU02,,Bourg,Bourg - Sauguis-Saint-Étienne,43.15145300,-0.89043700,,,0,place_SABU,0,Sauguis-Saint-Étienne,1,15690_2,SABU02
+SOBO01,,Bourg,Souraïde - Bourg,43.34078029,-1.47419357,,,0,place_SOBO,0,Souraïde,0,,SOBO01
+SOBO02,,Bourg,Souraïde - Bourg,43.34088661,-1.47421636,,,0,place_SOBO,0,Souraïde,1,,SOBO02
+URBO02,,Bourg,Bourg - Urcuit,43.48615500,-1.33812300,,,0,place_URBO,0,Urcuit,,15823_1,URBO02
+LABA01,,Bourg/Abbaye,Bourg/Abbaye - Lahonce,43.48632600,-1.38733100,,,0,place_LABA,0,Lahonce,0,17758_2,LABA01
+LABA02,,Bourg/Abbaye,Bourg/Abbaye - Lahonce,43.48618700,-1.38734100,,,0,place_LABA,0,Lahonce,1,17758_1,LABA02
+ASBUD,,Burdin Bidea,Ascain - Burdin Bidea,43.34681000,-1.62371000,,,0,place_ASBUD,0,Ascain,1,,ASBUD
+CABI01,,Camping Bixta Eder,Camping Bixta Eder - Cambo-les-Bains,43.35566500,-1.41437100,,,0,place_CABI,0,Cambo-les-Bains,,29740_2,CABI01
+CABI02,,Camping Bixta Eder,Camping Bixta Eder - Cambo-les-Bains,43.35560600,-1.41413600,,,0,place_CABI,0,Cambo-les-Bains,,29740_1,CABI02
+SOAM01,,Carrière,Souraïde - Carrière,43.33288475,-1.48960266,,,0,place_SOAM,0,Souraïde,0,,SOAM01
+SOAM02,,Carrière,Souraïde - Carrière,43.33295011,-1.48956712,,,0,place_SOAM,0,Souraïde,1,,SOAM02
+IKEA03,,Centre Commercial Ametzondo,Centre Commercial Ametzondo - Saint-Pierre-d'Irube,43.48081100,-1.44299600,,,0,place_IKEA,0,Saint-Pierre-d'Irube,,29869_1,IKEA03
+OSCE01,,Centre de Loisirs,Centre de Loisirs - Ossès,43.24300511,-1.28442942,,,0,place_OSCE,0,Ossès,,16869450,OSCE01
+URCE01,,Centre de secours,Centre de secours - Urt,43.49138200,-1.29885700,,,0,place_URCE,0,Urt,,15431_1,URCE01
+MOCE02,,Centre Européen Fret,Centre Européen Fret - Mouguerre,43.48835600,-1.43274400,,,0,place_MOCE,0,Mouguerre,,29735_1,MOCE02
+HACF01,,CFA,CFA - Hasparren,43.38188600,-1.33354800,,,0,place_HACF,0,Hasparren,,26159_2,HACF01
+HACF02,,CFA,CFA - Hasparren,43.38169500,-1.33361000,,,0,place_HACF,0,Hasparren,1,26159_1,HACF02
+SJCHA1,,Chantaco  LP Arrue ~ Xantako  Arrue LP,Saint-Jean-de-Luz - Chantaco  LP Arrue ~ Xantako  Arrue LP,43.37541900,-1.63788400,,,0,place_SJCHA,0,Saint-Jean-de-Luz,,,SJCHA1
+SJCHA2,,Chantaco  LP Arrue ~ Xantako  Arrue LP,Saint-Jean-de-Luz - Chantaco  LP Arrue ~ Xantako  Arrue LP,43.37507100,-1.63774100,,,0,place_SJCHA,0,Saint-Jean-de-Luz,,,SJCHA2
+SPCHE1,,Cherchebruit ~ Herburua,Saint-Pée-sur-Nivelle - Cherchebruit ~ Herburua,43.32175107,-1.55029857,,,0,place_SPCHE,0,Saint-Pée-sur-Nivelle,,126;SACH01,SPCHE1
+SPCHE2,,Cherchebruit ~ Herburua,Saint-Pée-sur-Nivelle - Cherchebruit ~ Herburua,43.32179400,-1.55021877,,,0,place_SPCHE,0,Saint-Pée-sur-Nivelle,1,,SPCHE2
+CACH01,,Chocolaterie,Chocolaterie - Cambo-les-Bains,43.35302700,-1.39843200,,,0,place_CACH,0,Cambo-les-Bains,0,787110038,CACH01
+CACH02,,Chocolaterie,Chocolaterie - Cambo-les-Bains,43.35335100,-1.39859100,,,0,place_CACH,0,Cambo-les-Bains,1,771470042,CACH02
+URCH01,,Château d'eau,Château d'eau - Urcuit,43.48738600,-1.35632600,,,0,place_URCH,0,Urcuit,0,15825_1,URCH01
+URCH02,,Château d'eau,Château d'eau - Urcuit,43.48724300,-1.35631700,,,0,place_URCH,0,Urcuit,1,15825_2,URCH02
+URCL01,,Clos Biscarrague,Clos de Biscarrague - Urcuit,43.48747194,-1.34422469,,,0,place_URCL,0,Urcuit,0,22129275,URCL01
+URCL02,,Clos Biscarrague,Clos de Biscarrague - Urcuit,43.48711387,-1.34364265,,,0,place_URCL,0,Urcuit,1,22129283,URCL02
+SACOL0,,Col de Saint Ignace ~ San Inazioko Lepoa,Sare - Col de Saint Ignace ~ San Inazioko Lepoa,43.32525500,-1.60056800,,,0,place_SACOL,0,Sare,,,SACOL0
+SACJ01,,Collège Jean Pujo,Collège Jean Pujo - Saint-Étienne-de-Baïgorry,43.18250000,-1.33510000,,,0,place_SACJ,0,Saint-Étienne-de-Baïgorry,0,17243_1;16869457,SACJ01
+SACJ02,,Collège Jean Pujo,Collège Jean Pujo - Saint-Étienne-de-Baïgorry,43.18260000,-1.33510000,,,0,place_SACJ,0,Saint-Étienne-de-Baïgorry,1,17243_2;16869459,SACJ02
+AIDAN3,,Dantxaria ~ Dantxarinea,Ainhoa - Dantxaria ~ Dantxarinea,43.29348200,-1.50475000,,,0,place_AIDAN,0,Ainhoa,,,AIDAN3
+URDE01,,Destinée,Destinée - Urcuit,43.48780200,-1.35028000,,,0,place_URDE,0,Urcuit,0,26220_1,URDE01
+URDE02,,Destinée,Destinée - Urcuit,43.48776400,-1.34997300,,,0,place_URDE,0,Urcuit,1,26220_2,URDE02
+DOPL01,,Domezain Place,Domezain Place - Domezain-Berraute,43.32592600,-0.96540300,,,0,place_DOPL,0,Domezain-Berraute,,17796_1,DOPL01
+CADO01,,Donapetria,Donapetria - Cambo-les-Bains,43.36250300,-1.38048100,,,0,place_CADO,0,Cambo-les-Bains,,540030002,CADO01
+LADO01,,Doria,Doria - Lahonce,43.47324000,-1.39613600,,,0,place_LADO,0,Lahonce,0,17738_1,LADO01
+LADO02,,Doria,Doria - Lahonce,43.47305000,-1.39569900,,,0,place_LADO,0,Lahonce,1,17738_2,LADO02
+SPECO1,,Ecole d'Amotz ~ Amotzeko Eskola,Saint-Pée-sur-Nivelle - Ecole d'Amotz ~ Amotzeko Eskola,43.33531728,-1.54880283,,,0,place_SPECO,0,Saint-Pée-sur-Nivelle,,510,SPECO1
+SPECO2,,Ecole d'Amotz ~ Amotzeko Eskola,Saint-Pée-sur-Nivelle - Ecole d'Amotz ~ Amotzeko Eskola,43.33532898,-1.54858825,,,0,place_SPECO,0,Saint-Pée-sur-Nivelle,1,,SPECO2
+EDF01,,EDF,EDF - Bayonne,43.47025700,-1.48838000,,,0,place_EDF,0,Bayonne,1,27563_2,EDF01
+EDF02,,EDF,EDF - Bayonne,43.47048400,-1.48811300,,,0,place_EDF,0,Bayonne,0,27563_1,EDF02
+AREG01,,Eglise,Eglise - Arraute-Charritte,43.39996900,-1.10832300,,,0,place_AREG,0,Arraute-Charritte,0,15145_1,AREG01
+AREG02,,Eglise,Eglise - Arraute-Charritte,43.39984400,-1.10832900,,,0,place_AREG,0,Arraute-Charritte,1,15145_2,AREG02
+GAEG01,,Eglise,Eglise - Garris,43.34042100,-1.05873300,,,0,place_GAEG,0,Garris,0,18748_1,GAEG01
+GAEG02,,Eglise,Eglise - Garris,43.34071500,-1.05922300,,,0,place_GAEG,0,Garris,1,18748_2,GAEG02
+SAEG01,,Eglise,Eglise - Saint-Palais,43.32658200,-1.03500100,,,0,place_SAEG,0,Saint-Palais,,15365_1,SAEG01
+USEG01,,Eglise,Eglise - Ustaritz,43.39825400,-1.45474600,,,0,place_USEG,0,Ustaritz,0,18092_1,USEG01
+USEG02,,Eglise,Eglise - Ustaritz,43.39938000,-1.45597500,,,0,place_USEG,0,Ustaritz,1,18092_2,USEG02
+MOEG01,,Eglise du Bourg,Eglise du Bourg - Mouguerre,43.46723500,-1.41630700,,,0,place_MOEG,0,Mouguerre,,18351_1,MOEG01
+CAEL01,,Elorrimendi,Elorrimendi - Cambo-les-Bains,43.35478500,-1.40553900,,,0,place_CAEL,0,Cambo-les-Bains,0,777510033,CAEL01
+CAEL02,,Elorrimendi,Elorrimendi - Cambo-les-Bains,43.35477400,-1.40558000,,,0,place_CAEL,0,Cambo-les-Bains,1,740780001,CAEL02
+IREN01,,Entrée du Village,Entrée du Village - Irouléguy,43.17698000,-1.30162100,,,0,place_IREN,0,Irouléguy,,26577_1,IREN01
+CAER01,,Errobi Ikastola,Errobi Ikastola - Cambo-les-Bains,43.36045400,-1.40572500,,,0,place_CAER,0,Cambo-les-Bains,0,771490001,CAER01
+CAER02,,Errobi Ikastola,Errobi Ikastola - Cambo-les-Bains,43.36039300,-1.40573700,,,0,place_CAER,0,Cambo-les-Bains,1,793150001,CAER02
+ESPL01,,Espes Place,Espes Place - Espès-Undurein,43.26794800,-0.87953600,,,0,place_ESPL,0,Espès-Undurein,0,16737_1,ESPL01
+ESPL02,,Espes Place,Espes Place - Espès-Undurein,43.26760000,-0.88000000,,,0,place_ESPL,0,Espès-Undurein,1,16737_2,ESPL02
+SOAL01,,Etxetoa,Souraïde - Etxetoa,43.33806797,-1.46919201,,,0,place_SOAL,0,Souraïde,1,,SOAL01
+HAEY01,,Eyhertzea,Eyhertzea - Hasparren,43.38957400,-1.30270000,,,0,place_HAEY,0,Hasparren,0,27616_1,HAEY01
+HAEY02,,Eyhertzea,Eyhertzea - Hasparren,43.38989500,-1.30380300,,,0,place_HAEY,0,Hasparren,1,27616_2,HAEY02
+CAFA01,,Fagalde,Fagalde - Cambo-les-Bains,43.35456000,-1.40327700,,,0,place_CAFA,0,Cambo-les-Bains,0,779450046,CAFA01
+CAFA02,,Fagalde,Fagalde - Cambo-les-Bains,43.35449900,-1.40337500,,,0,place_CAFA,0,Cambo-les-Bains,1,789250001,CAFA02
+SAFO03,,Fronton,Fronton - Saint-Étienne-de-Baïgorry,43.17910000,-1.34050000,,,0,place_SAFO,0,Saint-Étienne-de-Baïgorry,,17241_1,SAFO03
+TRFR01,,Fronton,Fronton - Trois-Villes,43.13039900,-0.87624200,,,0,place_TRFR,0,Trois-Villes,0,16894_1,TRFR01
+TRFR02,,Fronton,Fronton - Trois-Villes,43.13054700,-0.87643100,,,0,place_TRFR,0,Trois-Villes,1,16894_2,TRFR02
+AIAIN1,,Fronton ~ Pilota Plaza,Ainhoa - Fronton ~ Pilota Plaza,43.30713275,-1.49896999,,,0,place_AIAIN,0,Ainhoa,0,,AIAIN1
+AIAIN2,,Fronton ~ Pilota Plaza,Ainhoa - Fronton ~ Pilota Plaza,43.30714836,-1.49887611,,,0,place_AIAIN,0,Ainhoa,1,,AIAIN2
+SAGK01,,Gaineko Karrika,Gaineko Karrika - Saint-Étienne-de-Baïgorry,43.17488752,-1.34545463,,,0,place_SAGK,0,Saint-Étienne-de-Baïgorry,,17273677,SAGK01
+SAGL01,,Galanaene,Galanaene - Saint-Jean-Pied-de-Port,43.16620000,-1.23350000,,,0,place_SAGL,0,Saint-Jean-Pied-de-Port,0,29868_1,SAGL01
+SAGL02,,Galanaene,Galanaene - Saint-Jean-Pied-de-Port,43.16590000,-1.23380000,,,0,place_SAGL,0,Saint-Jean-Pied-de-Port,1,29868_2,SAGL02
+ASGA01,,Garataine,Garataine - Ascarat,43.16786400,-1.25230700,,,0,place_ASGA,0,Ascarat,,26517_1,ASGA01
+MOGA01,,Garatia,Garatia - Mouguerre,43.46216300,-1.40130800,,,0,place_MOGA,0,Mouguerre,0,27624_1,MOGA01
+MOGA02,,Garatia,Garatia - Mouguerre,43.46210500,-1.40094900,,,0,place_MOGA,0,Mouguerre,1,27624_2,MOGA02
+MAGA01,,Gare,Gare - Mauléon-Licharre,43.22532800,-0.88871200,,,0,place_MAGA,0,Mauléon-Licharre,,18111_1,MAGA01
+SAGD02,,Gare d’Arrossa,Gare d’Arrossa - Saint-Martin-d'Arrossa,43.23453800,-1.30512950,,,0,place_SAGD,0,Saint-Martin-d'Arrossa,,64490GAMA01,SAGD02
+CAGR01,,Gare Routière,Gare Routière - Cambo-les-Bains,43.36010700,-1.40819500,,,0,place_CAGR,0,Cambo-les-Bains,,30012_1,CAGR01
+CAGR03,,Gare Routière,Cambo-les-Bains - Gare Routière,43.36024800,-1.40811800,,,0,place_CAGR,0,Cambo-les-Bains,,,CAGR03
+USGA01,,Gare routière,Gare routière - Ustaritz,43.38969000,-1.45220800,,,0,place_USGA,0,Ustaritz,,10340,USGA01
+CAGS01,,Gare SNCF,Gare SNCF - Cambo-les-Bains,43.36512915,-1.39697197,,,0,place_CAGS,0,Cambo-les-Bains,,27524_1,CAGS01
+SAGS01,,Gare SNCF,Gare SNCF - Saint-Jean-Pied-de-Port,43.16760000,-1.23750000,,,0,place_SAGS,0,Saint-Jean-Pied-de-Port,,27788_1,SAGS01
+GARI01,,Garinde,Garinde - Bayonne,43.48358130,-1.45334195,,,0,place_GARI,0,Bayonne,1,10134,GARI01
+GARI02,,Garinde,Garinde - Bayonne,43.48359310,-1.45351943,,,0,place_GARI,0,Bayonne,0,10307,GARI02
+MEGE01,,Gerezieta,Gerezieta - Mendionde,43.34824280,-1.27287680,,,0,place_MEGE,0,Mendionde,0,10303,MEGE01
+MEGE02,,Gerezieta,Gerezieta - Mendionde,43.34808770,-1.27284650,,,0,place_MEGE,0,Mendionde,1,10302,MEGE02
+GOPL01,,Gotein Place,Gotein Place - Gotein-Libarrenx,43.19030000,-0.90333800,,,0,place_GOPL,0,Gotein-Libarrenx,0,18317_1,GOPL01
+GOPL02,,Gotein Place,Gotein Place - Gotein-Libarrenx,43.19020000,-0.90347600,,,0,place_GOPL,0,Gotein-Libarrenx,1,18317_2,GOPL02
+CLGR01,,Grancher,Grancher - Cambo-les-Bains,43.35596800,-1.39950100,,,0,place_CLGR,0,Cambo-les-Bains,0,526700001,CLGR01
+CLGR02,,Grancher,Grancher - Cambo-les-Bains,43.35604000,-1.39952200,,,0,place_CLGR,0,Cambo-les-Bains,1,537610001,CLGR02
+SAGRO0,,Grottes de Sare ~ Sarako Lezeak,Sare - Grottes de Sare ~ Sarako Lezeak,43.26821400,-1.57158700,,,0,place_SAGRO,0,Sare,,,SAGRO0
+SJHAL3,,Halte Routière ~ Autobus Geltokia,Saint-Jean-de-Luz - Halte Routière ~ Autobus Geltokia,43.38623000,-1.66021800,,,0,place_SJHAL,0,Saint-Jean-de-Luz,,,SJHAL3
+CAHA01,,Haurtzain,Haurtzain - Cambo-les-Bains,43.36288800,-1.39068300,,,0,place_CAHA,0,Cambo-les-Bains,0,796830001,CAHA01
+CAHA02,,Haurtzain,Haurtzain - Cambo-les-Bains,43.36299100,-1.39053200,,,0,place_CAHA,0,Cambo-les-Bains,1,775760001,CAHA02
+ESHA01,,Haïtzaga,Espelette - Haïtzaga,43.34405415,-1.43783531,,,0,place_ESHA,0,Espelette,0,26092_2,ESHA01
+ESHA02,,Haïtzaga,Espelette - Haïtzaga,43.34409707,-1.43794991,,,0,place_ESHA,0,Espelette,1,26092_1,ESHA02
+SPHE01,,Helbarrun,Saint-Pée-sur-Nivelle - Helbarrun,43.36098520,-1.60945227,,,0,place_SPHE,0,Saint-Pée-sur-Nivelle,0,,SPHE01
+SPHE02,,Helbarrun,Saint-Pée-sur-Nivelle - Helbarrun,43.36112365,-1.61000749,,,0,place_SPHE,0,Saint-Pée-sur-Nivelle,1,,SPHE02
+USHE01,,Herauritz,Herauritz - Ustaritz,43.41499900,-1.46995000,,,0,place_USHE,0,Ustaritz,0,17988_1,USHE01
+USHE02,,Herauritz,Herauritz - Ustaritz,43.41511900,-1.47016800,,,0,place_USHE,0,Ustaritz,1,17988_2,USHE02
+SAHO01,,Hôpital,Hôpital - Saint-Palais,43.32587000,-1.02606400,,,0,place_SAHO,0,Saint-Palais,0,30023_1,SAHO01
+SAHO02,,Hôpital,Hôpital - Saint-Palais,43.32580900,-1.02612700,,,0,place_SAHO,0,Saint-Palais,1,30023_2,SAHO02
+SPIB01,,Ibarrun,Saint-Pée-sur-Nivelle - Ibarrun,43.35599689,-1.56893872,,,0,place_SPIB,0,Saint-Pée-sur-Nivelle,0,,SPIB01
+SPIB02,,Ibarrun,Saint-Pée-sur-Nivelle - Ibarrun,43.35616266,-1.56900309,,,0,place_SPIB,0,Saint-Pée-sur-Nivelle,1,,SPIB02
+CAIG01,,Iguzkian,Iguzkian - Cambo-les-Bains,43.36558100,-1.40927300,,,0,place_CAIG,0,Cambo-les-Bains,,546330002,CAIG01
+SPITH1,,Ithurraldea,Saint-Pée-sur-Nivelle - Ithurraldea,43.34689363,-1.54503954,,,0,place_SPITH,0,Saint-Pée-sur-Nivelle,0,,SPITH1
+SPITH2,,Ithurraldea,Saint-Pée-sur-Nivelle - Ithurraldea,43.34677951,-1.54386743,,,0,place_SPITH,0,Saint-Pée-sur-Nivelle,1,,SPITH2
+ITIT01,,Itsasuko Herriko Etxea,Itsasuko Herriko Etxea - Itxassou,43.33416700,-1.40685700,,,0,place_ITIT,0,Itxassou,0,775610036,ITIT01
+ITIT02,,Itsasuko Herriko Etxea,Itsasuko Herriko Etxea - Itxassou,43.33419700,-1.40692900,,,0,place_ITIT,0,Itxassou,1,777500035,ITIT02
+CAJA01,,Jardin Public,Jardin Public - Cambo-les-Bains,43.36822100,-1.40007400,,,0,place_CAJA,0,Cambo-les-Bains,0,740770001,CAJA01
+CAJA02,,Jardin Public,Jardin Public - Cambo-les-Bains,43.36814800,-1.40002000,,,0,place_CAJA,0,Cambo-les-Bains,1,779530039,CAJA02
+OSJE01,,Jeantinea,Jeantinea - Ostabat-Asme,43.24989200,-1.06491900,,,0,place_OSJE,0,Ostabat-Asme,0,26445_2,OSJE01
+OSJE02,,Jeantinea,Jeantinea - Ostabat-Asme,43.25006200,-1.06492200,,,0,place_OSJE,0,Ostabat-Asme,1,26445_1,OSJE02
+CAJU01,,Juantxuto,Juantxuto - Cambo-les-Bains,43.35746700,-1.40200800,,,0,place_CAJU,0,Cambo-les-Bains,0,768160001,CAJU01
+CAJU02,,Juantxuto,Juantxuto - Cambo-les-Bains,43.35751300,-1.40200600,,,0,place_CAJU,0,Cambo-les-Bains,1,791150007,CAJU02
+CAKA01,,Kamboko Herriko Etxea,Kamboko Herriko Etxea - Cambo-les-Bains,43.36092300,-1.39922200,,,0,place_CAKA,0,Cambo-les-Bains,,559540002,CAKA01
+ESPAT1,,Kaminoko Patarra,Espelette - Kaminoko Patarra,43.33954000,-1.44468000,,,0,place_ESPAT,0,Espelette,,30021_2,ESPAT1
+ESPAT2,,Kaminoko Patarra,Espelette - Kaminoko Patarra,43.34009400,-1.44356800,,,0,place_ESPAT,0,Espelette,,30021_1,ESPAT2
+SPCOL3,,Kapotenia,Saint-Pée-sur-Nivelle - Kapotenia,43.34090900,-1.52313600,,,0,place_SPCOL,0,Saint-Pée-sur-Nivelle,,,SPCOL3
+URKEX0,,Kexiloa,Urrugne - Kexiloa,43.37762000,-1.67315000,,,0,place_URKEX,0,Urrugne,0,,URKEX0
+ETCR01,,La Croix,La Croix - Etcharry,43.32003200,-0.92396000,,,0,place_ETCR,0,Etcharry,0,28491_1,ETCR01
+ETCR02,,La Croix,La Croix - Etcharry,43.31988900,-0.92391500,,,0,place_ETCR,0,Etcharry,1,28491_2,ETCR02
+USGU01,,La Guadeloupe,La Guadeloupe - Ustaritz,43.40333900,-1.46013900,,,0,place_USGU,0,Ustaritz,,27544_1,USGU01
+USGU02,,La Guadeloupe,La Guadeloupe - Ustaritz,43.40338100,-1.46033200,,,0,place_USGU,0,Ustaritz,1,27544_2,USGU02
+LNTQ01,,La Nautique,La Nautique - Bayonne,43.48899700,-1.46629400,,,0,place_LNTQ,0,Bayonne,1,29739_2,LNTQ01
+LNTQ02,,La Nautique,La Nautique - Bayonne,43.48931400,-1.46650600,,,0,place_LNTQ,0,Bayonne,0,29739_1,LNTQ02
+HALA01,,Labiry,Labiry - Hasparren,43.38301090,-1.32716360,,,0,place_HALA,0,Hasparren,,10161,HALA01
+ASLA01,,Lanazia Larre Lore,Ascain - Lanazia Larre Lore,43.35702378,-1.63180942,,,0,place_ASLA,0,Ascain,,,ASLA01
+ASLA02,,Lanazia Larre Lore,Ascain - Lanazia Larre Lore,43.35632742,-1.63136694,,,0,place_ASLA,0,Ascain,1,,ASLA02
+CALA01,,Landouzy,Landouzy - Cambo-les-Bains,43.35607500,-1.39779400,,,0,place_CALA,0,Cambo-les-Bains,0,768140001,CALA01
+CALA02,,Landouzy,Landouzy - Cambo-les-Bains,43.35612400,-1.39778900,,,0,place_CALA,0,Cambo-les-Bains,1,781300001,CALA02
+AYLA01,,Lauak,Lauak - Ayherre,43.38938710,-1.27182320,,,0,place_AYLA,0,Ayherre,0,10158,AYLA01
+AYLA02,,Lauak,Lauak - Ayherre,43.38949630,-1.27146650,,,0,place_AYLA,0,Ayherre,1,10159,AYLA02
+MELA01,,Laxagueborde Berho,Laxagueborde Berho - Menditte,43.16557500,-0.89285400,,,0,place_MELA,0,Menditte,0,16480_1,MELA01
+MELA02,,Laxagueborde Berho,Laxagueborde Berho - Menditte,43.16528800,-0.89284900,,,0,place_MELA,0,Menditte,1,16480_2,MELA02
+BIBA01,,Le Battan,Le Battan - Bidache,43.46356100,-1.14431400,,,0,place_BIBA,0,Bidache,0,26346_1,BIBA01
+BIBA02,,Le Battan,Le Battan - Bidache,43.46398000,-1.14447900,,,0,place_BIBA,0,Bidache,1,26346_2,BIBA02
+URLE01,,Les Coteaux,Les Coteaux - Urt,43.48874600,-1.28972500,,,0,place_URLE,0,Urt,,28264_1,URLE01
+BRLE01,,Les Salines,Les Salines - Briscous,43.45837200,-1.35912900,,,0,place_BRLE,0,Briscous,0,17810_1,BRLE01
+BRLE02,,Les Salines,Les Salines - Briscous,43.45829800,-1.35913400,,,0,place_BRLE,0,Briscous,1,17810_2,BRLE02
+SLIN01,,Les Salines,Les Salines - Bayonne,43.48422510,-1.44812926,,,0,place_SLIN,0,Bayonne,1,10136,SLIN01
+SLIN02,,Les Salines,Les Salines - Bayonne,43.48426430,-1.44872869,,,0,place_SLIN,0,Bayonne,0,10309,SLIN02
+CATE01,,Les Terrasses,Les Terrasses - Cambo-les-Bains,43.35728800,-1.39540600,,,0,place_CATE,0,Cambo-les-Bains,,775680002,CATE01
+CATE02,,Les Terrasses,Les Terrasses - Cambo-les-Bains,43.35765800,-1.39616800,,,0,place_CATE,0,Cambo-les-Bains,1,766250029,CATE02
+CATE03,,Les Terrasses,Les Terrasses - Cambo-les-Bains,43.35720400,-1.39567300,,,0,place_CATE,0,Cambo-les-Bains,0,775740001,CATE03
+GOBO01,,Libarrenx Bourg,Libarrenx Bourg - Gotein-Libarrenx,43.19947900,-0.90255000,,,0,place_GOBO,0,Gotein-Libarrenx,0,19366_1,GOBO01
+GOBO02,,Libarrenx Bourg,Libarrenx Bourg - Gotein-Libarrenx,43.19985500,-0.90254500,,,0,place_GOBO,0,Gotein-Libarrenx,1,19366_2,GOBO02
+SPEST1,,Lot. Estekorena,Saint-Pée-sur-Nivelle - Lot. Estekorena,43.34093780,-1.54939875,,,0,place_SPEST,0,Saint-Pée-sur-Nivelle,0,,SPEST1
+SPEST2,,Lot. Estekorena,Saint-Pée-sur-Nivelle - Lot. Estekorena,43.34086368,-1.54917880,,,0,place_SPEST,0,Saint-Pée-sur-Nivelle,1,,SPEST2
+BRLO01,,Lot. Imistola,Lot. Imistola - Briscous,43.45891500,-1.35414200,,,0,place_BRLO,0,Briscous,0,18821_1,BRLO01
+BRLO02,,Lot. Imistola,Lot. Imistola - Briscous,43.45887400,-1.35367100,,,0,place_BRLO,0,Briscous,1,18821_2,BRLO02
+CALS01,,Lot. Souberbielle,Lot. Souberbielle - Cambo-les-Bains,43.36375600,-1.40542200,,,0,place_CALS,0,Cambo-les-Bains,0,27531_1,CALS01
+CALS02,,Lot. Souberbielle,Lot. Souberbielle - Cambo-les-Bains,43.36343650,-1.40777009,,,0,place_CALS,0,Cambo-les-Bains,1,27531_2,CALS02
+CALS03,,Lot. Souberbielle,Souberbielle - Cambo-les-Bains,43.36350600,-1.40768800,,,0,place_CALS,0,Cambo-les-Bains,0,793160001,CALS03
+CALO01,,Lotissement Arriéta,Lot. Arriéta - Cambo-les-Bains,43.36132600,-1.38354500,,,0,place_CALO,0,Cambo-les-Bains,,27527_1,CALO01
+SALUR3,,Lur Berri,Lur Berri - Sare,43.31219800,-1.58237800,,,0,place_SALUR,0,Sare,,453,SALUR3
+ASLU01,,Lur Eder,Ascain - Lur Eder,43.35210500,-1.62779500,,,0,place_ASLU,0,Ascain,,116,ASLU01
+ASLU02,,Lur Eder,Ascain - Lur Eder,43.35219862,-1.62782719,,,0,place_ASLU,0,Ascain,1,,ASLU02
+LUVI01,,Luxe Village,Luxe Village - Luxe-Sumberraute,43.36316400,-1.07113900,,,0,place_LUVI,0,Luxe-Sumberraute,0,27632_1,LUVI01
+LUVI02,,Luxe Village,Luxe Village - Luxe-Sumberraute,43.36365600,-1.07211700,,,0,place_LUVI,0,Luxe-Sumberraute,1,27632_2,LUVI02
+LYCE01,,Lycée,Lycée - Bayonne,43.48099800,-1.48280200,,,0,place_LYCE,0,Bayonne,1,17997_2,LYCE01
+LYCE02,,Lycée,Lycée - Bayonne,43.48079000,-1.48267900,,,0,place_LYCE,0,Bayonne,0,17997_1,LYCE02
+CILYC1,,Lycée Maritime ~ Itsas Lizeoa,Ciboure - Lycée Maritime ~ Itsas Lizeoa,43.38337400,-1.68997800,,,0,place_CILYC,0,Ciboure,0,,CILYC1
+BOMA01,,Mairie,Mairie - Bonloc,43.36785450,-1.26807470,,,0,place_BOMA,0,Bonloc,,10160,BOMA01
+ISMA01,,Mairie,Mairie - Isturits,43.36570200,-1.20453290,,,0,place_ISMA,0,Isturits,0,10300,ISMA01
+ISMA02,,Mairie,Mairie - Isturits,43.36567670,-1.20457890,,,0,place_ISMA,0,Isturits,1,10301,ISMA02
+LAMA01,,Mairie,Mairie - Lacarre,43.19007000,-1.16610100,,,0,place_LAMA,0,Lacarre,0,16945_1,LAMA01
+LAMA02,,Mairie,Mairie - Lacarre,43.18984600,-1.16649400,,,0,place_LAMA,0,Lacarre,1,16945_2,LAMA02
+SAMA01,,Mairie,Mairie - Saint-Esteben,43.33981520,-1.21025580,,,0,place_SAMA,0,Saint-Esteben,,10304,SAMA01
+SAMI01,,Mairie,Mairie - Saint-Martin-d'Arberoue,43.34424670,-1.19651890,,,0,place_SAMI,0,Saint-Martin-d'Arberoue,0,10306,SAMI01
+SAMI02,,Mairie,Mairie - Saint-Martin-d'Arberoue,43.34415450,-1.19663820,,,0,place_SAMI,0,Saint-Martin-d'Arberoue,1,10305,SAMI02
+SJMA01,,Mairie,Mairie - Saint-Jean-Pied-de-Port,43.16309455,-1.23771494,,,0,place_SJMA,0,Saint-Jean-Pied-de-Port,0,18110592,SJMA01
+SJMA02,,Mairie,Mairie - Saint-Jean-Pied-de-Port,43.16307241,-1.23787804,,,0,place_SJMA,0,Saint-Jean-Pied-de-Port,1,18110589,SJMA02
+TAMI01,,Mairie,Mairie - Tardets-Sorholus,43.11772400,-0.86434600,,,0,place_TAMI,0,Tardets-Sorholus,0,17875_1,TAMI01
+TAMI02,,Mairie,Mairie - Tardets-Sorholus,43.11733000,-0.86418000,,,0,place_TAMI,0,Tardets-Sorholus,1,17875_2,TAMI02
+UHMA01,,Mairie,Mairie - Uhart-Mixe,43.27869600,-1.02154200,,,0,place_UHMA,0,Uhart-Mixe,0,27815_1,UHMA01
+UHMA02,,Mairie,Mairie - Uhart-Mixe,43.27900400,-1.02173300,,,0,place_UHMA,0,Uhart-Mixe,1,27815_2,UHMA02
+CAMR01,,Marienia,Marienia - Cambo-les-Bains,43.34988700,-1.39897700,,,0,place_CAMR,0,Cambo-les-Bains,0,771440002,CAMR01
+CAMR02,,Marienia,Marienia - Cambo-les-Bains,43.34989900,-1.39904400,,,0,place_CAMR,0,Cambo-les-Bains,1,785110003,CAMR02
+MRRC01,,Marracq / Largenté,Marracq / Largenté - Bayonne,43.47666000,-1.48402700,,,0,place_MRRC,0,Bayonne,1,26004_2,MRRC01
+MRRC02,,Marracq / Largenté,Marracq / Largenté - Bayonne,43.47660600,-1.48396400,,,0,place_MRRC,0,Bayonne,0,26004_1,MRRC02
+CLMR01,,Marronniers,Marronniers - Cambo-les-Bains,43.36217100,-1.40411900,,,0,place_CLMR,0,Cambo-les-Bains,0,789170094,CLMR01
+CLMR02,,Marronniers,Marronniers - Cambo-les-Bains,43.36209800,-1.40321000,,,0,place_CLMR,0,Cambo-les-Bains,1,781290001,CLMR02
+HAMN01,,Mendeala,Mendeala - Hasparren,43.38396600,-1.31318200,,,0,place_HAMN,0,Hasparren,0,29872_2,HAMN01
+HAMN02,,Mendeala,Mendeala - Hasparren,43.38365100,-1.31289400,,,0,place_HAMN,0,Hasparren,,29872_1,HAMN02
+ESME01,,Mendi Alde Bourg,Espelette - Mendi Alde Bourg,43.33835048,-1.44727274,,,0,place_ESME,0,Espelette,,30022_1,ESME01
+ESME02,,Mendi Alde Bourg,Espelette - Mendi Alde Bourg,43.33843952,-1.44727261,,,0,place_ESME,0,Espelette,1,,ESME02
+MOME01,,Mendilaskor,Mendilaskor - Mouguerre,43.46274700,-1.40691900,,,0,place_MOME,0,Mouguerre,0,27244_1,MOME01
+MOME02,,Mendilaskor,Mendilaskor - Mouguerre,43.46231100,-1.40604500,,,0,place_MOME,0,Mouguerre,1,27244_2,MOME02
+NPLN01,,Napoléon,Napoléon - Bayonne,43.48695480,-1.46279414,,,0,place_NPLN,0,Bayonne,1,10308,NPLN01
+NPLN02,,Napoléon,Napoléon - Bayonne,43.48700500,-1.46269861,,,0,place_NPLN,0,Bayonne,0,10135,NPLN02
+BAOL02,,Olhaberri,Olhaberri - Banca,43.12640060,-1.37472310,,,0,place_BAOL,0,Banca,,64092OLHA01,BAOL02
+ITOD01,,Ordokia,Ordokia - Itxassou,43.33739400,-1.40342100,,,0,place_ITOD,0,Itxassou,0,793140001,ITOD01
+ITOD03,,Ordokia,Ordokia - Itxassou,43.33740200,-1.40349600,,,0,place_ITOD,0,Itxassou,1,775700023,ITOD03
+BEOY01,,Oyantoa,Oyantoa - Béhasque-Lapiste,43.31326300,-1.01130400,,,0,place_BEOY,0,Béhasque-Lapiste,0,27818_1,BEOY01
+BEOY02,,Oyantoa,Oyantoa - Béhasque-Lapiste,43.31303500,-1.01111500,,,0,place_BEOY,0,Béhasque-Lapiste,1,27818_2,BEOY02
+BRPA01,,Pagoeta,Pagoeta - Briscous,43.45065400,-1.33445700,,,0,place_BRPA,0,Briscous,0,18071_1,BRPA01
+BRPA02,,Pagoeta,Pagoeta - Briscous,43.44817500,-1.33519100,,,0,place_BRPA,0,Briscous,1,18071_2,BRPA02
+LAPA01,,Parc d'activités,Parc d'activités - Lahonce,43.48987600,-1.42689100,,,0,place_LAPA,0,Lahonce,0,10628,LAPA01
+LAPA02,,Parc d'activités,Parc d'activités - Lahonce,43.48983000,-1.42648200,,,0,place_LAPA,0,Lahonce,1,10401,LAPA02
+SAPA01,,Parking piscine Municipale,Parking piscine Municipale  - Saint-Étienne-de-Baïgorry,43.18329428,-1.33414232,,,0,place_SAPA,0,Saint-Étienne-de-Baïgorry,,16869454,SAPA01
+CAPA01,,Paxkaleku,Paxkaleku - Cambo-les-Bains,43.36022100,-1.38526900,,,0,place_CAPA,0,Cambo-les-Bains,,548730037,CAPA01
+ALPI02,,Pierre Oteiza,Pierre Oteiza - Aldudes,43.08949750,-1.42444950,,,0,place_ALPI,0,Aldudes,,64016MANE01,ALPI02
+ITPI01,,Pilota plaza,Pilota plaza - Itxassou,43.33350300,-1.41291400,,,0,place_ITPI,0,Itxassou,,557610002,ITPI01
+BAPI02,,Pisciculture,Pisciculture - Banca,43.12272868,-1.39786873,,,0,place_BAPI,0,Banca,,16873697,BAPI02
+CAPI01,,Piscine,Piscine - Cambo-les-Bains,43.35844400,-1.40787100,,,0,place_CAPI,0,Cambo-les-Bains,0,783510001,CAPI01
+CAPI02,,Piscine,Piscine - Cambo-les-Bains,43.35844400,-1.40775800,,,0,place_CAPI,0,Cambo-les-Bains,1,775750001,CAPI02
+BAPL01,,Place,Place - Bardos,43.47586300,-1.20310700,,,0,place_BAPL,0,Bardos,0,17805_1,BAPL01
+BAPL02,,Place,Place - Bardos,43.47594700,-1.20281400,,,0,place_BAPL,0,Bardos,1,17805_2,BAPL02
+SAPL01,,Place,Place - Saint-Jean-le-Vieux,43.16547800,-1.19413000,,,0,place_SAPL,0,Saint-Jean-le-Vieux,,19182_1,SAPL01
+BASQ04,,Place des Basques,Place des Basques - Bayonne,43.49367800,-1.47902700,,,0,place_BASQ,0,Bayonne,,17381_1,BASQ04
+BIPL01,,Place du Fronton,Place du Fronton - Bidache,43.48375900,-1.14128800,,,0,place_BIPL,0,Bidache,,29737_2,BIPL01
+URPL02,,Place d’Urepel,Place d’Urepel - Urepel,43.07047120,-1.41680120,,,0,place_URPL,0,Urepel,,64543UREP01,URPL02
+HAHA03,,Place Harana,Hasparren - Place Harana,43.38475400,-1.30365400,,,0,place_HAHA,0,Hasparren,,27615_1,HAHA03
+CAPL01,,Place Sorhaïnde,Place Sorhaïnde - Cambo-les-Bains,43.36110400,-1.40118639,,,0,place_CAPS,0,Cambo-les-Bains,,26163_1,CAPL01
+CAPL02,,Place Sorhaïnde,,43.36128161,-1.40123532,,,0,place_CAPS,0,Cambo-les-Bains,,,CAPL02
+ASPLA1,,Place ~ Plaza,Ascain - Place ~ Plaza,43.34505500,-1.62102700,,,0,place_ASPLA,0,Ascain,0,,ASPLA1
+ASPLA2,,Place ~ Plaza,Ascain - Place ~ Plaza,43.34458800,-1.62058800,,,0,place_ASPLA,0,Ascain,1,,ASPLA2
+URPE01,,Place/Ecole Saint James,Place/Ecole Saint James - Urt,43.49402000,-1.29133500,,,0,place_URPE,0,Urt,,17996_2,URPE01
+SPAMO1,,Pont d'Amotz ~ Amotzeko Zubia,Saint-Pée-sur-Nivelle - Pont d'Amotz ~ Amotzeko Zubia,43.32922732,-1.54481974,,,0,place_SPAMO,0,Saint-Pée-sur-Nivelle,0,,SPAMO1
+SPAMO2,,Pont d'Amotz ~ Amotzeko Zubia,Saint-Pée-sur-Nivelle - Pont d'Amotz ~ Amotzeko Zubia,43.32916878,-1.54469904,,,0,place_SPAMO,0,Saint-Pée-sur-Nivelle,1,,SPAMO2
+SAPO02,,Pont D'Arrossa,Pont D'Arrossa - Saint-Martin-d'Arrossa,43.22976130,-1.30224740,,,0,place_SAPO,0,Saint-Martin-d'Arrossa,,64490PTAR01,SAPO02
+SPPO01,,Pont de Zumabia ~ Zumabiako zubia,Saint-Pée-sur-Nivelle - Pont de Zumabia ~ Zumabiako zubia,43.36478665,-1.59054645,,,0,place_SPPO,0,Saint-Pée-sur-Nivelle,0,,SPPO01
+SPPO02,,Pont de Zumabia ~ Zumabiako zubia,Saint-Pée-sur-Nivelle - Pont de Zumabia ~ Zumabiako zubia,43.36492510,-1.59061350,,,0,place_SPPO,0,Saint-Pée-sur-Nivelle,1,,SPPO02
+CAPD01,,Pont des Thermes,Pont des Thermes - Cambo-les-Bains,43.35575380,-1.39089720,,,0,place_CAPD,0,Cambo-les-Bains,,27528_2;CAPO01,CAPD01
+CAPD02,,Pont des Thermes,Pont des Thermes - Cambo-les-Bains,43.35558599,-1.39086484,,,0,place_CAPD,0,Cambo-les-Bains,1,27528_1,CAPD02
+GUPO01,,Port,Port - Guiche,43.52183010,-1.19651760,,,0,place_GUPO,0,Guiche,,10311,GUPO01
+URPO01,,Port,Port - Urt,43.49876300,-1.29832400,,,0,place_URPO,0,Urt,,CD64-10762,URPO01
+CAPR01,,Portail Arnaga,Portail Arnaga - Cambo-les-Bains,43.36696800,-1.41586500,,,0,place_CAPR,0,Cambo-les-Bains,0,27535_1,CAPR01
+CAPR02,,Portail Arnaga,Portail Arnaga - Cambo-les-Bains,43.36677000,-1.41597700,,,0,place_CAPR,0,Cambo-les-Bains,,27535_2,CAPR02
+SAPOR1,,Portua,Portua - Sare,43.30902500,-1.57262300,,,0,place_SAPOR,0,Sare,,454,SAPOR1
+SAPOR2,,Portua,Sare - Portua,43.30992500,-1.57230000,,,0,place_SAPOR,0,Sare,0,,SAPOR2
+MAPO01,,Potroénéa,Potroénéa - Masparraute,43.37968100,-1.08706600,,,0,place_MAPO,0,Masparraute,0,27636_1,MAPO01
+MAPO02,,Potroénéa,Potroénéa - Masparraute,43.37934600,-1.08702900,,,0,place_MAPO,0,Masparraute,1,27636_2,MAPO02
+CAPT01,,Putzunia,Putzunia - Cambo-les-Bains,43.36267800,-1.40161000,,,0,place_CAPT,0,Cambo-les-Bains,0,564860046,CAPT01
+BRCO01,,Qu. La Commune,Qu. La Commune - Briscous,43.46635200,-1.28231700,,,0,place_BRCO,0,Briscous,,28452_1,BRCO01
+LALE01,,Qu.Legarria,Qu.Legarria - Larressore,43.37170300,-1.43149300,,,0,place_LALE,0,Larressore,,17987_1,LALE01
+RESP01,,Quai Resplandy,Quai Resplandy - Bayonne,43.48521800,-1.45961300,,,0,place_RESP,0,Bayonne,1,29738_2,RESP01
+RESP02,,Quai Resplandy,Quai Resplandy - Bayonne,43.48532700,-1.45966300,,,0,place_RESP,0,Bayonne,0,29738_1,RESP02
+SPQUA1,,Quartier Lac ~ Aintzira Auzoa,Saint-Pée-sur-Nivelle - Quartier Lac ~ Aintzira Auzoa,43.34357400,-1.52817400,,,0,place_SPQUA,0,Saint-Pée-sur-Nivelle,,,SPQUA1
+SPQUA2,,Quartier Lac ~ Aintzira Auzoa,,43.34361301,-1.52792866,,,0,place_SPQUA,0,Saint-Pée-sur-Nivelle,,,SPQUA2
+HERD01,,RD22,RD22 - Hélette,43.30396130,-1.25192130,,,0,place_HERD,0,Hélette,0,10163,HERD01
+HERD02,,RD22,RD22 - Hélette,43.30373920,-1.25178590,,,0,place_HERD,0,Hélette,1,10164,HERD02
+REDU11,,Réduit Boufflers,Réduit Boufflers - Bayonne,43.49279300,-1.47217100,,,0,place_REDU,0,Bayonne,1,18077_2,REDU11
+REDU12,,Réduit Boufflers,Réduit Boufflers - Bayonne,43.49281100,-1.47192000,,,0,place_REDU,0,Bayonne,0,18077_1,REDU12
+STLE01,,Saint Léon,Saint Léon - Bayonne,43.48928821,-1.48237408,,,0,place_STLE,0,Bayonne,1,18432_2,STLE01
+STLE02,,Saint Léon,Saint Léon - Bayonne,43.48928503,-1.48227135,,,0,place_STLE,0,Bayonne,0,18432_1,STLE02
+IRSA01,,Salle Airoski,Salle Airoski - Irissarry,43.25768700,-1.22762340,,,0,place_IRSA,0,Irissarry,,10166,IRSA01
+ASSE01,,Serres,Ascain - Serres,43.36207800,-1.63652300,,,0,place_ASSE,0,Ascain,,ASSER1,ASSE01
+ASSE02,,Serres,Ascain - Serres,43.36253431,-1.63654178,,,0,place_ASSE,0,Ascain,1,,ASSE02
+TECH03,,Technocité,Technocité - Bayonne,43.46773190,-1.49182234,,,0,place_TECH,0,Bayonne,0,CD64-10764,TECH03
+TECH02,,Technocité,Technocité  - Bayonne,43.46813131,-1.49141185,,,0,place_TECH,0,Bayonne,1,CD64-10765,TECH02
+LATE01,,Tellechea,Tellechea - Lahonce,43.48180100,-1.39230500,,,0,place_LATE,0,Lahonce,0,19118_1,LATE01
+LATE02,,Tellechea,Tellechea - Lahonce,43.48171000,-1.39220200,,,0,place_LATE,0,Lahonce,1,19118_2,LATE02
+CATO01,,Toki Eder,Toki Eder - Cambo-les-Bains,43.36151800,-1.39467200,,,0,place_CATO,0,Cambo-les-Bains,,532500003,CATO01
+HATO01,,Toki Ona,Toki Ona - Hasparren,43.40702900,-1.31167800,,,0,place_HATO,0,Hasparren,0,16015_1,HATO01
+HATO02,,Toki Ona,Toki Ona - Hasparren,43.40734800,-1.31166200,,,0,place_HATO,0,Hasparren,1,16015_2,HATO02
+CATR01,,Trinquet,Trinquet - Cambo-les-Bains,43.36182000,-1.40029000,,,0,place_CATR,0,Cambo-les-Bains,0,568830002,CATR01
+ESCE01,,Undurein Centre,Undurein Centre - Espès-Undurein,43.28300000,-0.87460000,,,0,place_ESCE,0,Espès-Undurein,0,17793_1,ESCE01
+ESCE02,,Undurein Centre,Undurein Centre - Espès-Undurein,43.28200000,-0.87700000,,,0,place_ESCE,0,Espès-Undurein,1,17793_2,ESCE02
+SJUR01,,Ur Bidea,Saint-Jean-de-Luz - Ur Bidea,43.38268000,-1.64739300,,,0,place_SJUR,0,Saint-Jean-de-Luz,,,SJUR01
+SJUR02,,Ur Bidea,Saint-Jean-de-Luz - Ur Bidea,43.38372700,-1.65266100,,,0,place_SJUR,0,Saint-Jean-de-Luz,1,,SJUR02
+HAUR01,,Urcuray,Urcuray - Hasparren,43.36767900,-1.35673400,,,0,place_HAUR,0,Hasparren,0,19077_2,HAUR01
+HAUR02,,Urcuray,Urcuray - Hasparren,43.36767300,-1.35644800,,,0,place_HAUR,0,Hasparren,1,19077_1,HAUR02
+CAUR01,,Urtsua,Urtsua - Cambo-les-Bains,43.36085100,-1.37863500,,,0,place_CAUR,0,Cambo-les-Bains,,526690002,CAUR01
+CAUS01,,Usimendia,Usimendia - Cambo-les-Bains,43.35704000,-1.41014300,,,0,place_CAUS,0,Cambo-les-Bains,0,779560001,CAUS01
+CAUS02,,Usimendia,Usimendia - Cambo-les-Bains,43.35699400,-1.41008600,,,0,place_CAUS,0,Cambo-les-Bains,1,783520001,CAUS02
+BEVI01,,Village,Village - Béhasque-Lapiste,43.32774400,-1.00621000,,,0,place_BEVI,0,Béhasque-Lapiste,0,27708_1,BEVI01
+BEVI02,,Village,Village - Béhasque-Lapiste,43.32761800,-1.00631300,,,0,place_BEVI,0,Béhasque-Lapiste,1,27708_2,BEVI02
+ETVI01,,Village,Village - Etcharry,43.32162200,-0.92873500,,,0,place_ETVI,0,Etcharry,0,27711_1,ETVI01
+ETVI02,,Village,Village - Etcharry,43.32152200,-0.92889800,,,0,place_ETVI,0,Etcharry,1,27711_2,ETVI02
+MAVI01,,Village,Village - Masparraute,43.38981800,-1.09719000,,,0,place_MAVI,0,Masparraute,0,27643_1,MAVI01
+MAVI02,,Village,Village - Masparraute,43.38995900,-1.09749400,,,0,place_MAVI,0,Masparraute,1,27643_2,MAVI02
+SAVI01,,Village,Village - Sames,43.52347500,-1.15756650,,,0,place_SAVI,0,Sames,,10310,SAVI01
+UHVI01,,Village,Village - Uhart-Cize,43.16457900,-1.24328400,,,0,place_UHVI,0,Uhart-Cize,0,27786_1,UHVI01
+UHVI02,,Village,Village - Uhart-Cize,43.16467100,-1.24315600,,,0,place_UHVI,0,Uhart-Cize,1,27786_2,UHVI02
+VIEG01,,Viodos Egui Begia,Viodos Egui Begia - Viodos-Abense-de-Bas,43.24490000,-0.87870000,,,0,place_VIEG,0,Viodos-Abense-de-Bas,0,16996_1,VIEG01
+VIEG02,,Viodos Egui Begia,Viodos Egui Begia - Viodos-Abense-de-Bas,43.24440600,-0.87928300,,,0,place_VIEG,0,Viodos-Abense-de-Bas,1,16996_2,VIEG02
+SPXAN3,,Xan Ithurria Gantxiki,Saint-Pée-sur-Nivelle - Xan Ithurria Gantxiki,43.35470500,-1.54888500,,,0,place_SPXAN,0,Saint-Pée-sur-Nivelle,,123,SPXAN3
+SPZI01,,Z.A. Lizardia ~ Lizardia A.E.,Saint-Pée-sur-Nivelle - Z.A. Lizardia ~ Lizardia A.E.,43.35771465,-1.57504441,,,0,place_SPZI,0,Saint-Pée-sur-Nivelle,0,,SPZI01
+SPZI02,,Z.A. Lizardia ~ Lizardia A.E.,Saint-Pée-sur-Nivelle - Z.A. Lizardia ~ Lizardia A.E.,43.35778311,-1.57441211,,,0,place_SPZI,0,Saint-Pée-sur-Nivelle,1,,SPZI02
+BRME01,,Z.A. Mendiko Borda,Z.A. Mendiko Borda - Briscous,43.44202200,-1.32326200,,,0,place_BRME,0,Briscous,,CD64-10760,BRME01
+ALER02,,ZA Erreka Gorri,ZA Erreka Gorri - Aldudes,43.09404290,-1.42498170,,,0,place_ALER,0,Aldudes,,64016MIGE01,ALER02
+BAZA01,,ZAC Makila,ZAC Makila - Bassussarry,43.44063200,-1.48790200,,,0,place_BAZA,0,Bassussarry,,27551_1,BAZA01

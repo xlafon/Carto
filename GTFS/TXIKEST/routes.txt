@@ -1,0 +1,13 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color,route_text_color,route_sort_order,route_group
+10,TXIKTXAK-EST,10,Saint-Palais - Saint Jean Pied de Port - Saint Etienne de Baïgorry,3,0553A3,FFFFFF,1000,RETRO-LITTORAL
+11,TXIKTXAK-EST,11,Bayonne - Saint Palais - Tardets Sorholus,3,A47335,FFFFFF,1000,RETRO-LITTORAL
+12,TXIKTXAK-EST,12,Bayonne - Urt - Sames,3,E7A7BC,FFFFFF,1000,RETRO-LITTORAL
+13,TXIKTXAK-EST,13,Bayonne - Hasparren - La Bastide Clairence - Saint-Esteben,3,1D98D3,FFFFFF,1000,RETRO-LITTORAL
+14,TXIKTXAK-EST,14,Bayonne - Cambo les Bains - Espelette,3,B61D21,FFFFFF,1000,RETRO-LITTORAL
+15,TXIKTXAK-EST,15,Cambo les Bains - Hasparren - Iholdy,3,9F539E,FFFFFF,1000,RETRO-LITTORAL
+16,TXIKTXAK-EST,16,Urepel - Saint Martin d'Arrossa,3,FFBA00,000000,1000,RETRO-LITTORAL
+45,TXIKTXAK-EST,45,SAINT-JEAN-DE-LUZ Halte Routière - SARE Lur Berri - Grottes de SARE,3,006646,FFFFFF,1000,RETRO-LITTORAL
+47,TXIKTXAK-EST,47,SAINT-JEAN-DE-LUZ Halte Routière - SAINT-PEE-SUR-NIVELLE Pont d'Amotz - AINHOA Dantxaria,3,009E4D,FFFFFF,1000,RETRO-LITTORAL
+49,TXIKTXAK-EST,49,SAINT-JEAN-DE-LUZ Halte Routière - CAMBO-LES-BAINS Gare SNCF,3,96368D,FFFFFF,1000,RETRO-LITTORAL
+57,TXIKTXAK-EST,57,Cambo les Bains Portail Arnaga - Cambo-les-Bains Pont des Thermes - Cambo les Bains Behereko Plaza,3,0D8C45,FFFFFF,1000,RETRO-LITTORAL
+59,TXIKTXAK-EST,59,Itxassou Pilota Plaza - Cambo-les-Bains Pont des Thermes - Itxassou Altzueta,3,85C942,FFFFFF,1000,RETRO-LITTORAL

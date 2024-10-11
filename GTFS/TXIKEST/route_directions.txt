@@ -1,0 +1,25 @@
+route_id,direction_id,route_direction_name
+10,0,Saint-Palais - Eglise
+10,1,Saint-Etienne-de-Baïgorry
+11,0,Bayonne
+11,1,Tardets
+12,0,Bayonne
+12,1,Sames
+13,0,Bayonne
+13,1,St Esteben
+14,0,Bayonne
+14,1,Espelette
+15,0,Cambo
+15,1,Iholdy
+16,0,Urepel
+16,1,Saint-Martin d'Arrossa
+45,0,Grottes de Sare
+45,1,Halte Routière
+47,0,Dantxaria
+47,1,Halte Routière
+49,0,Halte Routière
+49,1,Gare SNCF
+57,0,Cambo les Bains Portail Arnaga
+57,1,Cambo les Bains Behereko Plaza
+59,0,Itxassou Altzueta
+59,1,Itxassou Pilota Plaza
