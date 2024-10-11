@@ -71,22 +71,35 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let markersLayer = L.layerGroup().addTo(map);
 let allLinesLayer = L.layerGroup(); // Couche pour toutes les lignes
 
-// Fonction pour charger et parser les fichiers GTFS
-async function fetchGTFSFile(fileName) {
-  const response = await fetch(`GTFS/TXIKNORD/${fileName}`);
+// Fonction pour charger et parser les fichiers GTFS depuis différents dossiers
+async function fetchGTFSFile(folder, fileName) {
+  const response = await fetch(`GTFS/${folder}/${fileName}`);
   const text = await response.text();
   const data = Papa.parse(text, {header: true}).data;
   return data;
 }
 
-// Charger les fichiers GTFS
+// Charger les fichiers GTFS de plusieurs répertoires
 async function loadGTFSData() {
-  const stops = await fetchGTFSFile('stops.txt');
-  const trips = await fetchGTFSFile('trips.txt');
-  const stopTimes = await fetchGTFSFile('stop_times.txt');
-  const routes = await fetchGTFSFile('routes.txt');
-  const shapes = await fetchGTFSFile('shapes.txt');
-  const agency = await fetchGTFSFile('agency.txt');
+  const folders = ['TXIKNORD', 'TXIKSUD', 'TXIKEST', 'BEARN']; // Ajouter tous les répertoires ici
+
+  let stops = [], trips = [], stopTimes = [], routes = [], shapes = [], agency = [];
+
+  for (const folder of folders) {
+    const folderStops = await fetchGTFSFile(folder, 'stops.txt');
+    const folderTrips = await fetchGTFSFile(folder, 'trips.txt');
+    const folderStopTimes = await fetchGTFSFile(folder, 'stop_times.txt');
+    const folderRoutes = await fetchGTFSFile(folder, 'routes.txt');
+    const folderShapes = await fetchGTFSFile(folder, 'shapes.txt');
+    const folderAgency = await fetchGTFSFile(folder, 'agency.txt');
+
+    stops = stops.concat(folderStops);
+    trips = trips.concat(folderTrips);
+    stopTimes = stopTimes.concat(folderStopTimes);
+    routes = routes.concat(folderRoutes);
+    shapes = shapes.concat(folderShapes);
+    agency = agency.concat(folderAgency);
+  }
 
   return { stops, trips, stopTimes, routes, shapes, agency };
 }
@@ -99,21 +112,28 @@ function addRoutesToMenu(routes) {
       const option = document.createElement('option');
       const color = route.route_color ? `#${route.route_color}` : '#000000'; // Utiliser le route_color ou noir par défaut
       option.value = route.route_id;
-      option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
-      option.style.color = color;
+      option.innerHTML = `${route.route_short_name} - ${route.route_long_name}`;
+      option.style.backgroundColor = color;
+      option.style.color = '#fff'; // Couleur du texte pour assurer une bonne visibilité
       routeSelect.appendChild(option);
     }
   });
 
-  // Lorsque l'utilisateur sélectionne une ligne
+  // Ajouter l'option pour afficher toutes les lignes
+  const allOption = document.createElement('option');
+  allOption.value = 'all';
+  allOption.innerHTML = 'Afficher toutes les lignes';
+  routeSelect.appendChild(allOption);
+
+  // Gérer les changements dans le menu déroulant
   routeSelect.addEventListener('change', function () {
     const selectedRouteId = this.value;
     if (selectedRouteId === "all") {
-      afficherToutesLesLignes(); // Afficher toutes les lignes si sélectionné
+      afficherToutesLesLignes(); // Afficher toutes les lignes
     } else if (selectedRouteId !== "") {
-      afficherTracéEtArrêts(selectedRouteId);
+      afficherTracéEtArrêts(selectedRouteId); // Afficher une seule ligne et ses arrêts
     } else {
-      clearPreviousMarkersAndLines(); // Effacer les tracés et masquer l'infobox si aucune ligne n'est sélectionnée
+      clearPreviousMarkersAndLines(); // Effacer les tracés et marqueurs
     }
   });
 }
@@ -177,13 +197,8 @@ async function afficherTracéEtArrêts(routeId) {
       .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
       .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
 
-    // Supprimer le tracé précédent si nécessaire
-    if (typeof tracéLigne !== 'undefined') {
-      map.removeLayer(tracéLigne);
-    }
-
     // Tracer la ligne avec la couleur spécifique
-    tracéLigne = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 }).addTo(map);
+    const tracéLigne = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 }).addTo(map);
 
     // Afficher les informations de la ligne dans le panneau
     afficherInfoLigne(selectedRoute, agencyUrl);
@@ -270,4 +285,3 @@ loadGTFSData().then(data => {
 
 </body>
 </html>
-1
