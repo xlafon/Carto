@@ -1,0 +1,19 @@
+route_id,direction_id,route_direction_name
+3,0,Bayonne place des Basques
+3,1,St-Jean-de-Luz Hendaye
+31,0,Ehpad
+31,1,Plaza San Juan
+33,0,Behobia
+33,1,Grande Plage
+35,0,Autoport
+35,1,Grande Plage
+37,0,Vieux Fort
+37,1,Bourg
+39,0,Halte Routière
+39,1,Water Sport Center
+41,0,Zaldi Xurito
+41,1,Lafitenea
+43,0,Alturan
+43,1,Urrugne Bourg
+51,0,Gare de Biarritz
+51,1,Halte Routière

@@ -1,0 +1,572 @@
+stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station,wheelchair_boarding,city_name,ext_siri1_id,ext_stop_headsigns,stop_code_insee
+place_HECHA,,Abadia,Hendaye - Abadia,43.37439950,-1.75201050,,,1,,2,Hendaye,,,64260
+place_HEAGE,,Agerrea,Hendaye - Agerrea,43.37222800,-1.74732050,,,1,,2,Hendaye,,,64260
+place_BUAGU,,Agerreberri,Biriatou - Agerreberri,43.34262500,-1.73932450,,,1,,2,Biriatou,,,64130
+place_AHCRO,,Ahetze Croisement ~ Ahetze Bidegurutzea,Arbonne - Ahetze Croisement ~ Ahetze Bidegurutzea,43.41818600,-1.54872600,,,1,,2,Arbonne,,,64035
+place_HEAIZ,,Aizpurdi St Vincent ~ Aizpurdi San Bixente,Hendaye - Aizpurdi St Vincent ~ Aizpurdi San Bixente,43.35651100,-1.77431950,,,1,,2,Hendaye,,,64260
+place_SJACO,,Akotz,Saint-Jean-de-Luz - Akotz,43.41279000,-1.61750667,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJALT,,Alturan,Saint-Jean-de-Luz - Alturan,43.38902800,-1.62039100,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJALB,,Alturan Bi,Saint-Jean-de-Luz - Alturan Bi,43.38832900,-1.62392850,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJAND,,Andenea,Saint-Jean-de-Luz - Andenea,43.38996000,-1.64771200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_ARARA,,Arantzola,Arbonne - Arantzola,43.42565900,-1.54876200,,,1,,2,Arbonne,,,64035
+place_HEASC,,Ascoubia,Hendaye - Ascoubia,43.37736750,-1.74463350,,,1,,2,Hendaye,,,64260
+place_HEASP,,Asporotsttipi,Hendaye - Asporotsttipi,43.37695350,-1.73914850,,,1,,2,Hendaye,,,64260
+place_HEATA,,Atabala,Hendaye - Atabala,43.36445200,-1.76496550,,,1,,2,Hendaye,,,64260
+place_HEAUT,,Autoport ~ Autoportua,Hendaye - Autoport ~ Autoportua,43.34767500,-1.77035200,,,1,,2,Hendaye,,,64260
+place_CIAVB,,Avenue de la Baie ~ Badiako Etorbidea,Ciboure - Avenue de la Baie ~ Badiako Etorbidea,43.38556150,-1.67833100,,,1,,2,Ciboure,,,64189
+place_SJAXU,,Axular,Saint-Jean-de-Luz - Axular,43.38608800,-1.65575600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BUGAR,,Azkenean,Biriatou - Azkenean,43.34262200,-1.74568100,,,1,,2,Biriatou,,,64130
+place_AERO,,Aéroport de Biarritz,Anglet - Aéroport de Biarritz,43.47204000,-1.53240500,,,1,,2,Anglet,,,64024
+place_SJAIC,,Aïce Errota _ Haize Errota,Saint-Jean-de-Luz - Aïce Errota _ Haize Errota,43.39439300,-1.65274900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BARB,,Barbarenia,Biarritz - Barbarenia,43.45000450,-1.55990850,,,1,,2,Biarritz,,,64122
+place_HEBAR,,Barrendegi,Hendaye - Barrendegi,43.35626500,-1.76929350,,,1,,2,Hendaye,,,64260
+place_HEBAS,,Bas Quartier ~ Partxetegia,Hendaye - Bas Quartier ~ Partxetegia,43.35876100,-1.77170500,,,1,,2,Hendaye,,,64260
+place_IRBEH,,Behobia,Irun - Behobia,43.34300200,-1.75963500,,,1,,2,Irun,,,
+place_HEBEL,,Belcenia ~ Beltzenea,Hendaye - Belcenia ~ Beltzenea,43.36182650,-1.77224000,,,1,,2,Hendaye,,,64260
+place_SJBEL,,Belharra,Saint-Jean-de-Luz - Belharra,43.41153400,-1.61512150,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIBER,,Berastegia,Ciboure - Berastegia,43.37988750,-1.67476400,,,1,,2,Ciboure,,,64189
+place_BRNM,,Bernain-Montòri,Anglet - Bernain-Montòri,43.48154100,-1.50995300,,,1,,2,Anglet,,,64024
+place_URBER,,Berroeta,Urrugne - Berroeta,43.34814200,-1.68979000,,,1,,2,Urrugne,,,64545
+place_CIBIB,,Bibliothèque ~ Liburutegia,Ciboure - Bibliothèque ~ Liburutegia,43.38152150,-1.66473500,,,1,,2,Ciboure,,,64189
+place_BIDE,,Bide Artean,Bidart - Bide Artean,43.44564650,-1.58324450,,,1,,2,Bidart,,,64125
+place_CIBOR,,Bordagain,Ciboure - Bordagain,43.38295550,-1.67603950,,,1,,2,Ciboure,,,64189
+place_URBOU1,,Bourg ~ Herri Barnea,Urrugne - Bourg ~ Herri Barnea,43.36249600,-1.69899900,,,1,,2,Urrugne,,,64545
+place_BUBRG,,Bourg ~ Herri Barnea (Biriatou),Biriatou - Bourg ~ Herri Barnea (Biriatou),43.33366000,-1.74390300,,,1,,2,Biriatou,,,64130
+place_URBEH,,Béhobie,Urrugne - Béhobie,43.34590300,-1.76347950,,,1,,2,Urrugne,,,64545
+place_URBEH1,,Béhobie ~ Pausu,Urrugne - Béhobie ~ Pausu,43.34590300,-1.76347950,,,1,,2,Urrugne,,,64545
+place_URCA,,Camieta ~ Kamieta,Urrugne - Camieta ~ Kamieta,43.37451450,-1.67371300,,,1,,2,Urrugne,,,64545
+place_SJDUM,,Camping Duna Munguy,Saint-Jean-de-Luz - Camping Duna Munguy,43.41838050,-1.62096000,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIJUA,,Camping Juantcho,Urrugne - Camping Juantcho,43.39339600,-1.69382300,,,1,,2,Urrugne,,,64545
+place_CRRI,,Carricartenea,Bidart - Carricartenea,43.43568900,-1.59345300,,,1,,2,Bidart,,,64125
+place_HECAS,,Casa Esperenza,Hendaye - Casa Esperenza,43.35599550,-1.77753050,,,1,,2,Hendaye,,,64260
+place_HECCI1,,Centre Commercial,Hendaye - Centre Commercial,43.34949500,-1.77143900,,,1,,2,Hendaye,,,64260
+place_SJCCI1,,Centre commercial,Saint-Jean-de-Luz - Centre commercial,43.40523150,-1.62564200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HECCI,,Centre Commercial ~ Merkataritza Gunea (Hendaye),Hendaye - Centre Commercial ~ Merkataritza Gunea (Hendaye),43.34949500,-1.77143900,,,1,,2,Hendaye,,,64260
+place_SJCCI,,Centre Commercial ~ Merkataritza Gunea (Saint-Jean-de-Luz),Saint-Jean-de-Luz - Centre Commercial ~ Merkataritza Gunea (Saint-Jean-de-Luz),43.40523150,-1.62564200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CHAI,,Chaillas,Bidart - Chaillas,43.44658450,-1.58029750,,,1,,2,Bidart,,,64125
+place_SJCHA,,Chantaco  LP Arrue ~ Xantako  Arrue LP,Saint-Jean-de-Luz - Chantaco  LP Arrue ~ Xantako  Arrue LP,43.37527700,-1.63906400,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_UROLH,,Chapelle d'Olhette ~ Olhetako Kapera,Urrugne - Chapelle d'Olhette ~ Olhetako Kapera,43.33518700,-1.66812100,,,1,,2,Urrugne,,,64545
+place_SJCHI,,Chipienia ~ Xipienia,Hendaye - Chipienia ~ Xipienia,43.36266000,-1.76561700,,,1,,2,Hendaye,,,64260
+place_BIDUT,,Chutiqueta (Bidart),Bidart - Chutiqueta (Bidart),43.44900600,-1.57077150,,,1,,2,Bidart,,,64125
+place_HEPAL,,Chèvrefeuilles,Hendaye - Chèvrefeuilles,43.37286300,-1.77263300,,,1,,2,Hendaye,,,64260
+place_HECHE1,,Chênes,Hendaye - Chênes,43.34959700,-1.77742200,,,1,,2,Hendaye,,,64260
+place_HECHE,,Chênes ~ Haritzak,Hendaye - Chênes ~ Haritzak,43.34959700,-1.77742200,,,1,,2,Hendaye,,,64260
+place_CICIM,,Cimetière Marin ~ Itsas Hilerria,Ciboure - Cimetière Marin ~ Itsas Hilerria,43.38906800,-1.68096500,,,1,,2,Ciboure,,,64189
+place_SJCIM,,Cimetière Saint Joseph ~ San Josepe Hilerria,Saint-Jean-de-Luz - Cimetière Saint Joseph ~ San Josepe Hilerria,43.39160750,-1.64665450,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HECIN,,Cinéma ~ Zinegela,Hendaye - Cinéma ~ Zinegela,43.35533550,-1.77428500,,,1,,2,Hendaye,,,64260
+place_SJCLO,,Clos Saint-Vincent,Saint-Jean-de-Luz - Clos Saint-Vincent,43.39285150,-1.64117350,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEIRA,,Collège Irandatz ~ Irandatz Kolegioa,Hendaye - Collège Irandatz ~ Irandatz Kolegioa,43.35239050,-1.77666650,,,1,,2,Hendaye,,,64260
+place_HECOM,,Commissariat ~ Komisaldegia,Hendaye - Commissariat ~ Komisaldegia,43.35089400,-1.78254500,,,1,,2,Hendaye,,,64260
+place_HERON,,Consulat ~ Kontsuletxea,Hendaye - Consulat ~ Kontsuletxea,43.36532800,-1.76981000,,,1,,2,Hendaye,,,64260
+place_SJCOU,,Coulomme,Saint-Jean-de-Luz - Coulomme,43.39422700,-1.64409700,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_URCRO,,Croix des Bouquets,Urrugne - Croix des Bouquets,43.35203350,-1.73862650,,,1,,2,Urrugne,,,64545
+place_HECED,,Cèdres ~ Zedroak,Hendaye - Cèdres ~ Zedroak,43.36661450,-1.76987850,,,1,,2,Hendaye,,,64260
+place_CIKEX,,Delaunay,Ciboure - Delaunay,43.37935600,-1.66826550,,,1,,2,Ciboure,,,64189
+place_HEDEN,,Denentzat,Hendaye - Denentzat,43.34392650,-1.76513200,,,1,,2,Hendaye,,,64260
+place_SJDIG,,Digue aux Chevaux ~ Zaldien Diga,Saint-Jean-de-Luz - Digue aux Chevaux ~ Zaldien Diga,43.39397750,-1.65984800,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEDON,,Dongoxenea,Hendaye - Dongoxenea,43.36920250,-1.75037100,,,1,,2,Hendaye,,,64260
+place_HEDOR,,Dorrondeguy,Hendaye - Dorrondeguy,43.36827750,-1.74710400,,,1,,2,Hendaye,,,64260
+place_SJDUH,,Duhartia,Saint-Jean-de-Luz - Duhartia,43.41525900,-1.61706500,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BIMA,,Eglise,Bidart - Eglise,43.43843450,-1.58888100,,,1,,2,Bidart,,,64125
+place_GUEEG,,Eglise (Guéthary),Guéthary - Eglise (Guéthary),43.42061400,-1.60663450,,,1,,2,Guéthary,,,64249
+place_UREGL,,Eglise de Zokoa ~ Zokoako Eliza,Urrugne - Eglise de Zokoa ~ Zokoako Eliza,43.39100600,-1.68737300,,,1,,2,Urrugne,,,64545
+place_HEEGL,,Eglise Sainte Anne ~ Santa Ana Eliza,Hendaye - Eglise Sainte Anne ~ Santa Ana Eliza,43.37394650,-1.77015800,,,1,,2,Hendaye,,,64260
+place_SJEHP,,EHPAD Urthaburu ~ Urthaburu zahar etxea,Saint-Jean-de-Luz - EHPAD Urthaburu ~ Urthaburu zahar etxea,43.40092400,-1.63301600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEEHP,,EHPAD ~ Zahar Etxea,Hendaye - EHPAD ~ Zahar Etxea,43.37628300,-1.75673900,,,1,,2,Hendaye,,,64260
+place_HEEMP,,Empereur ~ Enperadore,Hendaye - Empereur ~ Enperadore,43.36700300,-1.75673800,,,1,,2,Hendaye,,,64260
+place_ERRE,,Erretegia,Bidart - Erretegia,43.44308650,-1.58525100,,,1,,2,Bidart,,,64125
+place_SJERW,,Erromardi Wauthier,Saint-Jean-de-Luz - Erromardi Wauthier,43.39938400,-1.64294150,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEERR,,Errondonea,Hendaye - Errondonea,43.35911550,-1.76371600,,,1,,2,Hendaye,,,64260
+place_AHERR,,Errotazahar,Ahetze - Errotazahar,43.40673050,-1.56800550,,,1,,2,Ahetze,,,64009
+place_SJLAN,,Espace Lana ~ Lana Eremua,Saint-Jean-de-Luz - Espace Lana ~ Lana Eremua,43.39775900,-1.63981300,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_GUEES,,Estalo,Guéthary - Estalo,43.42493250,-1.60441200,,,1,,2,Guéthary,,,64249
+place_SJBAZ,,Etxebazter,Saint-Jean-de-Luz - Etxebazter,43.39829450,-1.65592050,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJETX,,Etxebiaga,Saint-Jean-de-Luz - Etxebiaga,43.40055875,-1.63870875,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJFAR,,Fargeot,Saint-Jean-de-Luz - Fargeot,43.38510300,-1.65288900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_IRFI,,Ficoba,Irun - Ficoba,43.34598900,-1.78773400,,,1,,2,Irun,,,
+place_HEGAL,,Galbarreta,Hendaye - Galbarreta,43.37357700,-1.75520400,,,1,,2,Hendaye,,,64260
+place_URGAL,,Galtzaburu,Urrugne - Galtzaburu,43.37606250,-1.67084100,,,1,,2,Urrugne,,,64545
+place_SJGAM,,Gambetta,Saint-Jean-de-Luz - Gambetta,43.38998650,-1.65885500,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEGAR,,Gare Centre d’Hendaye ~ Hendaia Hiri-barneko Geltokia,Hendaye - Gare Centre d’Hendaye ~ Hendaia Hiri-barneko Geltokia,43.35336550,-1.78085700,,,1,,2,Hendaye,,,64260
+place_NEGR,,Gare de Biarritz,Biarritz - Gare de Biarritz,43.45970050,-1.54606200,,,1,,2,Biarritz,,,64122
+place_HEGAP,,Gare Plage d’Hendaye ~ Hendaia Hondarraitzeko Geltokia,Hendaye - Gare Plage d’Hendaye ~ Hendaia Hondarraitzeko Geltokia,43.36961900,-1.76516300,,,1,,2,Hendaye,,,64260
+place_HEGAR1,,Gare SNCF (Hendaye),Hendaye - Gare SNCF (Hendaye),43.35320850,-1.78105900,,,1,,2,Hendaye,,,64260
+place_BIASK,,Garlatz,Biriatou - Garlatz,43.34588600,-1.73964250,,,1,,2,Biriatou,,,64130
+place_BUGAZ,,Gazteluberri,Biriatou - Gazteluberri,43.34464500,-1.73612500,,,1,,2,Biriatou,,,64130
+place_AHGAZ,,Gazteluberria,Ahetze - Gazteluberria,43.39858500,-1.58913900,,,1,,2,Ahetze,,,64009
+place_HEOFF,,Grande Plage,Hendaye - Grande Plage,43.37294900,-1.77547700,,,1,,2,Hendaye,,,64260
+place_HEOFF1,,Grande Plage ~ Hondartza Nagusia,Hendaye - Grande Plage ~ Hondartza Nagusia,43.37323650,-1.77390300,,,1,,2,Hendaye,,,64260
+place_ARNAH,,Gure Nahia,Arbonne - Gure Nahia,43.42555900,-1.55261000,,,1,,2,Arbonne,,,64035
+place_SJHAI,,Haize Kantari Scolaire,Saint-Jean-de-Luz - Haize Kantari Scolaire,43.39222800,-1.63428200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_IRAT,,Halle Iraty,Biarritz - Halle Iraty,43.46589300,-1.53820400,,,1,,2,Biarritz,,,64122
+place_SJHLL,,Halles,Saint-Jean-de-Luz - Halles,43.38792200,-1.66057600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJHALT,,Halte Routière ~ Autobus Geltokia,Saint-Jean-de-Luz - Halte Routière ~ Autobus Geltokia,43.38609700,-1.66100300,,,1,,0,Saint-Jean-de-Luz,,,64483
+place_SJHAR,,Hariztegi,Saint-Jean-de-Luz - Hariztegi,43.39205300,-1.64312550,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEHAR,,Hariztian,Hendaye - Hariztian,43.37196650,-1.75603900,,,1,,2,Hendaye,,,64260
+place_AHHAR,,Haroztegia,Ahetze - Haroztegia,43.40847700,-1.56428900,,,1,,2,Ahetze,,,64009
+place_HARI,,Harritx,Biarritz - Harritx,43.45683900,-1.54421250,,,1,,2,Biarritz,,,64122
+place_HEHAT,,Hatchondo,Hendaye - Hatchondo,43.36384750,-1.76139250,,,1,,2,Hendaye,,,64260
+place_HEHAI,,Haïçabia,Hendaye - Haïçabia,43.37858950,-1.73390900,,,1,,2,Hendaye,,,64260
+place_HEHE,,Hegoaldea,Hendaye - Hegoaldea,43.35700800,-1.77473800,,,1,,2,Hendaye,,,64260
+place_BIHEG,,Hegobus,Biriatou - Hegobus,43.33851050,-1.75098150,,,1,,2,Biriatou,,,64130
+place_URHER,,Herboure,Urrugne - Herboure,43.33401600,-1.68623300,,,1,,2,Urrugne,,,64545
+place_SJICH,,Ichaca ~ Ixaka,Saint-Jean-de-Luz - Ichaca ~ Ixaka,43.38696800,-1.64982900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJLIL,,Ilargia,Saint-Jean-de-Luz - Ilargia,43.39894250,-1.64154850,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIIRI,,Iris,Ciboure - Iris,43.37707350,-1.66278000,,,1,,2,Ciboure,,,64189
+place_SJITU,,Iturriko Etxea,Saint-Jean-de-Luz - Iturriko Etxea,43.38822000,-1.64907950,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BUITU,,Iturrixilo,Biriatou - Iturrixilo,43.33432400,-1.74885950,,,1,,2,Biriatou,,,64130
+place_SJJAI,,Jai Alai,Saint-Jean-de-Luz - Jai Alai,43.39283650,-1.65229100,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJJAL,,Jaldai,Saint-Jean-de-Luz - Jaldai,43.40929150,-1.62002300,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJJAR,,Jardin Botanique ~ Baratze Botanikoa,Saint-Jean-de-Luz - Jardin Botanique ~ Baratze Botanikoa,43.40259400,-1.65207000,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_AHLAR,,Joanetaenea,Ahetze - Joanetaenea,43.40146150,-1.57908550,,,1,,2,Ahetze,,,64009
+place_URCAR,,Jolimont,Urrugne - Jolimont,43.33413300,-1.68330300,,,1,,2,Urrugne,,,64545
+place_HEJON,,Joncaux ~ Intzura,Hendaye - Joncaux ~ Intzura,43.34483350,-1.76920600,,,1,,2,Hendaye,,,64260
+place_URKAL,,Kalitxoa,Urrugne - Kalitxoa,43.38712800,-1.68977200,,,1,,2,Urrugne,,,64545
+place_SJKA1,,Karsinenia 1 ~ Kartsinenea 1,Saint-Jean-de-Luz - Karsinenia 1 ~ Kartsinenea 1,43.39538900,-1.63476367,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJKA,,Karsinenia 2 ~ Kartsinenea 2,Saint-Jean-de-Luz - Karsinenia 2 ~ Kartsinenea 2,43.39619350,-1.63039000,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BUKUR,,Kurleku  Errondonea,Biriatou - Kurleku  Errondonea,43.34210800,-1.73462900,,,1,,2,Biriatou,,,64130
+place_ARHEG,,La Chapelle ~ Kapera,Arbonne - La Chapelle ~ Kapera,43.42817350,-1.54894350,,,1,,2,Arbonne,,,64035
+place_BIDSO,,La Source,Bidart - La Source,43.44774800,-1.57344050,,,1,,2,Bidart,,,64125
+place_LABO,,Labourd,Biarritz - Labourd,43.45338350,-1.54387300,,,1,,2,Biarritz,,,64122
+place_SJLAF,,Lafitenea,Saint-Jean-de-Luz - Lafitenea,43.41340700,-1.62552200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJLAY,,Laiatz,Saint-Jean-de-Luz - Laiatz,43.39875000,-1.64009350,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJLAM,,Lambrigot,Saint-Jean-de-Luz - Lambrigot,43.39728400,-1.64741250,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BULAR,,Larretxekoborda,Urrugne - Larretxekoborda,43.34144200,-1.72788400,,,1,,2,Urrugne,,,64545
+place_URLAR,,Larruleta,Urrugne - Larruleta,43.36881250,-1.68456350,,,1,,2,Urrugne,,,64545
+place_HELAR,,Larrun,Hendaye - Larrun,43.36808600,-1.76503750,,,1,,2,Hendaye,,,64260
+place_BIDBU,,Larrun Burua,Bidart - Larrun Burua,43.45070700,-1.56459600,,,1,,2,Bidart,,,64125
+place_HEJUM,,Les 2 Jumeaux ~ Dunbarriak,Hendaye - Les 2 Jumeaux ~ Dunbarriak,43.37555700,-1.76215050,,,1,,2,Hendaye,,,64260
+place_SJHAU,,Les Hauts,Saint-Jean-de-Luz - Les Hauts,43.39381400,-1.64143250,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HELIL,,Lilas ~ Amatxi-Liliak,Hendaye - Lilas ~ Amatxi-Liliak,43.37251750,-1.76812750,,,1,,2,Hendaye,,,64260
+place_HELIS,,Lizardi Goiara,Hendaye - Lizardi Goiara,43.37005200,-1.76095750,,,1,,2,Hendaye,,,64260
+place_LORE,,Lore Landa,Bidart - Lore Landa,43.44601100,-1.54494400,,,1,,2,Bidart,,,64125
+place_CILYC,,Lycée Maritime ~ Itsas Lizeoa,Ciboure - Lycée Maritime ~ Itsas Lizeoa,43.38344500,-1.68982500,,,1,,2,Ciboure,,,64189
+place_SJLEO,,Léon Dongaitz,Saint-Jean-de-Luz - Léon Dongaitz,43.39610700,-1.63229650,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEMAI,,Mairie - Eglise ~ Herriko Etxea - Eliza,Hendaye - Mairie - Eglise ~ Herriko Etxea - Eliza,43.35835800,-1.77427900,,,1,,2,Hendaye,,,64260
+place_ARMAI,,Mairie ~ Herriko Etxea (Arbonne),Arbonne - Mairie ~ Herriko Etxea (Arbonne),43.43192900,-1.55126350,,,1,,2,Arbonne,,,64035
+place_CIMAI,,Mairie ~ Herriko Etxea (Ciboure),Ciboure - Mairie ~ Herriko Etxea (Ciboure),43.38436550,-1.66601650,,,1,,2,Ciboure,,,64189
+place_SJMAI,,Mairie ~ Herriko Etxea (Saint-Jean-de-Luz),Saint-Jean-de-Luz - Mairie ~ Herriko Etxea (Saint-Jean-de-Luz),43.38719600,-1.66252100,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIMAL,,Maldagora,Ciboure - Maldagora,43.37527750,-1.65931100,,,1,,2,Ciboure,,,64189
+place_CIMAR,,Marinela,Ciboure - Marinela,43.38064700,-1.66469700,,,1,,2,Ciboure,,,64189
+place_IRME,,Mendibil,Irun - Mendibil,43.34083900,-1.79019000,,,1,,2,Irun,,,
+place_BIMOU,,Mousse – Iraty,Biarritz - Mousse – Iraty,43.46706250,-1.54065800,,,1,,2,Biarritz,,,64122
+place_IRNA,,Nafarroa 18,Irun - Nafarroa 18,43.33938100,-1.78393200,,,1,,2,Irun,,,
+place_SJNDP,,Notre Dame de la Paix ~ Bakearen ama,Saint-Jean-de-Luz - Notre Dame de la Paix ~ Bakearen ama,43.39930800,-1.65172150,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJNOU,,Nouveau Cimetière ~ Hilerri Berria,Saint-Jean-de-Luz - Nouveau Cimetière ~ Hilerri Berria,43.39644050,-1.63610100,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIGOL,,Oihanalde,Ciboure - Oihanalde,43.37918200,-1.66292050,,,1,,2,Ciboure,,,64189
+place_HEOLI,,Oliviers ~ Olibondoak,Hendaye - Oliviers ~ Olibondoak,43.37227900,-1.78128000,,,1,,2,Hendaye,,,64260
+place_HEFLO,,Orangers,Hendaye - Orangers,43.37010900,-1.77994300,,,1,,2,Hendaye,,,64260
+place_HEORI,,Orio,Hendaye - Orio,43.36199300,-1.76197000,,,1,,2,Hendaye,,,64260
+place_HEJAS,,Palmier ~ Palmondoa,Hendaye - Palmier ~ Palmondoa,43.37188000,-1.77272900,,,1,,2,Hendaye,,,64260
+place_SJPAU,,Paul Gelos,Saint-Jean-de-Luz - Paul Gelos,43.39662950,-1.65753600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJRIC,,Paul Ricau,Saint-Jean-de-Luz - Paul Ricau,43.39020950,-1.64997850,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HENPA,,Pausoa,Hendaye - Pausoa,43.36077950,-1.75936550,,,1,,2,Hendaye,,,64260
+place_CIPET,,Petit Bois,Ciboure - Petit Bois,43.37603350,-1.66146400,,,1,,2,Ciboure,,,64189
+place_CIPIE,,Pierre Benoit,Ciboure - Pierre Benoit,43.38805350,-1.67705850,,,1,,2,Ciboure,,,64189
+place_CIPIL,,Pilota Plaza,Ciboure - Pilota Plaza,43.38679950,-1.68491750,,,1,,2,Ciboure,,,64189
+place_SJESP,,Place d'Espagne ~ Espainiako Plaza,Saint-Jean-de-Luz - Place d'Espagne ~ Espainiako Plaza,43.38264550,-1.65639550,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_BASQ,,Place des Basques,Bayonne - Place des Basques,43.49330100,-1.47920200,,,1,,2,Bayonne,,,64102
+place_SJRHU,,Place du Labourd ~ Lapurdiko Plaza,Saint-Jean-de-Luz - Place du Labourd ~ Lapurdiko Plaza,43.38392300,-1.65864650,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_AHBRG,,Place ~ Plaza,Ahetze - Place ~ Plaza,43.40427600,-1.57157900,,,1,,1,Ahetze,,,64009
+place_AHBRG1,,Place ~ Plaza (Ahetze),Ahetze - Place ~ Plaza (Ahetze),43.40410600,-1.57172800,,,1,,2,Ahetze,,,64009
+place_BIDP,,Plage,Bidart - Plage,43.43293700,-1.59584100,,,1,,2,Bidart,,,64125
+place_SJMAY,,Plage de Mayarco ~ Maiarkobaitako Hondartza,Saint-Jean-de-Luz - Plage de Mayarco ~ Maiarkobaitako Hondartza,43.41847850,-1.62379600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CIPLA,,Plage de Zokoa ~ Zokoako Hondartza,Ciboure - Plage de Zokoa ~ Zokoako Hondartza,43.38978750,-1.68380250,,,1,,2,Ciboure,,,64189
+place_SJERR,,Plage Erromardie ~ Erromardi Hondartza,Saint-Jean-de-Luz - Plage Erromardie ~ Erromardi Hondartza,43.40362950,-1.64234350,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_IRFER,,Plaza San Juan,Irun - Plaza San Juan,43.33924900,-1.78860200,,,1,,2,Irun,,,
+place_HEPIT,,Pont International ~ Nazioarteko Zubia,Hendaye - Pont International ~ Nazioarteko Zubia,43.35111200,-1.78331500,,,1,,2,Hendaye,,,64260
+place_HEPOT,,Potenia,Hendaye - Potenia,43.37246450,-1.76116800,,,1,,2,Hendaye,,,64260
+place_POUT,,Poutchinots,Biarritz - Poutchinots,43.45575150,-1.54356950,,,1,,2,Biarritz,,,64122
+place_URPUT,,Putillenea,Urrugne - Putillenea,43.38546100,-1.69318600,,,1,,2,Urrugne,,,64545
+place_HEQUO,,Quartier Orio,Hendaye - Quartier Orio,43.36272000,-1.76060400,,,1,,2,Hendaye,,,64260
+place_SJRAV,,Ravel,Saint-Jean-de-Luz - Ravel,43.38507900,-1.66106400,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_URBOU,,RD 810 Bourg,Urrugne - RD 810 Bourg,43.36085300,-1.69946900,,,1,,2,Urrugne,,,64545
+place_URBOU2,,RD810 Bourg ~ RD810 Herri Barnea,Urrugne - RD810 Bourg ~ RD810 Herri Barnea,43.36077000,-1.69940200,,,1,,2,Urrugne,,,64545
+place_SJREN,,René Lahetjuzan,Saint-Jean-de-Luz - René Lahetjuzan,43.39563100,-1.62957900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HERIC,,Richelieu,Hendaye - Richelieu,43.34348700,-1.76807750,,,1,,2,Hendaye,,,64260
+place_SJROS,,Rostand,Saint-Jean-de-Luz - Rostand,43.40253600,-1.64446500,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJSAG,,Sagardian,Saint-Jean-de-Luz - Sagardian,43.38827500,-1.65223500,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_SJSJO,,Saint Joseph ~ San Josepe,Saint-Jean-de-Luz - Saint Joseph ~ San Josepe,43.39223700,-1.64654100,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_STLE,,Saint-Léon,Bayonne - Saint-Léon,43.48932050,-1.48231050,,,1,,2,Bayonne,,,64102
+place_SJRES,,Sainte-Barbe ~ Santa Barbara,Saint-Jean-de-Luz - Sainte-Barbe ~ Santa Barbara,43.40190000,-1.65609200,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CISTH,,Sainte-Croix ~ Gurutze Saindua,Ciboure - Sainte-Croix ~ Gurutze Saindua,43.37212250,-1.65900300,,,1,,2,Ciboure,,,64189
+place_SJSIL,,Silabia,Saint-Jean-de-Luz - Silabia,43.40191700,-1.62726700,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_URRSO,,Souhara,Urrugne - Souhara,43.37555850,-1.67735550,,,1,,2,Urrugne,,,64545
+place_CISPE,,Speraber,Ciboure - Speraber,43.38140150,-1.66786250,,,1,,2,Ciboure,,,64189
+place_ARSTA1,,Stade,Arbonne - Stade,43.43684300,-1.55096900,,,1,,2,Arbonne,,,64035
+place_ARSTA,,Stade ~ Estadioa (Arbonne),Arbonne - Stade ~ Estadioa (Arbonne),43.43679300,-1.55102900,,,1,,2,Arbonne,,,64035
+place_URSTA,,Stade ~ Estadioa (Urrugne),Urrugne - Stade ~ Estadioa (Urrugne),43.36304200,-1.69422000,,,1,,2,Urrugne,,,64545
+place_SJTRI,,Trikaldi,Saint-Jean-de-Luz - Trikaldi,43.39657000,-1.64570900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HETUL,,Tulipiers ~ Tulipondoak,Hendaye - Tulipiers ~ Tulipondoak,43.37027600,-1.77214550,,,1,,2,Hendaye,,,64260
+place_HETXI,,Txingudi,Hendaye - Txingudi,43.36980300,-1.77325300,,,1,,2,Hendaye,,,64260
+place_BIDH,,Uhabia,Bidart - Uhabia,43.43077000,-1.59866650,,,1,,2,Bidart,,,64125
+place_ARHAM,,Uhazaldea,Arbonne - Uhazaldea,43.40671800,-1.54349650,,,1,,2,Arbonne,,,64035
+place_UNIO,,Union,Anglet - Union,43.48300300,-1.50345550,,,1,,2,Anglet,,,64024
+place_CIUNT,,Untxin,Ciboure - Untxin,43.38585850,-1.68664850,,,1,,2,Ciboure,,,64189
+place_SJURD,,Urdazuri,Saint-Jean-de-Luz - Urdazuri,43.38250600,-1.65257600,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEVIE,,Vieux Fort ~ Gazteluzahar,Hendaye - Vieux Fort ~ Gazteluzahar,43.36073100,-1.77431700,,,1,,2,Hendaye,,,64260
+place_VILL,,Villa Pia,Bayonne - Villa Pia,43.48501750,-1.49491700,,,1,,2,Bayonne,,,64102
+place_HECEN1,,Ville,Hendaye - Ville,43.35976500,-1.77548100,,,1,,2,Hendaye,,,64260
+place_HECEN,,Ville ~ Hiri Barnea,Hendaye - Ville ~ Hiri Barnea,43.35973100,-1.77557300,,,1,,2,Hendaye,,,64260
+place_HEWAT,,Water Sport Center,Hendaye - Water Sport Center,43.36818600,-1.78117100,,,1,,2,Hendaye,,,64260
+place_SJXIM,,Ximista,Saint-Jean-de-Luz - Ximista,43.40041000,-1.64223650,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_CISAI,,Zaldi Xurito,Ciboure - Zaldi Xurito,43.37263400,-1.65800100,,,1,,2,Ciboure,,,64189
+place_SJSAN,,Zantzu,Saint-Jean-de-Luz - Zantzu,43.39989400,-1.64755900,,,1,,2,Saint-Jean-de-Luz,,,64483
+place_HEZO1,,Zopite 1,Hendaye - Zopite 1,43.37027900,-1.75527350,,,1,,2,Hendaye,,,64260
+place_HEZO,,Zopite 2,Hendaye - Zopite 2,43.36771300,-1.75054350,,,1,,2,Hendaye,,,64260
+place_CIZUB,,Zubiburu,Ciboure - Zubiburu,43.38271950,-1.66665750,,,1,,2,Ciboure,,,64189
+HECHA1,9003,Abadia,Hendaye - Abadia,43.37451000,-1.75183500,,,0,place_HECHA,2,Hendaye,9003,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Béhobie ~ Pausu / Halte Routière ~ Autobus Geltokia,64260
+HECHA2,9004,Abadia,Hendaye - Abadia,43.37428900,-1.75218600,,,0,place_HECHA,2,Hendaye,9004,Direction ~ Norabidea: Plaza San Juan / Consulat ~ Kontsuletxea / Water Sport Center,64260
+HEAGE1,9005,Agerrea,Hendaye - Agerrea,43.37234300,-1.74782400,,,0,place_HEAGE,2,Hendaye,9005,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEAGE2,9006,Agerrea,Hendaye - Agerrea,43.37211300,-1.74681700,,,0,place_HEAGE,2,Hendaye,9006,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+BUAGU1,9947,Agerreberri,Biriatou - Agerreberri,43.34266200,-1.73928200,,,0,place_BUAGU,2,Biriatou,9947,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BUAGU2,7040,Agerreberri,Biriatou - Agerreberri,43.34258800,-1.73936700,,,0,place_BUAGU,2,Biriatou,7040,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+AHCRO1,9007,Ahetze Croisement ~ Ahetze Bidegurutzea,Arbonne - Ahetze Croisement ~ Ahetze Bidegurutzea,43.41755600,-1.54877500,,,0,place_AHCRO,2,Arbonne,9007,Direction ~ Norabidea: Gare de Biarritz,64035
+AHCRO2,9008,Ahetze Croisement ~ Ahetze Bidegurutzea,Arbonne - Ahetze Croisement ~ Ahetze Bidegurutzea,43.41881600,-1.54867700,,,0,place_AHCRO,2,Arbonne,9008,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64035
+HEAIZ1,9009,Aizpurdi St Vincent ~ Aizpurdi San Bixente,Hendaye - Aizpurdi St Vincent ~ Aizpurdi San Bixente,43.35646000,-1.77437800,,,0,place_HEAIZ,2,Hendaye,9009,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEAIZ2,9869,Aizpurdi St Vincent ~ Aizpurdi San Bixente,Hendaye - Aizpurdi St Vincent ~ Aizpurdi San Bixente,43.35656200,-1.77426100,,,0,place_HEAIZ,2,Hendaye,9869,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+SJACO1,9010,Akotz,Saint-Jean-de-Luz - Akotz,43.41260900,-1.61795400,,,0,place_SJACO,2,Saint-Jean-de-Luz,9010,Direction ~ Norabidea: Zaldi Xurito,64483
+SJACO2,9903,Akotz,Saint-Jean-de-Luz - Akotz,43.41306600,-1.61746800,,,0,place_SJACO,2,Saint-Jean-de-Luz,9903,Direction ~ Norabidea: Lafitenea,64483
+SJACO3,9297,Akotz,Saint-Jean-de-Luz - Akotz,43.41269500,-1.61709800,,,0,place_SJACO,2,Saint-Jean-de-Luz,9297,Direction ~ Norabidea: Place des Basques / Grande Plage,64483
+SJALT3,9011,Alturan,Saint-Jean-de-Luz - Alturan,43.38902800,-1.62039100,,,0,place_SJALT,2,Saint-Jean-de-Luz,9011,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJALB1,9804,Alturan Bi,Saint-Jean-de-Luz - Alturan Bi,43.38855300,-1.62400900,,,0,place_SJALB,2,Saint-Jean-de-Luz,9804,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJALB2,10010,Alturan Bi,Saint-Jean-de-Luz - Alturan Bi,43.38810500,-1.62384800,,,0,place_SJALB,2,Saint-Jean-de-Luz,10010,Direction ~ Norabidea: Alturan,64483
+SJAND2,6141,Andenea,Saint-Jean-de-Luz - Andenea,43.38996000,-1.64771200,,,0,place_SJAND,2,Saint-Jean-de-Luz,6141,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+ARARA0,9811,Arantzola,Arbonne - Arantzola,43.42565900,-1.54876200,,,0,place_ARARA,2,Arbonne,9811,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64035
+HEASC1,9249,Ascoubia,Hendaye - Ascoubia,43.37731200,-1.74455000,,,0,place_HEASC,2,Hendaye,9249,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64260
+HEASC2,9884,Ascoubia,Hendaye - Ascoubia,43.37742300,-1.74471700,,,0,place_HEASC,2,Hendaye,9884,Direction ~ Norabidea: Water Sport Center,64260
+HEASP1,9248,Asporotsttipi,Hendaye - Asporotsttipi,43.37703400,-1.73896800,,,0,place_HEASP,2,Hendaye,9248,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64260
+HEASP2,9885,Asporotsttipi,Hendaye - Asporotsttipi,43.37687300,-1.73932900,,,0,place_HEASP,2,Hendaye,9885,Direction ~ Norabidea: Water Sport Center,64260
+HEATA1,9227,Atabala,Hendaye - Atabala,43.36441900,-1.76491900,,,0,place_HEATA,2,Hendaye,9227,Direction ~ Norabidea: Behobia,64260
+HEATA2,9861,Atabala,Hendaye - Atabala,43.36448500,-1.76501200,,,0,place_HEATA,2,Hendaye,9861,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+HEAUT1,9015,Autoport ~ Autoportua,Hendaye - Autoport ~ Autoportua,43.34766700,-1.77039500,,,0,place_HEAUT,2,Hendaye,9015,Direction ~ Norabidea: Behobia,64260
+HEAUT2,9016,Autoport ~ Autoportua,Hendaye - Autoport ~ Autoportua,43.34768300,-1.77030900,,,0,place_HEAUT,2,Hendaye,9016,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+CIAVB1,9017,Avenue de la Baie ~ Badiako Etorbidea,Ciboure - Avenue de la Baie ~ Badiako Etorbidea,43.38554600,-1.67839400,,,0,place_CIAVB,2,Ciboure,9017,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIAVB2,9894,Avenue de la Baie ~ Badiako Etorbidea,Ciboure - Avenue de la Baie ~ Badiako Etorbidea,43.38557700,-1.67826800,,,0,place_CIAVB,2,Ciboure,9894,Direction ~ Norabidea: Water Sport Center,64189
+SJAXU1,9018,Axular,Saint-Jean-de-Luz - Axular,43.38607900,-1.65568200,,,0,place_SJAXU,2,Saint-Jean-de-Luz,9018,Direction ~ Norabidea: Zaldi Xurito,64483
+SJAXU2,9919,Axular,Saint-Jean-de-Luz - Axular,43.38609700,-1.65583000,,,0,place_SJAXU,2,Saint-Jean-de-Luz,9919,Direction ~ Norabidea: Lafitenea,64483
+BUGAR3,9216,Azkenean,Biriatou - Azkenean,43.34262200,-1.74568100,,,0,place_BUGAR,2,Biriatou,9216,Direction ~ Norabidea: Bourg ~ Herri Bernea / Vieux Fort ~ Gazteluzahar,64130
+AERO01,137,Aéroport de Biarritz,Anglet - Aéroport de Biarritz,43.47204000,-1.53240500,,,0,place_AERO,2,Anglet,137,Direction ~ Norabidea: Place des Basques / Grande Plage,64024
+SJAIC2,6138,Aïce Errota _ Haize Errota,Saint-Jean-de-Luz - Aïce Errota _ Haize Errota,43.39439300,-1.65274900,,,0,place_SJAIC,2,Saint-Jean-de-Luz,6138,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+BARB11,9272,Barbarenia,Bidart - Barbarenia,43.44995600,-1.55983600,,,0,place_BARB,2,Bidart,9272,Direction ~ Norabidea: Place des Basques,64125
+BARB12,9273,Barbarenia,Biarritz - Barbarenia,43.45005300,-1.55998100,,,0,place_BARB,2,Biarritz,9273,Direction ~ Norabidea: Grande Plage,64122
+HEBAR1,9019,Barrendegi,Hendaye - Barrendegi,43.35629600,-1.76930400,,,0,place_HEBAR,2,Hendaye,9019,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEBAR2,9867,Barrendegi,Hendaye - Barrendegi,43.35623400,-1.76928300,,,0,place_HEBAR,2,Hendaye,9867,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+HEBAS1,9020,Bas Quartier ~ Partxetegia,Hendaye - Bas Quartier ~ Partxetegia,43.35884400,-1.77163000,,,0,place_HEBAS,2,Hendaye,9020,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEBAS2,9868,Bas Quartier ~ Partxetegia,Hendaye - Bas Quartier ~ Partxetegia,43.35867800,-1.77178000,,,0,place_HEBAS,2,Hendaye,9868,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+IRBEH3,9104,Behobia,Irun - Behobia,43.34300200,-1.75963500,,,0,place_IRBEH,2,Irun,9104,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,
+HEBEL1,9022,Belcenia ~ Beltzenea,Hendaye - Belcenia ~ Beltzenea,43.36159700,-1.77240300,,,0,place_HEBEL,2,Hendaye,9022,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+HEBEL2,9023,Belcenia ~ Beltzenea,Hendaye - Belcenia ~ Beltzenea,43.36205600,-1.77207700,,,0,place_HEBEL,2,Hendaye,9023,Direction ~ Norabidea: Plaza San Juan,64260
+SJBEL1,9024;9259,Belharra,Saint-Jean-de-Luz - Belharra,43.41154000,-1.61497300,,,0,place_SJBEL,2,Saint-Jean-de-Luz,9024;9259,Direction ~ Norabidea: Place des Basques,64483
+SJBEL2,9260;9904,Belharra,Saint-Jean-de-Luz - Belharra,43.41152800,-1.61527000,,,0,place_SJBEL,2,Saint-Jean-de-Luz,9260;9904,Direction ~ Norabidea: Grande Plage,64483
+CIBER1,9025,Berastegia,Ciboure - Berastegia,43.37989800,-1.67496700,,,0,place_CIBER,2,Ciboure,9025,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIBER2,9026,Berastegia,Ciboure - Berastegia,43.37987700,-1.67456100,,,0,place_CIBER,2,Ciboure,9026,Direction ~ Norabidea: Water Sport Center,64189
+BRNM01,112,Bernain-Montòri,Anglet - Bernain-Montòri,43.48165300,-1.51001400,,,0,place_BRNM,2,Anglet,112,Direction ~ Norabidea: Grande Plage,64024
+BRNM02,111,Bernain-Montòri,Anglet - Bernain-Montòri,43.48142900,-1.50989200,,,0,place_BRNM,2,Anglet,111,Direction ~ Norabidea: Place des Basques,64024
+URBER0,9027,Berroeta,Urrugne - Berroeta,43.34814200,-1.68979000,,,0,place_URBER,2,Urrugne,9027,Direction ~ Norabidea: Alturan,64545
+CIBIB1,9028,Bibliothèque ~ Liburutegia,Ciboure - Bibliothèque ~ Liburutegia,43.38142600,-1.66472500,,,0,place_CIBIB,2,Ciboure,9028,Direction ~ Norabidea: Zaldi Xurito / Bourg ~ Herri Bernea,64189
+CIBIB2,9921,Bibliothèque ~ Liburutegia,Ciboure - Bibliothèque ~ Liburutegia,43.38161700,-1.66474500,,,0,place_CIBIB,2,Ciboure,9921,Direction ~ Norabidea: Lafitenea / Alturan,64189
+BIDE01,9265,Bide Artean,Bidart - Bide Artean,43.44573600,-1.58328500,,,0,place_BIDE,2,Bidart,9265,Direction ~ Norabidea: Grande Plage,64125
+BIDE02,9264,Bide Artean,Bidart - Bide Artean,43.44555700,-1.58320400,,,0,place_BIDE,2,Bidart,9264,Direction ~ Norabidea: Place des Basques,64125
+CIBOR1,9029,Bordagain,Ciboure - Bordagain,43.38283000,-1.67603600,,,0,place_CIBOR,2,Ciboure,9029,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIBOR2,9030,Bordagain,Ciboure - Bordagain,43.38308100,-1.67604300,,,0,place_CIBOR,2,Ciboure,9030,Direction ~ Norabidea: Water Sport Center,64189
+URBOU3,9032,Bourg ~ Herri Barnea,Urrugne - Bourg ~ Herri Barnea,43.36249600,-1.69899900,,,0,place_URBOU1,2,Urrugne,9032,Direction ~ Norabidea: Alturan,64545
+BUBRG3,9031,Bourg ~ Herri Barnea (Biriatou),Biriatou - Bourg ~ Herri Barnea (Biriatou),43.33366000,-1.74390300,,,0,place_BUBRG,2,Biriatou,9031,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+URBEH1,230;9021,Béhobie,Urrugne - Béhobie,43.34573300,-1.76303300,,,0,place_URBEH,2,Urrugne,230;9021,Direction ~ Norabidea: Place des Basques,64545
+URBEH2,231;9875,Béhobie,Urrugne - Béhobie,43.34607300,-1.76392600,,,0,place_URBEH,2,Urrugne,231;9875,Direction ~ Norabidea: Grande Plage,64545
+URCA01,9033,Camieta ~ Kamieta,Urrugne - Camieta ~ Kamieta,43.37454300,-1.67368200,,,0,place_URCA,2,Urrugne,9033,Direction ~ Norabidea: Bourg ~ Herri Bernea,64545
+URCA02,9944,Camieta ~ Kamieta,Urrugne - Camieta ~ Kamieta,43.37448600,-1.67374400,,,0,place_URCA,2,Urrugne,9944,Direction ~ Norabidea: Alturan,64545
+SJDUM1,9034,Camping Duna Munguy,Saint-Jean-de-Luz - Camping Duna Munguy,43.41834200,-1.62109600,,,0,place_SJDUM,2,Saint-Jean-de-Luz,9034,Direction ~ Norabidea: Zaldi Xurito,64483
+SJDUM2,9901,Camping Duna Munguy,Saint-Jean-de-Luz - Camping Duna Munguy,43.41841900,-1.62082400,,,0,place_SJDUM,2,Saint-Jean-de-Luz,9901,Direction ~ Norabidea: Lafitenea,64483
+CIJUA1,9807,Camping Juantcho,Urrugne - Camping Juantcho,43.39358600,-1.69336000,,,0,place_CIJUA,2,Urrugne,9807,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64545
+CIJUA2,9887,Camping Juantcho,Urrugne - Camping Juantcho,43.39320600,-1.69428600,,,0,place_CIJUA,2,Urrugne,9887,Direction ~ Norabidea: Water Sport Center,64545
+CRRI01,9263,Carricartenea,Bidart - Carricartenea,43.43561300,-1.59362200,,,0,place_CRRI,2,Bidart,9263,Direction ~ Norabidea: Grande Plage,64125
+CRRI02,9262,Carricartenea,Bidart - Carricartenea,43.43576500,-1.59328400,,,0,place_CRRI,2,Bidart,9262,Direction ~ Norabidea: Place des Basques,64125
+HECAS1,9038;henespe2,Casa Esperenza,Hendaye - Casa Esperenza,43.35602100,-1.77759700,,,0,place_HECAS,2,Hendaye,9038;henespe2,Direction ~ Norabidea: Plaza San Juan / Béhobie ~ Pausu,64260
+HECCI1,313;9040,Centre Commercial,Hendaye - Centre Commercial,43.34962700,-1.77149600,,,0,place_HECCI1,2,Hendaye,313;9040,Direction ~ Norabidea: Grande Plage,64260
+HECCI2,305;9871,Centre Commercial,Hendaye - Centre Commercial,43.34936300,-1.77138200,,,0,place_HECCI1,2,Hendaye,305;9871,Direction ~ Norabidea: Place des Basques,64260
+SJCCI1,206;9041,Centre commercial,Saint-Jean-de-Luz - Centre commercial,43.40542700,-1.62515900,,,0,place_SJCCI1,2,Saint-Jean-de-Luz,206;9041,Direction ~ Norabidea: Place des Basques,64483
+SJCCI2,207;9906,Centre commercial,Saint-Jean-de-Luz - Centre commercial,43.40503600,-1.62612500,,,0,place_SJCCI1,2,Saint-Jean-de-Luz,207;9906,Direction ~ Norabidea: Grande Plage,64483
+CHAI01,9267,Chaillas,Bidart - Chaillas,43.44663900,-1.58036300,,,0,place_CHAI,2,Bidart,9267,Direction ~ Norabidea: Grande Plage,64125
+CHAI02,9266,Chaillas,Bidart - Chaillas,43.44653000,-1.58023200,,,0,place_CHAI,2,Bidart,9266,Direction ~ Norabidea: Place des Basques,64125
+SJCHA3,9042,Chantaco  LP Arrue ~ Xantako  Arrue LP,Saint-Jean-de-Luz - Chantaco  LP Arrue ~ Xantako  Arrue LP,43.37527700,-1.63906400,,,0,place_SJCHA,2,Saint-Jean-de-Luz,9042,Direction ~ Norabidea: Lafitenea / Alturan,64483
+UROLH3,9043,Chapelle d'Olhette ~ Olhetako Kapera,Urrugne - Chapelle d'Olhette ~ Olhetako Kapera,43.33518700,-1.66812100,,,0,place_UROLH,2,Urrugne,9043,Direction ~ Norabidea: Alturan,64545
+SJCHI3,9222,Chipienia ~ Xipienia,Hendaye - Chipienia ~ Xipienia,43.36266000,-1.76561700,,,0,place_SJCHI,2,Hendaye,9222,Direction ~ Norabidea: Behobia / Grande Plage ~ Hondartza Nagusia,64260
+BIDUT1,9268,Chutiqueta (Bidart),Bidart - Chutiqueta (Bidart),43.44887200,-1.57081000,,,0,place_BIDUT,2,Bidart,9268,Direction ~ Norabidea: Place des Basques,64125
+BIDUT2,9269,Chutiqueta (Bidart),Bidart - Chutiqueta (Bidart),43.44914000,-1.57073300,,,0,place_BIDUT,2,Bidart,9269,Direction ~ Norabidea: Grande Plage,64125
+HEPAL1,9818,Chèvrefeuilles,Hendaye - Chèvrefeuilles,43.37286300,-1.77263300,,,0,place_HEPAL,2,Hendaye,9818,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Béhobie ~ Pausu / Behobia,64260
+HECHE1,7006;9300,Chênes,Hendaye - Chênes,43.34954600,-1.77756700,,,0,place_HECHE1,2,Hendaye,7006;9300,Direction ~ Norabidea: Place des Basques,64260
+HECHE2,9224;9883,Chênes,Hendaye - Chênes,43.34964800,-1.77727700,,,0,place_HECHE1,2,Hendaye,9224;9883,Direction ~ Norabidea: Grande Plage,64260
+CICIM1,9045,Cimetière Marin ~ Itsas Hilerria,Ciboure - Cimetière Marin ~ Itsas Hilerria,43.38903400,-1.68105100,,,0,place_CICIM,2,Ciboure,9045,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CICIM2,9046,Cimetière Marin ~ Itsas Hilerria,Ciboure - Cimetière Marin ~ Itsas Hilerria,43.38910200,-1.68087900,,,0,place_CICIM,2,Ciboure,9046,Direction ~ Norabidea: Water Sport Center,64189
+SJCIM1,9047,Cimetière Saint Joseph ~ San Josepe Hilerria,Saint-Jean-de-Luz - Cimetière Saint Joseph ~ San Josepe Hilerria,43.39167000,-1.64651800,,,0,place_SJCIM,2,Saint-Jean-de-Luz,9047,Direction ~ Norabidea: Zaldi Xurito,64483
+SJCIM2,9048,Cimetière Saint Joseph ~ San Josepe Hilerria,Saint-Jean-de-Luz - Cimetière Saint Joseph ~ San Josepe Hilerria,43.39154500,-1.64679100,,,0,place_SJCIM,2,Saint-Jean-de-Luz,9048,Direction ~ Norabidea: Lafitenea,64483
+HECIN1,9049,Cinéma ~ Zinegela,Hendaye - Cinéma ~ Zinegela,43.35537900,-1.77442300,,,0,place_HECIN,2,Hendaye,9049,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HECIN2,9870,Cinéma ~ Zinegela,Hendaye - Cinéma ~ Zinegela,43.35529200,-1.77414700,,,0,place_HECIN,2,Hendaye,9870,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+SJCLO1,9050,Clos Saint-Vincent,Saint-Jean-de-Luz - Clos Saint-Vincent,43.39288200,-1.64121300,,,0,place_SJCLO,2,Saint-Jean-de-Luz,9050,Direction ~ Norabidea: Zaldi Xurito,64483
+SJCLO2,9913,Clos Saint-Vincent,Saint-Jean-de-Luz - Clos Saint-Vincent,43.39282100,-1.64113400,,,0,place_SJCLO,2,Saint-Jean-de-Luz,9913,Direction ~ Norabidea: Lafitenea,64483
+HEIRA1,9101,Collège Irandatz ~ Irandatz Kolegioa,Hendaye - Collège Irandatz ~ Irandatz Kolegioa,43.35242000,-1.77671400,,,0,place_HEIRA,2,Hendaye,9101,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEIRA2,9102,Collège Irandatz ~ Irandatz Kolegioa,Hendaye - Collège Irandatz ~ Irandatz Kolegioa,43.35236100,-1.77661900,,,0,place_HEIRA,2,Hendaye,9102,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+HECOM2,9245,Commissariat ~ Komisaldegia,Hendaye - Commissariat ~ Komisaldegia,43.35089400,-1.78254500,,,0,place_HECOM,2,Hendaye,9245,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+HERON3,6129,Consulat ~ Kontsuletxea,Hendaye - Consulat ~ Kontsuletxea,43.36532800,-1.76981000,,,0,place_HERON,2,Hendaye,6129,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+SJCOU2,6152,Coulomme,Saint-Jean-de-Luz - Coulomme,43.39422700,-1.64409700,,,0,place_SJCOU,2,Saint-Jean-de-Luz,6152,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+URCRO1,1053,Croix des Bouquets,Urrugne - Croix des Bouquets,43.35182000,-1.73877700,,,0,place_URCRO,2,Urrugne,1053,Direction ~ Norabidea: Place des Basques,64545
+URCRO2,9225,Croix des Bouquets,Urrugne - Croix des Bouquets,43.35224700,-1.73847600,,,0,place_URCRO,2,Urrugne,9225,Direction ~ Norabidea: Grande Plage,64545
+HECED0,9039;hencedr2,Cèdres ~ Zedroak,Hendaye - Cèdres ~ Zedroak,43.36658100,-1.76993900,,,0,place_HECED,2,Hendaye,9039;hencedr2,Direction ~ Norabidea: Plaza San Juan,64260
+CIKEX1,9054,Delaunay,Ciboure - Delaunay,43.37923100,-1.66846500,,,0,place_CIKEX,2,Ciboure,9054,Direction ~ Norabidea: Bourg ~ Herri Bernea,64189
+CIKEX2,9942,Delaunay,Ciboure - Delaunay,43.37948100,-1.66806600,,,0,place_CIKEX,2,Ciboure,9942,Direction ~ Norabidea: Alturan,64189
+HEDEN1,9055,Denentzat,Hendaye - Denentzat,43.34388400,-1.76520900,,,0,place_HEDEN,2,Hendaye,9055,Direction ~ Norabidea: Behobia,64260
+HEDEN2,9874,Denentzat,Hendaye - Denentzat,43.34396900,-1.76505500,,,0,place_HEDEN,2,Hendaye,9874,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+SJDIG1,9056,Digue aux Chevaux ~ Zaldien Diga,Saint-Jean-de-Luz - Digue aux Chevaux ~ Zaldien Diga,43.39397100,-1.65990900,,,0,place_SJDIG,2,Saint-Jean-de-Luz,9056,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJDIG2,9940,Digue aux Chevaux ~ Zaldien Diga,Saint-Jean-de-Luz - Digue aux Chevaux ~ Zaldien Diga,43.39398400,-1.65978700,,,0,place_SJDIG,2,Saint-Jean-de-Luz,9940,Direction ~ Norabidea: Alturan,64483
+HEDON1,9057,Dongoxenea,Hendaye - Dongoxenea,43.36929800,-1.75034900,,,0,place_HEDON,2,Hendaye,9057,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEDON2,9058,Dongoxenea,Hendaye - Dongoxenea,43.36910700,-1.75039300,,,0,place_HEDON,2,Hendaye,9058,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+HEDOR1,9238,Dorrondeguy,Hendaye - Dorrondeguy,43.36848900,-1.74677600,,,0,place_HEDOR,2,Hendaye,9238,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEDOR2,9877,Dorrondeguy,Hendaye - Dorrondeguy,43.36806600,-1.74743200,,,0,place_HEDOR,2,Hendaye,9877,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+SJDUH1,9036,Duhartia,Saint-Jean-de-Luz - Duhartia,43.41517500,-1.61702600,,,0,place_SJDUH,2,Saint-Jean-de-Luz,9036,Direction ~ Norabidea: Zaldi Xurito,64483
+SJDUH2,9902,Duhartia,Saint-Jean-de-Luz - Duhartia,43.41534300,-1.61710400,,,0,place_SJDUH,2,Saint-Jean-de-Luz,9902,Direction ~ Norabidea: Lafitenea,64483
+BIMA01,147,Eglise,Bidart - Eglise,43.43889900,-1.58843800,,,0,place_BIMA,2,Bidart,147,Direction ~ Norabidea: Grande Plage,64125
+BIMA02,146,Eglise,Bidart - Eglise,43.43797000,-1.58932400,,,0,place_BIMA,2,Bidart,146,Direction ~ Norabidea: Place des Basques,64125
+GUEEG1,167,Eglise (Guéthary),Guéthary - Eglise (Guéthary),43.42092500,-1.60594800,,,0,place_GUEEG,2,Guéthary,167,Direction ~ Norabidea: Place des Basques,64249
+GUEEG2,168,Eglise (Guéthary),Guéthary - Eglise (Guéthary),43.42030300,-1.60732100,,,0,place_GUEEG,2,Guéthary,168,Direction ~ Norabidea: Grande Plage,64249
+UREGL1,9060,Eglise de Zokoa ~ Zokoako Eliza,Urrugne - Eglise de Zokoa ~ Zokoako Eliza,43.39104500,-1.68772100,,,0,place_UREGL,2,Urrugne,9060,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64545
+UREGL2,9061,Eglise de Zokoa ~ Zokoako Eliza,Urrugne - Eglise de Zokoa ~ Zokoako Eliza,43.39096700,-1.68702500,,,0,place_UREGL,2,Urrugne,9061,Direction ~ Norabidea: Water Sport Center,64545
+HEEGL1,9062,Eglise Sainte Anne ~ Santa Ana Eliza,Hendaye - Eglise Sainte Anne ~ Santa Ana Eliza,43.37388000,-1.77020100,,,0,place_HEEGL,2,Hendaye,9062,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Béhobie ~ Pausu / Behobia,64260
+HEEGL2,9855,Eglise Sainte Anne ~ Santa Ana Eliza,Hendaye - Eglise Sainte Anne ~ Santa Ana Eliza,43.37401300,-1.77011500,,,0,place_HEEGL,2,Hendaye,9855,Direction ~ Norabidea: Plaza San Juan / Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+SJEHP1,9231,EHPAD Urthaburu ~ Urthaburu zahar etxea,Saint-Jean-de-Luz - EHPAD Urthaburu ~ Urthaburu zahar etxea,43.40096200,-1.63294500,,,0,place_SJEHP,2,Saint-Jean-de-Luz,9231,Direction ~ Norabidea: Zaldi Xurito,64483
+SJEHP2,9928,EHPAD Urthaburu ~ Urthaburu zahar etxea,Saint-Jean-de-Luz - EHPAD Urthaburu ~ Urthaburu zahar etxea,43.40088600,-1.63308700,,,0,place_SJEHP,2,Saint-Jean-de-Luz,9928,Direction ~ Norabidea: Lafitenea,64483
+HEEHP3,9063,EHPAD ~ Zahar Etxea,Hendaye - EHPAD ~ Zahar Etxea,43.37628300,-1.75673900,,,0,place_HEEHP,2,Hendaye,9063,Direction ~ Norabidea: Plaza San Juan,64260
+HEEMP1,9064,Empereur ~ Enperadore,Hendaye - Empereur ~ Enperadore,43.36701100,-1.75681100,,,0,place_HEEMP,2,Hendaye,9064,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEEMP2,9880,Empereur ~ Enperadore,Hendaye - Empereur ~ Enperadore,43.36699500,-1.75666500,,,0,place_HEEMP,2,Hendaye,9880,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+ERRE01,149,Erretegia,Bidart - Erretegia,43.44341500,-1.58533900,,,0,place_ERRE,2,Bidart,149,Direction ~ Norabidea: Grande Plage,64125
+ERRE02,148,Erretegia,Bidart - Erretegia,43.44275800,-1.58516300,,,0,place_ERRE,2,Bidart,148,Direction ~ Norabidea: Place des Basques,64125
+SJERW1,9933,Erromardi Wauthier,Saint-Jean-de-Luz - Erromardi Wauthier,43.39937700,-1.64287600,,,0,place_SJERW,2,Saint-Jean-de-Luz,9933,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJERW2,6157,Erromardi Wauthier,Saint-Jean-de-Luz - Erromardi Wauthier,43.39939100,-1.64300700,,,0,place_SJERW,2,Saint-Jean-de-Luz,6157,Direction ~ Norabidea: Alturan,64483
+HEERR1,9865,Errondonea,Hendaye - Errondonea,43.35906100,-1.76406000,,,0,place_HEERR,2,Hendaye,9865,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEERR2,9866,Errondonea,Hendaye - Errondonea,43.35917000,-1.76337200,,,0,place_HEERR,2,Hendaye,9866,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+AHERR1,9067,Errotazahar,Ahetze - Errotazahar,43.40671900,-1.56789800,,,0,place_AHERR,2,Ahetze,9067,Direction ~ Norabidea: Gare de Biarritz,64009
+AHERR2,9961,Errotazahar,Ahetze - Errotazahar,43.40674200,-1.56811300,,,0,place_AHERR,2,Ahetze,9961,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64009
+SJLAN1,9068,Espace Lana ~ Lana Eremua,Saint-Jean-de-Luz - Espace Lana ~ Lana Eremua,43.39777000,-1.63991500,,,0,place_SJLAN,2,Saint-Jean-de-Luz,9068,Direction ~ Norabidea: Zaldi Xurito,64483
+SJLAN2,9911,Espace Lana ~ Lana Eremua,Saint-Jean-de-Luz - Espace Lana ~ Lana Eremua,43.39774800,-1.63971100,,,0,place_SJLAN,2,Saint-Jean-de-Luz,9911,Direction ~ Norabidea: Lafitenea,64483
+GUEES1,169,Estalo,Guéthary - Estalo,43.42487000,-1.60434900,,,0,place_GUEES,2,Guéthary,169,Direction ~ Norabidea: Place des Basques,64249
+GUEES2,170,Estalo,Guéthary - Estalo,43.42499500,-1.60447500,,,0,place_GUEES,2,Guéthary,170,Direction ~ Norabidea: Grande Plage,64249
+SJBAZ1,9069,Etxebazter,Saint-Jean-de-Luz - Etxebazter,43.39835700,-1.65591400,,,0,place_SJBAZ,2,Saint-Jean-de-Luz,9069,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJBAZ2,9939,Etxebazter,Saint-Jean-de-Luz - Etxebazter,43.39823200,-1.65592700,,,0,place_SJBAZ,2,Saint-Jean-de-Luz,9939,Direction ~ Norabidea: Alturan,64483
+SJETX1,210;9070,Etxebiaga,Saint-Jean-de-Luz - Etxebiaga,43.40060900,-1.63840200,,,0,place_SJETX,2,Saint-Jean-de-Luz,210;9070,Direction ~ Norabidea: Place des Basques,64483
+SJETX2,9071;9258,Etxebiaga,Saint-Jean-de-Luz - Etxebiaga,43.39982500,-1.64020500,,,0,place_SJETX,2,Saint-Jean-de-Luz,9071;9258,Direction ~ Norabidea: Grande Plage,64483
+SJFAR0,6159,Fargeot,Saint-Jean-de-Luz - Fargeot,43.38510300,-1.65288900,,,0,place_SJFAR,2,Saint-Jean-de-Luz,6159,Direction ~ Norabidea: Alturan,64483
+IRFI03,9815;irufico2,Ficoba,Irun - Ficoba,43.34597900,-1.78766000,,,0,place_IRFI,2,Irun,9815;irufico2,Direction ~ Norabidea: EHPAD ~ Zahar Etxea,
+HEGAL1,9075,Galbarreta,Hendaye - Galbarreta,43.37357800,-1.75568800,,,0,place_HEGAL,2,Hendaye,9075,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Béhobie ~ Pausu / Behobia,64260
+HEGAL2,9076,Galbarreta,Hendaye - Galbarreta,43.37357600,-1.75472000,,,0,place_HEGAL,2,Hendaye,9076,Direction ~ Norabidea: Plaza San Juan / Consulat ~ Kontsuletxea / Water Sport Center,64260
+URGAL1,9077,Galtzaburu,Urrugne - Galtzaburu,43.37609200,-1.67089700,,,0,place_URGAL,2,Urrugne,9077,Direction ~ Norabidea: Bourg ~ Herri Bernea,64545
+URGAL2,9943,Galtzaburu,Urrugne - Galtzaburu,43.37603300,-1.67078500,,,0,place_URGAL,2,Urrugne,9943,Direction ~ Norabidea: Alturan,64545
+SJGAM1,9078,Gambetta,Saint-Jean-de-Luz - Gambetta,43.38995700,-1.65890600,,,0,place_SJGAM,2,Saint-Jean-de-Luz,9078,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJGAM2,9941,Gambetta,Saint-Jean-de-Luz - Gambetta,43.39001600,-1.65880400,,,0,place_SJGAM,2,Saint-Jean-de-Luz,9941,Direction ~ Norabidea: Alturan,64483
+NEGR01,9001,Gare de Biarritz,Biarritz - Gare de Biarritz,43.45970100,-1.54606100,,,0,place_NEGR,2,Biarritz,9001,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64122
+NEGR02,10034,Gare de Biarritz,Biarritz - Gare de Biarritz,43.45970000,-1.54606300,,,0,place_NEGR,2,Biarritz,10034,,64122
+HEGAP3,9079,Gare Plage d’Hendaye ~ Hendaia Hondarraitzeko Geltokia,Hendaye - Gare Plage d’Hendaye ~ Hendaia Hondarraitzeko Geltokia,43.36961900,-1.76516300,,,0,place_HEGAP,2,Hendaye,9079,Direction ~ Norabidea: Behobia / Grande Plage ~ Hondartza Nagusia / Water Sport Center,64260
+HEGAR1,181;9080,Gare SNCF (Hendaye),Hendaye - Gare SNCF (Hendaye),43.35322600,-1.78113800,,,0,place_HEGAR1,2,Hendaye,181;9080,Direction ~ Norabidea: Place des Basques,64260
+HEGAR2,182;9882,Gare SNCF (Hendaye),Hendaye - Gare SNCF (Hendaye),43.35319100,-1.78098000,,,0,place_HEGAR1,2,Hendaye,182;9882,Direction ~ Norabidea: Grande Plage,64260
+BIASK1,7009,Garlatz,Biriatou - Garlatz,43.34587600,-1.73960000,,,0,place_BIASK,2,Biriatou,7009,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BIASK2,9954,Garlatz,Biriatou - Garlatz,43.34589600,-1.73968500,,,0,place_BIASK,2,Biriatou,9954,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+BUGAZ1,9948,Gazteluberri,Biriatou - Gazteluberri,43.34464500,-1.73612500,,,0,place_BUGAZ,2,Biriatou,9948,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BUGAZ2,7008,Gazteluberri,Biriatou - Gazteluberri,43.34464500,-1.73612500,,,0,place_BUGAZ,2,Biriatou,7008,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+AHGAZ1,9082,Gazteluberria,Ahetze - Gazteluberria,43.39853100,-1.58915000,,,0,place_AHGAZ,2,Ahetze,9082,Direction ~ Norabidea: Gare de Biarritz,64009
+AHGAZ2,9959,Gazteluberria,Ahetze - Gazteluberria,43.39863900,-1.58912800,,,0,place_AHGAZ,2,Ahetze,9959,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64009
+HEOFF3,184;9820,Grande Plage,Hendaye - Grande Plage,43.37294900,-1.77547700,,,0,place_HEOFF,2,Hendaye,184;9820,Direction ~ Norabidea: Place des Basques,64260
+HEOFF2,9084,Grande Plage ~ Hondartza Nagusia,Hendaye - Grande Plage ~ Hondartza Nagusia,43.37352400,-1.77232900,,,0,place_HEOFF1,2,Hendaye,9084,Direction ~ Norabidea: Water Sport Center,64260
+ARNAH3,9854,Gure Nahia,Arbonne - Gure Nahia,43.42555900,-1.55261000,,,0,place_ARNAH,2,Arbonne,9854,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia / Gare de Biarritz,64035
+SJHAI3,8217,Haize Kantari Scolaire,Saint-Jean-de-Luz - Haize Kantari Scolaire,43.39222800,-1.63428200,,,0,place_SJHAI,2,Saint-Jean-de-Luz,8217,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+IRAT03,IRAT03,Halle Iraty,Biarritz - Halle Iraty,43.46589300,-1.53820400,,,0,place_IRAT,2,Biarritz,IRAT03,Direction ~ Norabidea: Place des Basques / Grande Plage,64122
+SJHLL2,9089,Halles,Saint-Jean-de-Luz - Halles,43.38792200,-1.66057600,,,0,place_SJHLL,2,Saint-Jean-de-Luz,9089,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJHAL3,212;9090,Halte Routière,Saint-Jean-de-Luz - Halte Routière,43.38638500,-1.66015200,,,0,place_SJHALT,2,Saint-Jean-de-Luz,212;9090,Direction ~ Norabidea: Grande Plage,64483
+SJHAL4,9081;91342,Halte Routière ~ Autobus Geltokia,Saint-Jean-de-Luz - Halte Routière ~ Autobus Geltokia,43.38598300,-1.66133600,,,0,place_SJHALT,2,Saint-Jean-de-Luz,9081;91342,Direction ~ Norabidea: Place des Basques,64483
+SJHAR1,9093,Hariztegi,Saint-Jean-de-Luz - Hariztegi,43.39205800,-1.64325600,,,0,place_SJHAR,2,Saint-Jean-de-Luz,9093,Direction ~ Norabidea: Zaldi Xurito,64483
+SJHAR2,9914,Hariztegi,Saint-Jean-de-Luz - Hariztegi,43.39204800,-1.64299500,,,0,place_SJHAR,2,Saint-Jean-de-Luz,9914,Direction ~ Norabidea: Lafitenea,64483
+HEHAR1,9094,Hariztian,Hendaye - Hariztian,43.37190200,-1.75610600,,,0,place_HEHAR,2,Hendaye,9094,Direction ~ Norabidea: Behobia,64260
+HEHAR2,9858,Hariztian,Hendaye - Hariztian,43.37203100,-1.75597200,,,0,place_HEHAR,2,Hendaye,9858,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+AHHAR1,9095,Haroztegia,Ahetze - Haroztegia,43.40847900,-1.56398200,,,0,place_AHHAR,2,Ahetze,9095,Direction ~ Norabidea: Gare de Biarritz,64009
+AHHAR2,9962,Haroztegia,Ahetze - Haroztegia,43.40847500,-1.56459600,,,0,place_AHHAR,2,Ahetze,9962,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64009
+HARI01,9967,Harritx,Biarritz - Harritx,43.45664100,-1.54416500,,,0,place_HARI,2,Biarritz,9967,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64122
+HARI02,9810,Harritx,Biarritz - Harritx,43.45703700,-1.54426000,,,0,place_HARI,2,Biarritz,9810,Direction ~ Norabidea: Gare de Biarritz,64122
+HEHAT1,9220,Hatchondo,Hendaye - Hatchondo,43.36381300,-1.76149900,,,0,place_HEHAT,2,Hendaye,9220,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+HEHAT2,9862,Hatchondo,Hendaye - Hatchondo,43.36388200,-1.76128600,,,0,place_HEHAT,2,Hendaye,9862,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+HEHAI1,9229,Haïçabia,Hendaye - Haïçabia,43.37859300,-1.73379000,,,0,place_HEHAI,2,Hendaye,9229,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64260
+HEHAI2,9886,Haïçabia,Hendaye - Haïçabia,43.37858600,-1.73402800,,,0,place_HEHAI,2,Hendaye,9886,Direction ~ Norabidea: Water Sport Center,64260
+HEHE2,9243,Hegoaldea,Hendaye - Hegoaldea,43.35700800,-1.77473800,,,0,place_HEHE,2,Hendaye,9243,Direction ~ Norabidea: Béhobie ~ Pausu / Behobia,64260
+BIHEG1,9953,Hegobus,Biriatou - Hegobus,43.33852700,-1.75093600,,,0,place_BIHEG,2,Biriatou,9953,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BIHEG2,9242,Hegobus,Biriatou - Hegobus,43.33849400,-1.75102700,,,0,place_BIHEG,2,Biriatou,9242,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+URHER0,9236,Herboure,Urrugne - Herboure,43.33401600,-1.68623300,,,0,place_URHER,2,Urrugne,9236,Direction ~ Norabidea: Alturan,64545
+SJICH1,9099,Ichaca ~ Ixaka,Saint-Jean-de-Luz - Ichaca ~ Ixaka,43.38695400,-1.64989900,,,0,place_SJICH,2,Saint-Jean-de-Luz,9099,Direction ~ Norabidea: Zaldi Xurito,64483
+SJICH2,9916,Ichaca ~ Ixaka,Saint-Jean-de-Luz - Ichaca ~ Ixaka,43.38698200,-1.64975900,,,0,place_SJICH,2,Saint-Jean-de-Luz,9916,Direction ~ Norabidea: Lafitenea,64483
+SJLIL1,10029;9643,Ilargia,Saint-Jean-de-Luz - Ilargia,43.39865700,-1.64184700,,,0,place_SJLIL,2,Saint-Jean-de-Luz,10029;9643,Direction ~ Norabidea: Place des Basques,64483
+SJLIL2,10033;9644,Ilargia,Saint-Jean-de-Luz - Ilargia,43.39922800,-1.64125000,,,0,place_SJLIL,2,Saint-Jean-de-Luz,10033;9644,Direction ~ Norabidea: Grande Plage,64483
+CIIRI1,9103,Iris,Ciboure - Iris,43.37706000,-1.66284200,,,0,place_CIIRI,2,Ciboure,9103,Direction ~ Norabidea: Zaldi Xurito,64189
+CIIRI2,9924,Iris,Ciboure - Iris,43.37708700,-1.66271800,,,0,place_CIIRI,2,Ciboure,9924,Direction ~ Norabidea: Lafitenea,64189
+SJITU1,9108,Iturriko Etxea,Saint-Jean-de-Luz - Iturriko Etxea,43.38827100,-1.64909600,,,0,place_SJITU,2,Saint-Jean-de-Luz,9108,Direction ~ Norabidea: Zaldi Xurito,64483
+SJITU2,9915,Iturriko Etxea,Saint-Jean-de-Luz - Iturriko Etxea,43.38816900,-1.64906300,,,0,place_SJITU,2,Saint-Jean-de-Luz,9915,Direction ~ Norabidea: Lafitenea,64483
+BUITU1,9952,Iturrixilo,Biriatou - Iturrixilo,43.33437600,-1.74883900,,,0,place_BUITU,2,Biriatou,9952,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BUITU2,9109,Iturrixilo,Biriatou - Iturrixilo,43.33427200,-1.74888000,,,0,place_BUITU,2,Biriatou,9109,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+SJJAI1,214;9110,Jai Alai,Saint-Jean-de-Luz - Jai Alai,43.39261700,-1.65253700,,,0,place_SJJAI,2,Saint-Jean-de-Luz,214;9110,Direction ~ Norabidea: Place des Basques,64483
+SJJAI2,215;9957,Jai Alai,Saint-Jean-de-Luz - Jai Alai,43.39305600,-1.65204500,,,0,place_SJJAI,2,Saint-Jean-de-Luz,215;9957,Direction ~ Norabidea: Grande Plage,64483
+SJJAL1,9111,Jaldai,Saint-Jean-de-Luz - Jaldai,43.40931600,-1.62008600,,,0,place_SJJAL,2,Saint-Jean-de-Luz,9111,Direction ~ Norabidea: Zaldi Xurito,64483
+SJJAL2,9905,Jaldai,Saint-Jean-de-Luz - Jaldai,43.40926700,-1.61996000,,,0,place_SJJAL,2,Saint-Jean-de-Luz,9905,Direction ~ Norabidea: Lafitenea,64483
+SJJAR0,9112,Jardin Botanique ~ Baratze Botanikoa,Saint-Jean-de-Luz - Jardin Botanique ~ Baratze Botanikoa,43.40259400,-1.65207000,,,0,place_SJJAR,2,Saint-Jean-de-Luz,9112,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+AHLAR1,9113,Joanetaenea,Ahetze - Joanetaenea,43.40141300,-1.57903100,,,0,place_AHLAR,2,Ahetze,9113,Direction ~ Norabidea: Gare de Biarritz,64009
+AHLAR2,9960,Joanetaenea,Ahetze - Joanetaenea,43.40151000,-1.57914000,,,0,place_AHLAR,2,Ahetze,9960,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64009
+URCAR0,9114,Jolimont,Urrugne - Jolimont,43.33413300,-1.68330300,,,0,place_URCAR,2,Urrugne,9114,Direction ~ Norabidea: Alturan,64545
+HEJON1,9115,Joncaux ~ Intzura,Hendaye - Joncaux ~ Intzura,43.34483900,-1.76891600,,,0,place_HEJON,2,Hendaye,9115,Direction ~ Norabidea: Behobia,64260
+HEJON2,9872,Joncaux ~ Intzura,Hendaye - Joncaux ~ Intzura,43.34482800,-1.76949600,,,0,place_HEJON,2,Hendaye,9872,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+URKAL1,9116,Kalitxoa,Urrugne - Kalitxoa,43.38712800,-1.68977200,,,0,place_URKAL,2,Urrugne,9116,Direction ~ Norabidea: Water Sport Center / Halte Routière ~ Autobus Geltokia,64545
+SJKA11,9117;sjlkars1,Karsinenia 1 ~ Kartsinenea 1,Saint-Jean-de-Luz - Karsinenia 1 ~ Kartsinenea 1,43.39540500,-1.63482700,,,0,place_SJKA1,2,Saint-Jean-de-Luz,9117;sjlkars1,Direction ~ Norabidea: Alturan,64483
+SJKA12,9118,Karsinenia 1 ~ Kartsinenea 1,Saint-Jean-de-Luz - Karsinenia 1 ~ Kartsinenea 1,43.39530300,-1.63468200,,,0,place_SJKA1,2,Saint-Jean-de-Luz,9118,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJKA21,9119,Karsinenia 2 ~ Kartsinenea 2,Saint-Jean-de-Luz - Karsinenia 2 ~ Kartsinenea 2,43.39619700,-1.63044300,,,0,place_SJKA,2,Saint-Jean-de-Luz,9119,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJKA22,9930,Karsinenia 2 ~ Kartsinenea 2,Saint-Jean-de-Luz - Karsinenia 2 ~ Kartsinenea 2,43.39619000,-1.63033700,,,0,place_SJKA,2,Saint-Jean-de-Luz,9930,Direction ~ Norabidea: Alturan,64483
+BUKUR1,9949,Kurleku  Errondonea,Biriatou - Kurleku  Errondonea,43.34215300,-1.73463100,,,0,place_BUKUR,2,Biriatou,9949,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64130
+BUKUR2,7011,Kurleku  Errondonea,Biriatou - Kurleku  Errondonea,43.34206300,-1.73462700,,,0,place_BUKUR,2,Biriatou,7011,Direction ~ Norabidea: Bourg ~ Herri Bernea,64130
+ARHEG1,9013,La Chapelle ~ Kapera,Arbonne - La Chapelle ~ Kapera,43.42826700,-1.54888800,,,0,place_ARHEG,2,Arbonne,9013,Direction ~ Norabidea: Gare de Biarritz,64035
+ARHEG2,9963,La Chapelle ~ Kapera,Arbonne - La Chapelle ~ Kapera,43.42808000,-1.54899900,,,0,place_ARHEG,2,Arbonne,9963,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64035
+BIDSO1,153,La Source,Bidart - La Source,43.44741600,-1.57399000,,,0,place_BIDSO,2,Bidart,153,Direction ~ Norabidea: Place des Basques,64125
+BIDSO2,154,La Source,Bidart - La Source,43.44808000,-1.57289100,,,0,place_BIDSO,2,Bidart,154,Direction ~ Norabidea: Grande Plage,64125
+LABO01,9965,Labourd,Biarritz - Labourd,43.45337400,-1.54395200,,,0,place_LABO,2,Biarritz,9965,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64122
+LABO02,9808,Labourd,Biarritz - Labourd,43.45339300,-1.54379400,,,0,place_LABO,2,Biarritz,9808,Direction ~ Norabidea: Gare de Biarritz,64122
+SJLAF3,9121,Lafitenea,Saint-Jean-de-Luz - Lafitenea,43.41340700,-1.62552200,,,0,place_SJLAF,2,Saint-Jean-de-Luz,9121,Direction ~ Norabidea: Zaldi Xurito,64483
+SJLAY1,9122,Laiatz,Saint-Jean-de-Luz - Laiatz,43.39873100,-1.64015000,,,0,place_SJLAY,2,Saint-Jean-de-Luz,9122,Direction ~ Norabidea: Zaldi Xurito / Alturan,64483
+SJLAY2,9910,Laiatz,Saint-Jean-de-Luz - Laiatz,43.39876900,-1.64003700,,,0,place_SJLAY,2,Saint-Jean-de-Luz,9910,Direction ~ Norabidea: Lafitenea / Bourg ~ Herri Bernea,64483
+SJLAM1,9232,Lambrigot,Saint-Jean-de-Luz - Lambrigot,43.39730700,-1.64738100,,,0,place_SJLAM,2,Saint-Jean-de-Luz,9232,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJLAM2,9937,Lambrigot,Saint-Jean-de-Luz - Lambrigot,43.39726100,-1.64744400,,,0,place_SJLAM,2,Saint-Jean-de-Luz,9937,Direction ~ Norabidea: Alturan,64483
+BULAR1,7012,Larretxekoborda,Urrugne - Larretxekoborda,43.34144200,-1.72788400,,,0,place_BULAR,2,Urrugne,7012,Direction ~ Norabidea: Vieux Fort ~ Gazteluzahar,64545
+BULAR2,5006,Larretxekoborda,Urrugne - Larretxekoborda,43.34144200,-1.72788400,,,0,place_BULAR,2,Urrugne,5006,Direction ~ Norabidea: Bourg ~ Herri Bernea,64545
+URLAR1,241;9124,Larruleta,Urrugne - Larruleta,43.36874900,-1.68443800,,,0,place_URLAR,2,Urrugne,241;9124,Direction ~ Norabidea: Place des Basques,64545
+URLAR2,242;9945,Larruleta,Urrugne - Larruleta,43.36887600,-1.68468900,,,0,place_URLAR,2,Urrugne,242;9945,Direction ~ Norabidea: Grande Plage,64545
+HELAR1,9125,Larrun,Hendaye - Larrun,43.36809200,-1.76514900,,,0,place_HELAR,2,Hendaye,9125,Direction ~ Norabidea: Behobia,64260
+HELAR2,9860,Larrun,Hendaye - Larrun,43.36808000,-1.76492600,,,0,place_HELAR,2,Hendaye,9860,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+BIDBU1,9270,Larrun Burua,Bidart - Larrun Burua,43.45061700,-1.56458900,,,0,place_BIDBU,2,Bidart,9270,Direction ~ Norabidea: Place des Basques,64125
+BIDBU2,9271,Larrun Burua,Bidart - Larrun Burua,43.45079700,-1.56460300,,,0,place_BIDBU,2,Bidart,9271,Direction ~ Norabidea: Grande Plage,64125
+HEJUM1,9127,Les 2 Jumeaux ~ Dunbarriak,Hendaye - Les 2 Jumeaux ~ Dunbarriak,43.37560600,-1.76211900,,,0,place_HEJUM,2,Hendaye,9127,Direction ~ Norabidea: Plaza San Juan / Consulat ~ Kontsuletxea,64260
+HEJUM2,9876,Les 2 Jumeaux ~ Dunbarriak,Hendaye - Les 2 Jumeaux ~ Dunbarriak,43.37550800,-1.76218200,,,0,place_HEJUM,2,Hendaye,9876,Direction ~ Norabidea: EHPAD ~ Zahar Etxea / Béhobie ~ Pausu,64260
+SJHAU1,9128,Les Hauts,Saint-Jean-de-Luz - Les Hauts,43.39380400,-1.64147700,,,0,place_SJHAU,2,Saint-Jean-de-Luz,9128,Direction ~ Norabidea: Zaldi Xurito,64483
+SJHAU2,9912,Les Hauts,Saint-Jean-de-Luz - Les Hauts,43.39382400,-1.64138800,,,0,place_SJHAU,2,Saint-Jean-de-Luz,9912,Direction ~ Norabidea: Lafitenea,64483
+HELIL1,9129,Lilas ~ Amatxi-Liliak,Hendaye - Lilas ~ Amatxi-Liliak,43.37250900,-1.76819500,,,0,place_HELIL,2,Hendaye,9129,Direction ~ Norabidea: Behobia / Halte Routière ~ Autobus Geltokia,64260
+HELIL2,9856,Lilas ~ Amatxi-Liliak,Hendaye - Lilas ~ Amatxi-Liliak,43.37252600,-1.76806000,,,0,place_HELIL,2,Hendaye,9856,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia / Water Sport Center,64260
+HELIS1,9130,Lizardi Goiara,Hendaye - Lizardi Goiara,43.37013200,-1.76082700,,,0,place_HELIS,2,Hendaye,9130,Direction ~ Norabidea: Behobia,64260
+HELIS2,9859,Lizardi Goiara,Hendaye - Lizardi Goiara,43.36997200,-1.76108800,,,0,place_HELIS,2,Hendaye,9859,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+LORE01,9964,Lore Landa,Bidart - Lore Landa,43.44592800,-1.54504200,,,0,place_LORE,2,Bidart,9964,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64125
+LORE02,9002,Lore Landa,Bidart - Lore Landa,43.44609400,-1.54484600,,,0,place_LORE,2,Bidart,9002,Direction ~ Norabidea: Gare de Biarritz,64125
+CILYC1,9134,Lycée Maritime ~ Itsas Lizeoa,Ciboure - Lycée Maritime ~ Itsas Lizeoa,43.38344500,-1.68982500,,,0,place_CILYC,2,Ciboure,9134,Direction ~ Norabidea: Water Sport Center / Halte Routière ~ Autobus Geltokia,64189
+SJLEO1,9126,Léon Dongaitz,Saint-Jean-de-Luz - Léon Dongaitz,43.39607600,-1.63230400,,,0,place_SJLEO,2,Saint-Jean-de-Luz,9126,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJLEO2,9931,Léon Dongaitz,Saint-Jean-de-Luz - Léon Dongaitz,43.39613800,-1.63228900,,,0,place_SJLEO,2,Saint-Jean-de-Luz,9931,Direction ~ Norabidea: Alturan,64483
+HEMAI2,9135,Mairie - Eglise ~ Herriko Etxea - Eliza,Hendaye - Mairie - Eglise ~ Herriko Etxea - Eliza,43.35835800,-1.77427900,,,0,place_HEMAI,2,Hendaye,9135,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+ARMAI1,9137,Mairie ~ Herriko Etxea (Arbonne),Arbonne - Mairie ~ Herriko Etxea (Arbonne),43.43197200,-1.55121800,,,0,place_ARMAI,2,Arbonne,9137,Direction ~ Norabidea: Gare de Biarritz,64035
+ARMAI2,9138,Mairie ~ Herriko Etxea (Arbonne),Arbonne - Mairie ~ Herriko Etxea (Arbonne),43.43188600,-1.55130900,,,0,place_ARMAI,2,Arbonne,9138,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64035
+CIMAI1,9139,Mairie ~ Herriko Etxea (Ciboure),Ciboure - Mairie ~ Herriko Etxea (Ciboure),43.38455900,-1.66601800,,,0,place_CIMAI,2,Ciboure,9139,Direction ~ Norabidea: Zaldi Xurito / Bourg ~ Herri Bernea / Water Sport Center,64189
+CIMAI2,9140,Mairie ~ Herriko Etxea (Ciboure),Ciboure - Mairie ~ Herriko Etxea (Ciboure),43.38417200,-1.66601500,,,0,place_CIMAI,2,Ciboure,9140,Direction ~ Norabidea: Lafitenea / Alturan / Halte Routière ~ Autobus Geltokia,64189
+SJMAI2,9142,Mairie ~ Herriko Etxea (Saint-Jean-de-Luz),Saint-Jean-de-Luz - Mairie ~ Herriko Etxea (Saint-Jean-de-Luz),43.38719600,-1.66252100,,,0,place_SJMAI,2,Saint-Jean-de-Luz,9142,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+CIMAL1,9143,Maldagora,Ciboure - Maldagora,43.37521300,-1.65932300,,,0,place_CIMAL,2,Ciboure,9143,Direction ~ Norabidea: Zaldi Xurito,64189
+CIMAL2,9926,Maldagora,Ciboure - Maldagora,43.37534200,-1.65929900,,,0,place_CIMAL,2,Ciboure,9926,Direction ~ Norabidea: Lafitenea,64189
+CIMAR1,9145,Marinela,Ciboure - Marinela,43.38065900,-1.66473700,,,0,place_CIMAR,2,Ciboure,9145,Direction ~ Norabidea: Zaldi Xurito / Bourg ~ Herri Bernea,64189
+CIMAR2,9922,Marinela,Ciboure - Marinela,43.38063500,-1.66465700,,,0,place_CIMAR,2,Ciboure,9922,Direction ~ Norabidea: Lafitenea / Alturan,64189
+IRME03,9816,Mendibil,Irun - Mendibil,43.34083900,-1.79019000,,,0,place_IRME,2,Irun,9816,Direction ~ Norabidea: Plaza San Juan,
+BIMOU1,91381,Mousse – Iraty,Biarritz - Mousse – Iraty,43.46701800,-1.54053500,,,0,place_BIMOU,2,Biarritz,91381,Direction ~ Norabidea: Place des Basques,64122
+BIMOU2,91382,Mousse – Iraty,Biarritz - Mousse – Iraty,43.46710700,-1.54078100,,,0,place_BIMOU,2,Biarritz,91382,Direction ~ Norabidea: Grande Plage,64122
+IRNA01,9814,Nafarroa 18,Irun - Nafarroa 18,43.33938100,-1.78393200,,,0,place_IRNA,2,Irun,9814,Direction ~ Norabidea: EHPAD ~ Zahar Etxea,
+SJNDP1,9233,Notre Dame de la Paix ~ Bakearen ama,Saint-Jean-de-Luz - Notre Dame de la Paix ~ Bakearen ama,43.39932300,-1.65165900,,,0,place_SJNDP,2,Saint-Jean-de-Luz,9233,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJNDP2,9938,Notre Dame de la Paix ~ Bakearen ama,Saint-Jean-de-Luz - Notre Dame de la Paix ~ Bakearen ama,43.39929300,-1.65178400,,,0,place_SJNDP,2,Saint-Jean-de-Luz,9938,Direction ~ Norabidea: Alturan,64483
+SJNOU1,9148,Nouveau Cimetière ~ Hilerri Berria,Saint-Jean-de-Luz - Nouveau Cimetière ~ Hilerri Berria,43.39647400,-1.63608700,,,0,place_SJNOU,2,Saint-Jean-de-Luz,9148,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJNOU2,9932,Nouveau Cimetière ~ Hilerri Berria,Saint-Jean-de-Luz - Nouveau Cimetière ~ Hilerri Berria,43.39640700,-1.63611500,,,0,place_SJNOU,2,Saint-Jean-de-Luz,9932,Direction ~ Norabidea: Alturan,64483
+CIGOL1,9149,Oihanalde,Ciboure - Oihanalde,43.37918700,-1.66298700,,,0,place_CIGOL,2,Ciboure,9149,Direction ~ Norabidea: Zaldi Xurito,64189
+CIGOL2,9923,Oihanalde,Ciboure - Oihanalde,43.37917700,-1.66285400,,,0,place_CIGOL,2,Ciboure,9923,Direction ~ Norabidea: Lafitenea,64189
+HEOLI1,9150,Oliviers ~ Olibondoak,Hendaye - Oliviers ~ Olibondoak,43.37227900,-1.78128000,,,0,place_HEOLI,2,Hendaye,9150,Direction ~ Norabidea: Water Sport Center,64260
+HEFLO1,9073,Orangers,Hendaye - Orangers,43.37010900,-1.77994300,,,0,place_HEFLO,2,Hendaye,9073,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64260
+HEORI1,9863,Orio,Hendaye - Orio,43.36199900,-1.76204400,,,0,place_HEORI,2,Hendaye,9863,Direction ~ Norabidea: Behobia,64260
+HEORI2,9864,Orio,Hendaye - Orio,43.36198700,-1.76189600,,,0,place_HEORI,2,Hendaye,9864,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+HEJAS,9822,Palmier ~ Palmondoa,Hendaye - Palmier ~ Palmondoa,43.37188000,-1.77272900,,,0,place_HEJAS,2,Hendaye,9822,Direction ~ Norabidea: Plaza San Juan,64260
+SJPAU1,9154,Paul Gelos,Saint-Jean-de-Luz - Paul Gelos,43.39659400,-1.65763000,,,0,place_SJPAU,2,Saint-Jean-de-Luz,9154,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJPAU2,9155,Paul Gelos,Saint-Jean-de-Luz - Paul Gelos,43.39666500,-1.65744200,,,0,place_SJPAU,2,Saint-Jean-de-Luz,9155,Direction ~ Norabidea: Alturan,64483
+SJRIC1,9156,Paul Ricau,Saint-Jean-de-Luz - Paul Ricau,43.39035900,-1.65012300,,,0,place_SJRIC,2,Saint-Jean-de-Luz,9156,Direction ~ Norabidea: Zaldi Xurito,64483
+SJRIC2,9157,Paul Ricau,Saint-Jean-de-Luz - Paul Ricau,43.39006000,-1.64983400,,,0,place_SJRIC,2,Saint-Jean-de-Luz,9157,Direction ~ Norabidea: Lafitenea,64483
+HENPA1,9239,Pausoa,Hendaye - Pausoa,43.36069300,-1.75947700,,,0,place_HENPA,2,Hendaye,9239,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HENPA2,9976,Pausoa,Hendaye - Pausoa,43.36086600,-1.75925400,,,0,place_HENPA,2,Hendaye,9976,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+CIPET1,9158,Petit Bois,Ciboure - Petit Bois,43.37600500,-1.66151300,,,0,place_CIPET,2,Ciboure,9158,Direction ~ Norabidea: Zaldi Xurito,64189
+CIPET2,9925,Petit Bois,Ciboure - Petit Bois,43.37606200,-1.66141500,,,0,place_CIPET,2,Ciboure,9925,Direction ~ Norabidea: Lafitenea,64189
+CIPIE1,9159,Pierre Benoit,Ciboure - Pierre Benoit,43.38799900,-1.67701000,,,0,place_CIPIE,2,Ciboure,9159,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIPIE2,9893,Pierre Benoit,Ciboure - Pierre Benoit,43.38810800,-1.67710700,,,0,place_CIPIE,2,Ciboure,9893,Direction ~ Norabidea: Water Sport Center,64189
+CIPIL1,9160,Pilota Plaza,Ciboure - Pilota Plaza,43.38699200,-1.68456300,,,0,place_CIPIL,2,Ciboure,9160,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIPIL2,9161,Pilota Plaza,Ciboure - Pilota Plaza,43.38660700,-1.68527200,,,0,place_CIPIL,2,Ciboure,9161,Direction ~ Norabidea: Water Sport Center,64189
+SJESP1,9164,Place d'Espagne ~ Espainiako Plaza,Saint-Jean-de-Luz - Place d'Espagne ~ Espainiako Plaza,43.38267300,-1.65644400,,,0,place_SJESP,2,Saint-Jean-de-Luz,9164,Direction ~ Norabidea: Zaldi Xurito,64483
+SJESP2,9917,Place d'Espagne ~ Espainiako Plaza,Saint-Jean-de-Luz - Place d'Espagne ~ Espainiako Plaza,43.38261800,-1.65634700,,,0,place_SJESP,2,Saint-Jean-de-Luz,9917,Direction ~ Norabidea: Lafitenea,64483
+BASQ04,1262,Place des Basques,Bayonne - Place des Basques,43.49330100,-1.47920200,,,0,place_BASQ,2,Bayonne,1262,Direction ~ Norabidea: Grande Plage,64102
+SJRHU1,9165,Place du Labourd ~ Lapurdiko Plaza,Saint-Jean-de-Luz - Place du Labourd ~ Lapurdiko Plaza,43.38396300,-1.65854100,,,0,place_SJRHU,2,Saint-Jean-de-Luz,9165,Direction ~ Norabidea: Zaldi Xurito,64483
+SJRHU2,9918,Place du Labourd ~ Lapurdiko Plaza,Saint-Jean-de-Luz - Place du Labourd ~ Lapurdiko Plaza,43.38388300,-1.65875200,,,0,place_SJRHU,2,Saint-Jean-de-Luz,9918,Direction ~ Norabidea: Lafitenea,64483
+AHBRG3,9162;aheplac2,Place ~ Plaza,Ahetze - Place ~ Plaza,43.40427600,-1.57157900,,,0,place_AHBRG,2,Ahetze,9162;aheplac2,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64009
+BIDP01,152,Plage,Bidart - Plage,43.43319000,-1.59574500,,,0,place_BIDP,2,Bidart,152,Direction ~ Norabidea: Grande Plage,64125
+BIDP02,151,Plage,Bidart - Plage,43.43268400,-1.59593700,,,0,place_BIDP,2,Bidart,151,Direction ~ Norabidea: Place des Basques,64125
+SJMAY1,9166,Plage de Mayarco ~ Maiarkobaitako Hondartza,Saint-Jean-de-Luz - Plage de Mayarco ~ Maiarkobaitako Hondartza,43.41853000,-1.62364700,,,0,place_SJMAY,2,Saint-Jean-de-Luz,9166,Direction ~ Norabidea: Zaldi Xurito,64483
+SJMAY2,9927,Plage de Mayarco ~ Maiarkobaitako Hondartza,Saint-Jean-de-Luz - Plage de Mayarco ~ Maiarkobaitako Hondartza,43.41842700,-1.62394500,,,0,place_SJMAY,2,Saint-Jean-de-Luz,9927,Direction ~ Norabidea: Lafitenea,64483
+CIPLA1,9168,Plage de Zokoa ~ Zokoako Hondartza,Ciboure - Plage de Zokoa ~ Zokoako Hondartza,43.38969100,-1.68379100,,,0,place_CIPLA,2,Ciboure,9168,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIPLA2,9892,Plage de Zokoa ~ Zokoako Hondartza,Ciboure - Plage de Zokoa ~ Zokoako Hondartza,43.38988400,-1.68381400,,,0,place_CIPLA,2,Ciboure,9892,Direction ~ Norabidea: Water Sport Center,64189
+SJERR1,9035,Plage Erromardie ~ Erromardi Hondartza,Saint-Jean-de-Luz - Plage Erromardie ~ Erromardi Hondartza,43.40352700,-1.64229600,,,0,place_SJERR,2,Saint-Jean-de-Luz,9035,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJERR2,9935,Plage Erromardie ~ Erromardi Hondartza,Saint-Jean-de-Luz - Plage Erromardie ~ Erromardi Hondartza,43.40373200,-1.64239100,,,0,place_SJERR,2,Saint-Jean-de-Luz,9935,Direction ~ Norabidea: Alturan,64483
+IRFER3,9105,Plaza San Juan,Irun - Plaza San Juan,43.33924900,-1.78860200,,,0,place_IRFER,2,Irun,9105,Direction ~ Norabidea: EHPAD ~ Zahar Etxea,
+HEPIT1,9800,Pont International ~ Nazioarteko Zubia,Hendaye - Pont International ~ Nazioarteko Zubia,43.35111200,-1.78331500,,,0,place_HEPIT,2,Hendaye,9800,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEPOT1,9821,Potenia,Hendaye - Potenia,43.37242900,-1.76115800,,,0,place_HEPOT,2,Hendaye,9821,Direction ~ Norabidea: Behobia / Halte Routière ~ Autobus Geltokia,64260
+HEPOT2,9857,Potenia,Hendaye - Potenia,43.37250000,-1.76117800,,,0,place_HEPOT,2,Hendaye,9857,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia / Water Sport Center,64260
+POUT01,9966,Poutchinots,Biarritz - Poutchinots,43.45556200,-1.54357000,,,0,place_POUT,2,Biarritz,9966,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64122
+POUT02,9809,Poutchinots,Biarritz - Poutchinots,43.45594100,-1.54356900,,,0,place_POUT,2,Biarritz,9809,Direction ~ Norabidea: Gare de Biarritz,64122
+URPUT1,9175,Putillenea,Urrugne - Putillenea,43.38546100,-1.69318600,,,0,place_URPUT,2,Urrugne,9175,Direction ~ Norabidea: Water Sport Center / Halte Routière ~ Autobus Geltokia,64545
+HEQUO1,9974,Quartier Orio,Hendaye - Quartier Orio,43.36267200,-1.76068900,,,0,place_HEQUO,2,Hendaye,9974,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEQUO2,9975,Quartier Orio,Hendaye - Quartier Orio,43.36276800,-1.76051900,,,0,place_HEQUO,2,Hendaye,9975,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+SJRAV0,9178,Ravel,Saint-Jean-de-Luz - Ravel,43.38507900,-1.66106400,,,0,place_SJRAV,2,Saint-Jean-de-Luz,9178,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+URBOU1,232;9179,RD 810 Bourg,Urrugne - RD 810 Bourg,43.36077000,-1.69940200,,,0,place_URBOU,2,Urrugne,232;9179,Direction ~ Norabidea: Place des Basques,64545
+URBOU2,233,RD 810 Bourg,Urrugne - RD 810 Bourg,43.36093600,-1.69953600,,,0,place_URBOU,2,Urrugne,233,Direction ~ Norabidea: Grande Plage,64545
+SJREN1,9180,René Lahetjuzan,Saint-Jean-de-Luz - René Lahetjuzan,43.39568000,-1.62955700,,,0,place_SJREN,2,Saint-Jean-de-Luz,9180,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJREN2,9929,René Lahetjuzan,Saint-Jean-de-Luz - René Lahetjuzan,43.39558200,-1.62960100,,,0,place_SJREN,2,Saint-Jean-de-Luz,9929,Direction ~ Norabidea: Alturan,64483
+HERIC1,9218,Richelieu,Hendaye - Richelieu,43.34345200,-1.76809400,,,0,place_HERIC,2,Hendaye,9218,Direction ~ Norabidea: Behobia,64260
+HERIC2,9873,Richelieu,Hendaye - Richelieu,43.34352200,-1.76806100,,,0,place_HERIC,2,Hendaye,9873,Direction ~ Norabidea: Grande Plage ~ Hondartza Nagusia,64260
+SJROS1,9181,Rostand,Saint-Jean-de-Luz - Rostand,43.40248600,-1.64453300,,,0,place_SJROS,2,Saint-Jean-de-Luz,9181,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJROS2,9182,Rostand,Saint-Jean-de-Luz - Rostand,43.40258600,-1.64439700,,,0,place_SJROS,2,Saint-Jean-de-Luz,9182,Direction ~ Norabidea: Alturan,64483
+SJSAG1,9183,Sagardian,Saint-Jean-de-Luz - Sagardian,43.38827500,-1.65223500,,,0,place_SJSAG,2,Saint-Jean-de-Luz,9183,Direction ~ Norabidea: Zaldi Xurito,64483
+SJSJO0,6039,Saint Joseph ~ San Josepe,Saint-Jean-de-Luz - Saint Joseph ~ San Josepe,43.39223700,-1.64654100,,,0,place_SJSJO,2,Saint-Jean-de-Luz,6039,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+STLE01,130,Saint-Léon,Bayonne - Saint-Léon,43.48931400,-1.48243500,,,0,place_STLE,2,Bayonne,130,Direction ~ Norabidea: Grande Plage,64102
+STLE02,129,Saint-Léon,Bayonne - Saint-Léon,43.48932700,-1.48218600,,,0,place_STLE,2,Bayonne,129,Direction ~ Norabidea: Place des Basques,64102
+SJRES2,9186,Sainte-Barbe ~ Santa Barbara,Saint-Jean-de-Luz - Sainte-Barbe ~ Santa Barbara,43.40190000,-1.65609200,,,0,place_SJRES,2,Saint-Jean-de-Luz,9186,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+CISTH1,9187,Sainte-Croix ~ Gurutze Saindua,Ciboure - Sainte-Croix ~ Gurutze Saindua,43.37258800,-1.65911600,,,0,place_CISTH,2,Ciboure,9187,Direction ~ Norabidea: Zaldi Xurito,64189
+CISTH2,9188,Sainte-Croix ~ Gurutze Saindua,Ciboure - Sainte-Croix ~ Gurutze Saindua,43.37165700,-1.65889000,,,0,place_CISTH,2,Ciboure,9188,Direction ~ Norabidea: Lafitenea,64189
+SJSIL1,9190,Silabia,Saint-Jean-de-Luz - Silabia,43.40191900,-1.62735300,,,0,place_SJSIL,2,Saint-Jean-de-Luz,9190,Direction ~ Norabidea: Zaldi Xurito,64483
+SJSIL2,9907,Silabia,Saint-Jean-de-Luz - Silabia,43.40191500,-1.62718100,,,0,place_SJSIL,2,Saint-Jean-de-Luz,9907,Direction ~ Norabidea: Lafitenea,64483
+URRSO1,310,Souhara,Urrugne - Souhara,43.37608800,-1.67621300,,,0,place_URRSO,2,Urrugne,310,Direction ~ Norabidea: Place des Basques,64545
+URRSO2,318,Souhara,Urrugne - Souhara,43.37502900,-1.67849800,,,0,place_URRSO,2,Urrugne,318,Direction ~ Norabidea: Grande Plage,64545
+CISPE1,311;9191,Speraber,Ciboure - Speraber,43.38126500,-1.66786000,,,0,place_CISPE,2,Ciboure,311;9191,Direction ~ Norabidea: Place des Basques,64189
+CISPE2,319;9192,Speraber,Ciboure - Speraber,43.38153800,-1.66786500,,,0,place_CISPE,2,Ciboure,319;9192,Direction ~ Norabidea: Grande Plage,64189
+ARSTA3,9194;STDE01,Stade ~ Estadioa (Arbonne),Arbonne - Stade ~ Estadioa (Arbonne),43.43679300,-1.55102900,,,0,place_ARSTA,2,Arbonne,9194;STDE01,Direction ~ Norabidea: Gare de Biarritz,64035
+URSTA1,9193,Stade ~ Estadioa (Urrugne),Urrugne - Stade ~ Estadioa (Urrugne),43.36304200,-1.69422000,,,0,place_URSTA,2,Urrugne,9193,Direction ~ Norabidea: Bourg ~ Herri Bernea,64545
+SJTRI1,218;9196,Trikaldi,Saint-Jean-de-Luz - Trikaldi,43.39653600,-1.64563000,,,0,place_SJTRI,2,Saint-Jean-de-Luz,218;9196,Direction ~ Norabidea: Place des Basques,64483
+SJTRI2,219;9958,Trikaldi,Saint-Jean-de-Luz - Trikaldi,43.39660400,-1.64578800,,,0,place_SJTRI,2,Saint-Jean-de-Luz,219;9958,Direction ~ Norabidea: Grande Plage,64483
+HETUL0,9197;hentuli2,Tulipiers ~ Tulipondoak,Hendaye - Tulipiers ~ Tulipondoak,43.37030500,-1.77208300,,,0,place_HETUL,2,Hendaye,9197;hentuli2,Direction ~ Norabidea: EHPAD ~ Zahar Etxea,64260
+HETXI3,9198,Txingudi,Hendaye - Txingudi,43.36980300,-1.77325300,,,0,place_HETXI,2,Hendaye,9198,Direction ~ Norabidea: Béhobie ~ Pausu / Consulat ~ Kontsuletxea,64260
+BIDH01,9261,Uhabia,Bidart - Uhabia,43.43107400,-1.59836000,,,0,place_BIDH,2,Bidart,9261,Direction ~ Norabidea: Grande Plage,64125
+BIDH03,103,Uhabia,Bidart - Uhabia,43.43046600,-1.59897300,,,0,place_BIDH,2,Bidart,103,Direction ~ Norabidea: Place des Basques,64125
+ARHAM1,9092,Uhazaldea,Arbonne - Uhazaldea,43.40673300,-1.54337500,,,0,place_ARHAM,2,Arbonne,9092,Direction ~ Norabidea: Gare de Biarritz,64035
+ARHAM2,9956,Uhazaldea,Arbonne - Uhazaldea,43.40670300,-1.54361800,,,0,place_ARHAM,2,Arbonne,9956,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64035
+UNIO01,121,Union,Anglet - Union,43.48309800,-1.50352100,,,0,place_UNIO,2,Anglet,121,Direction ~ Norabidea: Grande Plage,64024
+UNIO02,120,Union,Anglet - Union,43.48290800,-1.50339000,,,0,place_UNIO,2,Anglet,120,Direction ~ Norabidea: Place des Basques,64024
+CIUNT1,9199,Untxin,Ciboure - Untxin,43.38580600,-1.68664600,,,0,place_CIUNT,2,Ciboure,9199,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64189
+CIUNT2,9891,Untxin,Ciboure - Untxin,43.38591100,-1.68665100,,,0,place_CIUNT,2,Ciboure,9891,Direction ~ Norabidea: Water Sport Center,64189
+SJURD3,6013,Urdazuri,Saint-Jean-de-Luz - Urdazuri,43.38250600,-1.65257600,,,0,place_SJURD,2,Saint-Jean-de-Luz,6013,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+HEVIE2,9202,Vieux Fort ~ Gazteluzahar,Hendaye - Vieux Fort ~ Gazteluzahar,43.36073100,-1.77431700,,,0,place_HEVIE,2,Hendaye,9202,Direction ~ Norabidea: Consulat ~ Kontsuletxea / Grande Plage ~ Hondartza Nagusia,64260
+VILL01,9275,Villa Pia,Bayonne - Villa Pia,43.48508500,-1.49509200,,,0,place_VILL,2,Bayonne,9275,Direction ~ Norabidea: Grande Plage,64102
+VILL02,9274,Villa Pia,Bayonne - Villa Pia,43.48495000,-1.49474200,,,0,place_VILL,2,Bayonne,9274,Direction ~ Norabidea: Place des Basques,64102
+HECEN2,312;9205,Ville,Hendaye - Ville,43.35976500,-1.77548100,,,0,place_HECEN1,2,Hendaye,312;9205,Direction ~ Norabidea: Grande Plage,64260
+HECEN1,124,Ville ~ Hiri Barnea,Hendaye - Ville ~ Hiri Barnea,43.35969700,-1.77566500,,,0,place_HECEN,2,Hendaye,124,Direction ~ Norabidea: Place des Basques / Plaza San Juan / Béhobie ~ Pausu,64260
+HEWAT3,9230,Water Sport Center,Hendaye - Water Sport Center,43.36818600,-1.78117100,,,0,place_HEWAT,2,Hendaye,9230,Direction ~ Norabidea: Halte Routière ~ Autobus Geltokia,64260
+SJXIM1,9217,Ximista,Saint-Jean-de-Luz - Ximista,43.40046800,-1.64218200,,,0,place_SJXIM,2,Saint-Jean-de-Luz,9217,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJXIM2,9934,Ximista,Saint-Jean-de-Luz - Ximista,43.40035200,-1.64229100,,,0,place_SJXIM,2,Saint-Jean-de-Luz,9934,Direction ~ Norabidea: Alturan,64483
+CISAI3,9209,Zaldi Xurito,Ciboure - Zaldi Xurito,43.37263400,-1.65800100,,,0,place_CISAI,2,Ciboure,9209,Direction ~ Norabidea: Lafitenea,64189
+SJSAN1,9210,Zantzu,Saint-Jean-de-Luz - Zantzu,43.40001300,-1.64750700,,,0,place_SJSAN,2,Saint-Jean-de-Luz,9210,Direction ~ Norabidea: Bourg ~ Herri Bernea,64483
+SJSAN2,9936,Zantzu,Saint-Jean-de-Luz - Zantzu,43.39977500,-1.64761100,,,0,place_SJSAN,2,Saint-Jean-de-Luz,9936,Direction ~ Norabidea: Alturan,64483
+HEZO11,9212,Zopite 1,Hendaye - Zopite 1,43.37040200,-1.75518000,,,0,place_HEZO1,2,Hendaye,9212,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEZO12,9879,Zopite 1,Hendaye - Zopite 1,43.37015600,-1.75536700,,,0,place_HEZO1,2,Hendaye,9879,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+HEZO21,9214,Zopite 2,Hendaye - Zopite 2,43.36777600,-1.75049000,,,0,place_HEZO,2,Hendaye,9214,Direction ~ Norabidea: Béhobie ~ Pausu,64260
+HEZO22,9878,Zopite 2,Hendaye - Zopite 2,43.36765000,-1.75059700,,,0,place_HEZO,2,Hendaye,9878,Direction ~ Norabidea: Consulat ~ Kontsuletxea,64260
+CIZUB1,9215,Zubiburu,Ciboure - Zubiburu,43.38269500,-1.66674800,,,0,place_CIZUB,2,Ciboure,9215,Direction ~ Norabidea: Zaldi Xurito / Bourg ~ Herri Bernea,64189
+CIZUB2,9920,Zubiburu,Ciboure - Zubiburu,43.38274400,-1.66656700,,,0,place_CIZUB,2,Ciboure,9920,Direction ~ Norabidea: Lafitenea / Alturan,64189
