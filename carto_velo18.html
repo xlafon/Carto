@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - Infobox avec Points GeoJSON</title>
+  <title>Carte Leaflet - Affichage des Lignes avec Tracés GeoJSON</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -45,8 +45,8 @@
 <div id="route-selector">
   <label for="routeSelect">Choisir une ligne de transport :</label>
   <select id="routeSelect">
-    <option value="">Sélectionner un arrêt</option>
-    <option value="all">Afficher tous les arrêts</option>
+    <option value="">Sélectionner une ligne</option> <!-- Ligne vide pour ne rien sélectionner -->
+    <option value="all">Afficher toutes les lignes sur la carte</option> <!-- Option pour voir toutes les lignes -->
   </select>
 </div>
 
@@ -67,8 +67,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(map);
 
-// Liste des marqueurs pour les arrêts affichés
+// Liste des marqueurs et tracés affichés
 let markersLayer = L.layerGroup().addTo(map);
+let allLinesLayer = L.layerGroup().addTo(map);
 
 // Charger le fichier GeoJSON
 async function loadGeoJSONData() {
@@ -77,113 +78,167 @@ async function loadGeoJSONData() {
   return data;
 }
 
-// Ajouter les arrêts au menu déroulant
-function addStopsToMenu(features) {
-  const stopSelect = document.getElementById('routeSelect');
-  
+// Ajouter les lignes au menu déroulant
+function addRoutesToMenu(features) {
+  const routeSelect = document.getElementById('routeSelect');
+  const routes = [];
+
+  // Extraire les lignes uniques depuis le GeoJSON
   features.forEach(feature => {
-    const stopName = feature.properties.name;
-    const stopId = feature.properties.id;
+    const routeName = feature.properties.route_short_name;
+    const routeLongName = feature.properties.route_long_name;
+    const routeColor = feature.properties.route_color || '#000000';
     
-    // Ajouter chaque arrêt dans le menu
-    if (stopName && stopId) {
-      const option = document.createElement('option');
-      option.value = stopId;
-      option.textContent = stopName;
-      stopSelect.appendChild(option);
+    // Ajouter la ligne au tableau routes si elle n'est pas déjà présente
+    if (routeName && !routes.some(route => route.route_short_name === routeName)) {
+      routes.push({
+        route_short_name: routeName,
+        route_long_name: routeLongName,
+        route_color: routeColor
+      });
     }
   });
 
-  // Lorsque l'utilisateur sélectionne un arrêt
-  stopSelect.addEventListener('change', function () {
-    const selectedStopId = this.value;
-    if (selectedStopId === "all") {
-      afficherTousLesArrets(features); // Afficher tous les arrêts si sélectionné
-    } else if (selectedStopId !== "") {
-      afficherArret(features, selectedStopId);
+  // Ajouter les lignes au menu déroulant
+  routes.forEach(route => {
+    const option = document.createElement('option');
+    option.value = route.route_short_name;
+    option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+    option.style.color = route.route_color;
+    routeSelect.appendChild(option);
+  });
+
+  // Lorsque l'utilisateur sélectionne une ligne
+  routeSelect.addEventListener('change', function () {
+    const selectedRouteId = this.value;
+    if (selectedRouteId === "all") {
+      afficherToutesLesLignes(features); // Afficher toutes les lignes si sélectionné
+    } else if (selectedRouteId !== "") {
+      afficherTracéEtArrêts(features, selectedRouteId);
     } else {
-      clearPreviousMarkersAndInfo(); // Effacer les arrêts et masquer l'infobox si aucun arrêt n'est sélectionné
+      clearPreviousMarkersAndLines(); // Effacer les tracés et masquer l'infobox si aucune ligne n'est sélectionnée
     }
   });
 }
 
-// Effacer les marqueurs et l'infobox
-function clearPreviousMarkersAndInfo() {
+// Effacer les marqueurs et tracés précédents
+function clearPreviousMarkersAndLines() {
   markersLayer.clearLayers();
+  allLinesLayer.clearLayers();
   document.getElementById('route-info').style.display = 'none'; // Masquer le panneau d'informations
 }
 
-// Afficher un arrêt sélectionné
-function afficherArret(features, selectedStopId) {
-  clearPreviousMarkersAndInfo(); // Effacer les anciens arrêts
-
-  const selectedFeature = features.find(feature => feature.properties.id === selectedStopId);
-
-  if (selectedFeature) {
-    const coords = selectedFeature.geometry.coordinates;
-    const lat = coords[1];
-    const lon = coords[0];
-
-    const stopPoint = L.divIcon({
-      className: 'stop-point',
-      html: `<div style="background-color:#FF0000;"></div>`, // Couleur pour les arrêts
-      iconSize: [18, 18]
-    });
-
-    // Ajouter le marqueur de l'arrêt sélectionné
-    const marker = L.marker([lat, lon], { icon: stopPoint }).on('click', function () {
-      afficherInfoArret(selectedFeature.properties);
-    });
-    markersLayer.addLayer(marker);
-
-    // Centrer la carte sur l'arrêt
-    map.setView([lat, lon], 15);
-
-    // Afficher les informations de l'arrêt dans l'infobox
-    afficherInfoArret(selectedFeature.properties);
-  }
+// Vérifier si les coordonnées sont valides
+function coordinatesAreValid(coordinates) {
+  return Array.isArray(coordinates) && coordinates.length >= 2 &&
+         !isNaN(coordinates[0]) && !isNaN(coordinates[1]);
 }
 
-// Afficher tous les arrêts
-function afficherTousLesArrets(features) {
-  clearPreviousMarkersAndInfo(); // Effacer les anciens arrêts
+// Afficher le tracé et les arrêts d'une ligne sélectionnée
+function afficherTracéEtArrêts(features, selectedRouteId) {
+  clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
 
-  features.forEach(feature => {
-    const coords = feature.geometry.coordinates;
-    const lat = coords[1];
-    const lon = coords[0];
+  const selectedFeatures = features.filter(feature => feature.properties.route_short_name === selectedRouteId);
+  selectedFeatures.forEach(feature => {
+    const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
-    const stopPoint = L.divIcon({
-      className: 'stop-point',
-      html: `<div style="background-color:#FF0000;"></div>`, // Couleur pour les arrêts
-      iconSize: [18, 18]
+    // Afficher le tracé de la ligne
+    const line = L.geoJSON(feature, {
+      style: {
+        color: lineColor,
+        weight: 4
+      }
+    }).addTo(map);
+
+    // Ajouter la ligne à la couche allLinesLayer
+    allLinesLayer.addLayer(line);
+
+    // Récupérer et afficher les arrêts sous forme de points colorés
+    feature.geometry.coordinates.forEach(coord => {
+      if (coordinatesAreValid(coord)) {
+        const lat = coord[1];
+        const lon = coord[0];
+        const stopPoint = L.divIcon({
+          className: 'stop-point',
+          html: `<div style="background-color:${lineColor};"></div>`,
+          iconSize: [18, 18]
+        });
+
+        const marker = L.marker([lat, lon], {icon: stopPoint}).on('click', function () {
+          afficherInfoArret(feature.properties.name, feature.properties.description);
+        });
+        markersLayer.addLayer(marker);
+      }
     });
 
-    // Ajouter chaque arrêt sous forme de marqueur
-    const marker = L.marker([lat, lon], { icon: stopPoint }).on('click', function () {
-      afficherInfoArret(feature.properties);
-    });
-    markersLayer.addLayer(marker);
+    // Afficher les informations de la ligne dans le panneau
+    afficherInfoLigne(feature.properties);
   });
 }
 
-// Afficher les informations d'un arrêt dans l'infobox
-function afficherInfoArret(properties) {
-  const stopTitle = `<b>${properties.name}</b>`;
+// Afficher toutes les lignes en même temps avec survol et clic
+function afficherToutesLesLignes(features) {
+  clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
+
+  features.forEach(feature => {
+    const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
+
+    const line = L.geoJSON(feature, {
+      style: {
+        color: lineColor,
+        weight: 4
+      }
+    });
+
+    // Ajouter les événements de survol et de clic
+    line.on('mouseover', function () {
+      line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+      afficherInfoLigne(feature.properties);
+    });
+
+    line.on('mouseout', function () {
+      line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+    });
+
+    line.on('click', function () {
+      afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
+    });
+
+    allLinesLayer.addLayer(line);
+  });
+
+  // Ajouter la couche des lignes au groupe des tracés
+  allLinesLayer.addTo(map);
+}
+
+// Afficher les informations d'une ligne dans le panneau avec couleur
+function afficherInfoLigne(properties) {
+  const color = properties.route_color ? `#${properties.route_color}` : '#000000';
+  const routeTitle = `<span style="color:${color}"><b>${properties.route_short_name}</b> - ${properties.route_long_name}</span>`;
   const content = `
-    <p><b>Description :</b> ${properties.description}</p>
-    <p><b>ID :</b> ${properties.id}</p>
-    <p><b>Accessibilité :</b> ${properties.wheelchair_boarding}</p>
+    <p>${properties.description || ''}</p>
+    <a href="${properties.agency_url || '#'}" target="_blank">Plus d'infos sur l'agence</a>
   `;
-  
-  document.getElementById('route-title').innerHTML = stopTitle;
+  document.getElementById('route-title').innerHTML = routeTitle;
   document.getElementById('route-content').innerHTML = content;
   document.getElementById('route-info').style.display = 'block';
 }
 
-// Charger les données GeoJSON et ajouter les arrêts dans le menu déroulant
+// Afficher les informations d'un arrêt dans le panneau
+function afficherInfoArret(stopName, description) {
+  const stopTitle = `<b>${stopName}</b>`;
+  const content = `
+    <p>${description || ''}</p>
+  `;
+  
+    document.getElementById('route-title').innerHTML = stopTitle;
+  document.getElementById('route-content').innerHTML = content;
+  document.getElementById('route-info').style.display = 'block';
+}
+
+// Charger les données GeoJSON et ajouter les lignes dans le menu déroulant
 loadGeoJSONData().then(data => {
-  addStopsToMenu(data.features);
+  addRoutesToMenu(data.features);
 });
 </script>
 
@@ -192,4 +247,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-1
+2
