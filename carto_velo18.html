@@ -139,25 +139,28 @@ function afficherTracéEtArrêts(features, selectedRouteId) {
   clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
 
   const selectedFeatures = features.filter(feature => feature.properties.route_short_name === selectedRouteId);
+
   selectedFeatures.forEach(feature => {
     const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
-    // Afficher le tracé de la ligne
-    const line = L.geoJSON(feature, {
-      style: {
-        color: lineColor,
-        weight: 4
-      }
-    }).addTo(map);
+    if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
+      // Afficher le tracé de la ligne (si la géométrie est une ligne)
+      const line = L.geoJSON(feature, {
+        style: {
+          color: lineColor,
+          weight: 4
+        }
+      }).addTo(map);
 
-    // Ajouter la ligne à la couche allLinesLayer
-    allLinesLayer.addLayer(line);
+      allLinesLayer.addLayer(line);
+    }
 
-    // Récupérer et afficher les arrêts sous forme de points colorés
-    feature.geometry.coordinates.forEach(coord => {
-      if (coordinatesAreValid(coord)) {
-        const lat = coord[1];
-        const lon = coord[0];
+    // Récupérer et afficher les arrêts sous forme de points colorés, si disponibles
+    if (feature.geometry.type === "Point") {
+      const coords = feature.geometry.coordinates;
+      if (coordinatesAreValid(coords)) {
+        const lat = coords[1];
+        const lon = coords[0];
         const stopPoint = L.divIcon({
           className: 'stop-point',
           html: `<div style="background-color:${lineColor};"></div>`,
@@ -169,7 +172,7 @@ function afficherTracéEtArrêts(features, selectedRouteId) {
         });
         markersLayer.addLayer(marker);
       }
-    });
+    }
 
     // Afficher les informations de la ligne dans le panneau
     afficherInfoLigne(feature.properties);
@@ -183,31 +186,32 @@ function afficherToutesLesLignes(features) {
   features.forEach(feature => {
     const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
-    const line = L.geoJSON(feature, {
-      style: {
-        color: lineColor,
-        weight: 4
-      }
-    });
+    if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
+      const line = L.geoJSON(feature, {
+        style: {
+          color: lineColor,
+          weight: 4
+        }
+      });
 
-    // Ajouter les événements de survol et de clic
-    line.on('mouseover', function () {
-      line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
-      afficherInfoLigne(feature.properties);
-    });
+      // Ajouter les événements de survol et de clic
+      line.on('mouseover', function () {
+        line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+        afficherInfoLigne(feature.properties);
+      });
 
-    line.on('mouseout', function () {
-      line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
-    });
+      line.on('mouseout', function () {
+        line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+      });
 
-    line.on('click', function () {
-      afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
-    });
+      line.on('click', function () {
+        afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
+      });
 
-    allLinesLayer.addLayer(line);
+      allLinesLayer.addLayer(line);
+    }
   });
 
-  // Ajouter la couche des lignes au groupe des tracés
   allLinesLayer.addTo(map);
 }
 
@@ -231,7 +235,7 @@ function afficherInfoArret(stopName, description) {
     <p>${description || ''}</p>
   `;
   
-    document.getElementById('route-title').innerHTML = stopTitle;
+  document.getElementById('route-title').innerHTML = stopTitle;
   document.getElementById('route-content').innerHTML = content;
   document.getElementById('route-info').style.display = 'block';
 }
@@ -247,4 +251,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-2
+3
