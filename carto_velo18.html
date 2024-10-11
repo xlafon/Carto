@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carte Leaflet - Affichage des Lignes avec Tracés GeoJSON</title>
+  <title>Carte Leaflet - Infobox avec Couleurs</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -45,8 +45,8 @@
 <div id="route-selector">
   <label for="routeSelect">Choisir une ligne de transport :</label>
   <select id="routeSelect">
-    <option value="">Sélectionner une ligne</option>
-    <option value="all">Afficher toutes les lignes sur la carte</option>
+    <option value="">Sélectionner une ligne</option> <!-- Ligne vide pour ne rien sélectionner -->
+    <option value="all">Afficher toutes les lignes sur la carte</option> <!-- Option pour voir toutes les lignes -->
   </select>
 </div>
 
@@ -67,104 +67,51 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(map);
 
-// Liste des marqueurs et tracés affichés
+// Liste des marqueurs pour les arrêts affichés
 let markersLayer = L.layerGroup().addTo(map);
-let allLinesLayer = L.layerGroup().addTo(map);
+let allLinesLayer = L.layerGroup(); // Couche pour toutes les lignes
 
-// Fonction pour convertir les couleurs RGB en hexadécimal
-function rgbToHex(rgb) {
-  const rgbArray = rgb.match(/\d+/g);
-  if (!rgbArray || rgbArray.length !== 3) {
-    console.warn("Format de couleur RGB incorrect : ", rgb);
-    return "#000000"; // Valeur par défaut en cas d'erreur
-  }
-  return "#" + rgbArray.map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
-}
-
-// Charger le fichier GeoJSON
-async function loadGeoJSONData() {
-  const response = await fetch('data/TXIKNORD.geojson'); // Chemin du fichier GeoJSON
-  const data = await response.json();
-
-  // Conversion des couleurs RGB en hexadécimal
-  data.features.forEach(feature => {
-    if (feature.properties.route_color && feature.properties.route_color.startsWith('rgb')) {
-      feature.properties.route_color = rgbToHex(feature.properties.route_color);
-    }
-    if (feature.properties.route_text_color && feature.properties.route_text_color.startsWith('rgb')) {
-      feature.properties.route_text_color = rgbToHex(feature.properties.route_text_color);
-    }
-  });
-
+// Fonction pour charger et parser les fichiers GTFS
+async function fetchGTFSFile(fileName) {
+  const response = await fetch(`GTFS/TXIKNORD/${fileName}`);
+  const text = await response.text();
+  const data = Papa.parse(text, {header: true}).data;
   return data;
 }
 
-// Fonction pour créer un tracé (polyline) à partir des coordonnées
-function createPolylineFromCoordinates(feature, lineColor) {
-  const validCoordinates = feature.geometry.coordinates.filter(coordinatesAreValid);
-  
-  if (validCoordinates.length > 1) {
-    try {
-      const line = L.polyline(validCoordinates, { color: lineColor, weight: 4 });
-      allLinesLayer.addLayer(line);
-      line.addTo(map);
-      console.log("Tracé ajouté :", validCoordinates);
-    } catch (e) {
-      console.error("Erreur lors de l'ajout du tracé", e);
-    }
-  } else {
-    console.error("Tracé ignoré : coordonnées invalides ou insuffisantes", feature.geometry.coordinates);
-  }
+// Charger les fichiers GTFS
+async function loadGTFSData() {
+  const stops = await fetchGTFSFile('stops.txt');
+  const trips = await fetchGTFSFile('trips.txt');
+  const stopTimes = await fetchGTFSFile('stop_times.txt');
+  const routes = await fetchGTFSFile('routes.txt');
+  const shapes = await fetchGTFSFile('shapes.txt');
+  const agency = await fetchGTFSFile('agency.txt');
+
+  return { stops, trips, stopTimes, routes, shapes, agency };
 }
 
-// Charger les données GeoJSON et ajouter les tracés à la carte
-loadGeoJSONData().then(data => {
-  addRoutesToMenu(data.features);
-});
-
-  
-// Ajouter les lignes au menu déroulant
-function addRoutesToMenu(features) {
+// Ajouter les routes au menu déroulant
+function addRoutesToMenu(routes) {
   const routeSelect = document.getElementById('routeSelect');
-  const routes = [];
-
-  // Extraire les lignes uniques depuis le GeoJSON
-  features.forEach(feature => {
-    const routeName = feature.properties.route_short_name;
-    const routeLongName = feature.properties.route_long_name;
-    let routeColor = feature.properties.route_color || '#000000';
-    
-    // Convertir la couleur RGB en hexadécimal
-    if (routeColor.startsWith('rgb')) {
-      routeColor = rgbToHex(routeColor);
-    }
-
-    // Ajouter la ligne au tableau routes si elle n'est pas déjà présente
-    if (routeName && !routes.some(route => route.route_short_name === routeName)) {
-      routes.push({
-        route_short_name: routeName,
-        route_long_name: routeLongName,
-        route_color: routeColor
-      });
-    }
-  });
-
-  // Ajouter les lignes au menu déroulant
   routes.forEach(route => {
-    const option = document.createElement('option');
-    option.value = route.route_short_name;
-    option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
-    option.style.color = route.route_color;
-    routeSelect.appendChild(option);
+    if (route.route_short_name && route.route_long_name) {
+      const option = document.createElement('option');
+      const color = route.route_color ? `#${route.route_color}` : '#000000'; // Utiliser le route_color ou noir par défaut
+      option.value = route.route_id;
+      option.innerHTML = `<b>${route.route_short_name}</b> - ${route.route_long_name}`;
+      option.style.color = color;
+      routeSelect.appendChild(option);
+    }
   });
 
   // Lorsque l'utilisateur sélectionne une ligne
   routeSelect.addEventListener('change', function () {
     const selectedRouteId = this.value;
     if (selectedRouteId === "all") {
-      afficherToutesLesLignes(features); // Afficher toutes les lignes si sélectionné
+      afficherToutesLesLignes(); // Afficher toutes les lignes si sélectionné
     } else if (selectedRouteId !== "") {
-      afficherTracéEtArrêts(features, selectedRouteId);
+      afficherTracéEtArrêts(selectedRouteId);
     } else {
       clearPreviousMarkersAndLines(); // Effacer les tracés et masquer l'infobox si aucune ligne n'est sélectionnée
     }
@@ -178,153 +125,149 @@ function clearPreviousMarkersAndLines() {
   document.getElementById('route-info').style.display = 'none'; // Masquer le panneau d'informations
 }
 
-// Vérifier si les coordonnées sont valides et diagnostiquer les erreurs
-function coordinatesAreValid(coordinates) {
-  if (!Array.isArray(coordinates) || coordinates.length < 2) {
-    console.error("Coordonnées invalides", coordinates);
-    return false;
-  }
-  const [lon, lat] = coordinates;
-  if (isNaN(lon) || isNaN(lat)) {
-    console.error("Coordonnées non numériques", coordinates);
-    return false;
-  }
-  return true;
-}
-
-// Fonction pour vérifier et afficher le tracé
-function createPolylineFromCoordinates(feature, lineColor) {
-  if (!feature.geometry || !feature.geometry.coordinates) {
-    console.error("Pas de géométrie ou de coordonnées pour cette ligne", feature);
-    return;
-  }
-
-  const validCoordinates = feature.geometry.coordinates.filter(coordinatesAreValid);
-
-  // Journaliser les coordonnées valides et invalides
-  feature.geometry.coordinates.forEach((coord, index) => {
-    if (!coordinatesAreValid(coord)) {
-      console.warn(`Coordonnées invalides trouvées à l'index ${index} :`, coord);
-    }
-  });
-
-  if (validCoordinates.length > 1) {
-    try {
-      const line = L.polyline(validCoordinates, { color: lineColor, weight: 4 });
-      allLinesLayer.addLayer(line);
-      line.addTo(map);
-      console.log("Tracé ajouté :", validCoordinates);
-    } catch (e) {
-      console.error("Erreur lors de l'ajout du tracé", e);
-    }
-  } else {
-    console.error("Tracé ignoré : coordonnées invalides ou insuffisantes", feature.geometry.coordinates);
-  }
-}
-
 // Afficher le tracé et les arrêts d'une ligne sélectionnée
-function afficherTracéEtArrêts(features, selectedRouteId) {
+async function afficherTracéEtArrêts(routeId) {
+  const { stops, trips, stopTimes, shapes, routes, agency } = await loadGTFSData();
   clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
 
-  const selectedFeatures = features.filter(feature => feature.properties.route_short_name === selectedRouteId);
+  // Filtrer les trips associés à la route sélectionnée
+  const routeTrips = trips.filter(trip => trip.route_id === routeId);
+  const selectedRoute = routes.find(route => route.route_id === routeId);
+  const lineColor = selectedRoute.route_color ? `#${selectedRoute.route_color}` : '#000000';
+  const agencyUrl = agency[0].agency_url; // Utiliser l'URL de l'agence
 
-  selectedFeatures.forEach(feature => {
-    let lineColor = feature.properties.route_color ? feature.properties.route_color : '#000000';
+  if (routeTrips.length > 0) {
+    const tripId = routeTrips[0].trip_id; // Choisir un trip associé à la route
 
-    // Convertir la couleur RGB en hexadécimal si nécessaire
-    if (lineColor.startsWith('rgb')) {
-      lineColor = rgbToHex(lineColor);
+    // Récupérer les arrêts associés à ce trip
+    const tripStopTimes = stopTimes.filter(st => st.trip_id === tripId);
+    const tripStopIds = tripStopTimes.map(st => st.stop_id);
+    const tripStops = stops.filter(stop => tripStopIds.includes(stop.stop_id));
+
+    // Ajouter les arrêts sous forme de points colorés sur la carte
+    tripStops.forEach(stop => {
+      const lat = parseFloat(stop.stop_lat);
+      const lon = parseFloat(stop.stop_lon);
+
+      // Récupérer les informations des lignes passant par cet arrêt
+      const lignes = routeTrips.map(trip => {
+        const route = routes.find(r => r.route_id === trip.route_id);
+        const color = route.route_color ? `#${route.route_color}` : '#000000';
+        return `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
+      }).filter((ligne, index, self) => self.indexOf(ligne) === index).join('<br>'); // Eviter les doublons
+
+      // Créer un point HTML customisé pour chaque arrêt
+      const stopPoint = L.divIcon({
+        className: 'stop-point',
+        html: `<div style="background-color:${lineColor};"></div>`,
+        iconSize: [18, 18]
+      });
+
+      // Ajouter les points des arrêts sur la carte avec événement clic
+      const marker = L.marker([lat, lon], {icon: stopPoint}).on('click', function () {
+        afficherInfoArret(stop.stop_name, lignes, agencyUrl);
+      });
+      markersLayer.addLayer(marker);
+    });
+
+    // Récupérer le tracé associé au trip
+    const shapeId = routeTrips[0].shape_id;
+    const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
+    const shapeCoordinates = tripShapes
+      .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+      .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
+
+    // Supprimer le tracé précédent si nécessaire
+    if (typeof tracéLigne !== 'undefined') {
+      map.removeLayer(tracéLigne);
     }
 
-    // Afficher le tracé de la ligne si la géométrie est un LineString ou MultiLineString
-    if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      createPolylineFromCoordinates(feature, lineColor);
-    }
-
-    // Récupérer et afficher les arrêts sous forme de points colorés, si disponibles
-    if (feature.geometry.type === "Point") {
-      const coords = feature.geometry.coordinates;
-      if (coordinatesAreValid(coords)) {
-        const lat = coords[1];
-        const lon = coords[0];
-        const stopPoint = L.divIcon({
-          className: 'stop-point',
-          html: `<div style="background-color:${lineColor};"></div>`,
-          iconSize: [18, 18]
-        });
-
-        const marker = L.marker([lat, lon], {icon: stopPoint}).on('click', function () {
-          afficherInfoArret(feature.properties.name, feature.properties.description);
-        });
-        markersLayer.addLayer(marker);
-      }
-    }
+    // Tracer la ligne avec la couleur spécifique
+    tracéLigne = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 }).addTo(map);
 
     // Afficher les informations de la ligne dans le panneau
-    afficherInfoLigne(feature.properties);
-  });
+    afficherInfoLigne(selectedRoute, agencyUrl);
+  } else {
+    alert("Pas de trajet trouvé pour cette ligne.");
+  }
 }
 
 // Afficher toutes les lignes en même temps avec survol et clic
-function afficherToutesLesLignes(features) {
+async function afficherToutesLesLignes() {
+  const { trips, shapes, routes } = await loadGTFSData();
   clearPreviousMarkersAndLines(); // Effacer les anciens tracés et marqueurs
 
-  features.forEach(feature => {
-    let lineColor = feature.properties.route_color ? feature.properties.route_color : '#000000';
+  routes.forEach(route => {
+    const lineColor = route.route_color ? `#${route.route_color}` : '#000000';
 
-    // Convertir la couleur RGB en hexadécimal si nécessaire
-    if (lineColor.startsWith('rgb')) {
-      lineColor = rgbToHex(lineColor);
-    }
+    // Récupérer les trips pour cette route
+    const routeTrips = trips.filter(trip => trip.route_id === route.route_id);
+    if (routeTrips.length > 0) {
+      const tripId = routeTrips[0].trip_id;
+      const shapeId = routeTrips[0].shape_id;
+      const tripShapes = shapes.filter(shape => shape.shape_id === shapeId);
+      const shapeCoordinates = tripShapes
+        .sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence))
+        .map(shape => [parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
 
-    if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      createPolylineFromCoordinates(feature, lineColor);
+      // Ajouter chaque ligne à la couche "allLinesLayer"
+      const polyline = L.polyline(shapeCoordinates, { color: lineColor, weight: 4 });
+
+      // Ajouter les événements de survol et de clic
+      polyline.on('mouseover', function () {
+        polyline.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+        afficherInfoLigne(route);
+      });
+
+      polyline.on('mouseout', function () {
+        polyline.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+      });
+
+      polyline.on('click', function () {
+        afficherTracéEtArrêts(route.route_id); // Afficher la ligne et les arrêts au clic
+      });
+
+      allLinesLayer.addLayer(polyline);
     }
   });
 
+  // Ajouter la couche des lignes au groupe des tracés
   allLinesLayer.addTo(map);
 }
 
 // Afficher les informations d'une ligne dans le panneau avec couleur
-function afficherInfoLigne(properties) {
-  let color = properties.route_color ? properties.route_color : '#000000';
-
-  // Convertir la couleur RGB en hexadécimal si nécessaire
-  if (color.startsWith('rgb')) {
-    color = rgbToHex(color);
-  }
-
-  const routeTitle = `<span style="color:${color}"><b>${properties.route_short_name}</b> - ${properties.route_long_name}</span>`;
+function afficherInfoLigne(route, agencyUrl) {
+  const color = route.route_color ? `#${route.route_color}` : '#000000';
+  const routeTitle = `<span style="color:${color}"><b>${route.route_short_name}</b> - ${route.route_long_name}</span>`;
   const content = `
-    <p>${properties.description || ''}</p>
-    <a href="${properties.agency_url || '#'}" target="_blank">Plus d'infos sur l'agence</a>
+    <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
   `;
   document.getElementById('route-title').innerHTML = routeTitle;
   document.getElementById('route-content').innerHTML = content;
   document.getElementById('route-info').style.display = 'block';
 }
 
-// Afficher les informations d'un arrêt dans le panneau
-function afficherInfoArret(stopName, description) {
-  const stopTitle = `<b>${stopName}</b>`;
+// Afficher les informations d'un arrêt dans le panneau avec couleur des lignes
+function afficherInfoArret(stopName, lignes, agencyUrl) {
+  const stopTitle = `<b>Arrêt :</b> ${stopName}`;
   const content = `
-    <p>${description || ''}</p>
+    ${lignes}<br><br>
+    <a href="${agencyUrl}" target="_blank">Plus d'infos sur l'agence</a>
   `;
-  
   document.getElementById('route-title').innerHTML = stopTitle;
   document.getElementById('route-content').innerHTML = content;
   document.getElementById('route-info').style.display = 'block';
 }
 
-// Charger les données GeoJSON et ajouter les lignes dans le menu déroulant
-loadGeoJSONData().then(data => {
-  addRoutesToMenu(data.features);
+// Charger et afficher les routes dans le menu déroulant
+loadGTFSData().then(data => {
+  addRoutesToMenu(data.routes);
 });
 </script>
 
-<!-- Charger la librairie Leaflet -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Charger la librairie PapaParse pour parser les fichiers CSV -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
 </body>
 </html>
-5
+1
