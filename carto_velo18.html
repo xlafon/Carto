@@ -155,6 +155,11 @@ function coordinatesAreValid(coordinates) {
 
 // Fonction pour vérifier et afficher le tracé
 function createPolylineFromCoordinates(feature, lineColor) {
+  if (!feature.geometry || !feature.geometry.coordinates) {
+    console.error("Pas de géométrie ou de coordonnées pour cette ligne", feature);
+    return;
+  }
+
   const validCoordinates = feature.geometry.coordinates.filter(coordinatesAreValid);
   if (validCoordinates.length > 1) {
     try {
@@ -275,4 +280,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-2
+3
