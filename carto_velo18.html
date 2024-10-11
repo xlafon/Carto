@@ -74,16 +74,55 @@ let allLinesLayer = L.layerGroup().addTo(map);
 // Fonction pour convertir les couleurs RGB en hexadécimal
 function rgbToHex(rgb) {
   const rgbArray = rgb.match(/\d+/g);
-  return rgbArray ? '#' + rgbArray.map(x => parseInt(x).toString(16).padStart(2, '0')).join('') : '#000000';
+  if (!rgbArray || rgbArray.length !== 3) {
+    console.warn("Format de couleur RGB incorrect : ", rgb);
+    return "#000000"; // Valeur par défaut en cas d'erreur
+  }
+  return "#" + rgbArray.map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
 }
 
 // Charger le fichier GeoJSON
 async function loadGeoJSONData() {
   const response = await fetch('data/TXIKNORD.geojson'); // Chemin du fichier GeoJSON
   const data = await response.json();
+
+  // Conversion des couleurs RGB en hexadécimal
+  data.features.forEach(feature => {
+    if (feature.properties.route_color && feature.properties.route_color.startsWith('rgb')) {
+      feature.properties.route_color = rgbToHex(feature.properties.route_color);
+    }
+    if (feature.properties.route_text_color && feature.properties.route_text_color.startsWith('rgb')) {
+      feature.properties.route_text_color = rgbToHex(feature.properties.route_text_color);
+    }
+  });
+
   return data;
 }
 
+// Fonction pour créer un tracé (polyline) à partir des coordonnées
+function createPolylineFromCoordinates(feature, lineColor) {
+  const validCoordinates = feature.geometry.coordinates.filter(coordinatesAreValid);
+  
+  if (validCoordinates.length > 1) {
+    try {
+      const line = L.polyline(validCoordinates, { color: lineColor, weight: 4 });
+      allLinesLayer.addLayer(line);
+      line.addTo(map);
+      console.log("Tracé ajouté :", validCoordinates);
+    } catch (e) {
+      console.error("Erreur lors de l'ajout du tracé", e);
+    }
+  } else {
+    console.error("Tracé ignoré : coordonnées invalides ou insuffisantes", feature.geometry.coordinates);
+  }
+}
+
+// Charger les données GeoJSON et ajouter les tracés à la carte
+loadGeoJSONData().then(data => {
+  addRoutesToMenu(data.features);
+});
+
+  
 // Ajouter les lignes au menu déroulant
 function addRoutesToMenu(features) {
   const routeSelect = document.getElementById('routeSelect');
@@ -288,4 +327,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-4
+5
