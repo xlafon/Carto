@@ -161,6 +161,14 @@ function createPolylineFromCoordinates(feature, lineColor) {
   }
 
   const validCoordinates = feature.geometry.coordinates.filter(coordinatesAreValid);
+
+  // Journaliser les coordonnées valides et invalides
+  feature.geometry.coordinates.forEach((coord, index) => {
+    if (!coordinatesAreValid(coord)) {
+      console.warn(`Coordonnées invalides trouvées à l'index ${index} :`, coord);
+    }
+  });
+
   if (validCoordinates.length > 1) {
     try {
       const line = L.polyline(validCoordinates, { color: lineColor, weight: 4 });
@@ -280,4 +288,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-3
+4
