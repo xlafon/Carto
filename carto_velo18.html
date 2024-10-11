@@ -153,17 +153,21 @@ function afficherTracéEtArrêts(features, selectedRouteId) {
 
     // Afficher le tracé de la ligne si la géométrie est un LineString ou MultiLineString
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      if (feature.geometry.coordinates.every(coordinatesAreValid)) {
-        const line = L.geoJSON(feature, {
-          style: {
-            color: lineColor,
-            weight: 4
-          }
-        }).addTo(map);
-  
-        allLinesLayer.addLayer(line);
-      } else {
-        console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+      try {
+        if (feature.geometry.coordinates.every(coordinatesAreValid)) {
+          const line = L.geoJSON(feature, {
+            style: {
+              color: lineColor,
+              weight: 4
+            }
+          }).addTo(map);
+    
+          allLinesLayer.addLayer(line);
+        } else {
+          console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+        }
+      } catch (e) {
+        console.error("Erreur lors de l'affichage du tracé de la ligne", e);
       }
     }
 
@@ -199,31 +203,35 @@ function afficherToutesLesLignes(features) {
     const lineColor = feature.properties.route_color ? `#${feature.properties.route_color}` : '#000000';
 
     if (feature.geometry.type === "LineString" || feature.geometry.type === "MultiLineString") {
-      if (feature.geometry.coordinates.every(coordinatesAreValid)) {
-        const line = L.geoJSON(feature, {
-          style: {
-            color: lineColor,
-            weight: 4
-          }
-        });
-
-        // Ajouter les événements de survol et de clic
-        line.on('mouseover', function () {
-          line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
-          afficherInfoLigne(feature.properties);
-        });
-
-        line.on('mouseout', function () {
-          line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
-        });
-
-        line.on('click', function () {
-          afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
-        });
-
-        allLinesLayer.addLayer(line);
-      } else {
-        console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+      try {
+        if (feature.geometry.coordinates.every(coordinatesAreValid)) {
+          const line = L.geoJSON(feature, {
+            style: {
+              color: lineColor,
+              weight: 4
+            }
+          });
+  
+          // Ajouter les événements de survol et de clic
+          line.on('mouseover', function () {
+            line.setStyle({ color: '#ffcc00', weight: 6 }); // Mettre en surbrillance
+            afficherInfoLigne(feature.properties);
+          });
+  
+          line.on('mouseout', function () {
+            line.setStyle({ color: lineColor, weight: 4 }); // Remettre la couleur d'origine
+          });
+  
+          line.on('click', function () {
+            afficherTracéEtArrêts(features, feature.properties.route_short_name); // Afficher la ligne et les arrêts au clic
+          });
+  
+          allLinesLayer.addLayer(line);
+        } else {
+          console.error("Coordonnées invalides pour le tracé de la ligne", feature.geometry.coordinates);
+        }
+      } catch (e) {
+        console.error("Erreur lors de l'affichage du tracé de la ligne", e);
       }
     }
   });
@@ -267,4 +275,4 @@ loadGeoJSONData().then(data => {
 
 </body>
 </html>
-5
+6
